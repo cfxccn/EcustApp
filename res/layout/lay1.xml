@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true" 
+    android:orientation="vertical"
+    android:background="#ffffff" >
+
+        <TableRow>
+        <TextView
+       
+        android:text="学在华理"/>
+        
+        </TableRow>
+    <TableRow>
+        
+        <TextView android:text="我的课表" />
+        </TableRow>
+        <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+
+        <Button
+            android:id="@+id/btnsearchclassroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自习教室查询" />
+
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+
+        <Button
+            android:id="@+id/btnsearchdrugs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="药品查询" />
+
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+    
+        <TextView android:text="校园地图" />
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+        
+        <TextView android:text="晨跑次数" />
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+
+        <Button
+            android:id="@+id/btnsearchbooks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图书馆" />
+
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+  
+</TableLayout>

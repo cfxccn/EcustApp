@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+    <TableRow>
+        <TextView android:text="吃喝玩乐" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_column="0"
+            android:text="吃"/>
+        <TextView
+            android:layout_column="1"
+             android:text="餐館、奶茶店、咖啡廳" />
+    </TableRow>
+    <View
+        android:layout_height="2dip"
+        android:background="#ff909090" />
+    <TableRow>
+        <TextView
+            android:layout_column="0"
+            android:text="玩" />
+        <TextView android:text="KTV 网吧 电影院 酒吧 棋牌室" />
+    </TableRow>
+    <View
+        android:layout_height="2dip"
+        android:background="#ff909090" />
+    <TableRow>
+        <TextView
+            android:layout_column="0"
+            android:text="行" />
+        <TextView android:text="公交站点  shop 校车站点 停车场" />
+    </TableRow>
+    <View
+        android:layout_height="2dip"
+        android:background="#ff909090" />
+    <TableRow>
+        <TextView
+            android:layout_column="0"
+            android:text="住" />
+        <TextView android:text="校内 校外" />
+    </TableRow>
+    <View
+        android:layout_height="2dip"
+        android:background="#ff909090" />
+    <TableRow>
+        <TextView
+            android:layout_column="0"
+            android:text="游" />
+        <TextView android:text="海边  欢乐谷 蜡像馆  博物馆" />
+    </TableRow>
+    <View
+        android:layout_height="2dip"
+        android:background="#ff909090" />
+</TableLayout>
