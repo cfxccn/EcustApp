@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 		InitViewPager();
     }
 
-	private void init()
+	private void initlay0()
 	{
 		Button btnsearchdurgs = (Button) findViewById(R.id.btnsearchdrugs);
 		btnsearchdurgs.setOnClickListener(new OnClickListener() {
@@ -78,18 +78,25 @@ public class MainActivity extends Activity {
 			MainActivity.this.finish();
 			}
 		});
-		Button btnjoke = (Button) findViewById(R.id.btn_joke);
-		btnjoke.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-			Intent intent =new Intent();
-			intent.setClass(MainActivity.this, Joke.class);
-			startActivity(intent);
-			MainActivity.this.finish();
-			}
-		});
 	}
+	private void initlay1()
+	{
+	}
+	private void initlay2()
+	{
+	Button btnjoke = (Button) findViewById(R.id.btn_joke);
+	btnjoke.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v)
+		{
+		Intent intent =new Intent();
+		intent.setClass(MainActivity.this, Joke.class);
+		startActivity(intent);
+		MainActivity.this.finish();
+		}
+	});
+	}
+
 	private void InitViewPager() {
 		viewPager=(ViewPager) findViewById(R.id.vPager);
 		views=new ArrayList<View>();
@@ -139,10 +146,18 @@ public class MainActivity extends Activity {
 
 		public Object instantiateItem(ViewGroup container, int position) {			
 			 container.addView(mListViews.get(position), 0);
-			 init();
 			 return mListViews.get(position);
 		}
 
+	    @Override
+	    public void setPrimaryItem(View container, int position, Object object) {
+	    	switch (position){
+			case 0:	initlay0();break;
+			case 1: initlay1();break;
+			case 2: initlay2();break;
+			}
+	    }
+		
 		public int getCount() {			
 			return  mListViews.size();
 		}

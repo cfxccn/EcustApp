@@ -51,12 +51,6 @@
             android:layout_height="2dip"
             android:background="#ff909090"/>
          <TableRow>
-
-             <Button
-                 android:id="@+id/btn_joke"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="开心一笑" />
         
         <TextView android:text="晨跑次数" />
         </TableRow>

@@ -27,7 +27,7 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f080023;
-        public static final int btn_joke=0x7f080008;
+        public static final int btn_joke=0x7f080009;
         public static final int btnback_books=0x7f08000f;
         public static final int btnback_classroom=0x7f080011;
         public static final int btnback_drugs=0x7f080022;
@@ -36,7 +36,7 @@ public final class R {
         public static final int btnhome_linknet=0x7f08000c;
         public static final int btnsearch_classroom=0x7f080012;
         public static final int btnsearch_drugs=0x7f080021;
-        public static final int btnsearchbooks=0x7f080009;
+        public static final int btnsearchbooks=0x7f080008;
         public static final int btnsearchclassroom=0x7f080006;
         public static final int btnsearchdrugs=0x7f080007;
         public static final int button1=0x7f080004;
