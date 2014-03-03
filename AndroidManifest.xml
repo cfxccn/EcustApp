@@ -26,7 +26,8 @@
         <activity android:name="com.usta.SearchBooks" 
             android:label="图书查询" ></activity>
         <activity android:name="com.usta.SearchClassroom"></activity>
-        <activity android:name="com.usta.Map"></activity>      
+        <activity android:name="com.usta.Map"></activity>   
+            <activity android:name="com.usta.Joke"></activity>   
     </application>
 
 </manifest>

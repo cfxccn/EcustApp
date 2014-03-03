@@ -78,6 +78,17 @@ public class MainActivity extends Activity {
 			MainActivity.this.finish();
 			}
 		});
+		Button btnjoke = (Button) findViewById(R.id.btn_joke);
+		btnjoke.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+			Intent intent =new Intent();
+			intent.setClass(MainActivity.this, Joke.class);
+			startActivity(intent);
+			MainActivity.this.finish();
+			}
+		});
 	}
 	private void InitViewPager() {
 		viewPager=(ViewPager) findViewById(R.id.vPager);
