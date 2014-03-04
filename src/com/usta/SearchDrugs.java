@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +21,17 @@ public class SearchDrugs extends Activity {
         setContentView(R.layout.searchdrugs);
         init();
     }
-    
+	  public boolean onKeyDown(int keyCode, KeyEvent event) {  
+	        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
+				Intent intent =new Intent();
+				intent.setClass( SearchDrugs.this, MainActivity.class);
+				startActivity(intent);
+				SearchDrugs.this.finish();
+	            return true;  
+	        }  
+	        return super.onKeyDown(keyCode, event);  
+	    } 
+
     private void init(){
     	Button btnback=(Button)findViewById(R.id.btnback_drugs);
     	btnback.setOnClickListener(new OnClickListener() {
@@ -39,27 +50,8 @@ public class SearchDrugs extends Activity {
 			@Override
 			public void onClick(View v)
 			{
-				 String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-				 String dbURL = "jdbc:sqlserver://172.18.113.24; DatabaseName=ecustj111";
-				 SQLServerConnection dbConn;
-
-				  try {
-
-				   Class.forName(driverName);
-
-				   dbConn = (SQLServerConnection) DriverManager.getConnection(dbURL, "test", "t1234567");
-
-				   System.out.println("Connection Successful!");  //如果连接成功 控制台输出Connection Successful!
-
-				  } catch (Exception e) {
-
-				   e.printStackTrace();
-
-				  }
 
 				}
-				
-
 		});
     }
 }

@@ -18,7 +18,7 @@
         </TableRow>
         <View
             android:layout_height="2dip"
-            android:background="#ff909090"/>
+            android:background="#ff909090"></View>
          <TableRow>
 
              <Button

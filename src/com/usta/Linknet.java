@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -22,7 +23,9 @@ public class Linknet extends Activity {
     }
     private void initwebview(){
     	  webView = (WebView)findViewById(R.id.webView_linknet);
-          webView.loadUrl("http://login.ecust.edu.cn/mobile_portal.html"); 
+          webView.loadUrl("http://login.ecust.edu.cn/mobile5.html"); 
+          WebSettings webSettings = webView.getSettings();
+          webSettings.setJavaScriptEnabled(true);
           webView.setWebViewClient(new WebViewClient(){
               @Override
               public boolean shouldOverrideUrlLoading(WebView view, String url) {
