@@ -34,6 +34,8 @@
                 android:label="每日笑话"></activity>   
             <activity android:name="com.usta.Linknet"
                  android:label="链接校园网"></activity>   
+                        <activity android:name="com.usta.Morningtrain"
+                 android:label="晨跑次数查询"></activity>   
     </application>
 
 </manifest>
