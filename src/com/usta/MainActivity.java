@@ -78,6 +78,17 @@ public class MainActivity extends Activity {
 			MainActivity.this.finish();
 			}
 		});
+		Button btnlinknet = (Button) findViewById(R.id.btnlinknet);
+		btnlinknet.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+			Intent intent =new Intent();
+			intent.setClass(MainActivity.this, Linknet.class);
+			startActivity(intent);
+			MainActivity.this.finish();
+			}
+		});
 	}
 	private void initlay1()
 	{

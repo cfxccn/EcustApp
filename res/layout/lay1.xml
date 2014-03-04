@@ -21,11 +21,11 @@
             android:background="#ff909090"/>
          <TableRow>
 
-        <Button
-            android:id="@+id/btnsearchclassroom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="自习教室查询" />
+             <Button
+                 android:id="@+id/btnlinknet"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="链接校园网" />
 
         </TableRow>
          <View
@@ -63,7 +63,19 @@
             android:id="@+id/btnsearchbooks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="图书馆" />
+            android:text="校图馆藏查询" />
+
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+                  <TableRow>
+
+        <Button
+            android:id="@+id/btnsearchclassroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自习教室查询" />
 
         </TableRow>
          <View

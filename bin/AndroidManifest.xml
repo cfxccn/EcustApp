@@ -22,12 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.usta.SearchDrugs"></activity>
+        <activity android:name="com.usta.SearchDrugs"
+             android:label="药品查询"></activity>
         <activity android:name="com.usta.SearchBooks" 
             android:label="图书查询" ></activity>
-        <activity android:name="com.usta.SearchClassroom"></activity>
-        <activity android:name="com.usta.Map"></activity>   
-            <activity android:name="com.usta.Joke"></activity>   
+        <activity android:name="com.usta.SearchClassroom"
+             android:label="教室查询"></activity>
+        <activity android:name="com.usta.Map"
+            android:label="教室查询"></activity>   
+            <activity android:name="com.usta.Joke"
+                android:label="每日笑话"></activity>   
+            <activity android:name="com.usta.Linknet"
+                 android:label="链接校园网"></activity>   
     </application>
 
 </manifest>
