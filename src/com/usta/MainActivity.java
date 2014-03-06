@@ -94,6 +94,7 @@ public class MainActivity extends Activity   {
 			MainActivity.this.finish();
 			}
 		});
+
 		Button btnmorningtrain = (Button) findViewById(R.id.btnmorningtrain);
 		btnmorningtrain.setOnClickListener(new OnClickListener() {
 			@Override
@@ -104,14 +105,13 @@ public class MainActivity extends Activity   {
 			startActivity(intent);
 			MainActivity.this.finish();
 			}
-		});
+		});	
+		
 	}
 	private void initlay1()
 	{
 	}
-	private void initlay3()
-	{
-	}
+
 	private void initlay2()
 	{
 	Button btnjoke = (Button) findViewById(R.id.btn_joke);
@@ -134,11 +134,11 @@ public class MainActivity extends Activity   {
 		view1=inflater.inflate(R.layout.lay1, null);
 		view2=inflater.inflate(R.layout.lay2, null);
 		view3=inflater.inflate(R.layout.lay3, null);
-		view4=inflater.inflate(R.layout.xml1,null);
+	//	view4=inflater.inflate(R.layout.xml1,null);
 		views.add(view1);
 		views.add(view2);
 		views.add(view3);
-		views.add(view4);
+	//	views.add(view4);
 		viewPager.setAdapter(new MyViewPagerAdapter(views));
 		viewPager.setCurrentItem(0);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -187,7 +187,6 @@ public class MainActivity extends Activity   {
 			case 0:	initlay0();break;
 			case 1: initlay1();break;
 			case 2: initlay2();break;
-			case 3: initlay3();break;
 			}
 	    }
 		

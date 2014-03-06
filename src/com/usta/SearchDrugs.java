@@ -10,7 +10,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-
+import com.microsoft.sqlserver.*;
+import com.microsoft.sqlserver.jdbc.SQLServerConnection;
 
 public class SearchDrugs extends Activity {
 
