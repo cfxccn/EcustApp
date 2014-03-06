@@ -94,6 +94,17 @@ public class MainActivity extends Activity   {
 			MainActivity.this.finish();
 			}
 		});
+		Button btnmorningtrain = (Button) findViewById(R.id.btnmorningtrain);
+		btnmorningtrain.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+			Intent intent =new Intent();
+			intent.setClass(MainActivity.this, Morningtrain.class);
+			startActivity(intent);
+			MainActivity.this.finish();
+			}
+		});
 	}
 	private void initlay1()
 	{

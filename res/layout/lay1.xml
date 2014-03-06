@@ -6,16 +6,8 @@
     android:orientation="vertical"
     android:background="#ffffff" >
 
-        <TableRow>
-        <TextView
-       
-        android:text="学在华理"/>
-        
-        </TableRow>
-    <TableRow>
-        
-        <TextView android:text="我的课表" />
-        </TableRow>
+
+
         <View
             android:layout_height="2dip"
             android:background="#ff909090"></View>
@@ -40,19 +32,18 @@
             android:text="药品查询" />
 
         </TableRow>
+
          <View
             android:layout_height="2dip"
             android:background="#ff909090"/>
          <TableRow>
-    
-        <TextView android:text="校园地图" />
-        </TableRow>
-         <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-         <TableRow>
-        
-        <TextView android:text="晨跑次数" />
+
+        <Button
+            android:id="@+id/btnmorningtrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="晨跑查询" />
+
         </TableRow>
          <View
             android:layout_height="2dip"
@@ -81,5 +72,10 @@
          <View
             android:layout_height="2dip"
             android:background="#ff909090"/>
+
+         <TableRow>
+    
+        <TextView android:text="校园地图" />
+        </TableRow>
   
 </TableLayout>

@@ -23,6 +23,8 @@ public class Linknet extends Activity {
     }
     private void initwebview(){
     	  webView = (WebView)findViewById(R.id.webView_linknet);
+         //   webView.loadUrl(" http://172.18.113.24:9090/Service1.asmx"); 
+ 
           webView.loadUrl("http://login.ecust.edu.cn/mobile5.html"); 
           WebSettings webSettings = webView.getSettings();
           webSettings.setJavaScriptEnabled(true);
