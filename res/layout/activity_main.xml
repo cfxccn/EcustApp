@@ -27,7 +27,7 @@
         android:background="#FFFFFF" >
 
         <TextView
-            android:id="@+id/lay1"
+            android:id="@+id/lay1tv"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
@@ -37,7 +37,7 @@
             android:textSize="22.0dip" />
 
         <TextView
-            android:id="@+id/lay2"
+            android:id="@+id/lay2tv"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
@@ -47,7 +47,7 @@
             android:textSize="22.0dip" />
 
         <TextView
-            android:id="@+id/lay3"
+            android:id="@+id/lay3tv"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"

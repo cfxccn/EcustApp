@@ -30,10 +30,8 @@ public class MainActivity extends Activity   {
     private int index = 0;
 	private ViewPager viewPager;//Ò³¿¨ÄÚÈÝ
 	private ImageView imageView;// ¶¯»­Í¼Æ¬
-	private TextView textView1,textView2,textView3;
 	private List<View> views;// TabÒ³ÃæÁÐ±í
 	private int offset = 0;// ¶¯»­Í¼Æ¬Æ«ÒÆÁ¿
-	private int currIndex = 0;// µ±Ç°Ò³¿¨±àºÅ
 	private int bmpW;// ¶¯»­Í¼Æ¬¿í¶È
 	private View view1,view2,view3;//¸÷¸öÒ³¿¨
 	private TextView lay1textview,lay2textview,lay3textview;
@@ -46,38 +44,36 @@ public class MainActivity extends Activity   {
 		InitViewPager();
 		InitLayNUM();
     }
-    public class LaytextviewOnClickListener implements View.OnClickListener {
-        public LaytextviewOnClickListener(int i) {
-            index = i;
-        }
-        @Override
-        public void onClick(View v) {
-        	viewPager.setCurrentItem(index);
-        	if (index==0){ 
-        		lay1textview.setBackgroundColor(Color.GRAY);
-        		lay2textview.setBackgroundColor(Color.WHITE);
-        		lay3textview.setBackgroundColor(Color.WHITE);
-        		}
-        	if (index==1){ 
-        		lay1textview.setBackgroundColor(Color.WHITE);
-        		lay2textview.setBackgroundColor(Color.GRAY);
-        		lay3textview.setBackgroundColor(Color.WHITE);
-        		}
-        	if (index==2){ 
-        		lay1textview.setBackgroundColor(Color.WHITE);
-        		lay2textview.setBackgroundColor(Color.WHITE);
-        		lay3textview.setBackgroundColor(Color.GRAY);
-        		}
-        }
-    };
+
     private void InitLayNUM() {
-    	 lay1textview = (TextView) findViewById(R.id.lay1);
-    	 lay2textview = (TextView) findViewById(R.id.lay2);
-    	 lay3textview = (TextView) findViewById(R.id.lay3);
+    	 lay1textview = (TextView) findViewById(R.id.lay1tv);
+    	 lay2textview = (TextView) findViewById(R.id.lay2tv);
+    	 lay3textview = (TextView) findViewById(R.id.lay3tv);
  		lay1textview.setBackgroundColor(Color.GRAY);
-    	lay1textview.setOnClickListener(new LaytextviewOnClickListener(0));
-    	lay2textview.setOnClickListener(new LaytextviewOnClickListener(1));
-    	lay3textview.setOnClickListener(new LaytextviewOnClickListener(2));
+    	lay1textview.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=0;
+				viewPager.setCurrentItem(0);
+			}
+		});
+    	lay2textview.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=1;
+				viewPager.setCurrentItem(1);
+			}
+		});
+     lay3textview.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=2;
+				viewPager.setCurrentItem(2);
+			}
+		});
     }
 	private void initlay0()
 	{
@@ -93,8 +89,6 @@ public class MainActivity extends Activity   {
 				MainActivity.this.finish();
 			}
 		});
-		
-
 		Button btnsearchbooks = (Button) findViewById(	R.id.btnsearchbooks);
 		btnsearchbooks.setOnClickListener(new OnClickListener() {
 			@Override
@@ -129,7 +123,6 @@ public class MainActivity extends Activity   {
 			MainActivity.this.finish();
 			}
 		});
-
 		Button btnmorningtrain = (Button) findViewById(R.id.btnmorningtrain);
 		btnmorningtrain.setOnClickListener(new OnClickListener() {
 			@Override
@@ -146,7 +139,6 @@ public class MainActivity extends Activity   {
 	private void initlay1()
 	{
 	}
-
 	private void initlay2()
 	{
 	Button btnjoke = (Button) findViewById(R.id.btn_joke);
@@ -175,7 +167,7 @@ public class MainActivity extends Activity   {
 		views.add(view3);
 	//	views.add(view4);
 		viewPager.setAdapter(new MyViewPagerAdapter(views));
-		viewPager.setCurrentItem(0);
+		viewPager.setCurrentItem(index);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
 	 /**
@@ -244,12 +236,28 @@ public class MainActivity extends Activity   {
 		}
 
 		public void onPageSelected(int arg0) {
-			Animation animation = new TranslateAnimation(one*currIndex, one*arg0, 0, 0);
-			currIndex = arg0;
+			Animation animation = new TranslateAnimation(one*index, one*arg0, 0, 0);
+			index = arg0;
+			
 			animation.setFillAfter(true);// True:Í¼Æ¬Í£ÔÚ¶¯»­½áÊøÎ»ÖÃ
 			animation.setDuration(300);
 			imageView.startAnimation(animation);
-		//Toast.makeText(ECUST.this, "ÄúÑ¡ÔñÁË"+ viewPager.getCurrentItem()+"Ò³¿¨", Toast.LENGTH_SHORT).show();
+
+        	if (arg0==0){ 
+        		lay1textview.setBackgroundColor(Color.GRAY);
+        		lay2textview.setBackgroundColor(Color.WHITE);
+        		lay3textview.setBackgroundColor(Color.WHITE);
+        		}
+        	if (arg0==1){ 
+        		lay1textview.setBackgroundColor(Color.WHITE);
+        		lay2textview.setBackgroundColor(Color.GRAY);
+        		lay3textview.setBackgroundColor(Color.WHITE);
+        		}
+        	if (arg0==2){ 
+        		lay1textview.setBackgroundColor(Color.WHITE);
+        		lay2textview.setBackgroundColor(Color.WHITE);
+        		lay3textview.setBackgroundColor(Color.GRAY);
+        		}
 		}
     }
 }

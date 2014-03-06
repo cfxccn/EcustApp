@@ -9,20 +9,10 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textview_joke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
-        android:text="快来看笑话"
-        android:textSize="40sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
         android:layout_centerVertical="true"
         android:background="#ff3400"
         android:lines="10"
@@ -38,10 +28,9 @@
         android:text="今日一乐" />
 
     <Button
-        android:id="@+id/btnkack_joke"
+        android:id="@+id/btnback_joke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
         android:layout_alignRight="@+id/textView2"
         android:layout_marginRight="47dp"
         android:text="返回" />
