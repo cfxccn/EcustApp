@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity   {
-	
+    private int index = 0;
 	private ViewPager viewPager;//Ò³¿¨ÄÚÈÝ
 	private ImageView imageView;// ¶¯»­Í¼Æ¬
 	private TextView textView1,textView2,textView3;
@@ -34,7 +35,8 @@ public class MainActivity extends Activity   {
 	private int offset = 0;// ¶¯»­Í¼Æ¬Æ«ÒÆÁ¿
 	private int currIndex = 0;// µ±Ç°Ò³¿¨±àºÅ
 	private int bmpW;// ¶¯»­Í¼Æ¬¿í¶È
-	private View view1,view2,view3,view4;//¸÷¸öÒ³¿¨
+	private View view1,view2,view3;//¸÷¸öÒ³¿¨
+	private TextView lay1textview,lay2textview,lay3textview;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,41 @@ public class MainActivity extends Activity   {
         setContentView(R.layout.activity_main);
 		InitImageView();
 		InitViewPager();
+		InitLayNUM();
     }
-
+    public class LaytextviewOnClickListener implements View.OnClickListener {
+        public LaytextviewOnClickListener(int i) {
+            index = i;
+        }
+        @Override
+        public void onClick(View v) {
+        	viewPager.setCurrentItem(index);
+        	if (index==0){ 
+        		lay1textview.setBackgroundColor(Color.GRAY);
+        		lay2textview.setBackgroundColor(Color.WHITE);
+        		lay3textview.setBackgroundColor(Color.WHITE);
+        		}
+        	if (index==1){ 
+        		lay1textview.setBackgroundColor(Color.WHITE);
+        		lay2textview.setBackgroundColor(Color.GRAY);
+        		lay3textview.setBackgroundColor(Color.WHITE);
+        		}
+        	if (index==2){ 
+        		lay1textview.setBackgroundColor(Color.WHITE);
+        		lay2textview.setBackgroundColor(Color.WHITE);
+        		lay3textview.setBackgroundColor(Color.GRAY);
+        		}
+        }
+    };
+    private void InitLayNUM() {
+    	 lay1textview = (TextView) findViewById(R.id.lay1);
+    	 lay2textview = (TextView) findViewById(R.id.lay2);
+    	 lay3textview = (TextView) findViewById(R.id.lay3);
+ 		lay1textview.setBackgroundColor(Color.GRAY);
+    	lay1textview.setOnClickListener(new LaytextviewOnClickListener(0));
+    	lay2textview.setOnClickListener(new LaytextviewOnClickListener(1));
+    	lay3textview.setOnClickListener(new LaytextviewOnClickListener(2));
+    }
 	private void initlay0()
 	{
 		Button btnsearchdurgs = (Button) findViewById(R.id.btnsearchdrugs);

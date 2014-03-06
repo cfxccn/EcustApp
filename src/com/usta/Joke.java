@@ -20,8 +20,7 @@ public class Joke extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.joke);
-		Button button=(Button)findViewById(R.id.button1);
-		button.setOnClickListener(this);
+		initbtn();
 	}
 	@Override 
 	public void onClick(View v) {
@@ -61,7 +60,26 @@ public class Joke extends Activity implements OnClickListener {
 	            return true;  
 	        }  
 	        return super.onKeyDown(keyCode, event);  
-	    } 
+	    }
+	  private void initbtn(){
+  	Button btnback=(Button)findViewById(R.id.btnkack_joke);
+  	btnback.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				// setContentView(R.layout.activity_main);
+				Intent intent =new Intent();
+				intent.setClass( Joke.this, MainActivity.class);
+				startActivity(intent);
+				Joke.this.finish();
+			}
+		});
+	Button button=(Button)findViewById(R.id.btnjoke);
+	button.setOnClickListener(this);
+  	
+}
+	  
+
 }
 
 
