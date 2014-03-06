@@ -9,6 +9,51 @@ package com.usta;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int circleBackground=0x7f010000;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>East</code></td><td>0</td><td></td></tr>
+<tr><td><code>South</code></td><td>90</td><td></td></tr>
+<tr><td><code>West</code></td><td>180</td><td></td></tr>
+<tr><td><code>North</code></td><td>270</td><td></td></tr>
+</table>
+         */
+        public static final int firstChildPosition=0x7f010001;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int isRotating=0x7f010003;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int name=0x7f010004;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rotateToCenter=0x7f010002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -22,47 +67,70 @@ public final class R {
     }
     public static final class drawable {
         public static final int a=0x7f020000;
-        public static final int ic_action_search=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
+        public static final int chi=0x7f020001;
+        public static final int ic_action_search=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int icon_facebook=0x7f020004;
+        public static final int icon_google=0x7f020005;
+        public static final int icon_linkedin=0x7f020006;
+        public static final int icon_myspace=0x7f020007;
+        public static final int icon_twitter=0x7f020008;
+        public static final int icon_wordpress=0x7f020009;
+        public static final int wan=0x7f02000a;
+        public static final int xing=0x7f02000b;
+        public static final int you=0x7f02000c;
+        public static final int zhu=0x7f02000d;
     }
     public static final class id {
-        public static final int action_settings=0x7f080024;
-        public static final int btn_joke=0x7f08000a;
-        public static final int btnback_books=0x7f080010;
-        public static final int btnback_classroom=0x7f080012;
-        public static final int btnback_drugs=0x7f080023;
-        public static final int btnback_linknet=0x7f08000c;
-        public static final int btnhome_books=0x7f080011;
-        public static final int btnhome_linknet=0x7f08000d;
-        public static final int btnlinknet=0x7f080006;
-        public static final int btnsearch_classroom=0x7f080013;
-        public static final int btnsearch_drugs=0x7f080022;
-        public static final int btnsearchbooks=0x7f080008;
-        public static final int btnsearchclassroom=0x7f080009;
-        public static final int btnsearchdrugs=0x7f080007;
-        public static final int button1=0x7f080004;
-        public static final int button2=0x7f080005;
-        public static final int cursor=0x7f080000;
-        public static final int editText_drugs=0x7f080021;
-        public static final int radioButton1=0x7f080016;
-        public static final int radioButton2=0x7f080017;
-        public static final int radioButton3=0x7f080019;
-        public static final int radioButton4=0x7f08001a;
-        public static final int radioButton5=0x7f08001b;
-        public static final int radioButtontime1=0x7f08001c;
-        public static final int radioButtontime2=0x7f08001d;
-        public static final int radioButtontime3=0x7f08001e;
-        public static final int radioButtontime4=0x7f08001f;
-        public static final int radioButtontime5=0x7f080020;
-        public static final int radioGroup=0x7f080018;
-        public static final int radioGroupDay=0x7f080014;
-        public static final int radioGroupTime=0x7f080015;
-        public static final int textView1=0x7f080002;
-        public static final int textView2=0x7f080003;
-        public static final int textView3=0x7f08000e;
-        public static final int vPager=0x7f080001;
-        public static final int webView_lib=0x7f08000f;
-        public static final int webView_linknet=0x7f08000b;
+        public static final int East=0x7f050000;
+        public static final int North=0x7f050003;
+        public static final int South=0x7f050001;
+        public static final int West=0x7f050002;
+        public static final int action_settings=0x7f050030;
+        public static final int btn_joke=0x7f05000e;
+        public static final int btnback_books=0x7f050014;
+        public static final int btnback_classroom=0x7f050016;
+        public static final int btnback_drugs=0x7f050027;
+        public static final int btnback_linknet=0x7f050010;
+        public static final int btnhome_books=0x7f050015;
+        public static final int btnhome_linknet=0x7f050011;
+        public static final int btnlinknet=0x7f05000a;
+        public static final int btnsearch_classroom=0x7f050017;
+        public static final int btnsearch_drugs=0x7f050026;
+        public static final int btnsearchbooks=0x7f05000c;
+        public static final int btnsearchclassroom=0x7f05000d;
+        public static final int btnsearchdrugs=0x7f05000b;
+        public static final int button1=0x7f050008;
+        public static final int button2=0x7f050009;
+        public static final int cursor=0x7f050004;
+        public static final int editText_drugs=0x7f050025;
+        public static final int main_circle_layout=0x7f050028;
+        public static final int main_facebook_image=0x7f05002a;
+        public static final int main_google_image=0x7f05002c;
+        public static final int main_linkedin_image=0x7f05002d;
+        public static final int main_myspace_image=0x7f05002b;
+        public static final int main_selected_textView=0x7f050029;
+        public static final int main_twitter_image=0x7f05002e;
+        public static final int main_wordpress_image=0x7f05002f;
+        public static final int radioButton1=0x7f05001a;
+        public static final int radioButton2=0x7f05001b;
+        public static final int radioButton3=0x7f05001d;
+        public static final int radioButton4=0x7f05001e;
+        public static final int radioButton5=0x7f05001f;
+        public static final int radioButtontime1=0x7f050020;
+        public static final int radioButtontime2=0x7f050021;
+        public static final int radioButtontime3=0x7f050022;
+        public static final int radioButtontime4=0x7f050023;
+        public static final int radioButtontime5=0x7f050024;
+        public static final int radioGroup=0x7f05001c;
+        public static final int radioGroupDay=0x7f050018;
+        public static final int radioGroupTime=0x7f050019;
+        public static final int textView1=0x7f050006;
+        public static final int textView2=0x7f050007;
+        public static final int textView3=0x7f050012;
+        public static final int vPager=0x7f050005;
+        public static final int webView_lib=0x7f050013;
+        public static final int webView_linknet=0x7f05000f;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -76,20 +144,33 @@ public final class R {
         public static final int searchbooks=0x7f030008;
         public static final int searchclassroom=0x7f030009;
         public static final int searchdrugs=0x7f03000a;
+        public static final int xml1=0x7f03000b;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int main=0x7f080000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int hello_world=0x7f050002;
+        public static final int action_settings=0x7f060001;
+        public static final int app_name=0x7f060000;
+        public static final int facebook=0x7f060004;
+        public static final int google=0x7f060006;
+        public static final int hello_world=0x7f060002;
+        public static final int linkedin=0x7f060007;
+        public static final int myspace=0x7f060009;
+        public static final int start_app=0x7f060003;
+        public static final int twitter=0x7f060005;
+        public static final int wordpress=0x7f060008;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -107,10 +188,120 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
-        /**  Application theme. 
+        public static final int AppBaseTheme=0x7f070000;
+        /**  All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a Circle.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #Circle_circleBackground com.usta:circleBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #Circle_firstChildPosition com.usta:firstChildPosition}</code></td><td></td></tr>
+           <tr><td><code>{@link #Circle_isRotating com.usta:isRotating}</code></td><td></td></tr>
+           <tr><td><code>{@link #Circle_rotateToCenter com.usta:rotateToCenter}</code></td><td></td></tr>
+           </table>
+           @see #Circle_circleBackground
+           @see #Circle_firstChildPosition
+           @see #Circle_isRotating
+           @see #Circle_rotateToCenter
+         */
+        public static final int[] Circle = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.usta.R.attr#circleBackground}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.usta:circleBackground
+        */
+        public static final int Circle_circleBackground = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.usta.R.attr#firstChildPosition}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>East</code></td><td>0</td><td></td></tr>
+<tr><td><code>South</code></td><td>90</td><td></td></tr>
+<tr><td><code>West</code></td><td>180</td><td></td></tr>
+<tr><td><code>North</code></td><td>270</td><td></td></tr>
+</table>
+          @attr name com.usta:firstChildPosition
+        */
+        public static final int Circle_firstChildPosition = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.usta.R.attr#isRotating}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.usta:isRotating
+        */
+        public static final int Circle_isRotating = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.usta.R.attr#rotateToCenter}
+          attribute's value can be found in the {@link #Circle} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.usta:rotateToCenter
+        */
+        public static final int Circle_rotateToCenter = 2;
+        /** Attributes that can be used with a CircleImageView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircleImageView_name com.usta:name}</code></td><td></td></tr>
+           </table>
+           @see #CircleImageView_name
+         */
+        public static final int[] CircleImageView = {
+            0x7f010004
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.usta.R.attr#name}
+          attribute's value can be found in the {@link #CircleImageView} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.usta:name
+        */
+        public static final int CircleImageView_name = 0;
+    };
 }

@@ -1,6 +1,10 @@
 package com.usta;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.usta.CircleLayout.OnItemClickListener;
+import com.usta.CircleLayout.OnItemSelectedListener;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity   {
 	
 	private ViewPager viewPager;//Ò³¿¨ÄÚÈÝ
 	private ImageView imageView;// ¶¯»­Í¼Æ¬
@@ -30,7 +34,7 @@ public class MainActivity extends Activity {
 	private int offset = 0;// ¶¯»­Í¼Æ¬Æ«ÒÆÁ¿
 	private int currIndex = 0;// µ±Ç°Ò³¿¨±àºÅ
 	private int bmpW;// ¶¯»­Í¼Æ¬¿í¶È
-	private View view1,view2,view3;//¸÷¸öÒ³¿¨
+	private View view1,view2,view3,view4;//¸÷¸öÒ³¿¨
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class MainActivity extends Activity {
 				MainActivity.this.finish();
 			}
 		});
+		
 
 		Button btnsearchbooks = (Button) findViewById(	R.id.btnsearchbooks);
 		btnsearchbooks.setOnClickListener(new OnClickListener() {
@@ -93,6 +98,9 @@ public class MainActivity extends Activity {
 	private void initlay1()
 	{
 	}
+	private void initlay3()
+	{
+	}
 	private void initlay2()
 	{
 	Button btnjoke = (Button) findViewById(R.id.btn_joke);
@@ -115,9 +123,11 @@ public class MainActivity extends Activity {
 		view1=inflater.inflate(R.layout.lay1, null);
 		view2=inflater.inflate(R.layout.lay2, null);
 		view3=inflater.inflate(R.layout.lay3, null);
+		view4=inflater.inflate(R.layout.xml1,null);
 		views.add(view1);
 		views.add(view2);
 		views.add(view3);
+		views.add(view4);
 		viewPager.setAdapter(new MyViewPagerAdapter(views));
 		viewPager.setCurrentItem(0);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -166,6 +176,7 @@ public class MainActivity extends Activity {
 			case 0:	initlay0();break;
 			case 1: initlay1();break;
 			case 2: initlay2();break;
+			case 3: initlay3();break;
 			}
 	    }
 		
