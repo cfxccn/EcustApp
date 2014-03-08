@@ -1039,7 +1039,8 @@ containing a value of this type.
         public static final int editText_drugs=0x7f04006b;
         public static final int edit_query=0x7f04002a;
         public static final int homeAsUp=0x7f040006;
-        public static final int homepage_searchbook=0x7f04006e;
+        public static final int homepage_linknet=0x7f04006e;
+        public static final int homepage_searchbook=0x7f040070;
         public static final int id_mt=0x7f040052;
         public static final int linearLayout1=0x7f040038;
         public static final int listMode=0x7f040002;

@@ -2,11 +2,16 @@ package com.usta;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import com.usta.CircleLayout.OnItemClickListener;
 import com.usta.CircleLayout.OnItemSelectedListener;
-
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -16,7 +21,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
-import android.view.Menu;
+//import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -25,8 +30,9 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends Activity   {
+public class MainActivity extends SherlockActivity   {
     private int index = 0;
 	private ViewPager viewPager;//页卡内容
 	private ImageView imageView;// 动画图片
@@ -187,15 +193,6 @@ public class MainActivity extends Activity   {
 		viewPager.setCurrentItem(index);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
-	 /**
-	  *  初始化头标
-	  */
-
-
-	/**
-	 2      * 初始化动画
-	 3 */
-
 	private void init_ImageView() {
 		imageView= (ImageView) findViewById(R.id.cursor);
 		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// 获取图片宽度
@@ -277,4 +274,42 @@ public class MainActivity extends Activity   {
         		}
 		}
     }
+          
+    public boolean onCreateOptionsMenu(Menu menu) {      
+        getSupportMenuInflater().inflate(R.menu.main,  menu);      
+        return true;      
+    }   
+
+
+
+    @Override  
+    public boolean onOptionsItemSelected(MenuItem item) {  
+        switch(item.getItemId()){  
+
+      case R.id.area_settings:  
+    	        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("请选择校区");  
+    	    	//  builder.setMessage("Message");  
+
+    	        builder.setPositiveButton("徐汇校区",  
+    	                new DialogInterface.OnClickListener() {  
+    	                    public void onClick(DialogInterface dialog, int whichButton) {  
+    	                        setTitle("点击了对话框上的Button1");  
+    	                    }  
+    	                }).setNeutralButton("奉贤校区",  
+    	                new DialogInterface.OnClickListener() {  
+    	                    public void onClick(DialogInterface dialog, int whichButton) {  
+    	                        setTitle("点击了对话框上的Button2");  
+    	                    }  
+    	                }).setNegativeButton("金山校区",  
+    	                new DialogInterface.OnClickListener() {  
+    	                    public void onClick(DialogInterface dialog, int whichButton) {  
+    	                        setTitle("点击了对话框上的Button3");  
+    	                    }  
+    	                }).show();  
+  	        break;  
+
+  	        
+        }  
+        return super.onOptionsItemSelected(item);  
+    } 
 }

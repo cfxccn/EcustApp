@@ -3,7 +3,7 @@
     <item
         android:id="@+id/area_settings"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
         android:title="切换校区"/>
 
 </menu>

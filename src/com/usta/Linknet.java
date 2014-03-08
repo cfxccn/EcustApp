@@ -1,6 +1,7 @@
 package com.usta;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import android.os.Bundle;
@@ -85,15 +86,27 @@ public class Linknet extends SherlockActivity {
 //        return true;
 //    }
   
+
+  @Override      
+  public boolean onCreateOptionsMenu(Menu menu) {      
+      getSupportMenuInflater().inflate(R.menu.linknet_menu, menu);      
+      return super.onCreateOptionsMenu(menu);      
+  }   
+
   @Override  
   public boolean onOptionsItemSelected(MenuItem item) {  
       switch(item.getItemId()){  
+
     case android.R.id.home:  
 	        setResult(RESULT_OK, intent);  
-	        finish();  
+	        finish();  	        
 	        break;  
+    case R.id.homepage_linknet:  
+        webView.loadUrl("http://login.ecust.edu.cn/mobile_portal.html");       
+        break;  
+	        
       }  
       return super.onOptionsItemSelected(item);  
-  } 
+  }  
 }
 
