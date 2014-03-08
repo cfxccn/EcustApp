@@ -287,25 +287,30 @@ public class MainActivity extends SherlockActivity   {
         switch(item.getItemId()){  
 
       case R.id.area_settings:  
-    	        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("请选择校区");  
-    	    	//  builder.setMessage("Message");  
-
-    	        builder.setPositiveButton("徐汇校区",  
-    	                new DialogInterface.OnClickListener() {  
-    	                    public void onClick(DialogInterface dialog, int whichButton) {  
-    	                        setTitle("点击了对话框上的Button1");  
-    	                    }  
-    	                }).setNeutralButton("奉贤校区",  
-    	                new DialogInterface.OnClickListener() {  
-    	                    public void onClick(DialogInterface dialog, int whichButton) {  
-    	                        setTitle("点击了对话框上的Button2");  
-    	                    }  
-    	                }).setNegativeButton("金山校区",  
-    	                new DialogInterface.OnClickListener() {  
-    	                    public void onClick(DialogInterface dialog, int whichButton) {  
-    	                        setTitle("点击了对话框上的Button3");  
-    	                    }  
-    	                }).show();  
+//    	        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("请选择校区");  
+//    	    	//  builder.setMessage("Message");  
+//
+//    	        builder.setPositiveButton("徐汇校区",  
+//    	                new DialogInterface.OnClickListener() {  
+//    	                    public void onClick(DialogInterface dialog, int whichButton) {  
+//    	                        setTitle("点击了对话框上的Button1");  
+//    	                    }  
+//    	                }).setNeutralButton("奉贤校区",  
+//    	                new DialogInterface.OnClickListener() {  
+//    	                    public void onClick(DialogInterface dialog, int whichButton) {  
+//    	                        setTitle("点击了对话框上的Button2");  
+//    	                    }  
+//    	                }).setNegativeButton("金山校区",  
+//    	                new DialogInterface.OnClickListener() {  
+//    	                    public void onClick(DialogInterface dialog, int whichButton) {  
+//    	                        setTitle("点击了对话框上的Button3");  
+//    	                    }  
+//    	                }).show();  
+			Intent intent =new Intent();
+			intent.putExtra("index", index);
+			intent.setClass(MainActivity.this, Setting.class);
+			startActivityForResult(intent, 0);
+    	  
   	        break;  
 
   	        
