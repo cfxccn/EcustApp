@@ -1,5 +1,8 @@
 package com.usta;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
-public class Linknet extends Activity {
+public class Linknet extends SherlockActivity {
 	private int index;
 	Intent intent;
 	private WebView webView;
@@ -21,6 +24,8 @@ public class Linknet extends Activity {
         setContentView(R.layout.linknet);
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+
          initwebview();
          initbtn();
     }
@@ -79,6 +84,16 @@ public class Linknet extends Activity {
 //        getMenuInflater().inflate(R.menu.main, menu);
 //        return true;
 //    }
-
+  
+  @Override  
+  public boolean onOptionsItemSelected(MenuItem item) {  
+      switch(item.getItemId()){  
+    case android.R.id.home:  
+	        setResult(RESULT_OK, intent);  
+	        finish();  
+	        break;  
+      }  
+      return super.onOptionsItemSelected(item);  
+  } 
 }
 

@@ -14,7 +14,7 @@
          <TableRow>
 
              <Button
-                 android:id="@+id/btnlinknet"
+                 android:id="@+id/btn_tolinknet_lay1"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="链接校园网" />
@@ -26,7 +26,7 @@
          <TableRow>
 
         <Button
-            android:id="@+id/btnsearchdrugs"
+            android:id="@+id/btn_tosearchdrugs_lay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="药品查询" />
@@ -39,7 +39,7 @@
          <TableRow>
 
         <Button
-            android:id="@+id/btnmorningtrain"
+            android:id="@+id/btn_tomorningtrain_lay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="晨跑查询" />
@@ -51,7 +51,7 @@
          <TableRow>
 
         <Button
-            android:id="@+id/btnsearchbooks"
+            android:id="@+id/btn_tosearchbooks_lay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="校图馆藏查询" />
@@ -63,7 +63,7 @@
                   <TableRow>
 
         <Button
-            android:id="@+id/btnsearchclassroom"
+            android:id="@+id/btn_tosearchclassroom_lay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自习教室查询" />

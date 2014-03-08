@@ -1,5 +1,8 @@
 package com.usta;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,13 +11,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class SearchClassroom extends Activity {
+public class SearchClassroom extends SherlockActivity {
 	private int index;
 	Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchclassroom);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
         initbtn();
@@ -57,6 +62,17 @@ public class SearchClassroom extends Activity {
         return true;
     }
     */
+    @Override  
+    public boolean onOptionsItemSelected(MenuItem item) {  
+        switch(item.getItemId()){  
+
+      case android.R.id.home:  
+  	        setResult(RESULT_OK, intent);  
+  	        finish();  
+  	        break;  
+        }  
+        return super.onOptionsItemSelected(item);  
+    }  
     
     
 }

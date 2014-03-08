@@ -34,15 +34,15 @@ public class MainActivity extends Activity   {
 	private int offset = 0;// 动画图片偏移量
 	private int bmpW;// 动画图片宽度
 	private View view1,view2,view3;//各个页卡
-	private TextView lay1textview,lay2textview,lay3textview;
+	private TextView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-		InitImageView();
-		InitViewPager();
-		InitLayNUM();
+		init_ImageView();
+		init_ViewPager();
+		init_LayInstru();
     }
 
     protected void onActivityResult(int requestCode, int resultCode,  
@@ -56,12 +56,13 @@ public class MainActivity extends Activity   {
     	
 }  
 
-    private void InitLayNUM() {
-    	 lay1textview = (TextView) findViewById(R.id.lay1tv);
-    	 lay2textview = (TextView) findViewById(R.id.lay2tv);
-    	 lay3textview = (TextView) findViewById(R.id.lay3tv);
- 		lay1textview.setBackgroundColor(Color.GRAY);
-    	lay1textview.setOnClickListener(new OnClickListener() {
+    private void init_LayInstru() {
+    	tv_tolay1_main = (TextView) findViewById(R.id.tv_tolay1_main);
+    	tv_tolay2_main = (TextView) findViewById(R.id.tv_tolay2_main);
+    	tv_tolay3_main = (TextView) findViewById(R.id.tv_tolay3_main);
+    	tv_tolay1_main.setBackgroundColor(Color.GRAY);
+    	
+    	tv_tolay1_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -69,7 +70,7 @@ public class MainActivity extends Activity   {
 				viewPager.setCurrentItem(0);
 			}
 		});
-    	lay2textview.setOnClickListener(new OnClickListener() {
+    	tv_tolay2_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -77,7 +78,7 @@ public class MainActivity extends Activity   {
 				viewPager.setCurrentItem(1);
 			}
 		});
-     lay3textview.setOnClickListener(new OnClickListener() {
+    	tv_tolay3_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -86,10 +87,10 @@ public class MainActivity extends Activity   {
 			}
 		});
     }
-	private void initlay0btn()
+	private void init_lay0btn()
 	{
-		Button btnsearchdurgs = (Button) findViewById(R.id.btnsearchdrugs);
-		btnsearchdurgs.setOnClickListener(new OnClickListener() {
+		Button btn_tosearchdrugs_lay1 = (Button) findViewById(R.id.btn_tosearchdrugs_lay1);
+		btn_tosearchdrugs_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
@@ -101,8 +102,8 @@ public class MainActivity extends Activity   {
 		//		MainActivity.this.finish();
 			}
 		});
-		Button btnsearchbooks = (Button) findViewById(	R.id.btnsearchbooks);
-		btnsearchbooks.setOnClickListener(new OnClickListener() {
+		Button btn_tosearchbooks_lay1 = (Button) findViewById(	R.id.btn_tosearchbooks_lay1);
+		btn_tosearchbooks_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
@@ -113,8 +114,8 @@ public class MainActivity extends Activity   {
 				startActivityForResult(intent, 0);
 			}
 		});
-		Button btnsearchclassroom = (Button) findViewById(R.id.btnsearchclassroom);
-		btnsearchclassroom.setOnClickListener(new OnClickListener() {
+		Button btn_tosearchclassroom_lay1 = (Button) findViewById(R.id.btn_tosearchclassroom_lay1);
+		btn_tosearchclassroom_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
@@ -124,8 +125,8 @@ public class MainActivity extends Activity   {
 				startActivityForResult(intent, 0);
 			}
 		});
-		Button btnlinknet = (Button) findViewById(R.id.btnlinknet);
-		btnlinknet.setOnClickListener(new OnClickListener() {
+		Button btn_tolinknet_lay1 = (Button) findViewById(R.id.btn_tolinknet_lay1);
+		btn_tolinknet_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
@@ -135,8 +136,8 @@ public class MainActivity extends Activity   {
 				startActivityForResult(intent, 0);
 			}
 		});
-		Button btnmorningtrain = (Button) findViewById(R.id.btnmorningtrain);
-		btnmorningtrain.setOnClickListener(new OnClickListener() {
+		Button btn_tomorningtrain_lay1 = (Button) findViewById(R.id.btn_tomorningtrain_lay1);
+		btn_tomorningtrain_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
@@ -148,13 +149,13 @@ public class MainActivity extends Activity   {
 		});	
 		
 	}
-	private void initlay1btn()
+	private void init_lay1btn()
 	{
 	}
-	private void initlay2btn()
+	private void init_lay2btn()
 	{
-	Button btnjoke = (Button) findViewById(R.id.btn_joke);
-	btnjoke.setOnClickListener(new OnClickListener() {
+	Button btn_tojoke_lay3 = (Button) findViewById(R.id.btn_tojoke_lay3);
+	btn_tojoke_lay3.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View v)
 		{
@@ -170,7 +171,7 @@ public class MainActivity extends Activity   {
 	});
 	}
 
-	private void InitViewPager() {
+	private void init_ViewPager() {
 		viewPager=(ViewPager) findViewById(R.id.vPager);
 		views=new ArrayList<View>();
 		LayoutInflater inflater=getLayoutInflater();
@@ -195,7 +196,7 @@ public class MainActivity extends Activity   {
 	 2      * 初始化动画
 	 3 */
 
-	private void InitImageView() {
+	private void init_ImageView() {
 		imageView= (ImageView) findViewById(R.id.cursor);
 		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// 获取图片宽度
 		DisplayMetrics dm = new DisplayMetrics();
@@ -227,9 +228,9 @@ public class MainActivity extends Activity   {
 	    @Override
 	    public void setPrimaryItem(View container, int position, Object object) {
 	    	switch (position){
-			case 0:	initlay0btn();break;
-			case 1: initlay1btn();break;
-			case 2: initlay2btn();break;
+			case 0:	init_lay0btn();break;
+			case 1: init_lay1btn();break;
+			case 2: init_lay2btn();break;
 			}
 	    }
 		
@@ -260,19 +261,19 @@ public class MainActivity extends Activity   {
 			imageView.startAnimation(animation);
 
         	if (arg0==0){ 
-        		lay1textview.setBackgroundColor(Color.GRAY);
-        		lay2textview.setBackgroundColor(Color.WHITE);
-        		lay3textview.setBackgroundColor(Color.WHITE);
+        		tv_tolay1_main.setBackgroundColor(Color.GRAY);
+        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
         		}
         	if (arg0==1){ 
-        		lay1textview.setBackgroundColor(Color.WHITE);
-        		lay2textview.setBackgroundColor(Color.GRAY);
-        		lay3textview.setBackgroundColor(Color.WHITE);
+        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay2_main.setBackgroundColor(Color.GRAY);
+        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
         		}
         	if (arg0==2){ 
-        		lay1textview.setBackgroundColor(Color.WHITE);
-        		lay2textview.setBackgroundColor(Color.WHITE);
-        		lay3textview.setBackgroundColor(Color.GRAY);
+        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay3_main.setBackgroundColor(Color.GRAY);
         		}
 		}
     }

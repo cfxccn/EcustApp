@@ -20,7 +20,10 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-public class Morningtrain extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
+
+public class Morningtrain extends SherlockActivity {
 	private int index;
 	Intent intent;
 	private String id;
@@ -31,6 +34,8 @@ public class Morningtrain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.morningtrain);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
         initbtn();
@@ -134,5 +139,15 @@ public class Morningtrain extends Activity {
         	System.out.println(count);
 
 		}
+	    @Override  
+	    public boolean onOptionsItemSelected(MenuItem item) {  
+	        switch(item.getItemId()){  
 
+	      case android.R.id.home:  
+		        setResult(RESULT_OK, intent);  
+		        finish();  
+		        break;  
+	        }  
+	        return super.onOptionsItemSelected(item);  
+	    }  
 }

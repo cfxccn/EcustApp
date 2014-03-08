@@ -1,7 +1,7 @@
 package com.usta;
 
-import java.sql.DriverManager;
 
+import android.R.anim;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,10 +10,13 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.microsoft.sqlserver.*;
 import com.microsoft.sqlserver.jdbc.SQLServerConnection;
 
-public class SearchDrugs extends Activity {
+public class SearchDrugs extends SherlockActivity {
 	private int index;
 	Intent intent;
     @Override
@@ -22,6 +25,10 @@ public class SearchDrugs extends Activity {
         setContentView(R.layout.searchdrugs);
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+      //  getSupportActionBar().setHomeButtonEnabled(true);  
+      //  getSupportActionBar().setDisplayShowHomeEnabled(true);  
+        
         initbtn();
     }
 	  public boolean onKeyDown(int keyCode, KeyEvent event) {  
@@ -65,4 +72,18 @@ public class SearchDrugs extends Activity {
 				}
 		});
     }
+    
+    @Override  
+    public boolean onOptionsItemSelected(MenuItem item) {  
+        switch(item.getItemId()){  
+
+      case android.R.id.home:  
+	        setResult(RESULT_OK, intent);  
+	        finish();  
+	        break;  
+        }  
+        return super.onOptionsItemSelected(item);  
+    }  
+      
+
 }

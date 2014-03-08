@@ -1,5 +1,10 @@
 package com.usta;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
-public class SearchBooks extends Activity {
+public class SearchBooks extends SherlockActivity {
 	private int index;
 	Intent intent;
 	private WebView webView;
@@ -18,6 +23,8 @@ public class SearchBooks extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchbooks);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
       
@@ -74,9 +81,29 @@ public class SearchBooks extends Activity {
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
+//        getMenuInflater().inflate(R.menu.searchbook_menu, (android.view.Menu) menu);
 //        return true;
 //    }
+  @Override      
+  public boolean onCreateOptionsMenu(Menu menu) {      
+      getSupportMenuInflater().inflate(R.menu.searchbook_menu, menu);      
+      return super.onCreateOptionsMenu(menu);      
+  }   
 
+  @Override  
+  public boolean onOptionsItemSelected(MenuItem item) {  
+      switch(item.getItemId()){  
+
+    case android.R.id.home:  
+	        setResult(RESULT_OK, intent);  
+	        finish();  	        
+	        break;  
+    case R.id.homepage_searchbook:  
+        webView.loadUrl("http://202.120.96.75/sms/opac/search/showSearch.action?xc=6");       
+        break;  
+	        
+      }  
+      return super.onOptionsItemSelected(item);  
+  }  
 }
 

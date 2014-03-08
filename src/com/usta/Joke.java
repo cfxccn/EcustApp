@@ -10,6 +10,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,7 +31,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Joke extends Activity implements OnClickListener {
+public class Joke extends SherlockActivity implements OnClickListener {
 //	private String text = " 12";
 //	int num;
 //	jokeSqlitedata jsd;
@@ -44,6 +47,8 @@ public class Joke extends Activity implements OnClickListener {
 	//	StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.joke);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
 		initbtn();
@@ -149,6 +154,16 @@ public class Joke extends Activity implements OnClickListener {
 
 			}
 		});
-
 	}
+    @Override  
+    public boolean onOptionsItemSelected(MenuItem item) {  
+        switch(item.getItemId()){  
+
+      case android.R.id.home:  
+	        setResult(RESULT_OK, intent);  
+	        finish();  
+	        break;  
+        }  
+        return super.onOptionsItemSelected(item);  
+    } 
 }

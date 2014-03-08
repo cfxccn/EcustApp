@@ -15,7 +15,7 @@
          <TableRow>
 
              <Button
-                 android:id="@+id/btn_joke"
+                 android:id="@+id/btn_tojoke_lay3"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="开心一笑" />
