@@ -106,7 +106,7 @@ containing a value of this type.
         public static final int btnsearchclassroom=0x7f050012;
         public static final int btnsearchdrugs=0x7f05000f;
         public static final int button1=0x7f050026;
-        public static final int cursor=0x7f050005;
+        public static final int cursor=0x7f050004;
         public static final int editText_drugs=0x7f050039;
         public static final int id_mt=0x7f050020;
         public static final int lay1tv=0x7f050007;
@@ -140,7 +140,7 @@ containing a value of this type.
         public static final int textView3=0x7f050024;
         public static final int textView4=0x7f050025;
         public static final int textview_joke=0x7f05000a;
-        public static final int vPager=0x7f050004;
+        public static final int vPager=0x7f050005;
         public static final int webView_lib=0x7f050027;
         public static final int webView_linknet=0x7f05001c;
     }

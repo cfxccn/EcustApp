@@ -11,12 +11,15 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 
 public class SearchBooks extends Activity {
-
+	private int index;
+	Intent intent;
 	private WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchbooks);
+        intent = getIntent();
+        index=intent.getIntExtra("index", 0);
       
          initwebview();
          initbtn();
@@ -40,10 +43,12 @@ public class SearchBooks extends Activity {
 			public void onClick(View v)
 			{
 				// setContentView(R.layout.activity_main);
-				Intent intent =new Intent();
-				intent.setClass( SearchBooks.this, MainActivity.class);
-				startActivity(intent);
-				SearchBooks.this.finish();
+//				Intent intent =new Intent();
+//				intent.setClass( SearchBooks.this, MainActivity.class);
+//				startActivity(intent);
+//				SearchBooks.this.finish();
+		        setResult(RESULT_OK, intent);  
+		        finish();  
 			}
 		});
     	Button btnhome=(Button)findViewById(R.id.btnhome_books);
@@ -59,10 +64,8 @@ public class SearchBooks extends Activity {
     }
   public boolean onKeyDown(int keyCode, KeyEvent event) {  
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
-			Intent intent =new Intent();
-			intent.setClass( SearchBooks.this, MainActivity.class);
-			startActivity(intent);
-			SearchBooks.this.finish();
+	        setResult(RESULT_OK, intent);  
+	        finish();  
             return true;  
         }  
         return super.onKeyDown(keyCode, event);  

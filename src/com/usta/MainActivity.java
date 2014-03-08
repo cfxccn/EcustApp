@@ -45,6 +45,17 @@ public class MainActivity extends Activity   {
 		InitLayNUM();
     }
 
+    protected void onActivityResult(int requestCode, int resultCode,  
+            Intent data){  
+    	switch (resultCode){  
+    	case RESULT_OK:  
+    		Bundle b = data.getExtras();  
+    		index=b.getInt("index");
+    		viewPager.setCurrentItem(index);
+    		}
+    	
+}  
+
     private void InitLayNUM() {
     	 lay1textview = (TextView) findViewById(R.id.lay1tv);
     	 lay2textview = (TextView) findViewById(R.id.lay2tv);
@@ -75,7 +86,7 @@ public class MainActivity extends Activity   {
 			}
 		});
     }
-	private void initlay0()
+	private void initlay0btn()
 	{
 		Button btnsearchdurgs = (Button) findViewById(R.id.btnsearchdrugs);
 		btnsearchdurgs.setOnClickListener(new OnClickListener() {
@@ -84,9 +95,10 @@ public class MainActivity extends Activity   {
 			{
 			//	 setContentView(R.layout.searchdrugs);
 				Intent intent =new Intent();
+				intent.putExtra("index", index);
 				intent.setClass(MainActivity.this, SearchDrugs.class);
-				startActivity(intent);
-				MainActivity.this.finish();
+				startActivityForResult(intent, 0);
+		//		MainActivity.this.finish();
 			}
 		});
 		Button btnsearchbooks = (Button) findViewById(	R.id.btnsearchbooks);
@@ -95,10 +107,10 @@ public class MainActivity extends Activity   {
 			public void onClick(View v)
 			{
 			//	 setContentView( R.layout.searchbooks);
-			Intent intent =new Intent();
-			intent.setClass(MainActivity.this, SearchBooks.class);
-			startActivity(intent);
-			MainActivity.this.finish();
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, SearchBooks.class);
+				startActivityForResult(intent, 0);
 			}
 		});
 		Button btnsearchclassroom = (Button) findViewById(R.id.btnsearchclassroom);
@@ -106,10 +118,10 @@ public class MainActivity extends Activity   {
 			@Override
 			public void onClick(View v)
 			{
-			Intent intent =new Intent();
-			intent.setClass(MainActivity.this, SearchClassroom.class);
-			startActivity(intent);
-			MainActivity.this.finish();
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, SearchClassroom.class);
+				startActivityForResult(intent, 0);
 			}
 		});
 		Button btnlinknet = (Button) findViewById(R.id.btnlinknet);
@@ -117,10 +129,10 @@ public class MainActivity extends Activity   {
 			@Override
 			public void onClick(View v)
 			{
-			Intent intent =new Intent();
-			intent.setClass(MainActivity.this, Linknet.class);
-			startActivity(intent);
-			MainActivity.this.finish();
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, Linknet.class);
+				startActivityForResult(intent, 0);
 			}
 		});
 		Button btnmorningtrain = (Button) findViewById(R.id.btnmorningtrain);
@@ -128,28 +140,32 @@ public class MainActivity extends Activity   {
 			@Override
 			public void onClick(View v)
 			{
-			Intent intent =new Intent();
-			intent.setClass(MainActivity.this, Morningtrain.class);
-			startActivity(intent);
-			MainActivity.this.finish();
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, Morningtrain.class);
+				startActivityForResult(intent, 0);
 			}
 		});	
 		
 	}
-	private void initlay1()
+	private void initlay1btn()
 	{
 	}
-	private void initlay2()
+	private void initlay2btn()
 	{
 	Button btnjoke = (Button) findViewById(R.id.btn_joke);
 	btnjoke.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View v)
 		{
-		Intent intent =new Intent();
-		intent.setClass(MainActivity.this, Joke.class);
-		startActivity(intent);
-		MainActivity.this.finish();
+//		Intent intent =new Intent();
+//		intent.setClass(MainActivity.this, Joke.class);
+//		startActivity(intent);
+//		MainActivity.this.finish();
+			Intent intent =new Intent();
+			intent.putExtra("index", index);
+			intent.setClass(MainActivity.this, Joke.class);
+			startActivityForResult(intent, 0);
 		}
 	});
 	}
@@ -211,9 +227,9 @@ public class MainActivity extends Activity   {
 	    @Override
 	    public void setPrimaryItem(View container, int position, Object object) {
 	    	switch (position){
-			case 0:	initlay0();break;
-			case 1: initlay1();break;
-			case 2: initlay2();break;
+			case 0:	initlay0btn();break;
+			case 1: initlay1btn();break;
+			case 2: initlay2btn();break;
 			}
 	    }
 		

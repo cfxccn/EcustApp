@@ -21,6 +21,8 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 public class Morningtrain extends Activity {
+	private int index;
+	Intent intent;
 	private String id;
 	private String pwd;
 	private String count;
@@ -29,33 +31,34 @@ public class Morningtrain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.morningtrain);
-        init();
+        intent = getIntent();
+        index=intent.getIntExtra("index", 0);
+        initbtn();
     }
 
 
 	  public boolean onKeyDown(int keyCode, KeyEvent event) {  
 	        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
-				Intent intent =new Intent();
-				intent.setClass( Morningtrain.this, MainActivity.class);
-				startActivity(intent);
-				Morningtrain.this.finish();
+		        setResult(RESULT_OK, intent);  
+		        finish();  
 	            return true;  
 	        }  
 	        return super.onKeyDown(keyCode, event);  
 	    } 
 
-	    private void init(){
+	    private void initbtn(){
 	    	Button btnback=(Button)findViewById(R.id.btnback_mt);
 	    	btnback.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v)
 				{
 					// setContentView(R.layout.activity_main);
-					Intent intent =new Intent();
-					intent.setClass( Morningtrain.this, MainActivity.class);
-					startActivity(intent);
-					Morningtrain.this.finish();
-					
+//					Intent intent =new Intent();
+//					intent.setClass( Morningtrain.this, MainActivity.class);
+//					startActivity(intent);
+//					Morningtrain.this.finish();
+			        setResult(RESULT_OK, intent);  
+			        finish();  
 				}
 			});
 	    	Button btnok_mt=(Button)findViewById(R.id.btnok_mt);
@@ -68,13 +71,13 @@ public class Morningtrain extends Activity {
 					pwd=((EditText)findViewById(R.id.pwd_mt)).getText().toString();
 
 					
-					getMTdata(id);
+					getDataFromNewThread(id);
 					}
 			});
 	    }
 		   private static	String namespace="http://tempuri.org/";
 	        final static  String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";  
-	        protected void  getMTdata(final String _id){
+	        protected void  getDataFromNewThread(final String _id){
 	        	new Thread(new Runnable(){
 	        	    @Override
 	        	    public void run() {
