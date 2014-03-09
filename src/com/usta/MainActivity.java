@@ -8,9 +8,12 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.CircleLayout.OnItemClickListener;
 import com.usta.CircleLayout.OnItemSelectedListener;
+
+import android.R.string;
 import android.os.Bundle;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -39,16 +42,32 @@ public class MainActivity extends SherlockActivity   {
 	private int bmpW;// 动画图片宽度
 	private View view1,view2,view3;//各个页卡
 	private TextView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main;
-	
+	private SharedPreferences userInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-		init_ImageView();
+		
+        	init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
+		isfirst();
     }
 
+    protected void isfirst() {
+    	
+    	SharedPreferences userInfo = getSharedPreferences("setting", 0);  
+    	String isfirst=userInfo.getString("isfirst", "yes");
+//    	userInfo.edit().putString("name", user.getText().toString()).commit();  
+//    	userInfo.edit().putString("area", user.getText().toString()).commit();  
+    	if(isfirst=="yes"){
+    	Toast toats=Toast.makeText(this, "首次使用请设置校区",Toast.LENGTH_LONG );
+    	toats.show();
+    	userInfo.edit().putString("isfirst","no").commit();  
+    	}
+
+
+	}
     protected void onActivityResult(int requestCode, int resultCode,  
             Intent data){  
     	switch (resultCode){  

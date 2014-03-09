@@ -31,7 +31,6 @@
             android:id="@+id/radiobtn_fengxian_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:checked="true"
             android:text="奉贤校区" />
 
         <RadioButton
