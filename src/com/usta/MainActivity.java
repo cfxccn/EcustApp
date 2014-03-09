@@ -9,9 +9,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.usta.CircleLayout.OnItemClickListener;
 import com.usta.CircleLayout.OnItemSelectedListener;
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
