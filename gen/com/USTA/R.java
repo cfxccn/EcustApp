@@ -1179,14 +1179,15 @@ containing a value of this type.
         public static final int lay5_setting=0x7f03001d;
         public static final int linknet=0x7f03001e;
         public static final int morningtrain=0x7f03001f;
-        public static final int schoolhumor=0x7f030020;
-        public static final int searchbooks=0x7f030021;
-        public static final int searchclassroom=0x7f030022;
-        public static final int searchdrugs=0x7f030023;
-        public static final int setting=0x7f030024;
-        public static final int sherlock_spinner_dropdown_item=0x7f030025;
-        public static final int sherlock_spinner_item=0x7f030026;
-        public static final int xml1=0x7f030027;
+        public static final int schoolbus=0x7f030020;
+        public static final int schoolhumor=0x7f030021;
+        public static final int searchbooks=0x7f030022;
+        public static final int searchclassroom=0x7f030023;
+        public static final int searchdrugs=0x7f030024;
+        public static final int setting=0x7f030025;
+        public static final int sherlock_spinner_dropdown_item=0x7f030026;
+        public static final int sherlock_spinner_item=0x7f030027;
+        public static final int xml1=0x7f030028;
     }
     public static final class menu {
         public static final int linknet_menu=0x7f0b0000;

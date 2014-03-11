@@ -255,6 +255,17 @@ protected void onActivityResult(int requestCode, int resultCode,
 				startActivityForResult(intent, 0);
 			}
 		});
+		Button btn_schoolbus_lay3=(Button)findViewById(R.id.button5);
+		btn_schoolbus_lay3.setOnClickListener(new OnClickListener() {
+		@Override
+			public void onClick(View v)
+			{
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, schoolbus.class);
+				startActivityForResult(intent, 0);
+			}
+	});
 //		Button btn_tolinknet_lay1 = (Button) findViewById(R.id.btn_tolinknet_lay1);
 //		btn_tolinknet_lay1.setOnClickListener(new OnClickListener() {
 //			@Override

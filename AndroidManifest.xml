@@ -46,6 +46,8 @@
                  android:label="链接校园网"></activity>
             <activity android:name="com.usta.Setting"
                  android:label="设置"></activity>
+             <activity android:name="com.usta.schoolbus"
+                 android:label="校车查询"></activity>
     </application>
 
 </manifest>
