@@ -16,10 +16,13 @@ import com.usta.CircleLayout.OnItemSelectedListener;
 
 import android.R.integer;
 import android.R.string;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -74,8 +77,17 @@ public class MainActivity extends SherlockActivity   {
         init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
+		  ConnectivityManager manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
+          NetworkInfo info = manger.getActiveNetworkInfo(); 
+          if (info!=null && info.isConnected())
+          {
 		init_Weather();
-		
+          }
+          else 
+          {
+        	  Toast Toast1=Toast.makeText(this,"456123154", Toast.LENGTH_SHORT);
+        	  Toast1.show();
+          }
     }
    private void init_Weather() {
 	   
