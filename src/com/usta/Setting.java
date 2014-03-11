@@ -30,6 +30,9 @@ public class Setting extends SherlockActivity {
 	  @SuppressLint("ShowToast")
 	private void initradiobtn() {
 		// TODO Auto-generated method stub
+//		  getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+//	        intent = getIntent();
+//	        index=intent.getIntExtra("index", 0);
 		  userInfo = getSharedPreferences("setting", 0);  
 	    //	userInfo.edit().putString("area", "null").commit();  
 	    	String area=userInfo.getString("area", "null");

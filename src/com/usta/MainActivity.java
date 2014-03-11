@@ -30,45 +30,32 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class MainActivity extends SherlockActivity   {
-    private int index = 0;
+    private int index = 2;
 	private ViewPager viewPager;//页卡内容
 	private ImageView imageView;// 动画图片
 	private List<View> views;// Tab页面列表
 	private int offset = 0;// 动画图片偏移量
 	private int bmpW;// 动画图片宽度
-	private View view1,view2,view3;//各个页卡
-	private TextView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main;
+	private View view1,view2,view3,view4,view5;//各个页卡
+	private TextView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main,tv_tolay4_main,tv_tolay5_main;
 	private SharedPreferences userInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 		
-        	init_ImageView();
+        init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
-		isfirst();
     }
-
-    protected void isfirst() {
-    	
-    	SharedPreferences userInfo = getSharedPreferences("setting", 0);  
-    	String isfirst=userInfo.getString("isfirst", "yes");
-//    	userInfo.edit().putString("name", user.getText().toString()).commit();  
-//    	userInfo.edit().putString("area", user.getText().toString()).commit();  
-    	if(isfirst=="yes"){
-    	Toast toats=Toast.makeText(this, "首次使用请设置校区",Toast.LENGTH_LONG );
-    	toats.show();
-    	userInfo.edit().putString("isfirst","no").commit();  
-    	}
-
-
-	}
-    protected void onActivityResult(int requestCode, int resultCode,  
+   protected void onActivityResult(int requestCode, int resultCode,  
             Intent data){  
     	switch (resultCode){  
     	case RESULT_OK:  
@@ -83,7 +70,18 @@ public class MainActivity extends SherlockActivity   {
     	tv_tolay1_main = (TextView) findViewById(R.id.tv_tolay1_main);
     	tv_tolay2_main = (TextView) findViewById(R.id.tv_tolay2_main);
     	tv_tolay3_main = (TextView) findViewById(R.id.tv_tolay3_main);
-    	tv_tolay1_main.setBackgroundColor(Color.GRAY);
+    	tv_tolay4_main = (TextView) findViewById(R.id.tv_tolay4_main);
+    	tv_tolay5_main = (TextView) findViewById(R.id.tv_tolay5_main);
+    	
+    	tv_tolay3_main.setBackgroundColor(Color.GRAY);
+    	
+    	int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
+		int two = one * 2;// 页卡1 -> 页卡3 偏移量
+		
+    	Animation animation = new TranslateAnimation(one*index, one*index, 0, 0);
+		animation.setFillAfter(true);// True:图片停在动画结束位置
+		animation.setDuration(300);
+		imageView.startAnimation(animation);
     	
     	tv_tolay1_main.setOnClickListener(new OnClickListener() {
 			@Override
@@ -109,8 +107,31 @@ public class MainActivity extends SherlockActivity   {
 				viewPager.setCurrentItem(2);
 			}
 		});
+    	tv_tolay4_main.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=3;
+				viewPager.setCurrentItem(3);
+			}
+		});
+    	tv_tolay5_main.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=4;
+				viewPager.setCurrentItem(4);
+			}
+		});
     }
-	private void init_lay0btn()
+	private void init_lay1()
+	{
+	}
+	private void init_lay2()
+	{
+	}
+
+	private void init_lay3()
 	{
 		Button btn_tosearchdrugs_lay1 = (Button) findViewById(R.id.btn_tosearchdrugs_lay1);
 		btn_tosearchdrugs_lay1.setOnClickListener(new OnClickListener() {
@@ -172,10 +193,8 @@ public class MainActivity extends SherlockActivity   {
 		});	
 		
 	}
-	private void init_lay1btn()
-	{
-	}
-	private void init_lay2btn()
+
+	private void init_lay4()
 	{
 	Button btn_tojoke_lay3 = (Button) findViewById(R.id.btn_tojoke_lay3);
 	btn_tojoke_lay3.setOnClickListener(new OnClickListener() {
@@ -193,19 +212,69 @@ public class MainActivity extends SherlockActivity   {
 		}
 	});
 	}
+	private void init_lay5()
+	{
+		userInfo = getSharedPreferences("setting", 0);  
+	    //	userInfo.edit().putString("area", "null").commit();  
+	    	String area=userInfo.getString("area", "null");
+	    	if(area.equalsIgnoreCase("xuhui")){
+	    	//    userInfo.edit().putString("area", "xuhui").commit();  
+	    		RadioButton radiobtn_xuhui_setting= (RadioButton)findViewById(R.id.radiobtn_xuhui_setting);
+	    		radiobtn_xuhui_setting.setChecked(true);
+	    	}
+	    	if(area.equalsIgnoreCase("fengxian")){
+    	   // 	userInfo.edit().putString("area", "fengxian").commit();  
+	    		RadioButton radiobtn_fengxian_setting= (RadioButton)findViewById(R.id.radiobtn_fengxian_setting);
+	    		radiobtn_fengxian_setting.setChecked(true);
+	    	}
+	    	if(area.equalsIgnoreCase("jinshan")){
+    	   // 	userInfo.edit().putString("area", "jinshan").commit();  
+	    		RadioButton radiobtn_jinshan_setting= (RadioButton)findViewById(R.id.radiobtn_jinshan_setting);
+	    		radiobtn_jinshan_setting.setChecked(true);
+	    	}
+	    	final Toast toas1=Toast.makeText(this, "徐汇校区-已保存", Toast.LENGTH_SHORT);
+	    	final Toast toas2=Toast.makeText(this, "奉贤校区-已保存", Toast.LENGTH_SHORT);
+	    	final Toast toas3=Toast.makeText(this, "金山校区-已保存", Toast.LENGTH_SHORT);
+
+	    	RadioGroup group = (RadioGroup)this.findViewById(R.id.radioGroup_area_setting);
+	    	         //绑定一个匿名监听器
+	    	         group.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+	    	             @Override
+	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
+	    	                 // TODO Auto-generated method stub
+	    	                 //获取变更后的选中项的ID
+	    	            	 if(arg1==R.id.radiobtn_xuhui_setting){
+	    	     	    	    userInfo.edit().putString("area", "xuhui").commit();  
+	    	            		 toas1.show();
+	    	            	 }	    	            	
+	    	            	if(arg1==R.id.radiobtn_fengxian_setting){
+		    	     	    	    userInfo.edit().putString("area", "fengxian").commit();  
+		    	            		 toas2.show(); 
+		    	            	 }
+	    	            	 if(arg1==R.id.radiobtn_jinshan_setting){
+	    	     	    	    userInfo.edit().putString("area", "jinshan").commit();  
+	    	            		 toas3.show();
+	    	            	 }
+
+	    	             }
+	    	         });
+	}
 
 	private void init_ViewPager() {
 		viewPager=(ViewPager) findViewById(R.id.vPager);
 		views=new ArrayList<View>();
 		LayoutInflater inflater=getLayoutInflater();
-		view1=inflater.inflate(R.layout.lay1, null);
-		view2=inflater.inflate(R.layout.lay2, null);
-		view3=inflater.inflate(R.layout.lay3, null);
+		view1=inflater.inflate(R.layout.lay1_nearby, null);
+		view2=inflater.inflate(R.layout.lay2_search, null);
+		view3=inflater.inflate(R.layout.lay3_main, null);
+		view4=inflater.inflate(R.layout.lay4_chat, null);
+		view5=inflater.inflate(R.layout.lay5_setting, null);
 	//	view4=inflater.inflate(R.layout.xml1,null);
 		views.add(view1);
 		views.add(view2);
 		views.add(view3);
-	//	views.add(view4);
+		views.add(view4);
+		views.add(view5);
 		viewPager.setAdapter(new MyViewPagerAdapter(views));
 		viewPager.setCurrentItem(index);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -216,7 +285,7 @@ public class MainActivity extends SherlockActivity   {
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int screenW = dm.widthPixels;// 获取分辨率宽度
-		offset = (screenW / 3 - bmpW) / 2;// 计算偏移量
+		offset = (screenW / 5 - bmpW) / 2;// 计算偏移量
 		Matrix matrix = new Matrix();
 		matrix.postTranslate(offset, 0);
 		imageView.setImageMatrix(matrix);// 设置动画初始位置
@@ -242,9 +311,13 @@ public class MainActivity extends SherlockActivity   {
 	    @Override
 	    public void setPrimaryItem(View container, int position, Object object) {
 	    	switch (position){
-			case 0:	init_lay0btn();break;
-			case 1: init_lay1btn();break;
-			case 2: init_lay2btn();break;
+			case 0:	init_lay1();break;
+			case 1: init_lay2();break;
+			case 2: init_lay3();break;
+			case 3: init_lay4();break;
+			case 4: init_lay5();break;
+
+
 			}
 	    }
 		
@@ -260,7 +333,7 @@ public class MainActivity extends SherlockActivity   {
     public class MyOnPageChangeListener implements OnPageChangeListener{
 
     	int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
-		int two = one * 2;// 页卡1 -> 页卡3 偏移量
+	//	int two = one * 2;// 页卡1 -> 页卡3 偏移量
 		public void onPageScrollStateChanged(int arg0) {
 		}
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
@@ -278,60 +351,37 @@ public class MainActivity extends SherlockActivity   {
         		tv_tolay1_main.setBackgroundColor(Color.GRAY);
         		tv_tolay2_main.setBackgroundColor(Color.WHITE);
         		tv_tolay3_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
         		}
         	if (arg0==1){ 
         		tv_tolay1_main.setBackgroundColor(Color.WHITE);
         		tv_tolay2_main.setBackgroundColor(Color.GRAY);
         		tv_tolay3_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
         		}
         	if (arg0==2){ 
         		tv_tolay1_main.setBackgroundColor(Color.WHITE);
         		tv_tolay2_main.setBackgroundColor(Color.WHITE);
         		tv_tolay3_main.setBackgroundColor(Color.GRAY);
+        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
+        		}
+          	if (arg0==3){ 
+        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay4_main.setBackgroundColor(Color.GRAY);
+        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
+        		}
+          	if (arg0==4){ 
+        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay5_main.setBackgroundColor(Color.GRAY);
         		}
 		}
     }
-          
-    public boolean onCreateOptionsMenu(Menu menu) {      
-        getSupportMenuInflater().inflate(R.menu.main,  menu);      
-        return true;      
-    }   
-
-
-
-    @Override  
-    public boolean onOptionsItemSelected(MenuItem item) {  
-        switch(item.getItemId()){  
-
-      case R.id.area_settings:  
-//    	        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("请选择校区");  
-//    	    	//  builder.setMessage("Message");  
-//
-//    	        builder.setPositiveButton("徐汇校区",  
-//    	                new DialogInterface.OnClickListener() {  
-//    	                    public void onClick(DialogInterface dialog, int whichButton) {  
-//    	                        setTitle("点击了对话框上的Button1");  
-//    	                    }  
-//    	                }).setNeutralButton("奉贤校区",  
-//    	                new DialogInterface.OnClickListener() {  
-//    	                    public void onClick(DialogInterface dialog, int whichButton) {  
-//    	                        setTitle("点击了对话框上的Button2");  
-//    	                    }  
-//    	                }).setNegativeButton("金山校区",  
-//    	                new DialogInterface.OnClickListener() {  
-//    	                    public void onClick(DialogInterface dialog, int whichButton) {  
-//    	                        setTitle("点击了对话框上的Button3");  
-//    	                    }  
-//    	                }).show();  
-			Intent intent =new Intent();
-			intent.putExtra("index", index);
-			intent.setClass(MainActivity.this, Setting.class);
-			startActivityForResult(intent, 0);
-    	  
-  	        break;  
-
-  	        
-        }  
-        return super.onOptionsItemSelected(item);  
-    } 
 }
