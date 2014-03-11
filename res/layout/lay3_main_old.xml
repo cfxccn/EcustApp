@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true" 
+    android:orientation="vertical"
+    android:background="#ffffff" >
+
+
+
+        <View
+            android:layout_height="2dip"
+            android:background="#ff909090"></View>
+         <TableRow>
+
+             <TextView
+                 android:id="@+id/textView1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="奉贤天气"
+                 android:textAppearance="?android:attr/textAppearanceMedium" />
+
+             <TextView
+                 android:id="@+id/textView3"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Large Text"
+                 android:textAppearance="?android:attr/textAppearanceLarge" />
+
+  </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+
+             <TextView
+                 android:id="@+id/textView2"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Large Text"
+                 android:textAppearance="?android:attr/textAppearanceLarge" />
+             
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+
+        <Button
+            android:id="@+id/btn_tosearchdrugs_lay1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="药品查询" />
+
+        </TableRow>
+
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+
+        <Button
+            android:id="@+id/btn_tomorningtrain_lay1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="晨跑查询" />
+
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+         <TableRow>
+
+        <Button
+            android:id="@+id/btn_tosearchbooks_lay1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="校图馆藏查询" />
+
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+                  <TableRow>
+
+        <Button
+            android:id="@+id/btn_tosearchclassroom_lay1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自习教室查询" />
+
+        </TableRow>
+         <View
+            android:layout_height="2dip"
+            android:background="#ff909090"/>
+
+         <TableRow>
+    
+        <TextView android:text="校园地图" />
+                     <Button
+                 android:id="@+id/btn_tolinknet_lay1"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="链接校园网" />
+        </TableRow>
+  
+</TableLayout>

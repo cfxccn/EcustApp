@@ -1,81 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentBottom="true" 
-    android:orientation="vertical"
-    android:background="#ffffff" >
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3月11日 晴转小雨"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 9℃/15℃"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <View
-            android:layout_height="2dip"
-            android:background="#ff909090"></View>
-         <TableRow>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="东南风4-5级"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            
+        </LinearLayout>
 
-             <Button
-                 android:id="@+id/btn_tolinknet_lay1"
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+                <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher" />
+        
+
+    </LinearLayout>
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="奉贤"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今日天气实况：气温：12℃；风向/风力：东南风 4级；湿度：61%"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+             <View
+                 android:layout_width="match_parent"
+                 android:layout_height="2dip"
+                 android:background="#ff909090" />
+
+             <LinearLayout
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:text="链接校园网" />
+                 android:layout_gravity="center" >
 
-        </TableRow>
-         <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-         <TableRow>
+                 <Button
+                     android:id="@+id/btn_tosearchbooks_main"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="图书" />
 
-        <Button
-            android:id="@+id/btn_tosearchdrugs_lay1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="药品查询" />
+                 <Button
+                     android:id="@+id/btn_tomorningtrain_main"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="晨跑" />
 
-        </TableRow>
+                 <Button
+                     android:id="@+id/button3"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="地图" />
 
-         <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-         <TableRow>
+                 <Button
+                     android:id="@+id/button4"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="兼职" />
 
-        <Button
-            android:id="@+id/btn_tomorningtrain_lay1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="晨跑查询" />
+             </LinearLayout>
+ 
 
-        </TableRow>
-         <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-         <TableRow>
+                          <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center" >
 
-        <Button
-            android:id="@+id/btn_tosearchbooks_lay1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="校图馆藏查询" />
+                 <Button
+                     android:id="@+id/button1"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="讲座" />
 
-        </TableRow>
-         <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-                  <TableRow>
+                 <Button
+                     android:id="@+id/btn_tosearchclassroom_main"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="教室" />
 
-        <Button
-            android:id="@+id/btn_tosearchclassroom_lay1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="自习教室查询" />
+                 <Button
+                     android:id="@+id/button3"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Button" />
 
-        </TableRow>
-         <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
+                 <Button
+                     android:id="@+id/button4"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Button" />
 
-         <TableRow>
-    
-        <TextView android:text="校园地图" />
-        </TableRow>
-  
-</TableLayout>
+             </LinearLayout>
+                          <View
+                 android:layout_width="match_parent"
+                 android:layout_height="2dip"
+                 android:background="#ff909090" />
+
+                          <LinearLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical" >
+
+                              <Button
+                                  android:id="@+id/button5"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:text="校车查询" />
+                              <Button
+                              android:id="@+id/button6"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:text="新生" />
+                              <Button
+                              android:id="@+id/button6"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:text="Button" />
+                          </LinearLayout>
+
+                          
+
+</LinearLayout>

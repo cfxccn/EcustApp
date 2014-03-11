@@ -133,20 +133,20 @@ public class MainActivity extends SherlockActivity   {
 
 	private void init_lay3()
 	{
-		Button btn_tosearchdrugs_lay1 = (Button) findViewById(R.id.btn_tosearchdrugs_lay1);
-		btn_tosearchdrugs_lay1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-			//	 setContentView(R.layout.searchdrugs);
-				Intent intent =new Intent();
-				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, SearchDrugs.class);
-				startActivityForResult(intent, 0);
-		//		MainActivity.this.finish();
-			}
-		});
-		Button btn_tosearchbooks_lay1 = (Button) findViewById(	R.id.btn_tosearchbooks_lay1);
+//		Button btn_tosearchdrugs_lay1 = (Button) findViewById(R.id.btn_tosearchdrugs_lay1);
+//		btn_tosearchdrugs_lay1.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v)
+//			{
+//			//	 setContentView(R.layout.searchdrugs);
+//				Intent intent =new Intent();
+//				intent.putExtra("index", index);
+//				intent.setClass(MainActivity.this, SearchDrugs.class);
+//				startActivityForResult(intent, 0);
+//		//		MainActivity.this.finish();
+//			}
+//		});
+		Button btn_tosearchbooks_lay1 = (Button) findViewById(R.id.btn_tosearchbooks_main);
 		btn_tosearchbooks_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
@@ -158,7 +158,7 @@ public class MainActivity extends SherlockActivity   {
 				startActivityForResult(intent, 0);
 			}
 		});
-		Button btn_tosearchclassroom_lay1 = (Button) findViewById(R.id.btn_tosearchclassroom_lay1);
+		Button btn_tosearchclassroom_lay1 = (Button) findViewById(R.id.btn_tosearchclassroom_main);
 		btn_tosearchclassroom_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
@@ -169,18 +169,18 @@ public class MainActivity extends SherlockActivity   {
 				startActivityForResult(intent, 0);
 			}
 		});
-		Button btn_tolinknet_lay1 = (Button) findViewById(R.id.btn_tolinknet_lay1);
-		btn_tolinknet_lay1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-				Intent intent =new Intent();
-				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, Linknet.class);
-				startActivityForResult(intent, 0);
-			}
-		});
-		Button btn_tomorningtrain_lay1 = (Button) findViewById(R.id.btn_tomorningtrain_lay1);
+//		Button btn_tolinknet_lay1 = (Button) findViewById(R.id.btn_tolinknet_lay1);
+//		btn_tolinknet_lay1.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v)
+//			{
+//				Intent intent =new Intent();
+//				intent.putExtra("index", index);
+//				intent.setClass(MainActivity.this, Linknet.class);
+//				startActivityForResult(intent, 0);
+//			}
+//		});
+		Button btn_tomorningtrain_lay1 = (Button) findViewById(R.id.btn_tomorningtrain_main);
 		btn_tomorningtrain_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
