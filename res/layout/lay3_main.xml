@@ -19,20 +19,20 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="日起"
+                android:text="日期:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
             <TextView
                 android:id="@+id/tvTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 温度"
+                android:text="温度:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
                 android:id="@+id/tvWind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="风力"
+                android:text="风力:"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
@@ -41,13 +41,13 @@
             android:id="@+id/imgv1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/a30" />
+            android:src="@drawable/ic_launcher" />
 
                 <ImageView
                     android:id="@+id/imgv2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/a6" />
+                    android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
 <LinearLayout
@@ -61,11 +61,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/tvWeather"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvWeath"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="实况"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:text="TextView" />
 
     </LinearLayout>
 

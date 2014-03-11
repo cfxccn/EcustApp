@@ -14,6 +14,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.usta.CircleLayout.OnItemClickListener;
 import com.usta.CircleLayout.OnItemSelectedListener;
 
+import android.R.integer;
 import android.R.string;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import android.os.Message;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -59,9 +61,10 @@ public class MainActivity extends SherlockActivity   {
 	private String tvtemp="";
 	private String tvwind="";
 	private String tvweather="";
-
-
-
+	private String pic1="";
+	private String pic2="";
+	private int _pic1=0;
+	private int _pic2=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class MainActivity extends SherlockActivity   {
 		init_ViewPager();
 		init_LayInstru();
 		init_Weather();
+		
     }
    private void init_Weather() {
 	   
@@ -83,6 +87,7 @@ public class MainActivity extends SherlockActivity   {
 	    	 handler.sendEmptyMessage(0);
 	    }
 	}).start();
+   	
 	}
 
 private Handler handler =new Handler(){
@@ -93,11 +98,26 @@ private Handler handler =new Handler(){
 		TextView tvDate=(TextView)findViewById(R.id.tvDate);
 		TextView tvTemp=(TextView)findViewById(R.id.tvTemp);
 		TextView tvWind=(TextView)findViewById(R.id.tvWind);
-		TextView tvWeather=(TextView)findViewById(R.id.tvWeather);
+		TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
 		tvDate.setText(tvdate);
 		tvTemp.setText(tvtemp);
 		tvWind.setText(tvwind);
 		tvWeather.setText(tvweather);
+
+
+		ImageView imgv1=(ImageView)findViewById(R.id.imgv1);
+		ImageView imgv2=(ImageView)findViewById(R.id.imgv2);
+		int x=pic1.lastIndexOf(".");
+		String fname1=pic1.substring(0,x);
+		int y=pic2.lastIndexOf(".");
+		String fname2=pic2.substring(0,y);
+		_pic1=Integer.parseInt(fname1);
+		_pic2=Integer.parseInt(fname2);
+
+		imgv1.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic1));
+		imgv2.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic2));
+
+		
 		}
 		};
 
@@ -118,26 +138,29 @@ private Handler handler =new Handler(){
             	//System.out.println(soapaction);
                 // 第5步：调用WebService  
                 ht.call(soapaction, envelope);  
-            	System.out.println("ht.call" ); 
+            //	System.out.println("ht.call" ); 
                 if (envelope.getResponse() != null)  
                 {  
                     // 第6步：使用getResponse方法获得WebService方法的返回结果  
                 	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
-
 //                	SoapObject result = (SoapObject) envelope.bodyIn;  
 //                	SoapObject detail = (SoapObject) result.getProperty(0);                  	
                     tvdate=   soapObject.getProperty(7).toString();  
                     tvtemp=   soapObject.getProperty(8).toString();  
                     tvwind=   soapObject.getProperty(9).toString();  
                     tvweather=soapObject.getProperty(4).toString(); 
+                    pic1=soapObject.getProperty(10).toString(); 
+                    pic2=soapObject.getProperty(11).toString(); 
+                    
                 }  
                 else {  
                 }  
             }  
             catch (Exception e)  
             {  
-            	tvweather=e.toString();
+            	//tvweather=e.toString();
             }  
+
 
 		}
 	

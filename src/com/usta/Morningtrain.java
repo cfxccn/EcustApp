@@ -76,17 +76,17 @@ public class Morningtrain extends SherlockActivity {
 					pwd=((EditText)findViewById(R.id.pwd_mt)).getText().toString();
 
 					
-					getDataFromNewThread(id);
+					getDataFromNewThread();
 					}
 			});
 	    }
 		   private static	String namespace="http://tempuri.org/";
 	        final static  String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";  
-	        protected void  getDataFromNewThread(final String _id){
+	        protected void  getDataFromNewThread(){
 	        	new Thread(new Runnable(){
 	        	    @Override
 	        	    public void run() {
-	        	    	getmorningtraindata(_id);
+	        	    	getmorningtraindata();
 	        	    	 handler.sendEmptyMessage(0);
 	        	    }
 	        	}).start();
@@ -101,12 +101,12 @@ public class Morningtrain extends SherlockActivity {
         			tv.setText(count);
         		}
         		};
-		protected void getmorningtraindata(String _id) {
+		protected void getmorningtraindata() {
 	
 			String methodname ="selectJoke"; 
 			String soapaction=namespace+methodname;
 			SoapObject request = new SoapObject(namespace, methodname);
-	        request.addProperty("_id",_id);
+	     //   request.addProperty("_id","");
 	        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 	        envelope.dotNet=true;// «∑Ò «dotNet WebService  
 	        envelope.bodyOut=request;
