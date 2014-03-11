@@ -16,39 +16,38 @@
 
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3月11日 晴转小雨"
+                android:text="日起"
         android:textAppearance="?android:attr/textAppearanceSmall" />
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tvTemp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 9℃/15℃"
+                android:text=" 温度"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/tvWind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="东南风4-5级"
+                android:text="风力"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
             
         </LinearLayout>
 
-
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/imgv1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
+            android:layout_height="match_parent"
+            android:src="@drawable/a30" />
+
                 <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
-        
+                    android:id="@+id/imgv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/a6" />
 
     </LinearLayout>
 <LinearLayout
@@ -60,13 +59,22 @@
             android:layout_height="wrap_content"
             android:text="奉贤"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="今日天气实况：气温：12℃；风向/风力：东南风 4级；湿度：61%"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="实况"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
     </LinearLayout>
+
+             <TextView
+                 android:id="@+id/tvPM25"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="PM2.5"
+                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
              <View
                  android:layout_width="match_parent"

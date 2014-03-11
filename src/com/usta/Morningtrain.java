@@ -122,8 +122,10 @@ public class Morningtrain extends SherlockActivity {
                 if (envelope.getResponse() != null)  
                 {  
                     // 第6步：使用getResponse方法获得WebService方法的返回结果  
-                	SoapPrimitive  soapObject = (SoapPrimitive ) envelope.getResponse();  
-                    // 通过getProperty方法获得Product对象的属性值  
+                	SoapPrimitive  soapObject = (SoapPrimitive ) envelope.getResponse();
+
+//                	SoapObject result = (SoapObject) envelope.bodyIn;  
+//                	SoapObject detail = (SoapObject) result.getProperty(0);                  	
                    count =   soapObject.toString() + "\n";  
                 }  
                 else {  

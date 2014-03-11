@@ -2,6 +2,11 @@ package com.usta;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -11,6 +16,8 @@ import com.usta.CircleLayout.OnItemSelectedListener;
 
 import android.R.string;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,6 +53,16 @@ public class MainActivity extends SherlockActivity   {
 	private View view1,view2,view3,view4,view5;//各个页卡
 	private TextView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main,tv_tolay4_main,tv_tolay5_main;
 	private SharedPreferences userInfo;
+	private static	String namespace="http://WebXml.com.cn/";
+    final static  String serviceUrl = "http://webservice.webxml.com.cn/WebServices/WeatherWS.asmx";  
+	private String tvdate="";
+	private String tvtemp="";
+	private String tvwind="";
+	private String tvweather="";
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +71,77 @@ public class MainActivity extends SherlockActivity   {
         init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
+		init_Weather();
     }
-   protected void onActivityResult(int requestCode, int resultCode,  
+   private void init_Weather() {
+	   
+		// TODO Auto-generated method stub
+   	new Thread(new Runnable(){
+	    @Override
+	    public void run() {
+	    	getweatherdata("奉贤");
+	    	 handler.sendEmptyMessage(0);
+	    }
+	}).start();
+	}
+
+private Handler handler =new Handler(){
+		@Override
+		//当有消息发送出来的时候就执行Handler的这个方法
+		public void handleMessage(Message msg){
+		super.handleMessage(msg);
+		TextView tvDate=(TextView)findViewById(R.id.tvDate);
+		TextView tvTemp=(TextView)findViewById(R.id.tvTemp);
+		TextView tvWind=(TextView)findViewById(R.id.tvWind);
+		TextView tvWeather=(TextView)findViewById(R.id.tvWeather);
+		tvDate.setText(tvdate);
+		tvTemp.setText(tvtemp);
+		tvWind.setText(tvwind);
+		tvWeather.setText(tvweather);
+		}
+		};
+
+		protected void getweatherdata(String theCityCode) {
+
+			String methodname ="getWeather"; 
+			String soapaction=namespace+methodname;
+			SoapObject request = new SoapObject(namespace, methodname);
+	        request.addProperty("theCityCode",theCityCode);
+	        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+	        envelope.dotNet=true;//是否是dotNet WebService  
+	        envelope.bodyOut=request;
+	        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
+            HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+	        ht.debug = true;
+            try  
+            {   
+            	//System.out.println(soapaction);
+                // 第5步：调用WebService  
+                ht.call(soapaction, envelope);  
+            	System.out.println("ht.call" ); 
+                if (envelope.getResponse() != null)  
+                {  
+                    // 第6步：使用getResponse方法获得WebService方法的返回结果  
+                	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
+
+//                	SoapObject result = (SoapObject) envelope.bodyIn;  
+//                	SoapObject detail = (SoapObject) result.getProperty(0);                  	
+                    tvdate=   soapObject.getProperty(7).toString();  
+                    tvtemp=   soapObject.getProperty(8).toString();  
+                    tvwind=   soapObject.getProperty(9).toString();  
+                    tvweather=soapObject.getProperty(4).toString(); 
+                }  
+                else {  
+                }  
+            }  
+            catch (Exception e)  
+            {  
+            	tvweather=e.toString();
+            }  
+
+		}
+	
+protected void onActivityResult(int requestCode, int resultCode,  
             Intent data){  
     	switch (resultCode){  
     	case RESULT_OK:  
