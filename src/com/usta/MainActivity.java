@@ -2,6 +2,8 @@ package com.usta;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -13,6 +15,7 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.CircleLayout.OnItemClickListener;
 import com.usta.CircleLayout.OnItemSelectedListener;
+import com.usta.getnetdata.GetNetData;
 
 import android.R.integer;
 import android.R.string;
@@ -58,16 +61,24 @@ public class MainActivity extends SherlockActivity   {
 	private View view1,view2,view3,view4,view5;//各个页卡
 	private TextView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main,tv_tolay4_main,tv_tolay5_main;
 	private SharedPreferences userInfo;
-	private static	String namespace="http://WebXml.com.cn/";
-    final static  String serviceUrl = "http://webservice.webxml.com.cn/WebServices/WeatherWS.asmx";  
-	private String tvdate="";
-	private String tvtemp="";
-	private String tvwind="";
+	private String tvdate1="";
+	private String tvtemp1="";
+	private String tvwind1="";
+	private String tvdate2="";
+	private String tvtemp2="";
+	private String tvwind2="";
 	private String tvweather="";
-	private String pic1="";
-	private String pic2="";
-	private int _pic1=0;
-	private int _pic2=0;
+	private String pic11="";
+	private String pic12="";
+	private String pic21="";
+	private String pic22="";
+	private String air_aqi="";
+	private int aqi;
+
+	private int _pic11=0;
+	private int _pic12=0;
+	private int _pic21=0;
+	private int _pic22=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +96,7 @@ public class MainActivity extends SherlockActivity   {
           }
           else 
           {
-        	  Toast Toast1=Toast.makeText(this,"456123154", Toast.LENGTH_SHORT);
+        	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
         	  Toast1.show();
           }
     }
@@ -95,8 +106,36 @@ public class MainActivity extends SherlockActivity   {
    	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-	    	getweatherdata("奉贤");
-	    	 handler.sendEmptyMessage(0);
+	    	try {
+	    		SoapObject sObject= GetNetData.getweatherdata("奉贤");
+	            tvdate1=   sObject.getProperty(7).toString();  
+	            tvtemp1=   sObject.getProperty(8).toString();  
+	            tvwind1=   sObject.getProperty(9).toString();  
+	            tvweather=sObject.getProperty(4).toString(); 
+	            
+	            tvdate2=   sObject.getProperty(12).toString();  
+	            tvtemp2=   sObject.getProperty(13).toString();  
+	            tvwind2=   sObject.getProperty(14).toString();  
+	            
+	            pic11=sObject.getProperty(10).toString(); 
+	            pic12=sObject.getProperty(11).toString(); 
+	            
+	            pic21=sObject.getProperty(15).toString(); 
+	            pic22=sObject.getProperty(16).toString(); 
+
+	    	    JSONArray jsonArr= GetNetData.getairaqidata();
+	    	    JSONObject jsonObject=jsonArr.getJSONObject(0);
+	    	    aqi=(Integer)jsonObject.get("pm2_5");
+    	    	air_aqi=air_aqi+" "+Integer.toString(aqi);
+    	    	air_aqi=air_aqi+" 空气质量："+(String)jsonObject.get("quality");
+    	    //	air_aqi=air_aqi+" "+(String)jsonObject.get("primary_pollutant");
+
+		    	 handler.sendEmptyMessage(0);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+	    
 	    }
 	}).start();
    	
@@ -107,75 +146,48 @@ private Handler handler =new Handler(){
 		//当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
-		TextView tvDate=(TextView)findViewById(R.id.tvDate);
-		TextView tvTemp=(TextView)findViewById(R.id.tvTemp);
-		TextView tvWind=(TextView)findViewById(R.id.tvWind);
+		TextView tvDate1=(TextView)findViewById(R.id.tvDate1);
+		TextView tvTemp1=(TextView)findViewById(R.id.tvTemp1);
+		TextView tvWind1=(TextView)findViewById(R.id.tvWind1);
+		TextView tvDate2=(TextView)findViewById(R.id.tvDate2);
+		TextView tvTemp2=(TextView)findViewById(R.id.tvTemp2);
+		TextView tvWind2=(TextView)findViewById(R.id.tvWind2);
 		TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
-		tvDate.setText(tvdate);
-		tvTemp.setText(tvtemp);
-		tvWind.setText(tvwind);
+
+	//	tvdate1.substring(tvdate1.indexOf("日"));
+		tvDate1.setText("12时内"+tvdate1.substring(tvdate1.indexOf("日")+1));
+		tvTemp1.setText(tvtemp1);
+		tvWind1.setText(	tvwind1.subSequence(0, tvwind1.indexOf("级")+1));
+
+		tvDate2.setText("24时内"+tvdate2.substring(tvdate2.indexOf("日")+1));
+		
+		tvTemp2.setText(tvtemp2);
+		tvWind2.setText(	tvwind2.subSequence(0, tvwind2.indexOf("级")+1));
+
+	//	tvWind2.setText(tvwind2);
+	//	tvPM25.setText(air_aqi);
+
+
+		ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
+		ImageView imgv12=(ImageView)findViewById(R.id.imgv12);
+		
+		ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
+		ImageView imgv22=(ImageView)findViewById(R.id.imgv22);
+		tvweather="实时天气 "+tvweather.substring(tvweather.indexOf("：")+1)+"；PM2.5："+air_aqi;
+		
 		tvWeather.setText(tvweather);
 
+		_pic11=Integer.parseInt(pic11.substring(0,pic11.lastIndexOf(".")));
+		_pic12=Integer.parseInt(pic12.substring(0,pic12.lastIndexOf(".")));
+		_pic21=Integer.parseInt(pic21.substring(0,pic21.lastIndexOf(".")));
+		_pic22=Integer.parseInt(pic22.substring(0,pic22.lastIndexOf(".")));
 
-		ImageView imgv1=(ImageView)findViewById(R.id.imgv1);
-		ImageView imgv2=(ImageView)findViewById(R.id.imgv2);
-		int x=pic1.lastIndexOf(".");
-		String fname1=pic1.substring(0,x);
-		int y=pic2.lastIndexOf(".");
-		String fname2=pic2.substring(0,y);
-		_pic1=Integer.parseInt(fname1);
-		_pic2=Integer.parseInt(fname2);
-
-		imgv1.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic1));
-		imgv2.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic2));
-
-		
+		imgv11.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic11));
+		imgv12.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic12));
+		imgv21.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic21));
+		imgv22.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic22));
 		}
 		};
-
-		protected void getweatherdata(String theCityCode) {
-
-			String methodname ="getWeather"; 
-			String soapaction=namespace+methodname;
-			SoapObject request = new SoapObject(namespace, methodname);
-	        request.addProperty("theCityCode",theCityCode);
-	        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-	        envelope.dotNet=true;//是否是dotNet WebService  
-	        envelope.bodyOut=request;
-	        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
-            HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
-	        ht.debug = true;
-            try  
-            {   
-            	//System.out.println(soapaction);
-                // 第5步：调用WebService  
-                ht.call(soapaction, envelope);  
-            //	System.out.println("ht.call" ); 
-                if (envelope.getResponse() != null)  
-                {  
-                    // 第6步：使用getResponse方法获得WebService方法的返回结果  
-                	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
-//                	SoapObject result = (SoapObject) envelope.bodyIn;  
-//                	SoapObject detail = (SoapObject) result.getProperty(0);                  	
-                    tvdate=   soapObject.getProperty(7).toString();  
-                    tvtemp=   soapObject.getProperty(8).toString();  
-                    tvwind=   soapObject.getProperty(9).toString();  
-                    tvweather=soapObject.getProperty(4).toString(); 
-                    pic1=soapObject.getProperty(10).toString(); 
-                    pic2=soapObject.getProperty(11).toString(); 
-                    
-                }  
-                else {  
-                }  
-            }  
-            catch (Exception e)  
-            {  
-            	//tvweather=e.toString();
-            }  
-
-
-		}
-	
 protected void onActivityResult(int requestCode, int resultCode,  
             Intent data){  
     	switch (resultCode){  
@@ -297,7 +309,7 @@ protected void onActivityResult(int requestCode, int resultCode,
 			{
 				Intent intent =new Intent();
 				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, schoolbus.class);
+				intent.setClass(MainActivity.this, SchoolBus.class);
 				startActivityForResult(intent, 0);
 			}
 	});
@@ -346,6 +358,22 @@ protected void onActivityResult(int requestCode, int resultCode,
 	}
 	private void init_lay5()
 	{
+		Button btn_toadvise_setting=(Button)findViewById(R.id.btn_toadvise_setting);
+		btn_toadvise_setting.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+//			Intent intent =new Intent();
+//			intent.setClass(MainActivity.this, Joke.class);
+//			startActivity(intent);
+//			MainActivity.this.finish();
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, Advise.class);
+				startActivityForResult(intent, 0);
+			}
+		});
+		
 		userInfo = getSharedPreferences("setting", 0);  
 	    //	userInfo.edit().putString("area", "null").commit();  
 	    	String area=userInfo.getString("area", "null");

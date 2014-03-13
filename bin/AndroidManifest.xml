@@ -44,11 +44,13 @@
             <activity android:name="com.usta.Linknet"
                  android:label="链接校园网"></activity>   
                  <activity android:name="com.usta.Morningtrain"
-                 android:label="链接校园网"></activity>
+                 android:label="晨跑查询"></activity>
             <activity android:name="com.usta.Setting"
                  android:label="设置"></activity>
-             <activity android:name="com.usta.schoolbus"
+             <activity android:name="com.usta.SchoolBus"
                  android:label="校车查询"></activity>
+             <activity android:name="com.usta.Advise"
+                 android:label="意见反馈"></activity>
     </application>
 
 </manifest>

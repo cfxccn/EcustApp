@@ -8,10 +8,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.usta.getnetdata.GetNetData;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,7 +34,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Joke extends SherlockActivity implements OnClickListener {
+public class Joke extends SherlockActivity  {
 //	private String text = " 12";
 //	int num;
 //	jokeSqlitedata jsd;
@@ -39,7 +42,6 @@ public class Joke extends SherlockActivity implements OnClickListener {
 	Intent intent;
 	private String joke;
 
-	private static  String url="http://172.18.113.24:8080/testssh/testJson.action";
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -54,39 +56,22 @@ public class Joke extends SherlockActivity implements OnClickListener {
 		initbtn();
 	}
 
-	@Override
-	public void onClick(View v) {
-		getTestJsonServerDataFromNewThread(url);
-//		jsd = new jokeSqlitedata(this);
-//		SQLiteDatabase db = jsd.getWritableDatabase();
-//		db.execSQL("insert into jokes (text) values ('丑女跟和尚同船渡河，和尚无意间瞅了丑女一眼，丑女立刻大发脾气：大胆秃头，光天化日之下竟敢偷看良家妇女！ ’ 和尚一听，吓得连忙把眼睛闭上。丑女一见，更生气了：你偷看我还不算，还敢闭上眼睛在心里想我！  和尚无法跟她讲道理，又把脸扭到一边。丑女得理不饶人，双手叉腰，大声训斥道：你觉得无脸见我，正好说明你心中有鬼！')");
-//		db.execSQL("insert into jokes (text) values ('女A：你猜猜我现在多重？女B：我估计没有一百斤……女A：你真会说话。女B：也有一百二十斤。')");
-//		db.execSQL("insert into jokes (text) values ('我前面一女生平胸，然后我问她哪天你晚上自己回家，被劫色怎么办…？她淡淡的回了句：‘我就脱了上衣，然后说，别激动，是自己人’…自己人…己人…人…')");
-//		db.execSQL("insert into jokes (text) values ('我前面一女生平胸，然后我问她哪天你晚上自己回家，被劫色怎么办…？她淡淡的回了句：‘我就脱了上衣，然后说，别激动，是自己人’…自己人…己人…人…')");
-//		Cursor cursor = db.rawQuery("select * from jokes", null);
-//		if (cursor.moveToLast()) {
-//			num = cursor.getInt(0);
-//		}
-//		int k = (int) (Math.random() * num);
-//		if (cursor.moveToPosition(k)) {
-//			text = cursor.getString(1);
-//		}
-//		cursor.close();
-//		db.close();
-//		switch (v.getId()) {
-//			case R.id.button1: {
-//				TextView tw1 = (TextView) findViewById(R.id.textView2);
-//				tw1.setText(text);
-//			}
-//		}
-	}
 
-	private void getTestJsonServerDataFromNewThread(final String url)
+	private void getTestJsonServerDataFromNewThread()
 	{
     	new Thread(new Runnable(){
     	    @Override
     	    public void run() {
-    	    	getTestJsonServerDataFrom(url);
+    	    //	getTestJsonServerDataFrom(url);
+    					try {
+    		    	    	JSONObject jsonObject= 	GetNetData.getjokedata();
+							joke=(String)jsonObject.get("joke");
+
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
     	    	 handler.sendEmptyMessage(0);
     	    }
     	}).start();
@@ -99,28 +84,6 @@ public class Joke extends SherlockActivity implements OnClickListener {
 		((TextView) findViewById(R.id.textview_joke)).setText(joke);
 		}
 		};
-	
-	
-	private void getTestJsonServerDataFrom(String url)
-	{
-		HttpClient client = new DefaultHttpClient();
-		HttpGet request;
-		try {
-			request = new HttpGet(new URI(url));
-			HttpResponse response = client.execute(request);
-			if (response.getStatusLine().getStatusCode() == 200) {
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					String out = EntityUtils.toString(entity);
-					JSONObject jsonObject = new JSONObject(out);
-					joke=(String)jsonObject.get("joke");
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
 	        setResult(RESULT_OK, intent);  
@@ -135,22 +98,16 @@ public class Joke extends SherlockActivity implements OnClickListener {
 		btnback.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// setContentView(R.layout.activity_main);
-//				Intent intent = new Intent();
-//				intent.setClass(Joke.this, MainActivity.class);
-//				startActivity(intent);
-//				Joke.this.finish();
 		        setResult(RESULT_OK, intent);  
 		        finish();  
 			}
 		});
 		Button button = (Button) findViewById(R.id.btnjoke);
 		button.setOnClickListener( new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				getTestJsonServerDataFromNewThread(url);
+				getTestJsonServerDataFromNewThread();
 
 			}
 		});
