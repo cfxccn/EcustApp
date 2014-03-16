@@ -13,8 +13,7 @@ import android.widget.Button;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.microsoft.sqlserver.*;
-import com.microsoft.sqlserver.jdbc.SQLServerConnection;
+
 
 public class SearchDrugs extends SherlockActivity {
 	private int index;

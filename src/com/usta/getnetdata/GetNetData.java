@@ -84,7 +84,6 @@ public class GetNetData {
 		return null;
 	}
 	
-
 	public static JSONArray getairaqidata()
 	{
 		// String url="http://www.pm25.in/api/querys/only_aqi.json?city=shanghai&token=5j1znBVAsnSf5xQyNQyq&stations=no";
@@ -109,7 +108,7 @@ public class GetNetData {
 		return null;
 	}
 	
-	public static void sendadvise(String sex,String grade,String advise){
+	public static void sendadvise_xml(String sex,String grade,String advise){
 		String namespace="http://tempuri.org/";
 	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
 		String methodname ="insertAdvise"; 
@@ -133,4 +132,85 @@ public class GetNetData {
 			e.printStackTrace();
         }  
 	}
+
+	public static SoapObject getjoke_xml(String theCityCode) {
+		
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+		String methodname ="selectJoke"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+      //  request.addProperty("theCityCode",theCityCode);
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;//是否是dotNet WebService  
+        envelope.bodyOut=request;
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+            ht.call(soapaction, envelope);  
+            if (envelope.getResponse() != null)  
+            {  
+            	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
+            	return soapObject;
+            }  
+            else {  
+        		return null;  
+            }  
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        }  
+		return null;  
+	}
+
+	public static void sendnewpost_xml(String postid,String content){
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
+		String methodname ="newPost"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+        request.addProperty("postid",postid);
+        request.addProperty("content",content);
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;//是否是dotNet WebService  
+        envelope.bodyOut=request;
+        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+            ht.call(soapaction, envelope);  
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        }  
+	}
+
+	public static void sendnewpostback_xml(String title,String content){
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
+		String methodname ="newPostBack"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+        request.addProperty("title",title);
+        request.addProperty("content",content);
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;//是否是dotNet WebService  
+        envelope.bodyOut=request;
+        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+            ht.call(soapaction, envelope);  
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        }  
+	}
+
 }

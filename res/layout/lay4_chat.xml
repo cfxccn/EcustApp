@@ -1,34 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="#ffffff" >
+    android:orientation="vertical" >
 
-       
-    <TableRow>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-        </TableRow>
-        <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-         <TableRow>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-             <Button
-                 android:id="@+id/btn_tojoke_lay3"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="开心一笑" />
-        </TableRow>
-         <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-         <TableRow>
-        
-        <TextView android:text="关于" />
-        </TableRow>
-        <View
-            android:layout_height="2dip"
-            android:background="#ff909090"/>
-  
-</TableLayout>
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

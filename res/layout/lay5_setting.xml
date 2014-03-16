@@ -11,38 +11,74 @@
         android:text="请选择校区"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
         <RadioGroup
-    android:id="@+id/radioGroup_area_setting"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
-        <RadioButton
-            android:id="@+id/radiobtn_xuhui_setting"
+            android:id="@+id/radioGroup_area_setting"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="徐汇校区" />
+            android:layout_height="wrap_content" >
 
-        <RadioButton
-            android:id="@+id/radiobtn_fengxian_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="奉贤校区" />
-
-        <RadioButton
-            android:id="@+id/radiobtn_jinshan_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="金山校区" />
-                </RadioGroup>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_toadvise_setting"
+            <RadioButton
+                android:id="@+id/radiobtn_xuhui_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="意见反馈" />
+                android:text="徐汇校区" />
+
+            <RadioButton
+                android:id="@+id/radiobtn_fengxian_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="奉贤校区" />
+
+            <RadioButton
+                android:id="@+id/radiobtn_jinshan_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="金山校区" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="交流版弹出笑话"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RadioGroup
+            android:id="@+id/rgrp_joke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radiobtn_jokeon_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="开" />
+
+            <RadioButton
+                android:id="@+id/radiobtn_jokeoff_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关" />
+
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_toadvise_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意见反馈" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于" />
 
 </LinearLayout>

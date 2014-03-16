@@ -49,11 +49,6 @@ public class SearchBooks extends SherlockActivity {
 			@Override
 			public void onClick(View v)
 			{
-				// setContentView(R.layout.activity_main);
-//				Intent intent =new Intent();
-//				intent.setClass( SearchBooks.this, MainActivity.class);
-//				startActivity(intent);
-//				SearchBooks.this.finish();
 		        setResult(RESULT_OK, intent);  
 		        finish();  
 			}
@@ -63,7 +58,6 @@ public class SearchBooks extends SherlockActivity {
 			@Override
 			public void onClick(View v)
 			{
-				// setContentView(R.layout.activity_main);
 				initwebview();
 			}
 		});

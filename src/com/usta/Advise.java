@@ -1,8 +1,5 @@
 package com.usta;
 
-import java.io.IOException;
-
-import android.R.string;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +16,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -93,7 +91,6 @@ public class Advise extends SherlockActivity {
 	            	 }	    	            	
 	            	if(arg1==R.id.rbtn_sex_female){
 	     	    	    _sex="女";
-
    	            	 }
 	             }
 	         });
@@ -108,10 +105,12 @@ public class Advise extends SherlockActivity {
 					    @Override
 					    public void run() {
 					    	try {
-								GetNetData.sendadvise(_sex, _grade, advise);
+								GetNetData.sendadvise_xml(_sex, _grade, advise);
+								//Toast.makeText(Advise.this, "发送成功", Toast.LENGTH_SHORT).show();
 
 							} catch (Exception e) {
 								// TODO: handle exception
+								//Toast.makeText(Advise.this, "发送失败", Toast.LENGTH_SHORT).show();
 								e.printStackTrace();
 							}
 					    }
@@ -123,7 +122,6 @@ public class Advise extends SherlockActivity {
 	        @Override  
 	    public boolean onOptionsItemSelected(MenuItem item) {  
 	        switch(item.getItemId()){  
-
 	      case android.R.id.home:  
 		        setResult(RESULT_OK, intent);  
 		        finish();  

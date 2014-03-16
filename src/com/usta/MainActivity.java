@@ -4,31 +4,24 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
 
 import com.actionbarsherlock.app.SherlockActivity;
+
+
+
 import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.CircleLayout.OnItemClickListener;
-import com.usta.CircleLayout.OnItemSelectedListener;
 import com.usta.getnetdata.GetNetData;
 
-import android.R.integer;
-import android.R.string;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -79,6 +72,7 @@ public class MainActivity extends SherlockActivity   {
 	private int _pic12=0;
 	private int _pic21=0;
 	private int _pic22=0;
+	Menu _menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +94,8 @@ public class MainActivity extends SherlockActivity   {
         	  Toast1.show();
           }
     }
-   private void init_Weather() {
+   
+    private void init_Weather() {
 	   
 		// TODO Auto-generated method stub
    	new Thread(new Runnable(){
@@ -163,14 +158,8 @@ private Handler handler =new Handler(){
 		
 		tvTemp2.setText(tvtemp2);
 		tvWind2.setText(	tvwind2.subSequence(0, tvwind2.indexOf("级")+1));
-
-	//	tvWind2.setText(tvwind2);
-	//	tvPM25.setText(air_aqi);
-
-
 		ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
-		ImageView imgv12=(ImageView)findViewById(R.id.imgv12);
-		
+		ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
 		ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
 		ImageView imgv22=(ImageView)findViewById(R.id.imgv22);
 		tvweather="实时天气 "+tvweather.substring(tvweather.indexOf("：")+1)+"；PM2.5："+air_aqi;
@@ -199,6 +188,28 @@ protected void onActivityResult(int requestCode, int resultCode,
     	
 }  
 
+@Override  
+public boolean onOptionsItemSelected(MenuItem item) {  
+    switch(item.getItemId()){  
+  case R.id.newpost_chat: 
+	  	Intent intent =new Intent();
+		intent.putExtra("index", index);
+		intent.setClass(MainActivity.this, NewPost.class);
+		startActivityForResult(intent, 0);
+      break;  
+    }  
+    return super.onOptionsItemSelected(item);  
+}  
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	//System.out.println("执行了onCreateOptionsMenu");
+	
+	getSupportMenuInflater().inflate(R.menu.chat, menu);
+	
+	menu.findItem(R.id.newpost_chat).setVisible(false);
+	_menu=menu;
+	return true;
+}
     private void init_LayInstru() {
     	tv_tolay1_main = (TextView) findViewById(R.id.tv_tolay1_main);
     	tv_tolay2_main = (TextView) findViewById(R.id.tv_tolay2_main);
@@ -259,32 +270,24 @@ protected void onActivityResult(int requestCode, int resultCode,
     }
 	private void init_lay1()
 	{
+    	_menu.findItem(R.id.newpost_chat).setVisible(false);
+
 	}
 	private void init_lay2()
 	{
+    	_menu.findItem(R.id.newpost_chat).setVisible(false);
+
 	}
 
 	private void init_lay3()
 	{
-//		Button btn_tosearchdrugs_lay1 = (Button) findViewById(R.id.btn_tosearchdrugs_lay1);
-//		btn_tosearchdrugs_lay1.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v)
-//			{
-//			//	 setContentView(R.layout.searchdrugs);
-//				Intent intent =new Intent();
-//				intent.putExtra("index", index);
-//				intent.setClass(MainActivity.this, SearchDrugs.class);
-//				startActivityForResult(intent, 0);
-//		//		MainActivity.this.finish();
-//			}
-//		});
+
+
 		Button btn_tosearchbooks_lay1 = (Button) findViewById(R.id.btn_tosearchbooks_main);
 		btn_tosearchbooks_lay1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
-			//	 setContentView( R.layout.searchbooks);
 				Intent intent =new Intent();
 				intent.putExtra("index", index);
 				intent.setClass(MainActivity.this, SearchBooks.class);
@@ -313,17 +316,6 @@ protected void onActivityResult(int requestCode, int resultCode,
 				startActivityForResult(intent, 0);
 			}
 	});
-//		Button btn_tolinknet_lay1 = (Button) findViewById(R.id.btn_tolinknet_lay1);
-//		btn_tolinknet_lay1.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v)
-//			{
-//				Intent intent =new Intent();
-//				intent.putExtra("index", index);
-//				intent.setClass(MainActivity.this, Linknet.class);
-//				startActivityForResult(intent, 0);
-//			}
-//		});
 		Button btn_tomorningtrain_lay1 = (Button) findViewById(R.id.btn_tomorningtrain_main);
 		btn_tomorningtrain_lay1.setOnClickListener(new OnClickListener() {
 			@Override
@@ -335,45 +327,35 @@ protected void onActivityResult(int requestCode, int resultCode,
 				startActivityForResult(intent, 0);
 			}
 		});	
-		
 	}
 
 	private void init_lay4()
 	{
-	Button btn_tojoke_lay3 = (Button) findViewById(R.id.btn_tojoke_lay3);
-	btn_tojoke_lay3.setOnClickListener(new OnClickListener() {
-		@Override
-		public void onClick(View v)
-		{
-//		Intent intent =new Intent();
-//		intent.setClass(MainActivity.this, Joke.class);
-//		startActivity(intent);
-//		MainActivity.this.finish();
-			Intent intent =new Intent();
-			intent.putExtra("index", index);
-			intent.setClass(MainActivity.this, Joke.class);
-			startActivityForResult(intent, 0);
-		}
-	});
+		userInfo = getSharedPreferences("setting", 0);  
+		String joke=userInfo.getString("joke", "null");
+	    	if(!joke.equalsIgnoreCase("off")){
+	    		Toast toastJoke=Toast.makeText(this, "joke", Toast.LENGTH_SHORT);
+	    		toastJoke.show();
+	    	}
+	    	_menu.findItem(R.id.newpost_chat).setVisible(true);
+
+	
 	}
 	private void init_lay5()
 	{
+    	_menu.findItem(R.id.newpost_chat).setVisible(false);
+
 		Button btn_toadvise_setting=(Button)findViewById(R.id.btn_toadvise_setting);
 		btn_toadvise_setting.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
-//			Intent intent =new Intent();
-//			intent.setClass(MainActivity.this, Joke.class);
-//			startActivity(intent);
-//			MainActivity.this.finish();
 				Intent intent =new Intent();
 				intent.putExtra("index", index);
 				intent.setClass(MainActivity.this, Advise.class);
 				startActivityForResult(intent, 0);
 			}
 		});
-		
 		userInfo = getSharedPreferences("setting", 0);  
 	    //	userInfo.edit().putString("area", "null").commit();  
 	    	String area=userInfo.getString("area", "null");
@@ -392,9 +374,9 @@ protected void onActivityResult(int requestCode, int resultCode,
 	    		RadioButton radiobtn_jinshan_setting= (RadioButton)findViewById(R.id.radiobtn_jinshan_setting);
 	    		radiobtn_jinshan_setting.setChecked(true);
 	    	}
-	    	final Toast toas1=Toast.makeText(this, "徐汇校区-已保存", Toast.LENGTH_SHORT);
-	    	final Toast toas2=Toast.makeText(this, "奉贤校区-已保存", Toast.LENGTH_SHORT);
-	    	final Toast toas3=Toast.makeText(this, "金山校区-已保存", Toast.LENGTH_SHORT);
+	    	final Toast toastxuhui=Toast.makeText(this, "徐汇校区-已保存", Toast.LENGTH_SHORT);
+	    	final Toast toastfengxian=Toast.makeText(this, "奉贤校区-已保存", Toast.LENGTH_SHORT);
+	    	final Toast toastjinshan=Toast.makeText(this, "金山校区-已保存", Toast.LENGTH_SHORT);
 
 	    	RadioGroup group = (RadioGroup)this.findViewById(R.id.radioGroup_area_setting);
 	    	         //绑定一个匿名监听器
@@ -405,19 +387,55 @@ protected void onActivityResult(int requestCode, int resultCode,
 	    	                 //获取变更后的选中项的ID
 	    	            	 if(arg1==R.id.radiobtn_xuhui_setting){
 	    	     	    	    userInfo.edit().putString("area", "xuhui").commit();  
-	    	            		 toas1.show();
+	    	     	    	   toastxuhui.show();
 	    	            	 }	    	            	
 	    	            	if(arg1==R.id.radiobtn_fengxian_setting){
 		    	     	    	    userInfo.edit().putString("area", "fengxian").commit();  
-		    	            		 toas2.show(); 
+		    	     	    	   toastfengxian.show(); 
 		    	            	 }
 	    	            	 if(arg1==R.id.radiobtn_jinshan_setting){
 	    	     	    	    userInfo.edit().putString("area", "jinshan").commit();  
-	    	            		 toas3.show();
+	    	     	    	   toastjinshan.show();
 	    	            	 }
 
 	    	             }
 	    	         });
+	    	 	    //	userInfo.edit().putString("area", "null").commit();  
+	    	         //SharedPreferences jokeInfo = getSharedPreferences("setting", 0);  
+
+	    	         String joke=userInfo.getString("joke", "null");
+	    	 	    	if(joke.equalsIgnoreCase("on")){
+	    	 	    	//    userInfo.edit().putString("area", "xuhui").commit();  
+	    	 	    		RadioButton radiobtn_jokeon_setting= (RadioButton)findViewById(R.id.radiobtn_jokeon_setting);
+	    	 	    		radiobtn_jokeon_setting.setChecked(true);
+	    	 	    	}
+	    	 	    	if(joke.equalsIgnoreCase("off")){
+	    	     	   // 	userInfo.edit().putString("area", "fengxian").commit();  
+	    	 	    		RadioButton radiobtn_jokeoff_setting= (RadioButton)findViewById(R.id.radiobtn_jokeoff_setting);
+	    	 	    		radiobtn_jokeoff_setting.setChecked(true);
+	    	 	    	}
+
+	    	 	    	final Toast toastjokeon=Toast.makeText(this, "笑话开启-已保存", Toast.LENGTH_SHORT);
+	    	 	    	final Toast toastjokeoff=Toast.makeText(this, "笑话屏蔽-已保存", Toast.LENGTH_SHORT);
+
+	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);
+	    	 	    	         //绑定一个匿名监听器
+	    	 	    	rgrp_joke.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+	    	 	    	             @Override
+	    	 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
+	    	 	    	                 // TODO Auto-generated method stub
+	    	 	    	                 //获取变更后的选中项的ID
+	    	 	    	            	 if(arg1==R.id.radiobtn_jokeon_setting){
+	    	 	    	     	    	    userInfo.edit().putString("joke", "on").commit();  
+	    	 	    	            		 toastjokeon.show();
+	    	 	    	            	 }	    	            	
+	    	 	    	            	if(arg1==R.id.radiobtn_jokeoff_setting){
+	    	 		    	     	    	    userInfo.edit().putString("joke", "off").commit();  
+	    	 		    	     	    	  toastjokeoff.show(); 
+	    	 		    	            	 }
+
+	    	 	    	             }
+	    	 	    	         });
 	}
 
 	private void init_ViewPager() {
@@ -473,7 +491,7 @@ protected void onActivityResult(int requestCode, int resultCode,
 	    	switch (position){
 			case 0:	init_lay1();break;
 			case 1: init_lay2();break;
-			case 2: init_lay3();break;
+			case 2:  init_lay3();break;
 			case 3: init_lay4();break;
 			case 4: init_lay5();break;
 
