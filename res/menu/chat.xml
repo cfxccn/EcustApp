@@ -1,0 +1,9 @@
+﻿<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/newpost_chat"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="发表新帖"/>
+
+</menu>
