@@ -22,9 +22,8 @@
         android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="58dp"
-        android:src="@drawable/zhu" />
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_toRightOf="@+id/editText1"
+        android:src="@drawable/nothing" />
 
 </RelativeLayout>

@@ -6,6 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.app.ActionBar.TabListener;
 import com.actionbarsherlock.app.SherlockActivity;
 
 
@@ -25,6 +28,7 @@ import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -52,7 +56,7 @@ public class MainActivity extends SherlockActivity   {
 	private int offset = 0;// 动画图片偏移量
 	private int bmpW;// 动画图片宽度
 	private View view1,view2,view3,view4,view5;//各个页卡
-	private TextView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main,tv_tolay4_main,tv_tolay5_main;
+	private ImageView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main,tv_tolay4_main,tv_tolay5_main;
 	private SharedPreferences userInfo;
 	private String tvdate1="";
 	private String tvtemp1="";
@@ -60,19 +64,20 @@ public class MainActivity extends SherlockActivity   {
 	private String tvdate2="";
 	private String tvtemp2="";
 	private String tvwind2="";
-	private String tvweather="";
 	private String pic11="";
 	private String pic12="";
 	private String pic21="";
 	private String pic22="";
-	private String air_aqi="";
+	private String air_aqi="今日空气质量：";
+	private String air_advise="户外活动建议：";
+	
 	private int aqi;
+	Menu _menu;
 
 	private int _pic11=0;
 	private int _pic12=0;
 	private int _pic21=0;
 	private int _pic22=0;
-	Menu _menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +98,30 @@ public class MainActivity extends SherlockActivity   {
         	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
         	  Toast1.show();
           }
+
+          }
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	getSupportMenuInflater().inflate(R.menu.chat, menu);
+    	menu.findItem(R.id.newpost_chat).setVisible(false);
+    	_menu=menu;
+        return true;
     }
-   
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch(item.getItemId())
+        {
+        case R.id.newpost_chat: 
+			Intent intent =new Intent();
+			intent.putExtra("index", index);
+			intent.setClass(MainActivity.this, NewPost.class);
+			startActivityForResult(intent, 0);
+			
+            break;
+        }
+        return true;
+    }
+    
+    
     private void init_Weather() {
 	   
 		// TODO Auto-generated method stub
@@ -106,7 +133,7 @@ public class MainActivity extends SherlockActivity   {
 	            tvdate1=   sObject.getProperty(7).toString();  
 	            tvtemp1=   sObject.getProperty(8).toString();  
 	            tvwind1=   sObject.getProperty(9).toString();  
-	            tvweather=sObject.getProperty(4).toString(); 
+	    //        tvweather=sObject.getProperty(4).toString(); 
 	            
 	            tvdate2=   sObject.getProperty(12).toString();  
 	            tvtemp2=   sObject.getProperty(13).toString();  
@@ -121,8 +148,16 @@ public class MainActivity extends SherlockActivity   {
 	    	    JSONArray jsonArr= GetNetData.getairaqidata();
 	    	    JSONObject jsonObject=jsonArr.getJSONObject(0);
 	    	    aqi=(Integer)jsonObject.get("pm2_5");
-    	    	air_aqi=air_aqi+" "+Integer.toString(aqi);
-    	    	air_aqi=air_aqi+" 空气质量："+(String)jsonObject.get("quality");
+    	    	//air_aqi=air_aqi+" "+Integer.toString(aqi);
+    	    	air_aqi="今日空气质量："+(String)jsonObject.get("quality")+"   PM2.5指数："+Integer.toString(aqi);
+    	    	if(aqi<80)
+    	    	{air_advise=air_advise+"自由活动不受影响";
+    	    	}else
+    	    		if(aqi<120)
+    	    		{air_advise=air_advise+"尽量减少";
+    	    		}else
+    	    			{air_advise=air_advise+"完全停止";
+    	    			}
     	    //	air_aqi=air_aqi+" "+(String)jsonObject.get("primary_pollutant");
 
 		    	 handler.sendEmptyMessage(0);
@@ -148,6 +183,7 @@ private Handler handler =new Handler(){
 		TextView tvTemp2=(TextView)findViewById(R.id.tvTemp2);
 		TextView tvWind2=(TextView)findViewById(R.id.tvWind2);
 		TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
+		TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
 
 	//	tvdate1.substring(tvdate1.indexOf("日"));
 		tvDate1.setText("12时内"+tvdate1.substring(tvdate1.indexOf("日")+1));
@@ -162,10 +198,9 @@ private Handler handler =new Handler(){
 		ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
 		ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
 		ImageView imgv22=(ImageView)findViewById(R.id.imgv22);
-		tvweather="实时天气 "+tvweather.substring(tvweather.indexOf("：")+1)+"；PM2.5："+air_aqi;
 		
-		tvWeather.setText(tvweather);
-
+		tvWeather.setText(air_aqi);
+		tvAdvise.setText(air_advise);
 		_pic11=Integer.parseInt(pic11.substring(0,pic11.lastIndexOf(".")));
 		_pic12=Integer.parseInt(pic12.substring(0,pic12.lastIndexOf(".")));
 		_pic21=Integer.parseInt(pic21.substring(0,pic21.lastIndexOf(".")));
@@ -188,36 +223,15 @@ protected void onActivityResult(int requestCode, int resultCode,
     	
 }  
 
-@Override  
-public boolean onOptionsItemSelected(MenuItem item) {  
-    switch(item.getItemId()){  
-  case R.id.newpost_chat: 
-	  	Intent intent =new Intent();
-		intent.putExtra("index", index);
-		intent.setClass(MainActivity.this, NewPost.class);
-		startActivityForResult(intent, 0);
-      break;  
-    }  
-    return super.onOptionsItemSelected(item);  
-}  
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-	//System.out.println("执行了onCreateOptionsMenu");
-	
-	getSupportMenuInflater().inflate(R.menu.chat, menu);
-	
-	menu.findItem(R.id.newpost_chat).setVisible(false);
-	_menu=menu;
-	return true;
-}
+
     private void init_LayInstru() {
-    	tv_tolay1_main = (TextView) findViewById(R.id.tv_tolay1_main);
-    	tv_tolay2_main = (TextView) findViewById(R.id.tv_tolay2_main);
-    	tv_tolay3_main = (TextView) findViewById(R.id.tv_tolay3_main);
-    	tv_tolay4_main = (TextView) findViewById(R.id.tv_tolay4_main);
-    	tv_tolay5_main = (TextView) findViewById(R.id.tv_tolay5_main);
+    	tv_tolay1_main = (ImageView) findViewById(R.id.imageView_Nearby);
+    	tv_tolay2_main = (ImageView) findViewById(R.id.imageView_Search);
+    	tv_tolay3_main = (ImageView) findViewById(R.id.imageView_Home);
+    	tv_tolay4_main = (ImageView) findViewById(R.id.imageView_Chat);
+    	tv_tolay5_main = (ImageView) findViewById(R.id.imageView_Setting);
     	
-    	tv_tolay3_main.setBackgroundColor(Color.GRAY);
+    	tv_tolay3_main.setBackgroundColor(Color.WHITE);
     	
     	int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
 		int two = one * 2;// 页卡1 -> 页卡3 偏移量
@@ -271,7 +285,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
 	private void init_lay1()
 	{
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
-
 	}
 	private void init_lay2()
 	{
@@ -281,21 +294,8 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 	private void init_lay3()
 	{
-
-
-		Button btn_tosearchbooks_lay1 = (Button) findViewById(R.id.btn_tosearchbooks_main);
-		btn_tosearchbooks_lay1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-				Intent intent =new Intent();
-				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, SearchBooks.class);
-				startActivityForResult(intent, 0);
-			}
-		});
-		Button btn_tosearchclassroom_lay1 = (Button) findViewById(R.id.btn_tosearchclassroom_main);
-		btn_tosearchclassroom_lay1.setOnClickListener(new OnClickListener() {
+		ImageView ImageView_Classroom = (ImageView) findViewById(R.id.imageView_Classroom);
+		ImageView_Classroom.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
@@ -305,8 +305,30 @@ public boolean onCreateOptionsMenu(Menu menu) {
 				startActivityForResult(intent, 0);
 			}
 		});
-		Button btn_schoolbus_lay3=(Button)findViewById(R.id.button5);
-		btn_schoolbus_lay3.setOnClickListener(new OnClickListener() {
+		ImageView ImageView_Searchbook = (ImageView) findViewById(R.id.imageView_Searchbook);
+		ImageView_Searchbook.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, SearchBooks.class);
+				startActivityForResult(intent, 0);
+			}
+		});
+		ImageView imageView_Morningtrain = (ImageView) findViewById(R.id.imageView_Morningtrain);
+		imageView_Morningtrain.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, Morningtrain.class);
+				startActivityForResult(intent, 0);
+			}
+		});
+		ImageView imageView_Schoolbus=(ImageView)findViewById(R.id.imageView_Schoolbus);
+		imageView_Schoolbus.setOnClickListener(new OnClickListener() {
 		@Override
 			public void onClick(View v)
 			{
@@ -316,17 +338,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 				startActivityForResult(intent, 0);
 			}
 	});
-		Button btn_tomorningtrain_lay1 = (Button) findViewById(R.id.btn_tomorningtrain_main);
-		btn_tomorningtrain_lay1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-				Intent intent =new Intent();
-				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, Morningtrain.class);
-				startActivityForResult(intent, 0);
-			}
-		});	
+		
 	}
 
 	private void init_lay4()
@@ -338,13 +350,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
 	    		toastJoke.show();
 	    	}
 	    	_menu.findItem(R.id.newpost_chat).setVisible(true);
-
-	
 	}
 	private void init_lay5()
 	{
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
-
 		Button btn_toadvise_setting=(Button)findViewById(R.id.btn_toadvise_setting);
 		btn_toadvise_setting.setOnClickListener(new OnClickListener() {
 			@Override
@@ -491,7 +500,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 	    	switch (position){
 			case 0:	init_lay1();break;
 			case 1: init_lay2();break;
-			case 2:  init_lay3();break;
+			case 2: init_lay3();break;
 			case 3: init_lay4();break;
 			case 4: init_lay5();break;
 
@@ -526,39 +535,40 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			imageView.startAnimation(animation);
 
         	if (arg0==0){ 
-        		tv_tolay1_main.setBackgroundColor(Color.GRAY);
-        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
         		}
         	if (arg0==1){ 
-        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay2_main.setBackgroundColor(Color.GRAY);
-        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
         		}
         	if (arg0==2){ 
-        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay3_main.setBackgroundColor(Color.GRAY);
-        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
+            	_menu.findItem(R.id.newpost_chat).setVisible(false);
         		}
           	if (arg0==3){ 
-        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay4_main.setBackgroundColor(Color.GRAY);
-        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
+        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
         		}
           	if (arg0==4){ 
-        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay5_main.setBackgroundColor(Color.GRAY);
+        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
+        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
         		}
 		}
     }
