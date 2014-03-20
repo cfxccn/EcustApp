@@ -250,13 +250,28 @@ protected void onActivityResult(int requestCode, int resultCode,
 		animation.setFillAfter(true);// True:图片停在动画结束位置
 		animation.setDuration(300);
 		imageView.startAnimation(animation);
-    	
+    	tv_tolay1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=0;
+				viewPager.setCurrentItem(0);
+			}
+		});
     	iv_tolay1_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
 				index=0;
 				viewPager.setCurrentItem(0);
+			}
+		});
+    	tv_tolay2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=1;
+				viewPager.setCurrentItem(1);
 			}
 		});
     	iv_tolay2_main.setOnClickListener(new OnClickListener() {
@@ -267,6 +282,14 @@ protected void onActivityResult(int requestCode, int resultCode,
 				viewPager.setCurrentItem(1);
 			}
 		});
+    	tv_tolay3.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=2;
+				viewPager.setCurrentItem(2);
+			}
+		});
     	iv_tolay3_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
@@ -275,12 +298,28 @@ protected void onActivityResult(int requestCode, int resultCode,
 				viewPager.setCurrentItem(2);
 			}
 		});
+    	tv_tolay4.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=3;
+				viewPager.setCurrentItem(3);
+			}
+		});
     	iv_tolay4_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
 				index=3;
 				viewPager.setCurrentItem(3);
+			}
+		});
+    	tv_tolay5.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{        	
+				index=4;
+				viewPager.setCurrentItem(4);
 			}
 		});
     	iv_tolay5_main.setOnClickListener(new OnClickListener() {
