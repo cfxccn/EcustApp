@@ -25,6 +25,7 @@ import android.os.Message;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -56,7 +57,9 @@ public class MainActivity extends SherlockActivity   {
 	private int offset = 0;// ¶¯»­Í¼Æ¬Æ«ÒÆÁ¿
 	private int bmpW;// ¶¯»­Í¼Æ¬¿í¶È
 	private View view1,view2,view3,view4,view5;//¸÷¸öÒ³¿¨
-	private ImageView tv_tolay1_main,tv_tolay2_main,tv_tolay3_main,tv_tolay4_main,tv_tolay5_main;
+	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main,iv_tolay5_main;
+	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4,tv_tolay5;
+
 	private SharedPreferences userInfo;
 	private String tvdate1="";
 	private String tvtemp1="";
@@ -225,13 +228,20 @@ protected void onActivityResult(int requestCode, int resultCode,
 
 
     private void init_LayInstru() {
-    	tv_tolay1_main = (ImageView) findViewById(R.id.imageView_Nearby);
-    	tv_tolay2_main = (ImageView) findViewById(R.id.imageView_Search);
-    	tv_tolay3_main = (ImageView) findViewById(R.id.imageView_Home);
-    	tv_tolay4_main = (ImageView) findViewById(R.id.imageView_Chat);
-    	tv_tolay5_main = (ImageView) findViewById(R.id.imageView_Setting);
+    	iv_tolay1_main = (ImageView) findViewById(R.id.imageView_Nearby);
+    	iv_tolay2_main = (ImageView) findViewById(R.id.imageView_Search);
+    	iv_tolay3_main = (ImageView) findViewById(R.id.imageView_Home);
+    	iv_tolay4_main = (ImageView) findViewById(R.id.imageView_Chat);
+    	iv_tolay5_main = (ImageView) findViewById(R.id.imageView_Setting);
     	
-    	tv_tolay3_main.setBackgroundColor(Color.WHITE);
+    	tv_tolay1 = (TextView) findViewById(R.id.tvlay1);
+    	tv_tolay2 = (TextView) findViewById(R.id.tvlay2);
+    	tv_tolay3 = (TextView) findViewById(R.id.tvlay3);
+    	tv_tolay4 = (TextView) findViewById(R.id.tvlay4);
+    	tv_tolay5 = (TextView) findViewById(R.id.tvlay5);
+    	
+    	tv_tolay3.setTextColor(Color.BLUE);
+    //	tv_tolay3_main.setBackgroundColor(Color.WHITE);
     	
     	int one = offset * 2 + bmpW;// Ò³¿¨1 -> Ò³¿¨2 Æ«ÒÆÁ¿
 		int two = one * 2;// Ò³¿¨1 -> Ò³¿¨3 Æ«ÒÆÁ¿
@@ -241,7 +251,7 @@ protected void onActivityResult(int requestCode, int resultCode,
 		animation.setDuration(300);
 		imageView.startAnimation(animation);
     	
-    	tv_tolay1_main.setOnClickListener(new OnClickListener() {
+    	iv_tolay1_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -249,7 +259,7 @@ protected void onActivityResult(int requestCode, int resultCode,
 				viewPager.setCurrentItem(0);
 			}
 		});
-    	tv_tolay2_main.setOnClickListener(new OnClickListener() {
+    	iv_tolay2_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -257,7 +267,7 @@ protected void onActivityResult(int requestCode, int resultCode,
 				viewPager.setCurrentItem(1);
 			}
 		});
-    	tv_tolay3_main.setOnClickListener(new OnClickListener() {
+    	iv_tolay3_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -265,7 +275,7 @@ protected void onActivityResult(int requestCode, int resultCode,
 				viewPager.setCurrentItem(2);
 			}
 		});
-    	tv_tolay4_main.setOnClickListener(new OnClickListener() {
+    	iv_tolay4_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -273,7 +283,7 @@ protected void onActivityResult(int requestCode, int resultCode,
 				viewPager.setCurrentItem(3);
 			}
 		});
-    	tv_tolay5_main.setOnClickListener(new OnClickListener() {
+    	iv_tolay5_main.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{        	
@@ -535,40 +545,40 @@ protected void onActivityResult(int requestCode, int resultCode,
 			imageView.startAnimation(animation);
 
         	if (arg0==0){ 
-        		tv_tolay1_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
+            	tv_tolay1.setTextColor(Color.BLUE);
+            	tv_tolay2.setTextColor(Color.BLACK);
+            	tv_tolay3.setTextColor(Color.BLACK);
+            	tv_tolay4.setTextColor(Color.BLACK);
+            	tv_tolay5.setTextColor(Color.BLACK);
         		}
         	if (arg0==1){ 
-        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay2_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
-        		}
+            	tv_tolay1.setTextColor(Color.BLACK);
+            	tv_tolay2.setTextColor(Color.BLUE);
+            	tv_tolay3.setTextColor(Color.BLACK);
+            	tv_tolay4.setTextColor(Color.BLACK);
+            	tv_tolay5.setTextColor(Color.BLACK);
+            	}
         	if (arg0==2){ 
-        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay3_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
+            	tv_tolay1.setTextColor(Color.BLACK);
+            	tv_tolay2.setTextColor(Color.BLACK);
+            	tv_tolay3.setTextColor(Color.BLUE);
+            	tv_tolay4.setTextColor(Color.BLACK);
+            	tv_tolay5.setTextColor(Color.BLACK);
             	_menu.findItem(R.id.newpost_chat).setVisible(false);
         		}
           	if (arg0==3){ 
-        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay4_main.setBackgroundColor(Color.WHITE);
-        		tv_tolay5_main.setBackgroundColor(Color.TRANSPARENT);
+            	tv_tolay1.setTextColor(Color.BLACK);
+            	tv_tolay2.setTextColor(Color.BLACK);
+            	tv_tolay3.setTextColor(Color.BLACK);
+            	tv_tolay4.setTextColor(Color.BLUE);
+            	tv_tolay5.setTextColor(Color.BLACK);
         		}
           	if (arg0==4){ 
-        		tv_tolay1_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay2_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay3_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay4_main.setBackgroundColor(Color.TRANSPARENT);
-        		tv_tolay5_main.setBackgroundColor(Color.WHITE);
+            	tv_tolay1.setTextColor(Color.BLACK);
+            	tv_tolay2.setTextColor(Color.BLACK);
+            	tv_tolay3.setTextColor(Color.BLACK);
+            	tv_tolay4.setTextColor(Color.BLACK);
+            	tv_tolay5.setTextColor(Color.BLUE);
         		}
 		}
     }
