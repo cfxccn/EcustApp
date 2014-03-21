@@ -63,10 +63,8 @@ public class MainActivity extends SherlockActivity   {
 	private SharedPreferences userInfo;
 	private String tvdate1="";
 	private String tvtemp1="";
-	private String tvwind1="";
 	private String tvdate2="";
 	private String tvtemp2="";
-	private String tvwind2="";
 	private String pic11="";
 	private String pic12="";
 	private String pic21="";
@@ -135,12 +133,10 @@ public class MainActivity extends SherlockActivity   {
 	    		SoapObject sObject= GetNetData.getweatherdata("奉贤");
 	            tvdate1=   sObject.getProperty(7).toString();  
 	            tvtemp1=   sObject.getProperty(8).toString();  
-	            tvwind1=   sObject.getProperty(9).toString();  
 	    //        tvweather=sObject.getProperty(4).toString(); 
 	            
 	            tvdate2=   sObject.getProperty(12).toString();  
 	            tvtemp2=   sObject.getProperty(13).toString();  
-	            tvwind2=   sObject.getProperty(14).toString();  
 	            
 	            pic11=sObject.getProperty(10).toString(); 
 	            pic12=sObject.getProperty(11).toString(); 
@@ -181,22 +177,18 @@ private Handler handler =new Handler(){
 		super.handleMessage(msg);
 		TextView tvDate1=(TextView)findViewById(R.id.tvDate1);
 		TextView tvTemp1=(TextView)findViewById(R.id.tvTemp1);
-		TextView tvWind1=(TextView)findViewById(R.id.tvWind1);
 		TextView tvDate2=(TextView)findViewById(R.id.tvDate2);
 		TextView tvTemp2=(TextView)findViewById(R.id.tvTemp2);
-		TextView tvWind2=(TextView)findViewById(R.id.tvWind2);
 		TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
 		TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
 
 	//	tvdate1.substring(tvdate1.indexOf("日"));
 		tvDate1.setText("12时内"+tvdate1.substring(tvdate1.indexOf("日")+1));
 		tvTemp1.setText(tvtemp1);
-		tvWind1.setText(	tvwind1.subSequence(0, tvwind1.indexOf("级")+1));
 
 		tvDate2.setText("24时内"+tvdate2.substring(tvdate2.indexOf("日")+1));
 		
 		tvTemp2.setText(tvtemp2);
-		tvWind2.setText(	tvwind2.subSequence(0, tvwind2.indexOf("级")+1));
 		ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
 		ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
 		ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
@@ -225,6 +217,35 @@ protected void onActivityResult(int requestCode, int resultCode,
     		}
     	
 }  
+private OnClickListener laylistener = new OnClickListener(){ 
+@Override 
+public void onClick(View view) { 
+	switch (view.getId()){
+	case R.id.tvlay1: ;
+	case R.id.imageView_Nearby:
+		index=0;
+		viewPager.setCurrentItem(0); break;
+	case R.id.tvlay2: ;
+	case R.id.imageView_Search: 
+		index=1;
+	viewPager.setCurrentItem(1); break;
+	case R.id.tvlay3: ;
+	case R.id.imageView_Home: 
+		index=2;
+	viewPager.setCurrentItem(2); break;
+	case R.id.tvlay4: ;
+	case R.id.imageView_Chat: 
+		index=3;
+	viewPager.setCurrentItem(3); break;
+	case R.id.tvlay5: ;
+	case R.id.imageView_Setting: 
+		index=4;
+	viewPager.setCurrentItem(4); break;
+	}
+	
+	
+} 
+}; 
 
 
     private void init_LayInstru() {
@@ -250,86 +271,16 @@ protected void onActivityResult(int requestCode, int resultCode,
 		animation.setFillAfter(true);// True:图片停在动画结束位置
 		animation.setDuration(300);
 		imageView.startAnimation(animation);
-    	tv_tolay1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=0;
-				viewPager.setCurrentItem(0);
-			}
-		});
-    	iv_tolay1_main.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=0;
-				viewPager.setCurrentItem(0);
-			}
-		});
-    	tv_tolay2.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=1;
-				viewPager.setCurrentItem(1);
-			}
-		});
-    	iv_tolay2_main.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=1;
-				viewPager.setCurrentItem(1);
-			}
-		});
-    	tv_tolay3.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=2;
-				viewPager.setCurrentItem(2);
-			}
-		});
-    	iv_tolay3_main.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=2;
-				viewPager.setCurrentItem(2);
-			}
-		});
-    	tv_tolay4.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=3;
-				viewPager.setCurrentItem(3);
-			}
-		});
-    	iv_tolay4_main.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=3;
-				viewPager.setCurrentItem(3);
-			}
-		});
-    	tv_tolay5.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=4;
-				viewPager.setCurrentItem(4);
-			}
-		});
-    	iv_tolay5_main.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{        	
-				index=4;
-				viewPager.setCurrentItem(4);
-			}
-		});
+		tv_tolay1.setOnClickListener(laylistener);
+		iv_tolay1_main.setOnClickListener(laylistener);
+		tv_tolay2.setOnClickListener(laylistener);
+		iv_tolay2_main.setOnClickListener(laylistener);
+		tv_tolay3.setOnClickListener(laylistener);
+		iv_tolay3_main.setOnClickListener(laylistener);
+		tv_tolay4.setOnClickListener(laylistener);
+		iv_tolay4_main.setOnClickListener(laylistener);
+		tv_tolay5.setOnClickListener(laylistener);
+		iv_tolay5_main.setOnClickListener(laylistener);
     }
 	private void init_lay1()
 	{
@@ -343,6 +294,17 @@ protected void onActivityResult(int requestCode, int resultCode,
 
 	private void init_lay3()
 	{
+		ImageView ImageView_Job = (ImageView) findViewById(R.id.imageView_Job);
+		ImageView_Job.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, JobTitleView.class);
+				startActivityForResult(intent, 0);
+			}
+		});
 		ImageView ImageView_Classroom = (ImageView) findViewById(R.id.imageView_Classroom);
 		ImageView_Classroom.setOnClickListener(new OnClickListener() {
 			@Override
@@ -389,16 +351,17 @@ protected void onActivityResult(int requestCode, int resultCode,
 	});
 		
 	}
-
 	private void init_lay4()
+	{
+	}
+	private void lay4joke()
 	{
 		userInfo = getSharedPreferences("setting", 0);  
 		String joke=userInfo.getString("joke", "null");
 	    	if(!joke.equalsIgnoreCase("off")){
-	    		Toast toastJoke=Toast.makeText(this, "joke", Toast.LENGTH_SHORT);
+	    		Toast toastJoke=Toast.makeText(this, "joke", Toast.LENGTH_LONG);
 	    		toastJoke.show();
 	    	}
-	    	_menu.findItem(R.id.newpost_chat).setVisible(true);
 	}
 	private void init_lay5()
 	{
@@ -611,6 +574,8 @@ protected void onActivityResult(int requestCode, int resultCode,
             	tv_tolay3.setTextColor(Color.BLACK);
             	tv_tolay4.setTextColor(Color.BLUE);
             	tv_tolay5.setTextColor(Color.BLACK);
+            	_menu.findItem(R.id.newpost_chat).setVisible(true);
+            	lay4joke();
         		}
           	if (arg0==4){ 
             	tv_tolay1.setTextColor(Color.BLACK);

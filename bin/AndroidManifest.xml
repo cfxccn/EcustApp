@@ -52,6 +52,8 @@
                  android:label="意见反馈"></activity>
             <activity android:name="com.usta.NewPost"
                  android:label="发表新帖"></activity>
+            <activity android:name="com.usta.JobTitleView"
+                 android:label="课余兼职"></activity>
     </application>
 
 </manifest>
