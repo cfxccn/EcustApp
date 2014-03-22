@@ -207,7 +207,9 @@ private Handler handler =new Handler(){
 		imgv22.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic22));
 		}
 		};
-protected void onActivityResult(int requestCode, int resultCode,  
+
+		
+		protected void onActivityResult(int requestCode, int resultCode,  
             Intent data){  
     	switch (resultCode){  
     	case RESULT_OK:  

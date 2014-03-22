@@ -54,6 +54,8 @@
                  android:label="发表新帖"></activity>
             <activity android:name="com.usta.JobTitleView"
                  android:label="课余兼职"></activity>
+              <activity android:name="com.usta.JobDetail"
+                 android:label="课余兼职-详细信息"></activity>
     </application>
 
 </manifest>

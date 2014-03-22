@@ -190,7 +190,7 @@
 									        android:layout_width="wrap_content"
 									        android:layout_height="wrap_content"
 									        android:layout_gravity="center"
-									        android:text="勤办兼职" />
+									        android:text="课余兼职" />
 									</LinearLayout>
 									<View
                                           android:layout_width="12dp"
@@ -324,4 +324,11 @@
                  android:layout_width="match_parent"
                  android:layout_height="2dip"
                  android:background="#ff909090" />
+
+<ListView
+    android:id="@+id/listView_news"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+</ListView>
+
 </LinearLayout>
