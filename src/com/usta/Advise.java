@@ -1,9 +1,13 @@
 package com.usta;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,6 +46,12 @@ public class Advise extends SherlockActivity {
     String _grade;
     EditText etext_advise;
     
+	String screenWidth ; 
+	String  screenHeight ;
+	String densityDPI ; 
+    String version ;        
+    String model;
+    Toast toast1,toast2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,17 +110,28 @@ public class Advise extends SherlockActivity {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					DisplayMetrics dm = new DisplayMetrics();  
+					getWindowManager().getDefaultDisplay().getMetrics(dm);  
+			//		dm = getResources().getDisplayMetrics();  
+					screenWidth  = Integer.toString(dm.widthPixels); 
+					screenHeight = Integer.toString(dm.heightPixels); 
+					densityDPI = Integer.toString(dm.densityDpi);     // 屏幕密度（每寸像素：120/160/240/320）  
+			        version = android.os.Build.VERSION.RELEASE;  			        
+			        model=android.os.Build.MODEL;
+					
 					advise=etext_advise.getText().toString();
+					toast1=Toast.makeText(Advise.this, "发送成功", Toast.LENGTH_SHORT);
+					toast2=Toast.makeText(Advise.this, "反馈失败，请检查联网", Toast.LENGTH_SHORT);
+
 					new Thread(new Runnable(){
 					    @Override
 					    public void run() {
 					    	try {
-								GetNetData.sendadvise_xml(_sex, _grade, advise);
-								//Toast.makeText(Advise.this, "发送成功", Toast.LENGTH_SHORT).show();
-
+								GetNetData.sendadvise_xml(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI);
+								toast1.show();
 							} catch (Exception e) {
 								// TODO: handle exception
-								//Toast.makeText(Advise.this, "发送失败", Toast.LENGTH_SHORT).show();
+								toast2.show();
 								e.printStackTrace();
 							}
 					    }

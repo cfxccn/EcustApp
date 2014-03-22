@@ -108,7 +108,7 @@ public class GetNetData {
 		return null;
 	}
 	
-	public static void sendadvise_xml(String sex,String grade,String advise){
+	public static void sendadvise_xml(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
 		String namespace="http://tempuri.org/";
 	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
 		String methodname ="insertAdvise"; 
@@ -117,6 +117,12 @@ public class GetNetData {
         request.addProperty("sex",sex);
         request.addProperty("grade",grade);
         request.addProperty("text",advise);
+        request.addProperty("w",w);
+        request.addProperty("h",h);
+        request.addProperty("android_version",android_version);
+        request.addProperty("mobile_model",mobile_model);
+        request.addProperty("density",density);
+
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
         envelope.dotNet=true;// «∑Ò «dotNet WebService  
         envelope.bodyOut=request;
