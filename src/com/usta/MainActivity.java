@@ -1,5 +1,6 @@
 package com.usta;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -41,12 +42,16 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class MainActivity extends SherlockActivity   {
@@ -79,6 +84,15 @@ public class MainActivity extends SherlockActivity   {
 	private int _pic12=0;
 	private int _pic21=0;
 	private int _pic22=0;
+	private String newstitle="";
+	private String newsid="";
+	private String newsrelease="";
+	private String newssourceString="";
+    List<String> newsinfo;
+    ListView listView_news ;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +102,13 @@ public class MainActivity extends SherlockActivity   {
         init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
+
 		  ConnectivityManager manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
           NetworkInfo info = manger.getActiveNetworkInfo(); 
           if (info!=null && info.isConnected())
           {
-		init_Weather();
+		get_Weather();
+		get_News();
           }
           else 
           {
@@ -101,13 +117,87 @@ public class MainActivity extends SherlockActivity   {
           }
 
           }
-    public boolean onCreateOptionsMenu(Menu menu) {
+    private void get_News() {
+    	new Thread(new Runnable(){
+    	    @Override
+    	    public void run() {
+    	    	try {
+    	    		SoapObject sObject= GetNetData.getnewstitle();
+    	    		newsinfo=new ArrayList<String>();
+    	    		for(int i=0;i<12;i++)
+    	    		{
+    	    			newsinfo.add(sObject.getProperty(i).toString().trim());
+    	    		}
+    		    	 newshandler.sendEmptyMessage(0);
+    			} catch (Exception e) {
+    				// TODO: handle exception
+    				e.printStackTrace();
+    			}
+    	    
+    	    }
+    	}).start();
+       	
+    	}
+
+    private Handler newshandler =new Handler(){
+    		@Override
+    		//当有消息发送出来的时候就执行Handler的这个方法
+    		public void handleMessage(Message msg){
+    		super.handleMessage(msg);
+
+    		init_newslist();
+
+    		}
+    		};
+    		
+	public boolean onCreateOptionsMenu(Menu menu) {
     	getSupportMenuInflater().inflate(R.menu.chat, menu);
     	menu.findItem(R.id.newpost_chat).setVisible(false);
     	_menu=menu;
         return true;
     }
-    public boolean onOptionsItemSelected(MenuItem item) {
+    protected void init_newslist() {
+		// TODO Auto-generated method stub
+		listView_news = (ListView) findViewById(R.id.listView_news);
+  	  ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
+      for(int i=0;i<3;i++)
+      {
+          HashMap<String, Object> map = new HashMap<String, Object>();
+          map.put("textView_newsid",newsinfo.get(i*4));
+          map.put("textView_News_title",newsinfo.get(1+i*4).trim());
+          map.put("textView_News_releasetime", newsinfo.get(2+i*4));
+          map.put("textView_News_source", newsinfo.get(3+i*4));
+          listItem.add(map);
+      }
+		// TODO Auto-generated method stub
+	 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//数据源 
+	            R.layout.newstitle_listview,//ListItem的XML实现
+	            //动态数组与ImageItem对应的子项        
+	            new String[] {"textView_newsid","textView_News_title", "textView_News_releasetime","textView_News_source"}, 
+	            //ImageItem的XML文件里面的一个ImageView,两个TextView ID
+	            new int[] {R.id.textView_newsid,R.id.textView_News_title,R.id.textView_News_releasetime,R.id.textView_News_source}
+	        );
+	 listView_news.setAdapter(listItemAdapter);
+	 listView_news.setOnItemClickListener(new OnItemClickListener() {  
+		  
+         @Override  
+         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,  
+                 long arg3) {  
+        	 	ListView listView = (ListView)arg0;  
+                 HashMap<String, Object> map = (HashMap<String, Object>) listView.getItemAtPosition(arg2);  
+                 newsid= (String)map.get("textView_newsid");  
+ 				Intent intent =new Intent();
+ 				intent.putExtra("index", index);
+ 				intent.putExtra("newsid", newsid);
+				intent.setClass(MainActivity.this, NewsDetail.class);
+				startActivityForResult(intent, 0);
+         }  
+     }); 
+    	
+    	
+    	
+	}
+	public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch(item.getItemId())
         {
@@ -123,7 +213,7 @@ public class MainActivity extends SherlockActivity   {
     }
     
     
-    private void init_Weather() {
+    private void get_Weather() {
 	   
 		// TODO Auto-generated method stub
    	new Thread(new Runnable(){
@@ -159,7 +249,7 @@ public class MainActivity extends SherlockActivity   {
     	    			}
     	    //	air_aqi=air_aqi+" "+(String)jsonObject.get("primary_pollutant");
 
-		    	 handler.sendEmptyMessage(0);
+		    	 weatherhandler.sendEmptyMessage(0);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -170,41 +260,12 @@ public class MainActivity extends SherlockActivity   {
    	
 	}
 
-private Handler handler =new Handler(){
+private Handler weatherhandler =new Handler(){
 		@Override
 		//当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
-		TextView tvDate1=(TextView)findViewById(R.id.tvDate1);
-		TextView tvTemp1=(TextView)findViewById(R.id.tvTemp1);
-		TextView tvDate2=(TextView)findViewById(R.id.tvDate2);
-		TextView tvTemp2=(TextView)findViewById(R.id.tvTemp2);
-		TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
-		TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
-
-	//	tvdate1.substring(tvdate1.indexOf("日"));
-		tvDate1.setText("12时内"+tvdate1.substring(tvdate1.indexOf("日")+1));
-		tvTemp1.setText(tvtemp1);
-
-		tvDate2.setText("24时内"+tvdate2.substring(tvdate2.indexOf("日")+1));
-		
-		tvTemp2.setText(tvtemp2);
-		ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
-		ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
-		ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
-		ImageView imgv22=(ImageView)findViewById(R.id.imgv22);
-		
-		tvWeather.setText(air_aqi);
-		tvAdvise.setText(air_advise);
-		_pic11=Integer.parseInt(pic11.substring(0,pic11.lastIndexOf(".")));
-		_pic12=Integer.parseInt(pic12.substring(0,pic12.lastIndexOf(".")));
-		_pic21=Integer.parseInt(pic21.substring(0,pic21.lastIndexOf(".")));
-		_pic22=Integer.parseInt(pic22.substring(0,pic22.lastIndexOf(".")));
-
-		imgv11.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic11));
-		imgv12.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic12));
-		imgv21.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic21));
-		imgv22.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic22));
+		init_weather();
 		}
 		};
 
@@ -219,6 +280,40 @@ private Handler handler =new Handler(){
     		}
     	
 }  
+protected void init_weather() {
+			// TODO Auto-generated method stub
+	TextView tvDate1=(TextView)findViewById(R.id.tvDate1);
+	TextView tvTemp1=(TextView)findViewById(R.id.tvTemp1);
+	TextView tvDate2=(TextView)findViewById(R.id.tvDate2);
+	TextView tvTemp2=(TextView)findViewById(R.id.tvTemp2);
+	TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
+	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
+
+//	tvdate1.substring(tvdate1.indexOf("日"));
+	tvDate1.setText("12时内"+tvdate1.substring(tvdate1.indexOf("日")+1));
+	tvTemp1.setText(tvtemp1);
+
+	tvDate2.setText("24时内"+tvdate2.substring(tvdate2.indexOf("日")+1));
+	
+	tvTemp2.setText(tvtemp2);
+	ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
+	ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
+	ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
+	ImageView imgv22=(ImageView)findViewById(R.id.imgv22);
+	
+	tvWeather.setText(air_aqi);
+	tvAdvise.setText(air_advise);
+	_pic11=Integer.parseInt(pic11.substring(0,pic11.lastIndexOf(".")));
+	_pic12=Integer.parseInt(pic12.substring(0,pic12.lastIndexOf(".")));
+	_pic21=Integer.parseInt(pic21.substring(0,pic21.lastIndexOf(".")));
+	_pic22=Integer.parseInt(pic22.substring(0,pic22.lastIndexOf(".")));
+
+	imgv11.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic11));
+	imgv12.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic12));
+	imgv21.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic21));
+	imgv22.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic22));
+		}
+
 private OnClickListener laylistener = new OnClickListener(){ 
 @Override 
 public void onClick(View view) { 

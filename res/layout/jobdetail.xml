@@ -11,7 +11,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
         android:text="标题"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textView_JobRelease"
@@ -53,15 +53,13 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="工作内容："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="工作内容："  />
 
         <TextView
             android:id="@+id/textView_JobDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Text"
             android:textColor="#ff707070" />
 
     </LinearLayout>
@@ -77,17 +75,14 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="　　薪资："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="　　薪资：" />
 
         <TextView
             android:id="@+id/textView_JobTreatment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium Text"
-                        android:textColor="#fff36904" 
-            
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+             android:textColor="#fff36904" />
 
     </LinearLayout>
 
@@ -102,15 +97,14 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="工作时间："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="工作时间：" />
 
         <TextView
             android:id="@+id/TextView_JobTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium"             android:textColor="#ff707070" />
+            android:textColor="#ff707070" />
 
     </LinearLayout>
 
@@ -125,16 +119,14 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="工作地点："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="工作地点："/>
 
         <TextView
             android:id="@+id/textView_JobSite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" 
-                        android:textColor="#ff707070" />
+            android:textColor="#ff707070" />
             
     </LinearLayout>
 
@@ -149,16 +141,14 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="工作要求："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="工作要求：" />
 
         <TextView
             android:id="@+id/textView_JobReq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" 
-                        android:textColor="#ff707070" />
+            android:textColor="#ff707070" />
             
     </LinearLayout>
 
@@ -173,15 +163,13 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="　　备注："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="　　备注："/>
 
         <TextView
             android:id="@+id/textView_JobTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" 
             android:textColor="#ff707070" />
 
 
@@ -197,15 +185,13 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="报名方式："
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="报名方式："/>
 
         <TextView
             android:id="@+id/textView_JobVia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ff707070" />
 
 

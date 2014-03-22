@@ -288,4 +288,79 @@ public class GetNetData {
 		return null;  
 	}
 
+	public static SoapObject getnewstitle() {
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+		String methodname ="getNews"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+     //   request.addProperty("theCityCode",theCityCode);
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;//是否是dotNet WebService  
+        envelope.bodyOut=request;
+        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+        	//System.out.println(soapaction);
+            // 第5步：调用WebService  
+            ht.call(soapaction, envelope);  
+        //	System.out.println("ht.call" ); 
+            if (envelope.getResponse() != null)  
+            {  
+            	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
+            	
+            	return soapObject;
+            }  
+            else {  
+        		return null;  
+
+            }  
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        	//tvweather=e.toString();
+        }  
+		return null;  
+	}
+
+	public static SoapObject getnewsdetail(String newsid) {
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+		String methodname ="getNewsDetail"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+        request.addProperty("newsid",newsid);
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;//是否是dotNet WebService  
+        envelope.bodyOut=request;
+        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+        	//System.out.println(soapaction);
+            // 第5步：调用WebService  
+            ht.call(soapaction, envelope);  
+        //	System.out.println("ht.call" ); 
+            if (envelope.getResponse() != null)  
+            {  
+            	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
+            	return soapObject;
+            }  
+            else {  
+        		return null;  
+
+            }  
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        	//tvweather=e.toString();
+        }  
+		return null;  
+	}
+
 }

@@ -61,7 +61,8 @@ public class JobTitleView extends SherlockActivity {
 	    		sObject= GetNetData.getjobtitle();
 	    		for(int i=0;i<48;i++)
 	    		{
-	    			jobtitleinfo.add(sObject.getProperty(i).toString());
+	    			
+	    			jobtitleinfo.add(sObject.getProperty(i).toString().trim());
 	    		}
 		    	 handler.sendEmptyMessage(0);
 			} catch (Exception e) {

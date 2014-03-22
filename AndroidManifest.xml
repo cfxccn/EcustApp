@@ -56,6 +56,8 @@
                  android:label="课余兼职"></activity>
               <activity android:name="com.usta.JobDetail"
                  android:label="课余兼职-详细信息"></activity>
+            <activity android:name="com.usta.NewsDetail"
+                 android:label="新闻通知-详细信息"></activity>
     </application>
 
 </manifest>
