@@ -29,8 +29,6 @@ public class SchoolBus extends SherlockActivity
 		        setResult(RESULT_OK, intent);  
 		        finish();  	        
 		        break;  
-
-		        
 	      }  
 	      return super.onOptionsItemSelected(item);  
 	  }  

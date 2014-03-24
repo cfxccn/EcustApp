@@ -7,15 +7,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SearchClassroom" >
-    <Button
-        android:id="@+id/btnback_classroom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnsearch_classroom"
-        android:layout_alignBottom="@+id/btnsearch_classroom"
-        android:layout_marginLeft="22dp"
-        android:layout_toRightOf="@+id/btnsearch_classroom"
-        android:text="返回" />
 
     <TextView
         android:id="@+id/textView1"
@@ -26,105 +17,80 @@
         android:text="空教室查询"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_toLeftOf="@+id/radioGroupTime"
-        android:contentDescription="日期" >
-
-        <RadioButton
-            android:id="@+id/radioButton1"
-        android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="周一" />
-
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/radioGroup"
-        android:layout_toRightOf="@+id/radioGroup"
-        android:text="周二" />
-
-    <RadioButton
-        android:id="@+id/radioButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/radioButton2"
-        android:layout_alignBottom="@+id/radioButton2"
-        android:layout_toRightOf="@+id/radioButton2"
-        android:text="周三" />
-        <RadioButton
-            android:id="@+id/radioButton4"
+        <Spinner
+            android:id="@+id/spinner_wday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="14dp"
+            android:layout_toLeftOf="@+id/spinner_during" />
 
-            android:text="周四" />
-    <RadioButton
-        android:id="@+id/radioButton5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/radioButton2"
-        android:layout_toLeftOf="@+id/radioButton3"
-        android:text="周五" />
-    </RadioGroup>
+        <Spinner
+            android:id="@+id/spinner_during"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/spinner_wday"
+            android:layout_toLeftOf="@+id/btnsearch_classroom"
+            android:layout_toRightOf="@+id/textView1" />
 
         <Button
             android:id="@+id/btnsearch_classroom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
-            android:layout_below="@+id/radioGroupDay"
-            android:layout_marginTop="58dp"
+            android:layout_alignBottom="@+id/spinner_during"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/spinner_during"
             android:text="搜索" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupTime"
+        <TextView
+            android:id="@+id/tvRoomA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
-            android:layout_toRightOf="@+id/textView1"
-            android:contentDescription="时间" >
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/spinner_wday"/>
 
-            <RadioButton
-                android:id="@+id/radioButtontime1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="一二节" />
+        <GridView
+            android:id="@+id/gvRoomA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvRoomA"
+            android:layout_alignRight="@+id/btnsearch_classroom"
+            android:layout_below="@+id/tvRoomA"
+            android:numColumns="4" >
 
-            <RadioButton
-                android:id="@+id/radioButtontime2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="三四节" />
+        </GridView>
 
-            <RadioButton
-                android:id="@+id/radioButtontime3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/radioGroup"
-                android:layout_toRightOf="@+id/radioGroup"
-                android:text="五六节" />
+        <TextView
+            android:id="@+id/tvRoomB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/gvRoomA"
+            android:layout_below="@+id/gvRoomA"/>
+        <GridView
+            android:id="@+id/gvRoomB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvRoomB"
+            android:layout_alignRight="@+id/btnsearch_classroom"
+            android:layout_below="@+id/tvRoomB"
+            android:numColumns="5" >
 
-            <RadioButton
-                android:id="@+id/radioButtontime4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/radioButton2"
-                android:layout_alignBottom="@+id/radioButton2"
-                android:layout_toRightOf="@+id/radioButton2"
-                android:text="七八节" />
+        </GridView>
+                <TextView
+            android:id="@+id/tvRoomC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/gvRoomB"
+            android:layout_below="@+id/gvRoomB"/>
+        <GridView
+            android:id="@+id/gvRoomC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvRoomC"
+            android:layout_alignRight="@+id/btnsearch_classroom"
+            android:layout_below="@+id/tvRoomC"
+            android:numColumns="5" >
 
-            <RadioButton
-                android:id="@+id/radioButtontime5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/radioButton2"
-                android:layout_toLeftOf="@+id/radioButton3"
-                android:text="九至十一节" />
-        </RadioGroup>
-
+        </GridView>
 </RelativeLayout>

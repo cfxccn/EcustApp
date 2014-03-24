@@ -53,6 +53,7 @@ public class Joke extends SherlockActivity  {
 
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
+        
 		initbtn();
 	}
 
