@@ -4,9 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+<com.commonsware.cwac.richedit.RichEditText
+    android:id="@+id/etext_advise"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.34"
+    android:gravity="top|left"
+    android:hint="写下您的意见和建议吧"
+    android:inputType="textMultiLine" >
+
+  <requestFocus/>
+</com.commonsware.cwac.richedit.RichEditText>
+
+<Spinner
+        android:id="@+id/spn_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
         <RadioGroup
             android:id="@+id/rgrp_sex"
@@ -15,38 +31,25 @@
             android:contentDescription="性别"
             android:orientation="horizontal" >
 
-        <RadioButton
-            android:id="@+id/rbtn_sex_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="男" />
-        <RadioButton
-            android:id="@+id/rbtn_sex_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="女" />
+            <RadioButton
+                android:id="@+id/rbtn_sex_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="男" />
+
+            <RadioButton
+                android:id="@+id/rbtn_sex_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女" />
         </RadioGroup>
     </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spn_grade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-                    
-    <EditText
-        android:id="@+id/etext_advise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine" >
+    
 
-        <requestFocus />
-    </EditText>
 
-    <Button
-        android:id="@+id/btn_submit_advise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="提交" />
+    
+    
+    
 
 </LinearLayout>

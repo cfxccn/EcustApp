@@ -15,22 +15,16 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+import com.commonsware.cwac.richedit.RichEditText;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
+
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.getnetdata.GetNetData;
 
@@ -104,50 +98,55 @@ public class Advise extends SherlockActivity {
    	            	 }
 	             }
 	         });
-	    	etext_advise=(EditText)findViewById(R.id.etext_advise);
-	    	Button btn_submit_advise=(Button) findViewById(R.id.btn_submit_advise);
-	    	btn_submit_advise.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					DisplayMetrics dm = new DisplayMetrics();  
-					getWindowManager().getDefaultDisplay().getMetrics(dm);  
-			//		dm = getResources().getDisplayMetrics();  
-					screenWidth  = Integer.toString(dm.widthPixels); 
-					screenHeight = Integer.toString(dm.heightPixels); 
-					densityDPI = Integer.toString(dm.densityDpi);     // 屏幕密度（每寸像素：120/160/240/320）  
-			        version = android.os.Build.VERSION.RELEASE;  			        
-			        model=android.os.Build.MODEL;
-					
-					advise=etext_advise.getText().toString();
-					toast1=Toast.makeText(Advise.this, "发送成功", Toast.LENGTH_SHORT);
-					toast2=Toast.makeText(Advise.this, "反馈失败，请检查联网", Toast.LENGTH_SHORT);
+	    	etext_advise=(RichEditText)findViewById(R.id.etext_advise);
 
-					new Thread(new Runnable(){
-					    @Override
-					    public void run() {
-					    	try {
-								GetNetData.sendadvise_xml(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI);
-								toast1.show();
-							} catch (Exception e) {
-								// TODO: handle exception
-								toast2.show();
-								e.printStackTrace();
-							}
-					    }
-					}).start();
-				}
-			});
 	    }
-		
-	        @Override  
+private void sendadvise() {
+	// TODO Auto-generated method stub
+	DisplayMetrics dm = new DisplayMetrics();  
+	getWindowManager().getDefaultDisplay().getMetrics(dm);  
+//		dm = getResources().getDisplayMetrics();  
+	screenWidth  = Integer.toString(dm.widthPixels); 
+	screenHeight = Integer.toString(dm.heightPixels); 
+	densityDPI = Integer.toString(dm.densityDpi);     // 屏幕密度（每寸像素：120/160/240/320）  
+    version = android.os.Build.VERSION.RELEASE;  			        
+    model=android.os.Build.MODEL;
+	
+	advise=etext_advise.getText().toString();
+	toast1=Toast.makeText(Advise.this, "发送成功", Toast.LENGTH_SHORT);
+	toast2=Toast.makeText(Advise.this, "反馈失败，请检查联网", Toast.LENGTH_SHORT);
+
+	new Thread(new Runnable(){
+	    @Override
+	    public void run() {
+	    	try {
+				GetNetData.sendadvise_xml(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI);
+				toast1.show();
+			} catch (Exception e) {
+				// TODO: handle exception
+				toast2.show();
+				e.printStackTrace();
+			}
+	    }
+	}).start();
+	
+}
+	    @Override  
 	    public boolean onOptionsItemSelected(MenuItem item) {  
 	        switch(item.getItemId()){  
 	      case android.R.id.home:  
-		        setResult(RESULT_OK, intent);  
-		        finish();  
-		        break;  
+	  	        setResult(RESULT_OK, intent);  
+	  	        finish();  	        
+	  	        break; 
+	      case R.id.sendadvise: 
+	    	  sendadvise();
+	        break;  
 	        }  
 	        return super.onOptionsItemSelected(item);  
 	    }  
-}
+	    
+	    public boolean onCreateOptionsMenu(Menu menu) {	
+	  		getSupportMenuInflater().inflate(R.menu.advise, menu);
+	  		return true;
+	  	}
+	  }

@@ -52,7 +52,7 @@ public class SearchClassroom extends SherlockActivity {
 	private List<String> roomClist = new ArrayList<String>();
 	
 	private ArrayAdapter adapter;
-	private GridView gridView;
+	private GridViewOnScrollView gridView;
 	private Context context = this;
 	
     @Override

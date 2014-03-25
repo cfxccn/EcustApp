@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/area_settings"
+        android:id="@+id/newpost"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:title="切换校区"/>
+        android:title="发表"/>
 
 </menu>
