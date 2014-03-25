@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.getnetdata.GetNetData;
+import com.usta.control.GridViewOnScrollView;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -112,17 +113,17 @@ public class SearchClassroom extends SherlockActivity {
 
 			((TextView)findViewById(R.id.tvRoomA)).setText("A½Ì");
 			adapter = new ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,roomAlist);
-			gridView = (GridView)findViewById(R.id.gvRoomA);
+			gridView = (GridViewOnScrollView)findViewById(R.id.gvRoomA);
 			gridView.setAdapter(adapter);
 			
 			((TextView)findViewById(R.id.tvRoomB)).setText("B½Ì");
 			adapter = new ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,roomBlist);
-			gridView = (GridView)findViewById(R.id.gvRoomB);
+			gridView = (GridViewOnScrollView)findViewById(R.id.gvRoomB);
 			gridView.setAdapter(adapter);
 			
 			((TextView)findViewById(R.id.tvRoomC)).setText("C½Ì");
 			adapter = new ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,roomClist);
-			gridView = (GridView)findViewById(R.id.gvRoomC);
+			gridView = (GridViewOnScrollView)findViewById(R.id.gvRoomC);
 			gridView.setAdapter(adapter);
 		}
 	};
