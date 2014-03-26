@@ -1,20 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+ <TableRow 
+     android:layout_weight="1"
+     android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/title_schoolbus_textview1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="周五" />
-     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.07"
-        android:text="10：00 奉贤->南站" />
+        android:layout_height="match_parent"
+        android:layout_weight="0.01"
+        android:text="校车信息查询"
+        android:gravity="center" />
+ </TableRow>
+ 
+ <TableRow
+      android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+     android:layout_weight="1">
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" 
+        android:layout_weight="1"
+        android:drawSelectorOnTop="false"/>
 
-</LinearLayout>
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" 
+        android:layout_weight="1"
+         android:drawSelectorOnTop="false"/>
+     <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" 
+        android:layout_weight="1"
+        android:drawSelectorOnTop="false"/>
+
+   
+   </TableRow>
+   <TableRow >
+      <Button
+        android:id="@+id/button1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="查询" 
+        android:layout_margin="10dp"
+        android:layout_weight="1"/>
+   
+ </TableRow>
+   <TableRow
+       android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       android:layout_weight="1000">
+
+       <TextView
+           android:id="@+id/textView1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="10dp"
+             android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:lines="20"
+        android:textSize="30px"
+        android:textColor="#FF0000FF"
+           android:text="" />
+       
+     
+</TableRow>
+
+</TableLayout>

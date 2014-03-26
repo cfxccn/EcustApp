@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-import com.commonsware.cwac.richedit.RichEditText;
+//import com.commonsware.cwac.richedit.RichEditText;
 
 
 
@@ -98,7 +98,7 @@ public class Advise extends SherlockActivity {
    	            	 }
 	             }
 	         });
-	    	etext_advise=(RichEditText)findViewById(R.id.etext_advise);
+	    	etext_advise=(EditText)findViewById(R.id.etext_advise);
 
 	    }
 private void sendadvise() {
