@@ -87,7 +87,9 @@ public class SearchClassroom extends SherlockActivity {
     						cwday = String.valueOf(((Spinner)findViewById(R.id.spinner_wday)).getSelectedItemPosition());
     						if(cwday.equals("0")) cwday="7";
     		    	    	JSONArray roomsArray=GetNetData.getRoomData(cwday, cduring);
-    		    	    	roomAlist.clear();roomBlist.clear();roomClist.clear();
+    		    	    	roomAlist.clear();
+    		    	    	roomBlist.clear();
+    		    	    	roomClist.clear();
 							for(int i = 0;i < roomsArray.length();i++){
 								if(roomsArray.getJSONArray(i).getString(2).equals("A"))
 									roomAlist.add(roomsArray.getJSONArray(i).getString(1));

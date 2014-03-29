@@ -413,6 +413,17 @@ public void onClick(View view) {
 				startActivityForResult(intent, 0);
 			}
 		});
+		ImageView imageView_Lecture = (ImageView) findViewById(R.id.imageView_Lecture);
+		imageView_Lecture.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, SearchLecture.class);
+				startActivityForResult(intent, 0);
+			}
+		});
 		ImageView ImageView_Searchbook = (ImageView) findViewById(R.id.imageView_Searchbook);
 		ImageView_Searchbook.setOnClickListener(new OnClickListener() {
 			@Override

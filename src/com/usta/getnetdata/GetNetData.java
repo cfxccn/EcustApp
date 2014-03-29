@@ -1,6 +1,9 @@
 package com.usta.getnetdata;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -76,6 +79,32 @@ public class GetNetData {
 					String out = EntityUtils.toString(entity);
 					JSONObject jsonObject = new JSONObject(out);
 					JSONArray roomsArray = (JSONArray)jsonObject.getJSONArray("room");
+					return roomsArray;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static JSONArray getLectureData(String start, String department) throws Exception
+	{
+		
+		department= URLEncoder.encode(department, "UTF-8");
+		String url="http://172.18.113.24:8080/testssh/getLecture.action?start="+start+"&department="+department;
+//		String url="http://172.18.113.24:8080/testssh/getLecture.action?start=5&department=xinxi";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONObject jsonObject = new JSONObject(out);
+					JSONArray roomsArray = (JSONArray)jsonObject.getJSONArray("lecture");
 					return roomsArray;
 				}
 			}

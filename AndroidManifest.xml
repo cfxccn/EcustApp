@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="17" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> 
     
@@ -39,6 +39,8 @@
              android:label="教室查询"></activity>
         <activity android:name="com.usta.Map"
             android:label="教室查询"></activity>   
+            <activity android:name="com.usta.SearchLecture"
+             android:label="讲座查询"></activity>
             <activity android:name="com.usta.Joke"
                 android:label="每日笑话"></activity>   
             <activity android:name="com.usta.Linknet"
