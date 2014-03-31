@@ -34,7 +34,7 @@ public class SchoolBus extends SherlockActivity implements OnClickListener
 	Intent intent;
 	private static String bus,sp1,sp2,sp3,jsonString;
 	private static final String[] mDay={"周一","周二","周三","周四","周五","周六","周日"};
-	private static final String[] bustype={"教师班车","中旅班车","梦境班车"};
+	private static final String[] bustype={"教职班车","中旅班车","梦境班车"};
 	private static final String[] laifan={"奉贤-徐汇","奉贤-金山","徐汇-奉贤","徐汇-金山","金山-徐汇","金山-奉贤"};
 	 protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -167,6 +167,7 @@ public class SchoolBus extends SherlockActivity implements OnClickListener
 			 String[] strs ;
 				// TODO Auto-generated method stub
 				strs=jsonString.split("schoolbus");
+				
 				for(int i=0;i<strs.length;i++)
 				{
 					 if(i==0)
@@ -175,8 +176,9 @@ public class SchoolBus extends SherlockActivity implements OnClickListener
 					 }
 					 else{
 					 ((TextView) findViewById(R.id.textView1)).setText(((TextView) findViewById(R.id.textView1)).getText()+"  "+string1+strs[i]+"\n");
+				  }
 				}
-				}
+				
 		//	 ((TextView) findViewById(R.id.textView1)).setText(((TextView) findViewById(R.id.textView1)).getText()+jsonString);
 			 }
 			 };

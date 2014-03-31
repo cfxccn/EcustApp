@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
- <TableRow 
-     android:layout_weight="1"
-     android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/title_schoolbus_textview1"
+
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.01"
-        android:text="校车信息查询"
-        android:gravity="center" />
- </TableRow>
- 
- <TableRow
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+            <TableRow
       android:layout_width="match_parent"
         android:layout_height="fill_parent"
      android:layout_weight="1">
@@ -42,17 +38,21 @@
 
    
    </TableRow>
-   <TableRow >
+
+<TableRow
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
       <Button
         android:id="@+id/button1"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="查询" 
         android:layout_margin="10dp"
         android:layout_weight="1"/>
    
  </TableRow>
-   <TableRow
+<TableRow
        android:layout_width="match_parent"
         android:layout_height="match_parent"
        android:layout_weight="1000">
@@ -61,15 +61,15 @@
            android:id="@+id/textView1"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_margin="10dp"
-             android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:lines="20"
-        android:textSize="30px"
-        android:textColor="#FF0000FF"
-           android:text="" />
+           android:layout_marginRight="10dp"
+           android:layout_marginLeft="10dp"
+        android:text="教务处"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#ff909090" />
        
      
 </TableRow>
+        </LinearLayout>
+    </ScrollView>
 
-</TableLayout>
+</LinearLayout>

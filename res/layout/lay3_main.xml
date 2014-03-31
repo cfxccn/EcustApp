@@ -17,7 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 12时内"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
                 android:id="@+id/tvDate1"
@@ -36,13 +40,13 @@
 
         <ImageView
             android:id="@+id/imgv11"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
 
                 <ImageView
                     android:id="@+id/imgv12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
     </LinearLayout>
      <LinearLayout
@@ -54,7 +58,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
+<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24时内"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <TextView
                 android:id="@+id/tvDate2"
@@ -73,13 +81,13 @@
 
         <ImageView
             android:id="@+id/imgv21"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
 
                 <ImageView
                     android:id="@+id/imgv22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
 
         </LinearLayout>
                 
