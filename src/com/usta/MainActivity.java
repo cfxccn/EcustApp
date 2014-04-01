@@ -424,6 +424,18 @@ public void onClick(View view) {
 				startActivityForResult(intent, 0);
 			}
 		});
+		
+		ImageView imageView_Map = (ImageView) findViewById(R.id.imageView_Map);
+		imageView_Map.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, Map.class);
+				startActivityForResult(intent, 0);
+			}
+		});
 		ImageView ImageView_Searchbook = (ImageView) findViewById(R.id.imageView_Searchbook);
 		ImageView_Searchbook.setOnClickListener(new OnClickListener() {
 			@Override

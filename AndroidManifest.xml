@@ -9,6 +9,34 @@
         android:targetSdkVersion="17" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> 
+    <!--使用网络功能所需权限  -->
+
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE">
+</uses-permission>
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE">
+</uses-permission>
+<!-- SDK离线地图和cache功能需要读写外部存储器 -->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE">
+</uses-permission>
+<uses-permission android:name="android.permission.WRITE_SETTINGS">
+</uses-permission>
+<!-- 获取设置信息和详情页直接拨打电话需要以下权限  -->
+<uses-permission android:name="android.permission.READ_PHONE_STATE">
+</uses-permission>
+<uses-permission android:name="android.permission.CALL_PHONE">
+</uses-permission>
+<!-- 使用定位功能所需权限,demo已集成百度定位SDK,不使用定位功能可去掉以下6项 -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION">
+</uses-permission>
+<permission android:name="android.permission.BAIDU_LOCATION_SERVICE">
+</permission>
+<uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE">
+</uses-permission>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION">
+</uses-permission>
+<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION">
+</uses-permission>
+<uses-permission android:name="android.permission.ACCESS_GPS"/>                  
     
     <application
         android:allowBackup="true"
@@ -37,8 +65,7 @@
             android:label="图书查询" ></activity>
         <activity android:name="com.usta.SearchClassroom"
              android:label="教室查询"></activity>
-        <activity android:name="com.usta.Map"
-            android:label="教室查询"></activity>   
+  
             <activity android:name="com.usta.SearchLecture"
              android:label="讲座查询"></activity>
             <activity android:name="com.usta.Joke"
@@ -60,6 +87,10 @@
                  android:label="课余兼职-详细信息"></activity>
             <activity android:name="com.usta.NewsDetail"
                  android:label="新闻通知-详细信息"></activity>
+            <activity android:name="com.usta.Map"
+          		 android:label="校园地图"
+       			 android:configChanges="orientation|keyboardHidden"></activity>
+            
     </application>
 
 </manifest>
