@@ -60,6 +60,7 @@ public class SearchClassroom extends SherlockActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.searchclassroom);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+        
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
         

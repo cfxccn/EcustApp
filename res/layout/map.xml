@@ -4,15 +4,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <com.baidu.mapapi.map.MapView
-                android:id="@+id/bmapsView"
-                android:layout_width="fill_parent"
-                android:layout_height="418dp"
-                android:clickable="true" />
-
-            <ZoomControls
-                android:id="@+id/zoomControls1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <net.yoojia.imagemap.ImageMap
+            android:id="@+id/imagemap"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent" />
 
 </LinearLayout>

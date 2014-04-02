@@ -468,7 +468,18 @@ public void onClick(View view) {
 				intent.setClass(MainActivity.this, SchoolBus.class);
 				startActivityForResult(intent, 0);
 			}
-	});
+		});
+//		ImageView ImageView_Electriccharge = (ImageView) findViewById(R.id.imageView_Electriccharge);
+//		ImageView_Electriccharge.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v)
+//			{
+//				Intent intent =new Intent();
+//				intent.putExtra("index", index);
+//				intent.setClass(MainActivity.this, );
+//				startActivityForResult(intent, 0);
+//			}
+//		});
 		
 	}
 	private void init_lay4()
