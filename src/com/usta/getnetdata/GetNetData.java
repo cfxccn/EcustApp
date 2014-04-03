@@ -89,7 +89,7 @@ public class GetNetData {
 	}
 	public static JSONArray getLectureData(String start, String department) throws Exception
 	{
-		
+		department= URLEncoder.encode(department, "UTF-8");
 		department= URLEncoder.encode(department, "UTF-8");
 		String url="http://172.18.113.24:8080/testssh/getLecture.action?start="+start+"&department="+department;
 //		String url="http://172.18.113.24:8080/testssh/getLecture.action?start=5&department=xinxi";
