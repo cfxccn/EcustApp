@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 
@@ -42,13 +43,18 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -76,7 +82,7 @@ public class MainActivity extends SherlockActivity   {
 	private String pic22="";
 	private String air_aqi="今日空气质量：";
 	private String air_advise="户外活动建议：";
-	
+	Intent intent;
 	private int aqi;
 	Menu _menu;
 
@@ -90,8 +96,8 @@ public class MainActivity extends SherlockActivity   {
 	private String newssourceString="";
     List<String> newsinfo;
     ListView listView_news ;
-
-
+    ListView listView_nearby ;
+    private int visibleLastIndex = 0;   //最后的可视项索引   
 
 
     @Override
@@ -151,8 +157,9 @@ public class MainActivity extends SherlockActivity   {
     		};
     		
 	public boolean onCreateOptionsMenu(Menu menu) {
-    	getSupportMenuInflater().inflate(R.menu.chat, menu);
+    	getSupportMenuInflater().inflate(R.menu.main, menu);
     	menu.findItem(R.id.newpost_chat).setVisible(false);
+    	menu.findItem(R.id.view_inmap).setVisible(false);
     	_menu=menu;
         return true;
     }
@@ -202,9 +209,16 @@ public class MainActivity extends SherlockActivity   {
         switch(item.getItemId())
         {
         case R.id.newpost_chat: 
-			Intent intent =new Intent();
+        	intent=new Intent();
 			intent.putExtra("index", index);
 			intent.setClass(MainActivity.this, NewPost.class);
+			startActivityForResult(intent, 0);
+			
+            break;
+        case R.id.view_inmap: 
+			intent =new Intent();
+			intent.putExtra("index", index);
+			intent.setClass(MainActivity.this, NearbyViewInMap.class);
 			startActivityForResult(intent, 0);
 			
             break;
@@ -342,7 +356,8 @@ public void onClick(View view) {
 	
 	
 } 
-}; 
+};
+protected String nearbyid; 
 
 
     private void init_LayInstru() {
@@ -379,13 +394,131 @@ public void onClick(View view) {
 		tv_tolay5.setOnClickListener(laylistener);
 		iv_tolay5_main.setOnClickListener(laylistener);
     }
+	JSONArray nearbys;
 	private void init_lay1()
 	{
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
+    	_menu.findItem(R.id.view_inmap).setVisible(true);
+		LayoutInflater inflater=getLayoutInflater();
+
+
+    	getneighbourhooddata("吃");
+    	init_spiner();
+
+    	//init_list();
+	}
+
+	private void getneighbourhooddata(final String _type) {
+		// TODO Auto-generated method stub
+	   	new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		    	try {
+		    		nearbys=GetNetData.getNeighbourTitles(_type,Integer.MAX_VALUE);
+			    	 nearby_handler.sendEmptyMessage(0);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		    }
+		}).start();
+	}
+	private Handler nearby_handler =new Handler(){
+		@Override
+		//当有消息发送出来的时候就执行Handler的这个方法
+		public void handleMessage(Message msg){
+		super.handleMessage(msg);
+		init_list();
+		}
+		};
+		
+	private void init_list() {
+		listView_nearby = (ListView) findViewById(R.id.listView_nearby);
+		ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
+		
+		JSONObject nearby=new JSONObject();
+		System.out.print( nearbys.length());
+		try{
+		for(int i=0;i<nearbys.length();i++)
+		{
+			nearby=nearbys.getJSONObject(i);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("id",nearby.getInt("id"));
+	          map.put("title",nearby.getString("name"));
+	          map.put("location",nearby.getString("location"));
+	          map.put("introduction",nearby.getString("introduction"));
+
+	          listItem.add(map);
+		}
+	} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+			// TODO Auto-generated method stub
+		 final SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//数据源 
+		            R.layout.nearby_listview,//ListItem的XML实现
+		            //动态数组与ImageItem对应的子项        
+		            new String[] {"title","location", "introduction"}, 
+		            new int[] {R.id.textView_Title,R.id.textView_Location,R.id.textView_Intro}
+		        );
+		 listView_nearby.setAdapter(listItemAdapter);
+		 listView_nearby.setOnItemClickListener(new OnItemClickListener() {  
+			  
+	         @Override  
+	         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,  
+	                 long arg3) {  
+	        	 	ListView listView = (ListView)arg0;  
+	                HashMap<String, Object> map = (HashMap<String, Object>) listView_nearby.getItemAtPosition(arg2);  
+	                nearbyid= map.get("id").toString();  
+	 				Intent intent =new Intent();
+	 				intent.putExtra("index", index);
+	 				intent.putExtra("nearbyid", nearbyid);
+	 				intent.setClass(MainActivity.this, NearbyDetail.class);
+	 				startActivityForResult(intent, 0);
+
+	         }  
+	     }); 
+		
+	}
+	private void init_spiner() {
+		// TODO Auto-generated method stub
+		 Spinner spr_type_nearby=(Spinner)findViewById(R.id.spr_type_nearby);
+		 ArrayList<String> type=new ArrayList<String>();
+		 type.add("吃");
+		 type.add("住");
+		 type.add("行");
+		 type.add("玩");
+		 type.add("其他");			 
+		 ArrayAdapter<String> aspnCountries =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,type);
+		 aspnCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		 spr_type_nearby.setAdapter(aspnCountries);
+		 spr_type_nearby.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				
+				switch(arg2){
+				case 0:				 getneighbourhooddata("吃");break;
+				case 1:				 getneighbourhooddata("住");break;
+				case 2:				 getneighbourhooddata("行");break;
+				case 3:				 getneighbourhooddata("玩");break;
+				case 4:				 getneighbourhooddata("其他");break;
+
+				
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+			}
+		});
 	}
 	private void init_lay2()
 	{
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
+    	_menu.findItem(R.id.view_inmap).setVisible(false);
 
 	}
 
@@ -497,6 +630,7 @@ public void onClick(View view) {
 	private void init_lay5()
 	{
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
+    	_menu.findItem(R.id.view_inmap).setVisible(false);
 		Button btn_toadvise_setting=(Button)findViewById(R.id.btn_toadvise_setting);
 		btn_toadvise_setting.setOnClickListener(new OnClickListener() {
 			@Override
@@ -570,8 +704,7 @@ public void onClick(View view) {
 	    	 	    	final Toast toastjokeon=Toast.makeText(this, "笑话开启-已保存", Toast.LENGTH_SHORT);
 	    	 	    	final Toast toastjokeoff=Toast.makeText(this, "笑话屏蔽-已保存", Toast.LENGTH_SHORT);
 
-	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);
-	    	 	    	         //绑定一个匿名监听器
+	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);    //绑定一个匿名监听器
 	    	 	    	rgrp_joke.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 	    	 	    	             @Override
 	    	 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
@@ -641,7 +774,7 @@ public void onClick(View view) {
 	    @Override
 	    public void setPrimaryItem(View container, int position, Object object) {
 	    	switch (position){
-			case 0:	init_lay1();break;
+			case 0:	break;
 			case 1: init_lay2();break;
 			case 2: init_lay3();break;
 			case 3: init_lay4();break;
@@ -678,11 +811,14 @@ public void onClick(View view) {
 			imageView.startAnimation(animation);
 
         	if (arg0==0){ 
+        		init_lay1();
             	tv_tolay1.setTextColor(Color.BLUE);
             	tv_tolay2.setTextColor(Color.BLACK);
             	tv_tolay3.setTextColor(Color.BLACK);
             	tv_tolay4.setTextColor(Color.BLACK);
             	tv_tolay5.setTextColor(Color.BLACK);
+            	_menu.findItem(R.id.newpost_chat).setVisible(false);
+            	_menu.findItem(R.id.view_inmap).setVisible(true);
         		}
         	if (arg0==1){ 
             	tv_tolay1.setTextColor(Color.BLACK);
@@ -698,6 +834,7 @@ public void onClick(View view) {
             	tv_tolay4.setTextColor(Color.BLACK);
             	tv_tolay5.setTextColor(Color.BLACK);
             	_menu.findItem(R.id.newpost_chat).setVisible(false);
+            	_menu.findItem(R.id.view_inmap).setVisible(false);
         		}
           	if (arg0==3){ 
             	tv_tolay1.setTextColor(Color.BLACK);
@@ -706,6 +843,8 @@ public void onClick(View view) {
             	tv_tolay4.setTextColor(Color.BLUE);
             	tv_tolay5.setTextColor(Color.BLACK);
             	_menu.findItem(R.id.newpost_chat).setVisible(true);
+            	_menu.findItem(R.id.view_inmap).setVisible(false);
+
             	lay4joke();
         		}
           	if (arg0==4){ 

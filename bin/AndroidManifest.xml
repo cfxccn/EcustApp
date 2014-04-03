@@ -117,6 +117,16 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="校园地图" >
         </activity>
+        <activity
+            android:name="com.usta.NearbyViewInMap"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="地图模式" >        
+            </activity>
+            
+         <activity
+            android:name="com.usta.NearbyDetail"
+            android:label="附近详情" >
+        </activity>
     </application>
 
 </manifest>

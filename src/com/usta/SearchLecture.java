@@ -101,12 +101,14 @@ public class SearchLecture extends SherlockActivity {
 							}
     		    	    	lecturelist.clear();
 							for(int i = 0;i < lectureArray.length();i++){
-								for(int j=0;j<4;j++)
-								{
-									lecturelist.add(lectureArray.getJSONArray(i).getString(j));
-									
-								}		
 								
+									lecturelist.add(lectureArray.getJSONObject(i).getString("name"));
+									lecturelist.add(lectureArray.getJSONObject(i).getString("credit"));
+									lecturelist.add(lectureArray.getJSONObject(i).getString("start"));
+									lecturelist.add(lectureArray.getJSONObject(i).getString("classroom"));
+									lecturelist.add(lectureArray.getJSONObject(i).getString("department"));
+									lecturelist.add(lectureArray.getJSONObject(i).getString("campus"));
+
 							}
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block

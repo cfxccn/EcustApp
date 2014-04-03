@@ -1,63 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+<View
+    android:id="@+id/view1"
+    android:layout_width="wrap_content"
+    android:layout_height="2dp"
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:circle="http://schemas.android.com/apk/res/com.usta"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity" >
-
-    <com.usta.CircleLayout
-        android:id="@+id/main_circle_layout"
+    android:background="#ff909090" />
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/main_selected_textView"
-        android:layout_gravity="center_horizontal"
-        android:background="#ffffff" >
+        android:layout_height="wrap_content" 
+            android:layout_marginTop="7dp"
+        >
 
-        <com.usta.CircleImageView
-            android:id="@+id/main_facebook_image"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/icon_facebook" />
-
-        <com.usta.CircleImageView
-            android:id="@+id/main_myspace_image"
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/chi" />
+            android:text="更改分类"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+<Spinner
+        android:id="@+id/spr_type_nearby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+<View
+    android:id="@+id/view1"
+    android:layout_width="wrap_content"
+    android:layout_height="2dp"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/imageView_Nearbytype"
+    android:layout_marginTop="7dp"
+    android:background="#ff909090" />
+    <ListView
+        android:id="@+id/listView_nearby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
-        <com.usta.CircleImageView
-            android:id="@+id/main_google_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/xing" />
-
-        <com.usta.CircleImageView
-            android:id="@+id/main_linkedin_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/zhu"/>
-
-        <com.usta.CircleImageView
-            android:id="@+id/main_twitter_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/wan" />
-
-        <com.usta.CircleImageView
-            android:id="@+id/main_wordpress_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/you"/>
-    </com.usta.CircleLayout>
-
-    <TextView
-        android:id="@+id/main_selected_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-</RelativeLayout>
+</LinearLayout>

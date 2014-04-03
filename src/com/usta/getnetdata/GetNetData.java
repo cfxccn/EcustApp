@@ -19,6 +19,7 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import android.R.integer;
 import android.R.string;
 
 public class GetNetData {    
@@ -87,7 +88,7 @@ public class GetNetData {
 		}
 		return null;
 	}
-	public static JSONArray getLectureData(String start, String department) throws Exception
+	public static JSONArray _getLectureData(String start, String department) throws Exception
 	{
 		department= URLEncoder.encode(department, "UTF-8");
 		department= URLEncoder.encode(department, "UTF-8");
@@ -424,4 +425,89 @@ public class GetNetData {
 		return null;  
 	}
 
+	
+	public static JSONArray getNeighbourTitles(String _type, int id)
+	{
+		
+		int type = 1; 
+		if(_type.equalsIgnoreCase("吃")){type=1;}
+		if(_type.equalsIgnoreCase("住")){type=2;}
+		if(_type.equalsIgnoreCase("行")){type=3;}
+		if(_type.equalsIgnoreCase("玩")){type=4;}
+		if(_type.equalsIgnoreCase("其他")){type=5;}
+
+
+		String url="http://172.18.113.24:9092/NeighbourhoodTitles?id="+id+"&type="+type+"";
+//		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					return jsonArray;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static JSONArray getNeighbourDetail( int id)
+	{
+
+
+		String url="http://172.18.113.24:9092/neighbourhooddetail?id="+id+"";
+//		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					return jsonArray;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static JSONArray getLectureData(String start, String department) throws Exception
+	{
+		
+		//department= URLEncoder.encode(department, "UTF-8");
+		String url="http://172.18.113.24:9092/lecture?start="+start+"&department="+department+"";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					return jsonArray;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
