@@ -20,6 +20,11 @@
             android:layout_height="wrap_content"
             android:text="更改分类"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        <View
+    android:id="@+id/view3"
+    android:layout_width="2dp"
+    android:layout_height="match_parent"
+    android:background="#ff909090" />
 <Spinner
         android:id="@+id/spr_type_nearby"
         android:layout_width="match_parent"

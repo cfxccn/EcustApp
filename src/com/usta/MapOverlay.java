@@ -1,5 +1,6 @@
 package com.usta;
 
+
 import android.graphics.drawable.Drawable;
 
 import com.baidu.mapapi.map.ItemizedOverlay;
@@ -18,11 +19,17 @@ public class MapOverlay extends ItemizedOverlay<OverlayItem> {
     }
     protected boolean onTap(int index) {
         //在此处理item点击事件
+    	
+    	
+    	
+    	
+    	
         System.out.println("item onTap: "+index);
         return true;
     }
         public boolean onTap(GeoPoint pt, MapView mapView){
                 //在此处理MapView的点击事件，当返回 true时
+
                 super.onTap(pt,mapView);
                 return false;
         }
@@ -38,6 +45,9 @@ public class MapOverlay extends ItemizedOverlay<OverlayItem> {
                 return mGeoList.size();
         }
         */
+
+
+
 }        
  
 

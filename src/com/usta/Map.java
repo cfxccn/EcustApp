@@ -35,13 +35,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.baidu.mapapi.BMapManager;
-import com.baidu.mapapi.map.MKMapViewListener;
-import com.baidu.mapapi.map.MapController;
-import com.baidu.mapapi.map.MapPoi;
-import com.baidu.mapapi.map.MapView;
-import com.baidu.mapapi.map.OverlayItem;
-import com.baidu.platform.comapi.basestruct.GeoPoint;
+
  
 
 

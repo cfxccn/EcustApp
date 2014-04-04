@@ -218,6 +218,7 @@ public class MainActivity extends SherlockActivity   {
         case R.id.view_inmap: 
 			intent =new Intent();
 			intent.putExtra("index", index);
+			intent.putExtra("nearbys",nearbys.toString());
 			intent.setClass(MainActivity.this, NearbyViewInMap.class);
 			startActivityForResult(intent, 0);
 			
@@ -395,15 +396,16 @@ protected String nearbyid;
 		iv_tolay5_main.setOnClickListener(laylistener);
     }
 	JSONArray nearbys;
+	
+	
 	private void init_lay1()
 	{
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
     	_menu.findItem(R.id.view_inmap).setVisible(true);
 		LayoutInflater inflater=getLayoutInflater();
 
-
     	getneighbourhooddata("吃");
-    	init_spiner();
+		init_spiner();
 
     	//init_list();
 	}
@@ -442,10 +444,11 @@ protected String nearbyid;
 		{
 			nearby=nearbys.getJSONObject(i);
 			HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("id",nearby.getInt("id"));
+				map.put("no",1+i);
 	          map.put("title",nearby.getString("name"));
 	          map.put("location",nearby.getString("location"));
 	          map.put("introduction",nearby.getString("introduction"));
+				map.put("id",nearby.getInt("id"));
 
 	          listItem.add(map);
 		}
@@ -457,8 +460,8 @@ protected String nearbyid;
 		 final SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//数据源 
 		            R.layout.nearby_listview,//ListItem的XML实现
 		            //动态数组与ImageItem对应的子项        
-		            new String[] {"title","location", "introduction"}, 
-		            new int[] {R.id.textView_Title,R.id.textView_Location,R.id.textView_Intro}
+		            new String[] {"no","title","location", "introduction"}, 
+		            new int[] {R.id.textView_NearbyNo_lv,R.id.textView_NearbyTitle_lv,R.id.textView_NearbyLocation_lv,R.id.textView_NearbyIntro_lv}
 		        );
 		 listView_nearby.setAdapter(listItemAdapter);
 		 listView_nearby.setOnItemClickListener(new OnItemClickListener() {  
@@ -805,7 +808,6 @@ protected String nearbyid;
 		public void onPageSelected(int arg0) {
 			Animation animation = new TranslateAnimation(one*index, one*arg0, 0, 0);
 			index = arg0;
-			
 			animation.setFillAfter(true);// True:图片停在动画结束位置
 			animation.setDuration(300);
 			imageView.startAnimation(animation);
