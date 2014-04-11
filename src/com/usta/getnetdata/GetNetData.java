@@ -438,7 +438,6 @@ public class GetNetData {
 
 
 		String url="http://172.18.113.24:9092/NeighbourhoodTitles?id="+id+"&type="+type+"";
-//		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
 		HttpClient client = new DefaultHttpClient();
 		HttpPost request;
 		try {

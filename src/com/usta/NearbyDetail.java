@@ -72,6 +72,8 @@ private Handler handler =new Handler(){
 		TextView textView_NearbyIntro=(TextView)findViewById(R.id.textView_NearbyIntro);
 		TextView TextView_NearbyLocation=(TextView)findViewById(R.id.TextView_NearbyLocation);
 		TextView TextView_NearbyDetail=(TextView)findViewById(R.id.TextView_NearbyDetail);
+		TextView TextView_NearbyPhone=(TextView)findViewById(R.id.TextView_NearbyPhone);
+
 		
 		ImageView imageView_Nearbytype=(ImageView)findViewById(R.id.imageView_Nearbytype);
 		
@@ -80,6 +82,10 @@ private Handler handler =new Handler(){
 		textView_NearbyIntro.setText(jsonArray.getJSONObject(0).getString("introduction"));
 		TextView_NearbyLocation.setText(jsonArray.getJSONObject(0).getString("location"));
 		TextView_NearbyDetail.setText(jsonArray.getJSONObject(0).getString("detail"));
+		
+		TextView_NearbyPhone.setText(jsonArray.getJSONObject(0).getString("phone"));
+
+		
 		type=jsonArray.getJSONObject(0).getString("type");
 		}
 		catch (Exception e) {

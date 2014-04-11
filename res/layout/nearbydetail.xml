@@ -99,4 +99,28 @@
     android:layout_marginTop="17dp"
     android:background="#ff909090" />
 
+<LinearLayout
+    android:id="@+id/linearLayout4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/linearLayout3"
+    android:layout_below="@+id/linearLayout3"
+    android:layout_marginTop="23dp" >
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="电话："
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/TextView_NearbyPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ff707070" />
+</LinearLayout>
+
 </RelativeLayout>
