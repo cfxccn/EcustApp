@@ -4,13 +4,19 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -69,6 +75,7 @@ public class GetNetData {
 		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday="+wday+"&during="+during;
 //		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
 		HttpClient client = new DefaultHttpClient();
+		
 		HttpPost request;
 		try {
 			request = new HttpPost(new URI(url));
@@ -163,38 +170,38 @@ public class GetNetData {
 		}
 		return null;
 	}
-	
-	public static void sendadvise_xml(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
-		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
-		String methodname ="insertAdvise"; 
-		String soapaction=namespace+methodname;
-		SoapObject request = new SoapObject(namespace, methodname);
-        request.addProperty("sex",sex);
-        request.addProperty("grade",grade);
-        request.addProperty("text",advise);
-        request.addProperty("w",w);
-        request.addProperty("h",h);
-        request.addProperty("android_version",android_version);
-        request.addProperty("mobile_model",mobile_model);
-        request.addProperty("density",density);
 
-        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;//是否是dotNet WebService  
-        envelope.bodyOut=request;
-        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
-        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
-        ht.debug = true;
-        try  
-        {   
-            ht.call(soapaction, envelope);  
-        }  
-        catch (Exception e)  
-        {  
-			e.printStackTrace();
-        }  
-	}
-
+//	public static void _sendadvise_xml(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
+//		String namespace="http://tempuri.org/";
+//	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
+//		String methodname ="insertAdvise"; 
+//		String soapaction=namespace+methodname;
+//		SoapObject request = new SoapObject(namespace, methodname);
+//        request.addProperty("sex",sex);
+//        request.addProperty("grade",grade);
+//        request.addProperty("text",advise);
+//        request.addProperty("w",w);
+//        request.addProperty("h",h);
+//        request.addProperty("android_version",android_version);
+//        request.addProperty("mobile_model",mobile_model);
+//        request.addProperty("density",density);
+//
+//        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+//        envelope.dotNet=true;//是否是dotNet WebService  
+//        envelope.bodyOut=request;
+//        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
+//        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+//        ht.debug = true;
+//        try  
+//        {   
+//            ht.call(soapaction, envelope);  
+//        }  
+//        catch (Exception e)  
+//        {  
+//			e.printStackTrace();
+//        }  
+//	}
+//
 	public static SoapObject getjoke_xml(String theCityCode) {
 		
 		String namespace="http://tempuri.org/";
@@ -512,6 +519,68 @@ public class GetNetData {
 	public static String getPowerFare(String building, String room) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+
+	public static void sendadvise_json(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
+	String url="http://172.18.113.24:9092/AdviseInsert";
+	HttpClient client = new DefaultHttpClient();
+	HttpPost request;
+	try {
+		request = new HttpPost(url);
+		 List<NameValuePair> params = new  ArrayList<NameValuePair>();  
+		   	
+		params.add(new BasicNameValuePair ("sex", sex));  
+		params.add(new BasicNameValuePair ("grade", grade)); 
+		params.add(new BasicNameValuePair ("text", advise)); 
+		params.add(new BasicNameValuePair ("w", w)); 
+		params.add(new BasicNameValuePair ("h", h)); 
+		params.add(new BasicNameValuePair ("android_version", android_version)); 
+		params.add(new BasicNameValuePair ("mobile_model", mobile_model)); 
+		params.add(new BasicNameValuePair ("density", density)); 
+		
+		request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));  
+
+		
+		HttpResponse response = client.execute(request);
+		
+		if (response.getStatusLine().getStatusCode() == 200) {
+			HttpEntity entity = response.getEntity();
+			if (entity != null) {
+				String out = EntityUtils.toString(entity);
+				JSONArray jsonArray=new JSONArray(out);
+			//	return 0;
+			}
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	//return null;
+		
+	}
+	public static int getLatestVersion(){
+		
+			String url="http://172.18.113.24:9092/version";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					int  build=Integer.parseInt(out);
+					return build;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+		
+		
 	}
 	
 }

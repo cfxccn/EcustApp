@@ -5,6 +5,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R.string;
+import com.usta.getnetdata.GetNetData;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,10 +17,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class About extends SherlockActivity {
 	private int index;
 	Intent intent;
+	String buildString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +46,23 @@ public class About extends SherlockActivity {
 			
 			@Override
 			public void onClick(View arg0) {
-
-				//	getResources().getString(R.string.build)
+				getLatestVersionFromNewThread();
+				Toast toast1=Toast.makeText(About.this, buildString, Toast.LENGTH_SHORT);
+				toast1.show();
 			}
 		});
 
 	}
+protected void getLatestVersionFromNewThread() {
+	new Thread(new Runnable(){
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			buildString=String.valueOf(GetNetData.getLatestVersion());
+		}
+	}).start();
+}
 public boolean onKeyDown(int keyCode, KeyEvent event) {  
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
 	        setResult(RESULT_OK, intent);  

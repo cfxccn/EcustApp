@@ -120,7 +120,7 @@ private void sendadvise() {
 	    @Override
 	    public void run() {
 	    	try {
-				GetNetData.sendadvise_xml(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI);
+				GetNetData.sendadvise_json(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI);
 				toast1.show();
 			} catch (Exception e) {
 				// TODO: handle exception
