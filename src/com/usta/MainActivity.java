@@ -98,7 +98,7 @@ public class MainActivity extends SherlockActivity   {
     ListView listView_news ;
     ListView listView_nearby ;
     private int visibleLastIndex = 0;   //最后的可视项索引   
-
+    ConnectivityManager manger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +109,7 @@ public class MainActivity extends SherlockActivity   {
 		init_ViewPager();
 		init_LayInstru();
 
-		  ConnectivityManager manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
+		  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
           NetworkInfo info = manger.getActiveNetworkInfo(); 
           if (info!=null && info.isConnected())
           {
@@ -216,11 +216,21 @@ public class MainActivity extends SherlockActivity   {
 			
             break;
         case R.id.view_inmap: 
-			intent =new Intent();
-			intent.putExtra("index", index);
-			intent.putExtra("nearbys",nearbys.toString());
-			intent.setClass(MainActivity.this, NearbyViewInMap.class);
-			startActivityForResult(intent, 0);
+        	NetworkInfo info = manger.getActiveNetworkInfo(); 
+            if (info!=null && info.isConnected())
+            {
+
+    			intent =new Intent();
+    			intent.putExtra("index", index);
+    			intent.putExtra("nearbys",nearbys.toString());
+    			intent.setClass(MainActivity.this, NearbyViewInMap.class);
+    			startActivityForResult(intent, 0);
+            }
+            else 
+            {
+          	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
+          	  Toast1.show();
+            }
 			
             break;
         }
@@ -395,18 +405,27 @@ protected String nearbyid;
 		tv_tolay5.setOnClickListener(laylistener);
 		iv_tolay5_main.setOnClickListener(laylistener);
     }
-	JSONArray nearbys;
+	JSONArray nearbys ;
 	
 	
 	private void init_lay1()
 	{
+
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
     	_menu.findItem(R.id.view_inmap).setVisible(true);
 		LayoutInflater inflater=getLayoutInflater();
-
-    	getneighbourhooddata("吃");
-		init_spiner();
-
+	//	  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
+          NetworkInfo info = manger.getActiveNetworkInfo(); 
+          if (info!=null && info.isConnected())
+          {
+        	  getneighbourhooddata("吃");
+        	  init_spiner();
+          }
+          else 
+          {
+        	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
+        	  Toast1.show();
+          }
     	//init_list();
 	}
 
@@ -605,18 +624,18 @@ protected String nearbyid;
 				startActivityForResult(intent, 0);
 			}
 		});
-//		ImageView ImageView_Electriccharge = (ImageView) findViewById(R.id.imageView_Electriccharge);
-//		ImageView_Electriccharge.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v)
-//			{
-//				Intent intent =new Intent();
-//				intent.putExtra("index", index);
-//				intent.setClass(MainActivity.this, );
-//				startActivityForResult(intent, 0);
-//			}
-//		});
 		
+		ImageView imageView_Powerfare=(ImageView)findViewById(R.id.imageView_Powerfare);
+		imageView_Powerfare.setOnClickListener(new OnClickListener() {
+		@Override
+			public void onClick(View v)
+			{
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, Powerfare.class);
+				startActivityForResult(intent, 0);
+			}
+		});
 	}
 	private void init_lay4()
 	{
@@ -724,6 +743,29 @@ protected String nearbyid;
 
 	    	 	    	             }
 	    	 	    	         });
+	    	 			Button btn_toabout_setting=(Button)findViewById(R.id.btn_toabout_setting);
+	    	 			btn_toabout_setting.setOnClickListener(new OnClickListener() {
+	    	 				@Override
+	    	 				public void onClick(View v)
+	    	 				{
+	    	 					Intent intent =new Intent();
+	    	 					intent.putExtra("index", index);
+	    	 					intent.setClass(MainActivity.this, About.class);
+	    	 					startActivityForResult(intent, 0);
+	    	 				}
+	    	 			});
+	    	 			Button btn_torec_setting=(Button)findViewById(R.id.btn_torec_setting);
+	    	 			btn_torec_setting.setOnClickListener(new OnClickListener() {
+	    	 				@Override
+	    	 				public void onClick(View v)
+	    	 				{
+	    	 					Intent intent =new Intent();
+	    	 					intent.putExtra("index", index);
+	    	 					intent.setClass(MainActivity.this, Recommend.class);
+	    	 					startActivityForResult(intent, 0);
+	    	 				}
+	    	 			});
+	    	 			
 	}
 
 	private void init_ViewPager() {
@@ -781,7 +823,7 @@ protected String nearbyid;
 			case 1: init_lay2();break;
 			case 2: init_lay3();break;
 			case 3: init_lay4();break;
-			case 4: init_lay5();break;
+			case 4: break;
 
 
 			}
@@ -855,6 +897,7 @@ protected String nearbyid;
             	tv_tolay3.setTextColor(Color.BLACK);
             	tv_tolay4.setTextColor(Color.BLACK);
             	tv_tolay5.setTextColor(Color.BLUE);
+            	init_lay5();
         		}
 		}
     }

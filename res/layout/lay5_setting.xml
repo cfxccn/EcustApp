@@ -4,14 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
         android:id="@+id/tv_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="请选择校区"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <LinearLayout
+<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -39,15 +47,13 @@
                 android:text="金山校区" />
         </RadioGroup>
     </LinearLayout>
-
-    <TextView
+<TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="交流版弹出笑话"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <RadioGroup
+<RadioGroup
             android:id="@+id/rgrp_joke"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,17 +74,23 @@
 
 
         </RadioGroup>
-
-        <Button
+<Button
+            android:id="@+id/btn_torec_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="推荐" />
+<Button
             android:id="@+id/btn_toadvise_setting"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="意见反馈" />
-
-        <ListView
-            android:id="@+id/listView1"
+<Button
+            android:id="@+id/btn_toabout_setting"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </ListView>
+            android:layout_height="wrap_content"
+            android:text="关于" />
+        </LinearLayout>
+        
+    </ScrollView>
 
 </LinearLayout>

@@ -23,25 +23,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        android:textSize="10dp" />
             <TextView
                 android:id="@+id/tvTemp1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        android:textSize="10dp" />
             
         </LinearLayout>
 
         <ImageView
             android:id="@+id/imgv11"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
 
                 <ImageView
                     android:id="@+id/imgv12"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
 
     </LinearLayout>
      <LinearLayout
@@ -59,25 +61,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="10dp" />
+
             <TextView
                 android:id="@+id/tvTemp2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" "
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall" 
+        android:textSize="10dp" />
             
         </LinearLayout>
 
         <ImageView
             android:id="@+id/imgv21"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
 
                 <ImageView
                     android:id="@+id/imgv22"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
 
         </LinearLayout>
                 
@@ -235,7 +240,7 @@
                                       
 
                                       <ImageView
-                                          android:id="@+id/imageView_Electriccharge"
+                                          android:id="@+id/imageView_Powerfare"
                                           android:layout_width="60dp"
                                           android:layout_height="60dp"
                                           android:clickable="true"

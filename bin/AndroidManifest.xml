@@ -127,6 +127,18 @@
             android:name="com.usta.NearbyDetail"
             android:label="附近详情" >
         </activity>
+          <activity
+            android:name="com.usta.About"
+            android:label="关于" >
+        </activity>
+          <activity
+            android:name="com.usta.Recommend"
+            android:label="推荐" >
+        </activity>
+         <activity
+            android:name="com.usta.Powerfare"
+            android:label="电费查询" >
+        </activity>
     </application>
 
 </manifest>

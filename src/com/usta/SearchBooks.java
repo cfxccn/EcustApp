@@ -29,7 +29,6 @@ public class SearchBooks extends SherlockActivity {
         index=intent.getIntExtra("index", 0);
       
          initwebview();
-         initbtn();
     }
     private void initwebview(){
     	  webView = (WebView)findViewById(R.id.webView_lib);
@@ -43,26 +42,7 @@ public class SearchBooks extends SherlockActivity {
          } });
           }
     
-    private void initbtn(){
-    	Button btnback=(Button)findViewById(R.id.btnback_books);
-    	btnback.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-		        setResult(RESULT_OK, intent);  
-		        finish();  
-			}
-		});
-    	Button btnhome=(Button)findViewById(R.id.btnhome_books);
-    	btnhome.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-				initwebview();
-			}
-		});
 
-    }
   public boolean onKeyDown(int keyCode, KeyEvent event) {  
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
 	        setResult(RESULT_OK, intent);  
