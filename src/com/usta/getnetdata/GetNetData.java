@@ -522,7 +522,7 @@ public class GetNetData {
 	}
 	
 
-	public static void sendadvise_json(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
+	public static int sendadvise_json(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
 	String url="http://172.18.113.24:9092/AdviseInsert";
 	HttpClient client = new DefaultHttpClient();
 	HttpPost request;
@@ -548,14 +548,15 @@ public class GetNetData {
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
 				String out = EntityUtils.toString(entity);
-				JSONArray jsonArray=new JSONArray(out);
-			//	return 0;
+				int result=Integer.parseInt(out);
+				return result;
 			}
 		}
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	//return null;
+	return -1;
 		
 	}
 	public static int getLatestVersion(){
@@ -579,8 +580,35 @@ public class GetNetData {
 			e.printStackTrace();
 		}
 		return 0;
-		
-		
 	}
+
+	public static JSONObject getWeatherData()
+	{
+		// String url="http://www.pm25.in/api/querys/only_aqi.json?city=shanghai&token=5j1znBVAsnSf5xQyNQyq&stations=no";
+		 String url="http://172.18.113.24:9092/weather";
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request;
+		try {
+			request = new HttpGet(new URI(url));
+			HttpResponse response = client.execute(request);
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONObject jsonObj = new JSONObject(out);
+					return jsonObj;
+			//		joke=(String)jsonObject.get("joke");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();	
+			return null;
+
+		}
+		return null;
+
+	}
+
+
 	
 }

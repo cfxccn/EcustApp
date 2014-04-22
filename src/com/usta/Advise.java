@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.commonsware.cwac.richedit.RichEditText;
 import com.usta.getnetdata.GetNetData;
 
 public class Advise extends SherlockActivity {
@@ -35,8 +36,8 @@ public class Advise extends SherlockActivity {
    
     private static final String[] grade={"大一","大二","大三","大四","教职工","其他"};  
 
-    String _sex;
-    String advise;
+    String _sex="";
+    String advise="";
     String _grade;
     EditText etext_advise;
     
@@ -45,7 +46,7 @@ public class Advise extends SherlockActivity {
 	String densityDPI ; 
     String version ;        
     String model;
-    Toast toast1,toast2;
+    Toast toast1,toast2,toast3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +99,7 @@ public class Advise extends SherlockActivity {
    	            	 }
 	             }
 	         });
-	    	etext_advise=(EditText)findViewById(R.id.etext_advise);
+	    	etext_advise=(RichEditText)findViewById(R.id.etext_advise);
 
 	    }
 private void sendadvise() {
@@ -112,19 +113,31 @@ private void sendadvise() {
     version = android.os.Build.VERSION.RELEASE;  			        
     model=android.os.Build.MODEL;
 	
-	advise=etext_advise.getText().toString();
+	advise=etext_advise.getText().toString().trim();
 	toast1=Toast.makeText(Advise.this, "发送成功", Toast.LENGTH_SHORT);
 	toast2=Toast.makeText(Advise.this, "反馈失败，请检查联网", Toast.LENGTH_SHORT);
+	toast3=Toast.makeText(Advise.this, "请输入内容并选择性别", Toast.LENGTH_SHORT);
 
+	if("".equals(advise)||_sex==""){
+		toast3.show();
+		return ;
+	}
 	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
 	    	try {
-				GetNetData.sendadvise_json(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI);
-				toast1.show();
+				if(GetNetData.sendadvise_json(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI)==0){
+					toast1.show();
+					setResult(RESULT_OK, intent);  
+		  	        finish();
+					}
+				else{				
+					toast2.show();
+				}
+				//toast1.show();
+				
 			} catch (Exception e) {
 				// TODO: handle exception
-				toast2.show();
 				e.printStackTrace();
 			}
 	    }

@@ -118,7 +118,7 @@ public class MainActivity extends SherlockActivity   {
           }
           else 
           {
-        	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
+        	  Toast Toast1=Toast.makeText(this,"请联网后重新打开", Toast.LENGTH_SHORT);
         	  Toast1.show();
           }
 
@@ -217,7 +217,7 @@ public class MainActivity extends SherlockActivity   {
             break;
         case R.id.view_inmap: 
         	NetworkInfo info = manger.getActiveNetworkInfo(); 
-            if (info!=null && info.isConnected())
+            if (info!=null && info.isConnected()&&nearbys!=null)
             {
 
     			intent =new Intent();
@@ -244,48 +244,55 @@ public class MainActivity extends SherlockActivity   {
    	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-	    	try {
-	    		SoapObject sObject= GetNetData.getweatherdata("奉贤");
-	            tvdate1=   sObject.getProperty(7).toString();  
-	            tvtemp1=   sObject.getProperty(8).toString();  
-	    //        tvweather=sObject.getProperty(4).toString(); 
-	            
-	            tvdate2=   sObject.getProperty(12).toString();  
-	            tvtemp2=   sObject.getProperty(13).toString();  
-	            
-	            pic11=sObject.getProperty(10).toString(); 
-	            pic12=sObject.getProperty(11).toString(); 
-	            
-	            pic21=sObject.getProperty(15).toString(); 
-	            pic22=sObject.getProperty(16).toString(); 
+	 
+//	    		SoapObject sObject= GetNetData.getweatherdata("奉贤");
+//	            tvdate1=   sObject.getProperty(7).toString();  
+//	            tvtemp1=   sObject.getProperty(8).toString();  	            
+//	            tvdate2=   sObject.getProperty(12).toString();  
+//	            tvtemp2=   sObject.getProperty(13).toString();  
+//	            pic11=sObject.getProperty(10).toString(); 
+//	            pic12=sObject.getProperty(11).toString(); 
+//	            pic21=sObject.getProperty(15).toString(); 
+//	            pic22=sObject.getProperty(16).toString(); 
+//	    	    JSONArray jsonArr= GetNetData.getairaqidata();
+//	    	    JSONObject jsonObject=jsonArr.getJSONObject(0);
+//	    	    aqi=(Integer)jsonObject.get("pm2_5");
+//    	    	air_aqi="今日空气质量："+(String)jsonObject.get("quality")+"   PM2.5指数："+Integer.toString(aqi);
+	    		JSONObject weatherJsonObject=GetNetData.getWeatherData();
+	    		if(weatherJsonObject!=null){
+		    		 tvdate1=  weatherJsonObject.optString("h12");
+			         tvtemp1=   weatherJsonObject.optString("h12temp");
+			         tvdate2=   weatherJsonObject.optString("h24");
+			         tvtemp2=   weatherJsonObject.optString("h24temp");
+			         pic11=weatherJsonObject.optString("h12img1");
+			         pic12=weatherJsonObject.optString("h12img2");
+			         pic21=weatherJsonObject.optString("h24img1");
+			         pic22=weatherJsonObject.optString("h24img2");
+			         aqi=weatherJsonObject.optInt("pm25");
+			         air_aqi="今日空气质量："+weatherJsonObject.optString("aqi")+"   PM2.5指数："+Integer.toString(aqi);
 
-	    	    JSONArray jsonArr= GetNetData.getairaqidata();
-	    	    JSONObject jsonObject=jsonArr.getJSONObject(0);
-	    	    aqi=(Integer)jsonObject.get("pm2_5");
-    	    	//air_aqi=air_aqi+" "+Integer.toString(aqi);
-    	    	air_aqi="今日空气质量："+(String)jsonObject.get("quality")+"   PM2.5指数："+Integer.toString(aqi);
-    	    	if(aqi<80)
-    	    	{air_advise=air_advise+"自由活动不受影响";
-    	    	}else
-    	    		if(aqi<120)
-    	    		{air_advise=air_advise+"尽量减少";
-    	    		}else
-    	    			{air_advise=air_advise+"完全停止";
-    	    			}
-    	    //	air_aqi=air_aqi+" "+(String)jsonObject.get("primary_pollutant");
+		    		if(aqi<80)
+	    	    	{air_advise=air_advise+"自由活动不受影响";
+	    	    	}else
+	    	    		if(aqi<120)
+	    	    		{air_advise=air_advise+"尽量减少";
+	    	    		}else
+	    	    			{air_advise=air_advise+"完全停止";
+	    	    			}
+			    	 weatherhandler.sendEmptyMessage(0);
+	    			
+	    		}else{
+	    			
+	    			return;
+	    		}
 
-		    	 weatherhandler.sendEmptyMessage(0);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
 	    
 	    }
 	}).start();
    	
 	}
 
-private Handler weatherhandler =new Handler(){
+public Handler weatherhandler =new Handler(){
 		@Override
 		//当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg){
@@ -305,7 +312,7 @@ private Handler weatherhandler =new Handler(){
     		}
     	
 }  
-protected void init_weather() {
+public void init_weather() {
 			// TODO Auto-generated method stub
 	TextView tvDate1=(TextView)findViewById(R.id.tvDate1);
 	TextView tvTemp1=(TextView)findViewById(R.id.tvTemp1);
@@ -315,10 +322,10 @@ protected void init_weather() {
 	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
 
 //	tvdate1.substring(tvdate1.indexOf("日"));
-	tvDate1.setText("12时内"+tvdate1.substring(tvdate1.indexOf("日")+1));
+	tvDate1.setText("12时内"+tvdate1);
 	tvTemp1.setText(tvtemp1);
 
-	tvDate2.setText("24时内"+tvdate2.substring(tvdate2.indexOf("日")+1));
+	tvDate2.setText("24时内"+tvdate2);
 	
 	tvTemp2.setText(tvtemp2);
 	ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
@@ -328,10 +335,10 @@ protected void init_weather() {
 	
 	tvWeather.setText(air_aqi);
 	tvAdvise.setText(air_advise);
-	_pic11=Integer.parseInt(pic11.substring(0,pic11.lastIndexOf(".")));
-	_pic12=Integer.parseInt(pic12.substring(0,pic12.lastIndexOf(".")));
-	_pic21=Integer.parseInt(pic21.substring(0,pic21.lastIndexOf(".")));
-	_pic22=Integer.parseInt(pic22.substring(0,pic22.lastIndexOf(".")));
+	_pic11=Integer.parseInt(pic11);
+	_pic12=Integer.parseInt(pic12);
+	_pic21=Integer.parseInt(pic21);
+	_pic22=Integer.parseInt(pic22);
 
 	imgv11.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic11));
 	imgv12.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic12));
@@ -413,19 +420,21 @@ protected String nearbyid;
 
     	_menu.findItem(R.id.newpost_chat).setVisible(false);
     	_menu.findItem(R.id.view_inmap).setVisible(true);
-		LayoutInflater inflater=getLayoutInflater();
+  		init_spiner();
+
+		//LayoutInflater inflater=getLayoutInflater();
 	//	  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
           NetworkInfo info = manger.getActiveNetworkInfo(); 
           if (info!=null && info.isConnected())
           {
         	  getneighbourhooddata("吃");
-        	  init_spiner();
           }
           else 
           {
         	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
         	  Toast1.show();
           }
+
     	//init_list();
 	}
 
@@ -436,7 +445,7 @@ protected String nearbyid;
 		    public void run() {
 		    	try {
 		    		nearbys=GetNetData.getNeighbourTitles(_type,Integer.MAX_VALUE);
-			    	 nearby_handler.sendEmptyMessage(0);
+			    	 if(nearbys!=null)nearby_handler.sendEmptyMessage(0);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -449,6 +458,7 @@ protected String nearbyid;
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		init_list();
+
 		}
 		};
 		
@@ -457,7 +467,7 @@ protected String nearbyid;
 		ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 		
 		JSONObject nearby=new JSONObject();
-		System.out.print( nearbys.length());
+		//System.out.print( nearbys.length());
 		try{
 		for(int i=0;i<nearbys.length();i++)
 		{
