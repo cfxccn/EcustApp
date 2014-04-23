@@ -30,7 +30,7 @@ import android.R.string;
 
 public class GetNetData {    
 	
-	public static SoapObject getweatherdata(String theCityCode) {
+	public static SoapObject _getweatherdata(String theCityCode) {
 		String namespace="http://WebXml.com.cn/";
 	    String serviceUrl = "http://webservice.webxml.com.cn/WebServices/WeatherWS.asmx";  
 		String methodname ="getWeather"; 
@@ -147,7 +147,7 @@ public class GetNetData {
 		return null;
 	}
 	
-	public static JSONArray getairaqidata()
+	public static JSONArray _getairaqidata()
 	{
 		// String url="http://www.pm25.in/api/querys/only_aqi.json?city=shanghai&token=5j1znBVAsnSf5xQyNQyq&stations=no";
 		 String url="http://www.pm25.in/api/querys/pm2_5.json?city=shanghai&token=jp1p2yuzcb4FRTwpotEb&stations=no";
@@ -282,7 +282,7 @@ public class GetNetData {
         }  
 	}
 
-	public static SoapObject getjobtitle() {
+	public static SoapObject _getjobtitle() {
 		String namespace="http://tempuri.org/";
 	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
 		String methodname ="searchJob"; 
@@ -465,7 +465,7 @@ public class GetNetData {
 		return null;
 	}
 	
-	public static JSONArray getNeighbourDetail( int id)
+	public static JSONObject getNeighbourDetail( int id)
 	{
 
 
@@ -482,7 +482,8 @@ public class GetNetData {
 				if (entity != null) {
 					String out = EntityUtils.toString(entity);
 					JSONArray jsonArray=new JSONArray(out);
-					return jsonArray;
+					
+					return jsonArray.optJSONObject(0);
 				}
 			}
 		} catch (Exception e) {
@@ -522,7 +523,7 @@ public class GetNetData {
 	}
 	
 
-	public static int sendadvise_json(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
+	public static int sendAdvise(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
 	String url="http://172.18.113.24:9092/AdviseInsert";
 	HttpClient client = new DefaultHttpClient();
 	HttpPost request;
@@ -559,7 +560,8 @@ public class GetNetData {
 	return -1;
 		
 	}
-	public static int getLatestVersion(){
+	
+public static int getLatestVersion(){
 		
 			String url="http://172.18.113.24:9092/version";
 		HttpClient client = new DefaultHttpClient();
@@ -609,6 +611,108 @@ public class GetNetData {
 
 	}
 
+	
+	public static JSONArray getNewsTitles( )
+	{
+		String url="http://172.18.113.24:9092/Newstitles";
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request;
+		try {
+			request = new HttpGet(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					return jsonArray;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	public static JSONObject getNewsDetails(int id)
+	{
+		String url="http://172.18.113.24:9092/Newsdetails?id="+id+"";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					
+					return jsonArray.optJSONObject(0);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 
+		}
+		return null;
+	}
+	
+
+	public static JSONArray getJobsTitles( )
+	{
+		String url="http://172.18.113.24:9092/JobsTitles";
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request;
+		try {
+			request = new HttpGet(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					return jsonArray;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
+	
+	
+	public static JSONObject getJobDetails(int id)
+	{
+		String url="http://172.18.113.24:9092/JobDetails?id="+id+"";
+		HttpClient client = new DefaultHttpClient();
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					
+					return jsonArray.optJSONObject(0);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
 	
 }

@@ -4,11 +4,11 @@
         android:id="@+id/newpost_chat"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:title="发表新帖"/>
+        android:title="发帖"/>
         <item
         android:id="@+id/view_inmap"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:title="地图模式"/>
+        android:title="查看位置"/>
 
 </menu>

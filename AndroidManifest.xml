@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.usta"
-    android:versionCode="18065"
-    android:versionName="18065" >
+    android:versionCode="18066"
+    android:versionName="18066" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -49,7 +49,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Sherlock.Light.DarkActionBar" >
         <activity
-            android:name="com.usta.WelcomeActivity"
+            android:name="com.usta.activity.WelcomeActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Sherlock.Light.NoActionBar" >
             <intent-filter>
@@ -59,86 +59,77 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.usta.MainActivity"
+            android:name="com.usta.activity.MainActivity"
             android:label="@string/app_name" >
         </activity>
+
         <activity
-            android:name="com.usta.SearchDrugs"
-            android:label="药品查询" >
-        </activity>
-        <activity
-            android:name="com.usta.SearchBooks"
+            android:name="com.usta.activity.SearchBooks"
             android:label="图书查询" >
         </activity>
         <activity
-            android:name="com.usta.SearchClassroom"
+            android:name="com.usta.activity.SearchClassroom"
             android:label="教室查询" >
         </activity>
         <activity
-            android:name="com.usta.SearchLecture"
+            android:name="com.usta.activity.SearchLecture"
             android:label="讲座查询" >
         </activity>
+
+
         <activity
-            android:name="com.usta.Joke"
-            android:label="每日笑话" >
-        </activity>
-        <activity
-            android:name="com.usta.Linknet"
-            android:label="链接校园网" >
-        </activity>
-        <activity
-            android:name="com.usta.Morningtrain"
+            android:name="com.usta.activity.Morningtrain"
             android:label="晨跑查询" >
         </activity>
         <activity
-            android:name="com.usta.SchoolBus"
+            android:name="com.usta.activity.SchoolBus"
             android:label="校车查询" >
         </activity>
         <activity
-            android:name="com.usta.Advise"
+            android:name="com.usta.activity.Advise"
             android:label="意见反馈" >
         </activity>
         <activity
-            android:name="com.usta.NewPost"
+            android:name="com.usta.activity.NewPost"
             android:label="发表新帖" >
         </activity>
         <activity
-            android:name="com.usta.JobTitleView"
+            android:name="com.usta.activity.JobTitleView"
             android:label="课余兼职" >
         </activity>
         <activity
-            android:name="com.usta.JobDetail"
+            android:name="com.usta.activity.JobDetail"
             android:label="课余兼职-详细信息" >
         </activity>
         <activity
-            android:name="com.usta.NewsDetail"
+            android:name="com.usta.activity.NewsDetail"
             android:label="新闻通知-详细信息" >
         </activity>
         <activity
-            android:name="com.usta.Map"
+            android:name="com.usta.activity.Map"
             android:configChanges="orientation|keyboardHidden"
             android:label="校园地图" >
         </activity>
         <activity
-            android:name="com.usta.NearbyViewInMap"
+            android:name="com.usta.activity.NearbyViewInMap"
             android:configChanges="orientation|keyboardHidden"
             android:label="地图模式" >        
             </activity>
             
          <activity
-            android:name="com.usta.NearbyDetail"
+            android:name="com.usta.activity.NearbyDetail"
             android:label="附近详情" >
         </activity>
           <activity
-            android:name="com.usta.About"
+            android:name="com.usta.activity.About"
             android:label="关于" >
         </activity>
           <activity
-            android:name="com.usta.Recommend"
+            android:name="com.usta.activity.Recommend"
             android:label="推荐" >
         </activity>
          <activity
-            android:name="com.usta.Powerfare"
+            android:name="com.usta.activity.Powerfare"
             android:label="电费查询" >
         </activity>
     </application>

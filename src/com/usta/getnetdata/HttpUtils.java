@@ -15,7 +15,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.usta.SchoolBus;
+import com.usta.activity.SchoolBus;
 
 import android.os.Handler;
 import android.os.Message;

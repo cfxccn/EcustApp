@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="38dp"
         android:layout_marginTop="26dp"
-        android:text="标题"
+        android:text="请稍候"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
@@ -35,7 +35,7 @@
             android:id="@+id/textView_NearbyIntro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium Text"
+            android:text=" "
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#fff36904" />
     </LinearLayout>
@@ -54,13 +54,13 @@
             android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
             
-            android:text="详情：" />
+            android:text="" />
 
         <TextView
             android:id="@+id/TextView_NearbyDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium Text"
+            android:text=" "
             android:textAppearance="?android:attr/textAppearanceMedium"
             
             android:textColor="#ff707070" />
@@ -75,17 +75,17 @@
     android:layout_marginTop="23dp" >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="地点："
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/TextView_NearbyLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ff707070" />
 </LinearLayout>
@@ -108,17 +108,17 @@
     android:layout_marginTop="23dp" >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="电话："
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/TextView_NearbyPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#ff707070" />
 </LinearLayout>
