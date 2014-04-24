@@ -12,7 +12,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.News;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,7 +34,7 @@ public class NewsDetail extends SherlockActivity {
     SoapObject sObject;
     String newsid;
     String NewTitle,NewsRelease,NewsDetail,NewsSource;
-
+    JSONObject newsdetailsJsonObject;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +44,12 @@ public class NewsDetail extends SherlockActivity {
         intent = getIntent();
         newsid=intent.getStringExtra("newsid");
         index=intent.getIntExtra("index", 0);
-        getNewsDetails();
+        getNewsDetailsFromNewThread();
     }
 
 
     
-    private void getNewsDetails() {
+    private void getNewsDetailsFromNewThread() {
 	   
 		// TODO Auto-generated method stub
    	new Thread(new Runnable(){
@@ -62,13 +62,13 @@ public class NewsDetail extends SherlockActivity {
 //	    		NewsDetail=sObject.getProperty(1).toString().trim(); 
 //	    		NewsRelease=sObject.getProperty(2).toString().trim(); 
 //	    		NewsSource=sObject.getProperty(3).toString().trim(); 
-	    		JSONObject newsdetailsJsonObject=GetNetData.getNewsDetails(Integer.parseInt(newsid));
-	    		NewTitle=newsdetailsJsonObject.optString("newstitle").trim();
-	    		NewsDetail=newsdetailsJsonObject.optString("newsdetail").trim();
-	    		NewsRelease=newsdetailsJsonObject.optString("newsrelease").trim();
-	    		NewsSource=newsdetailsJsonObject.optString("newssource").trim();
-	    		
-		    	 handler.sendEmptyMessage(0);
+	    		 newsdetailsJsonObject=News.getNewsDetails(Integer.parseInt(newsid));
+	    		if(newsdetailsJsonObject!=null){
+			    	 handler.sendEmptyMessage(0);
+	    		}
+	    		else{
+	    			return;
+	    		}
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -82,6 +82,11 @@ private Handler handler =new Handler(){
 		//当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
+		NewTitle=newsdetailsJsonObject.optString("newstitle").trim();
+		NewsDetail=newsdetailsJsonObject.optString("newsdetail").trim();
+		NewsRelease=newsdetailsJsonObject.optString("newsrelease").trim();
+		NewsSource=newsdetailsJsonObject.optString("newssource").trim();
+		
 		TextView textView_NewsTitle=(TextView)findViewById(R.id.textView_NewsTitle);
 		TextView textView_NewsRelease=(TextView)findViewById(R.id.textView_NewsRelease);
 		TextView textView_NewsDetail=(TextView)findViewById(R.id.textView_NewsDetail);

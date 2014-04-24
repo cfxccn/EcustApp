@@ -18,9 +18,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
             <TextView
+                android:id="@+id/tv12"
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12小时内"
+                android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:textSize="15dp" />
             <TextView
@@ -61,9 +63,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
             <TextView
+                                android:id="@+id/tv24"
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="24小时内"
+                android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall" 
         android:textSize="15dp" />
             <TextView

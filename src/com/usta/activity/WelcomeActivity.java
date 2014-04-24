@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 
-import com.usta.getnetdata.GetNetData;
 
 import android.os.Bundle;
 import android.os.Handler;

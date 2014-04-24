@@ -28,7 +28,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.commonsware.cwac.richedit.RichEditText;
 import com.usta.R;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.*;
 
 public class Advise extends SherlockActivity {
 	private int index;
@@ -127,10 +127,9 @@ private void sendadvise() {
 	    @Override
 	    public void run() {
 	    	try {
-				if(GetNetData.sendAdvise(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI)==0){
+				if(com.usta.network.Advise.sendAdvise(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI)==1){
 					toast1.show();
-					setResult(RESULT_OK, intent);  
-		  	        finish();
+
 					}
 				else{				
 					toast2.show();

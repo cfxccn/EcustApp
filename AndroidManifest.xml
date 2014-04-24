@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.usta"
-    android:versionCode="18066"
-    android:versionName="18066" >
+    android:versionCode="18067"
+    android:versionName="18067" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -131,6 +131,10 @@
          <activity
             android:name="com.usta.activity.Powerfare"
             android:label="电费查询" >
+        </activity>
+                 <activity
+            android:name="com.usta.activity.AccountSetting"
+            android:label="帐号设置" >
         </activity>
     </application>
 

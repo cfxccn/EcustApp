@@ -14,7 +14,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.control.MapOverlay;
-import com.usta.getnetdata.GetNetData;
 
 import android.os.Bundle;
 import android.os.Handler;

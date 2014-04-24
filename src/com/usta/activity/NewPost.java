@@ -4,7 +4,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.getnetdata.GetNetData;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -40,7 +39,7 @@ public class NewPost extends SherlockActivity {
 			    @Override
 			    public void run() {
 			    	try {
-						GetNetData.sendnewpost_xml(title, content);
+			//			GetNetData.sendnewpost_xml(title, content);
 						//Toast.makeText(NewPost.this, "·¢ËÍ³É¹¦", Toast.LENGTH_SHORT).show();
 
 			    	} catch (Exception e) {

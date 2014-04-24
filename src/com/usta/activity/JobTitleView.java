@@ -13,7 +13,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.Job;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -59,7 +59,7 @@ public class JobTitleView extends SherlockActivity {
 	    public void run() {
 	    	try {
 	    		
-	    		jobsTitilesJsonArray=GetNetData.getJobsTitles();
+	    		jobsTitilesJsonArray=Job.getJobTitles();
 	    	//     jobtitleinfo=new ArrayList<String>();
 	    	//	sObject= GetNetData.getjobtitle();
 //	    		for(int i=0;i<48;i++)

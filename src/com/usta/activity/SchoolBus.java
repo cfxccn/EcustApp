@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.getnetdata.HttpUtils;
+import com.usta.network.HttpUtils;
 
 
 

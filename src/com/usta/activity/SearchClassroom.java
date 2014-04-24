@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.Classroom;
 import com.usta.control.GridViewOnScrollView;
 
 import android.os.Bundle;
@@ -86,7 +86,7 @@ public class SearchClassroom extends SherlockActivity {
     					cduring = ((Spinner)findViewById(R.id.spinner_during)).getSelectedItem().toString();
 						cwday = String.valueOf(((Spinner)findViewById(R.id.spinner_wday)).getSelectedItemPosition());
 						if(cwday.equals("0")) cwday="7";
-						roomsArray=GetNetData.getRoomData(cwday, cduring);
+						roomsArray=Classroom.getRoomData(cwday, cduring);
 						if(roomsArray!=null){
 			    	    	 handler.sendEmptyMessage(0);
 						}

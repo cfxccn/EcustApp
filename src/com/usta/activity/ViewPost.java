@@ -4,7 +4,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.getnetdata.GetNetData;
 
 import android.os.Bundle;
 import android.content.Intent;

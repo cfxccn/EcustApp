@@ -12,7 +12,8 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 import com.usta.R;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.*;
+
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -97,7 +98,7 @@ protected void getLatestVersionFromNewThread() {
 		public void run() {
 			// TODO Auto-generated method stub
 			try {
-				buildStringFromServer=String.valueOf(GetNetData.getLatestVersion());
+				buildStringFromServer=String.valueOf(Version.getLatestVersion());
 		    	if(Integer.parseInt(buildStringFromServer)>Integer.parseInt(buildInLocal)) 
 				{//¸üĞÂ
 		    		update_handler.sendEmptyMessage(0);

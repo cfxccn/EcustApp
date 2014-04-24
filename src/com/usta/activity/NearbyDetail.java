@@ -12,7 +12,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.Nearby;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,7 +52,7 @@ public class NearbyDetail extends SherlockActivity {
 	    @Override
 	    public void run() {
 	    	try {
-	    		jsonObject= GetNetData.getNeighbourDetail(Integer.parseInt(nearbyid));
+	    		jsonObject= Nearby.getNearbyDetails(Integer.parseInt(nearbyid));
 	    		if(jsonObject!=null){	
 	    			handler.sendEmptyMessage(0);
 	    			}

@@ -13,7 +13,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.Job;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -70,7 +70,7 @@ public class JobDetail extends SherlockActivity {
 //
 //		    	 handler.sendEmptyMessage(0);
 
-	    	jobdetailsJsonObject=GetNetData.getJobDetails(Integer.parseInt(jobid));
+	    	jobdetailsJsonObject=Job.getJobDetails(Integer.parseInt(jobid));
 	    	if(jobdetailsJsonObject!=null){
 	    		handler.sendEmptyMessage(0);
 	    		}

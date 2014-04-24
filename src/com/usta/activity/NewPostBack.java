@@ -3,7 +3,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.getnetdata.GetNetData;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -44,7 +43,7 @@ public class NewPostBack extends SherlockActivity {
 				    @Override
 				    public void run() {
 				    	try {
-							GetNetData.sendnewpostback_xml(Integer.toString(postid), content);
+					//		GetNetData.sendnewpostback_xml(Integer.toString(postid), content);
 							//Toast.makeText(NewPost.this, "·¢ËÍ³É¹¦", Toast.LENGTH_SHORT).show();
 
 				    	} catch (Exception e) {

@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.Lecture;
 import com.usta.control.GridViewOnScrollView;
 
 import android.R.integer;
@@ -94,7 +94,7 @@ public class SearchLecture extends SherlockActivity {
 						else if(cweek.equals("6")) cweek="15";
 						try {
 							
-							lectureArray = GetNetData.getLectureData(cweek, cdepartment);
+							lectureArray = Lecture.getLectureList(cweek, cdepartment);
 						
 							if(lectureArray!=null){
 						    	 handler.sendEmptyMessage(0);

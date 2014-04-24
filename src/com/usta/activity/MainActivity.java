@@ -5,12 +5,14 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.ksoap2.serialization.SoapObject;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.getnetdata.GetNetData;
+import com.usta.network.Nearby;
+import com.usta.network.News;
+import com.usta.network.Weather;
+
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -93,7 +95,7 @@ public class MainActivity extends SherlockActivity   {
         init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
-
+		 
        
 
 		  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
@@ -115,7 +117,7 @@ public class MainActivity extends SherlockActivity   {
     	    @Override
     	    public void run() {
     	    	try {
-    		    	 newsJsonArray=GetNetData.getNewsTitles();
+    		    	 newsJsonArray=News.getNewsTitles();
 //    		    	NewsInfos.add(newsJsonArray.getJSONObject(0));
 //    		    	NewsInfos.add(newsJsonArray.getJSONObject(1));
 //    		    	NewsInfos.add(newsJsonArray.getJSONObject(1));
@@ -250,7 +252,7 @@ public class MainActivity extends SherlockActivity   {
 //	    	    JSONObject jsonObject=jsonArr.getJSONObject(0);
 //	    	    aqi=(Integer)jsonObject.get("pm2_5");
 //    	    	air_aqi="今日空气质量："+(String)jsonObject.get("quality")+"   PM2.5指数："+Integer.toString(aqi);
-	    	JSONObject  weatherJsonObject=GetNetData.getWeatherData();
+	    	JSONObject  weatherJsonObject=Weather.getWeatherDetails();
 	    		if(weatherJsonObject!=null){
 		 
 						tvdate1=  weatherJsonObject.optString("h12");
@@ -313,7 +315,10 @@ public void init_weather() {
 	TextView tvTemp2=(TextView)findViewById(R.id.tvTemp2);
 	TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
 	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
-
+	TextView tv12=(TextView)findViewById(R.id.tv12);
+	TextView tv24=(TextView)findViewById(R.id.tv24);
+	tv12.setText("12时内");
+	tv24.setText("24时内");
 	tvDate1.setText(tvdate1);
 	tvTemp1.setText(tvtemp1);
 
@@ -435,7 +440,7 @@ protected String nearbyid;
 		    @Override
 		    public void run() {
 		    	try {
-		    		nearbys=GetNetData.getNeighbourTitles(_type,Integer.MAX_VALUE);
+		    		nearbys=Nearby.getNearbyTitles(_type,Integer.MAX_VALUE);
 			    	 if(nearbys!=null)nearby_handler.sendEmptyMessage(0);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -761,6 +766,17 @@ protected String nearbyid;
 	    	 					Intent intent =new Intent();
 	    	 					intent.putExtra("index", index);
 	    	 					intent.setClass(MainActivity.this, Recommend.class);
+	    	 					startActivityForResult(intent, 0);
+	    	 				}
+	    	 			});
+	    	 			Button btn_toaccount=(Button)findViewById(R.id.btn_toaccount);
+	    	 			btn_toaccount.setOnClickListener(new OnClickListener() {
+	    	 				@Override
+	    	 				public void onClick(View v)
+	    	 				{
+	    	 					Intent intent =new Intent();
+	    	 					intent.putExtra("index", index);
+	    	 					intent.setClass(MainActivity.this, AccountSetting.class);
 	    	 					startActivityForResult(intent, 0);
 	    	 				}
 	    	 			});
