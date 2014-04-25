@@ -11,7 +11,7 @@
 
 <LinearLayout
     android:layout_width="305dp"
-    android:layout_height="434dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:orientation="vertical" >
 
@@ -46,7 +46,7 @@
                     android:layout_height="30dp"
                     android:button="@null"
                     android:drawableRight="@android:drawable/btn_radio"
-                    android:text="徐汇校区" />
+                    android:text="  徐汇校区" />
                 <View  
             android:layout_width="match_parent"  
             android:layout_height="1px"  
@@ -57,7 +57,7 @@
                     android:layout_height="30dp"
                     android:button="@null"
                     android:drawableRight="@android:drawable/btn_radio"
-                    android:text="奉贤校区" />
+                    android:text="  奉贤校区" />
                 <View  
             android:layout_width="match_parent"  
             android:layout_height="1px"  
@@ -68,7 +68,7 @@
                     android:layout_height="30dp"
                     android:button="@null"
                     android:drawableRight="@android:drawable/btn_radio"
-                    android:text="金山校区" />
+                    android:text="  金山校区" />
                 <View  
             android:layout_width="match_parent"  
             android:layout_height="1px"  
@@ -113,7 +113,7 @@
                                 android:checked="true"
                     
                     android:drawableRight="@android:drawable/btn_radio"
-                    android:text="是" /> 
+                    android:text="  是" /> 
                     <View  
             android:layout_width="match_parent"  
             android:layout_height="1px"  
@@ -124,7 +124,7 @@
                     android:layout_height="30dp"
                     android:button="@null"
                     android:drawableRight="@android:drawable/btn_radio"
-                    android:text="否" />
+                    android:text="  否" />
 <View  
             android:layout_width="match_parent"  
             android:layout_height="1px"  

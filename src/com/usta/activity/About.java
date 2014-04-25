@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -156,8 +157,10 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
 	// TODO Auto-generated method stub
 		Toast toast1=Toast.makeText(About.this, "×îÐÂ°æ±¾"+buildStringFromServer, Toast.LENGTH_SHORT);
 		toast1.show();
-		btn_update.setVisibility(1);
+		LinearLayout layoutUpdate=(LinearLayout)findViewById(R.id.layoutUpdate);   
+		layoutUpdate.setVisibility(View.VISIBLE);
 
+		
 }
 @Override  
   public boolean onOptionsItemSelected(MenuItem item) {  

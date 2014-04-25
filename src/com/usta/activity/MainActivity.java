@@ -39,6 +39,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -62,14 +63,13 @@ public class MainActivity extends SherlockActivity   {
 
 	private SharedPreferences userInfo;
 	private String tvdate1="";
-	private String tvtemp1="";
 	private String tvdate2="";
-	private String tvtemp2="";
+
 	private String pic11="";
 	private String pic12="";
 	private String pic21="";
 	private String pic22="";
-	private String air_aqi="今日空气质量：";
+	private String air_aqi="实时空气质量：";
 	private String air_advise="户外活动建议：";
 	Intent intent;
 	private int aqi;
@@ -91,7 +91,7 @@ public class MainActivity extends SherlockActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-		
+
         init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
@@ -254,17 +254,17 @@ public class MainActivity extends SherlockActivity   {
 //    	    	air_aqi="今日空气质量："+(String)jsonObject.get("quality")+"   PM2.5指数："+Integer.toString(aqi);
 	    	JSONObject  weatherJsonObject=Weather.getWeatherDetails();
 	    		if(weatherJsonObject!=null){
-		 
-						tvdate1=  weatherJsonObject.optString("h12");
-			         tvtemp1=   weatherJsonObject.optString("h12temp");
-			         tvdate2=   weatherJsonObject.optString("h24");
-			         tvtemp2=   weatherJsonObject.optString("h24temp");
+	    			LinearLayout layoutWeather=(LinearLayout)findViewById(R.id.layoutWeather);   
+
+	    			layoutWeather.setVisibility(View.VISIBLE);
+					 tvdate1=  weatherJsonObject.optString("h12")+" "+weatherJsonObject.optString("h12temp");
+			         tvdate2=   weatherJsonObject.optString("h24")+" "+weatherJsonObject.optString("h24temp");
 			         pic11=weatherJsonObject.optString("h12img1");
 			         pic12=weatherJsonObject.optString("h12img2");
 			         pic21=weatherJsonObject.optString("h24img1");
 			         pic22=weatherJsonObject.optString("h24img2");
 			         aqi=weatherJsonObject.optInt("pm25");
-			         air_aqi="今日空气质量："+weatherJsonObject.optString("aqi")+"   PM2.5指数："+Integer.toString(aqi);
+			         air_aqi="实时空气质量："+weatherJsonObject.optString("aqi")+"   PM2.5指数："+Integer.toString(aqi);
 
 		    		if(aqi<80)
 	    	    	{air_advise=air_advise+"自由活动不受影响";
@@ -309,22 +309,15 @@ public Handler weatherhandler =new Handler(){
 }  
 public void init_weather() {
 			// TODO Auto-generated method stub
-	TextView tvDate1=(TextView)findViewById(R.id.tvDate1);
-	TextView tvTemp1=(TextView)findViewById(R.id.tvTemp1);
-	TextView tvDate2=(TextView)findViewById(R.id.tvDate2);
-	TextView tvTemp2=(TextView)findViewById(R.id.tvTemp2);
+
 	TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
 	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
 	TextView tv12=(TextView)findViewById(R.id.tv12);
 	TextView tv24=(TextView)findViewById(R.id.tv24);
-	tv12.setText("12时内");
-	tv24.setText("24时内");
-	tvDate1.setText(tvdate1);
-	tvTemp1.setText(tvtemp1);
+	tv12.setText("12时内 "+tvdate1);
+	tv24.setText("24时内 "+tvdate2);
 
-	tvDate2.setText(tvdate2);
-	
-	tvTemp2.setText(tvtemp2);
+
 	ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
 	ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
 	ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
