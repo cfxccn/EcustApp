@@ -49,6 +49,8 @@ public class AccountSetting extends SherlockActivity {
 	Toast Toast1;
 	Toast Toast2;
 	Toast Toast3;
+	Toast Toast4;
+	Toast Toast5;
 	 SharedPreferences userInfo;
 	 String userLocalName;
 	 String userLocalEmail;
@@ -64,8 +66,11 @@ public class AccountSetting extends SherlockActivity {
         isLocalLogin();
         initbtn();
   	  	Toast1=Toast.makeText(this,"登录成功", Toast.LENGTH_SHORT);
-  	  	Toast2=Toast.makeText(this,"登录失败", Toast.LENGTH_SHORT);
+  	  	Toast2=Toast.makeText(this,"登录失败，请检查网络", Toast.LENGTH_SHORT);
   	  	Toast3=Toast.makeText(this,"注销成功", Toast.LENGTH_SHORT);
+  	  	Toast4=Toast.makeText(this,"请输入信息", Toast.LENGTH_SHORT);
+  	  	Toast5=Toast.makeText(this,"登录失败，帐号密码错误", Toast.LENGTH_SHORT);
+
 
     }
 private void initLocalUserInfo() {
@@ -86,7 +91,9 @@ private void initbtn() {
 				// TODO Auto-generated method stub
 				userEmail=editTextUserEmail.getText().toString();
 				userPwd=editTextUserPwd.getText().toString();
-
+				if(userEmail.equalsIgnoreCase("")||userPwd.equalsIgnoreCase("")){
+					Toast4.show();
+				}
 				loginFromNewThread();
 				
 			}
@@ -150,29 +157,42 @@ private Handler loginSuccess =new Handler(){
 			//当有消息发送出来的时候就执行Handler的这个方法
 			public void handleMessage(Message msg){
 			super.handleMessage(msg);
-	    	  Toast2.show();
+	    	  Toast5.show();
 
 			}
 			};
+			private Handler loginFailureNet =new Handler(){
+				@Override
+				//当有消息发送出来的时候就执行Handler的这个方法
+				public void handleMessage(Message msg){
+				super.handleMessage(msg);
+		    	  Toast2.show();
+
+				}
+				};
 protected void loginFromNewThread() {
 	// TODO Auto-generated method stub
 	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-	    	
-	    	if(!Account.login(userEmail, userPwd).startsWith("-")){
+    		 userKey=Account.login(userEmail, userPwd);
+    		 
+	    	if(!userKey.startsWith("-")){
 				//登录成功
-	    		String userNamekey=Account.login(userEmail, userPwd);
-	    		userName=userNamekey.substring(0, userNamekey.indexOf(","));
-	    		userKey=userNamekey.substring(userNamekey.indexOf(",")+1,userNamekey.length());
+	    		
+	    		userName=userKey.substring(0, userKey.indexOf(","));
+	    		userKey=userKey.substring(userKey.indexOf(",")+1,userKey.length());
 	    		loginSuccess.sendEmptyMessage(0);
 	    	}
-	    	else{
+	    	else if(userKey=="-2"){
+	    		//登录失败
+	    		loginFailureNet.sendEmptyMessage(0);
+	    	//	return;
+	    	}	 else if(userKey=="-1"){
 	    		//登录失败
 	    		loginFailure.sendEmptyMessage(0);
-
-	    		return;
-	    	}
+	    	//	return;
+	    	}	
 	    
 	    }
 	}).start();
@@ -188,8 +208,8 @@ if(!userLocalName.equalsIgnoreCase("null")&&!userLocalEmail.equalsIgnoreCase("nu
 	layoutUserInfo.setVisibility(View.VISIBLE);
 	layoutUserLogin.setVisibility(View.GONE);
 	
-	EditText textViewUserName=(EditText)findViewById(R.id.editTextUserNickName);
-	EditText textViewUserEmail=(EditText)findViewById(R.id.editTextUserEmail);
+	EditText textViewUserName=(EditText)findViewById(R.id.tvUserNickName);
+	EditText textViewUserEmail=(EditText)findViewById(R.id.tvUserEmail);
 	textViewUserName.setText(userLocalName);
 	textViewUserEmail.setText(userLocalEmail);
 	textViewUserName.setCursorVisible(false);//隐藏光标 

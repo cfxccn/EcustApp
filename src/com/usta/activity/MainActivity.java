@@ -254,9 +254,7 @@ public class MainActivity extends SherlockActivity   {
 //    	    	air_aqi="今日空气质量："+(String)jsonObject.get("quality")+"   PM2.5指数："+Integer.toString(aqi);
 	    	JSONObject  weatherJsonObject=Weather.getWeatherDetails();
 	    		if(weatherJsonObject!=null){
-	    			LinearLayout layoutWeather=(LinearLayout)findViewById(R.id.layoutWeather);   
 
-	    			layoutWeather.setVisibility(View.VISIBLE);
 					 tvdate1=  weatherJsonObject.optString("h12")+" "+weatherJsonObject.optString("h12temp");
 			         tvdate2=   weatherJsonObject.optString("h24")+" "+weatherJsonObject.optString("h24temp");
 			         pic11=weatherJsonObject.optString("h12img1");
@@ -309,7 +307,9 @@ public Handler weatherhandler =new Handler(){
 }  
 public void init_weather() {
 			// TODO Auto-generated method stub
+	LinearLayout layoutWeather=(LinearLayout)findViewById(R.id.layoutWeather);   
 
+	layoutWeather.setVisibility(View.VISIBLE);
 	TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
 	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
 	TextView tv12=(TextView)findViewById(R.id.tv12);

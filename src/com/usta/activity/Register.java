@@ -51,6 +51,8 @@ public class Register extends SherlockActivity {
 	String userKey;
 	Toast toast1;
 	Toast toast2;
+	Toast toast3;
+	Toast toast4;
 	 SharedPreferences userInfo;
 
 	
@@ -65,7 +67,9 @@ public class Register extends SherlockActivity {
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
         toast1=Toast.makeText(this, "两次密码不一致", Toast.LENGTH_SHORT);
-        toast2=Toast.makeText(this, "注册成功，正在重新登录", Toast.LENGTH_SHORT);
+        toast2=Toast.makeText(this, "注册成功，正在重新启动", Toast.LENGTH_SHORT);
+        toast3=Toast.makeText(this, "注册失败，昵称或邮箱已被使用", Toast.LENGTH_SHORT);
+        toast4=Toast.makeText(this, "注册失败，检查网络", Toast.LENGTH_SHORT);
 
         initSpinner();
         initbtn();
@@ -119,19 +123,26 @@ btn_RegSubmit.setOnClickListener(new OnClickListener() {
  	    userInfo.edit().putString("userkey", userKey).commit();  
  	    userInfo.edit().putString("username", userNickName).commit();  
 		Intent intent =new Intent();
-		intent.putExtra("index", 4);
-		intent.setClass(Register.this, MainActivity.class);
-		startActivityForResult(intent, 0);
- 	   finish();
+		intent.setClass(Register.this,WelcomeActivity.class);   
+		//	mainIntent.putExtra("weather", weatherJsonObject.toString());
+		Register.this.startActivity(intent);   
+		Register.this.finish();   
 		}
 		};
-		private Handler registerFailure =new Handler(){
+		private Handler registerFailureName =new Handler(){
 			public void handleMessage(Message msg){
 			super.handleMessage(msg);
+			toast3.show();
 
 			}
 			};
-   	
+			private Handler registerFailureNet =new Handler(){
+				public void handleMessage(Message msg){
+				super.handleMessage(msg);
+				toast4.show();
+
+				}
+				};
 
 
 protected void registerFromNewThread() {
@@ -145,12 +156,15 @@ protected void registerFromNewThread() {
 	    	
 	    		registerSuccess.sendEmptyMessage(0);
 	    	}
-	    	else{
-	    		//登录失败
-	    		registerFailure.sendEmptyMessage(0);
-
-	    		return;
+	    	else if(userKey=="-2"){
+	    		registerFailureNet.sendEmptyMessage(0);
+	    	//	return;
 	    	}
+	    	else if(userKey.startsWith("-")){
+	    		registerFailureName.sendEmptyMessage(0);
+	    	//	return;
+	    	}
+
 	    
 	    }
 	}).start();

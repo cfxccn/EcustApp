@@ -45,13 +45,14 @@ public static String login(String userEmail,String userPwd){
 				return out;
 			}
 		}
+
 	} catch (Exception e) {
 		e.printStackTrace();
 		return "-2";
 	}
 	//return null;
 	return "-2";
-		
+
 	}
 
 	public static String register(String userName,String userEmail,String userPwd,String userMobile ,String userDepart,String userNum,String userRealName){
