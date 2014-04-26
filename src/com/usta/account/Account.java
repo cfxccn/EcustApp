@@ -14,6 +14,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.CoreConnectionPNames;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -26,7 +30,10 @@ public class Account   {
 
 public static String login(String userEmail,String userPwd){
 	String url="http://172.18.113.24:9092/UserLogin";
+
 	HttpClient client = new DefaultHttpClient();
+    client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
 	HttpPost request;
 	try {
 		request = new HttpPost(url);
@@ -36,7 +43,11 @@ public static String login(String userEmail,String userPwd){
 		params.add(new BasicNameValuePair ("userPwd", userPwd)); 
 		request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));  
 		HttpResponse response = client.execute(request);
+		
 
+
+		
+		
 		if (response.getStatusLine().getStatusCode() == 200) {
 			HttpEntity entity = response.getEntity();
 			if (entity != null) {
@@ -58,6 +69,9 @@ public static String login(String userEmail,String userPwd){
 	public static String register(String userName,String userEmail,String userPwd,String userMobile ,String userDepart,String userNum,String userRealName){
 	String url="http://172.18.113.24:9092/UserRegister";
 	HttpClient client = new DefaultHttpClient();
+	 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+	    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
+	
 	HttpPost request;
 	try {
 		request = new HttpPost(url);
@@ -95,6 +109,8 @@ public static String login(String userEmail,String userPwd){
 	public static String verify(String userEmail,String userKey){
 	String url="http://172.18.113.24:9092/UserVerify";
 	HttpClient client = new DefaultHttpClient();
+	 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+	client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
 	HttpPost request;
 	try {
 		request = new HttpPost(url);

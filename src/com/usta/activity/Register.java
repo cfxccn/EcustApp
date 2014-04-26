@@ -49,10 +49,7 @@ public class Register extends SherlockActivity {
 	String userNum;
 	String userRealName;
 	String userKey;
-	Toast toast1;
-	Toast toast2;
-	Toast toast3;
-	Toast toast4;
+	Toast toast0,toast1	, toast2, toast3	, toast4;
 	 SharedPreferences userInfo;
 
 	
@@ -66,6 +63,8 @@ public class Register extends SherlockActivity {
 		userInfo = getSharedPreferences("setting", 0);  
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
+        toast0=Toast.makeText(this, "正在注册", Toast.LENGTH_SHORT);
+
         toast1=Toast.makeText(this, "两次密码不一致", Toast.LENGTH_SHORT);
         toast2=Toast.makeText(this, "注册成功，正在重新启动", Toast.LENGTH_SHORT);
         toast3=Toast.makeText(this, "注册失败，昵称或邮箱已被使用", Toast.LENGTH_SHORT);
@@ -150,6 +149,7 @@ protected void registerFromNewThread() {
 	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
+	    	toast0.show();
 	    	 userKey=Account.register(userNickName,userEmail,userPwd0,userMobile ,userDepart, userNum, userRealName);
 	    	if(!userKey.startsWith("-")){
 //注册成功
@@ -160,7 +160,7 @@ protected void registerFromNewThread() {
 	    		registerFailureNet.sendEmptyMessage(0);
 	    	//	return;
 	    	}
-	    	else if(userKey.startsWith("-")){
+	    	else if(userKey.equals("-1")){
 	    		registerFailureName.sendEmptyMessage(0);
 	    	//	return;
 	    	}

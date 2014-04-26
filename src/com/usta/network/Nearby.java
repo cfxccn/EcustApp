@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,6 +27,9 @@ public class Nearby {
 
 		String url="http://172.18.113.24:9092/NeighbourhoodTitles?id="+id+"&type="+type+"";
 		HttpClient client = new DefaultHttpClient();
+		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
+			
 		HttpPost request;
 		try {
 			request = new HttpPost(new URI(url));
@@ -41,6 +45,8 @@ public class Nearby {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
+
 		}
 		return null;
 	}
@@ -52,6 +58,9 @@ public class Nearby {
 		String url="http://172.18.113.24:9092/neighbourhooddetail?id="+id+"";
 //		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
 		HttpClient client = new DefaultHttpClient();
+		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
+		
 		HttpPost request;
 		try {
 			request = new HttpPost(new URI(url));

@@ -44,13 +44,14 @@ public class AccountSetting extends SherlockActivity {
 	LayoutInflater inflater;
 	String userEmail;
 	String userPwd;
-	String userKey;
+	String userKey="x";
 	String userName;
 	Toast Toast1;
 	Toast Toast2;
 	Toast Toast3;
 	Toast Toast4;
 	Toast Toast5;
+	Toast Toast0;
 	 SharedPreferences userInfo;
 	 String userLocalName;
 	 String userLocalEmail;
@@ -70,6 +71,7 @@ public class AccountSetting extends SherlockActivity {
   	  	Toast3=Toast.makeText(this,"×¢Ïú³É¹¦", Toast.LENGTH_SHORT);
   	  	Toast4=Toast.makeText(this,"ÇëÊäÈëÐÅÏ¢", Toast.LENGTH_SHORT);
   	  	Toast5=Toast.makeText(this,"µÇÂ¼Ê§°Ü£¬ÕÊºÅÃÜÂë´íÎó", Toast.LENGTH_SHORT);
+  	  	Toast0=Toast.makeText(this,"ÕýÔÚµÇÂ¼", Toast.LENGTH_SHORT);
 
 
     }
@@ -93,7 +95,10 @@ private void initbtn() {
 				userPwd=editTextUserPwd.getText().toString();
 				if(userEmail.equalsIgnoreCase("")||userPwd.equalsIgnoreCase("")){
 					Toast4.show();
+					return;
 				}
+		    	Toast0.show();
+
 				loginFromNewThread();
 				
 			}
@@ -170,31 +175,45 @@ private Handler loginSuccess =new Handler(){
 
 				}
 				};
+
 protected void loginFromNewThread() {
 	// TODO Auto-generated method stub
 	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-    		 userKey=Account.login(userEmail, userPwd);
-    		 
-	    	if(!userKey.startsWith("-")){
-				//µÇÂ¼³É¹¦
+	    	Toast0.show();
+	    	userKey= Account.login(userEmail, userPwd);
+
+	 	    	if(!userKey.startsWith("-")){
+	 				//µÇÂ¼³É¹¦
+	 	    		
+	 	    		userName=userKey.substring(0, userKey.indexOf(","));
+	 	    		userKey=userKey.substring(userKey.indexOf(",")+1,userKey.length());
+	 	    		loginSuccess.sendEmptyMessage(0);
+	 	    		return;
+	 	    	}
+	 	    	else if(userKey.equals("-1")){
+	 	    		loginFailure.sendEmptyMessage(0);
+	 	    		return;
+
+	 	    	}	 else if(userKey=="-2") {
+	 	    		loginFailureNet.sendEmptyMessage(0);
+	 	    		return;
+
+	 	    	}	
+
 	    		
-	    		userName=userKey.substring(0, userKey.indexOf(","));
-	    		userKey=userKey.substring(userKey.indexOf(",")+1,userKey.length());
-	    		loginSuccess.sendEmptyMessage(0);
 	    	}
-	    	else if(userKey=="-2"){
-	    		//µÇÂ¼Ê§°Ü
-	    		loginFailureNet.sendEmptyMessage(0);
-	    	//	return;
-	    	}	 else if(userKey=="-1"){
-	    		//µÇÂ¼Ê§°Ü
-	    		loginFailure.sendEmptyMessage(0);
-	    	//	return;
-	    	}	
+    		
+	    	
+	    	
+	
+
+    	
+
 	    
-	    }
+	    
+	    
 	}).start();
    	
 }

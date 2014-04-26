@@ -51,15 +51,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class MainActivity extends SherlockActivity   {
-    private int index = 2;
+    private int index =1;
 	private ViewPager viewPager;//页卡内容
 	private ImageView imageView;// 动画图片
 	private List<View> views;// Tab页面列表
 	private int offset = 0;// 动画图片偏移量
 	private int bmpW;// 动画图片宽度
-	private View view1,view2,view3,view4,view5;//各个页卡
-	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main,iv_tolay5_main;
-	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4,tv_tolay5;
+	private View view1,view2,view3,view4;//各个页卡
+	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main;
+	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4;
 
 	private SharedPreferences userInfo;
 	private String tvdate1="";
@@ -95,21 +95,21 @@ public class MainActivity extends SherlockActivity   {
         init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
-		 
+
        
 
 		  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
           NetworkInfo info = manger.getActiveNetworkInfo(); 
           if (info!=null && info.isConnected())
           {
-		get_Weather();
-		get_News();
+        	  get_Weather();
+        	  get_News();
           }
-          else 
-          {
-        	  Toast Toast1=Toast.makeText(this,"请联网后重新打开", Toast.LENGTH_SHORT);
-        	  Toast1.show();
-          }
+//          else 
+//          {
+//        	  Toast Toast1=Toast.makeText(this,"请联网后重新打开", Toast.LENGTH_SHORT);
+//        	  Toast1.show();
+//          }
 
           }
     private void get_News() {
@@ -130,6 +130,7 @@ public class MainActivity extends SherlockActivity   {
     	    	} catch (Exception e) {
     				// TODO: handle exception
     				e.printStackTrace();
+      	    		return;
     			}
     	    
     	    }
@@ -150,7 +151,6 @@ public class MainActivity extends SherlockActivity   {
     		
 	public boolean onCreateOptionsMenu(Menu menu) {
     	getSupportMenuInflater().inflate(R.menu.main, menu);
-    	menu.findItem(R.id.newpost_chat).setVisible(false);
     	menu.findItem(R.id.view_inmap).setVisible(false);
     	_menu=menu;
         return true;
@@ -202,14 +202,8 @@ public class MainActivity extends SherlockActivity   {
         super.onOptionsItemSelected(item);
         switch(item.getItemId())
         {
-        case R.id.newpost_chat: 
-        	intent=new Intent();
-			intent.putExtra("index", index);
-			intent.setClass(MainActivity.this, NewPost.class);
-			startActivityForResult(intent, 0);
-			
-            break;
         case R.id.view_inmap: 
+        	 manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
         	NetworkInfo info = manger.getActiveNetworkInfo(); 
             if (info!=null && info.isConnected()&&nearbys!=null)
             {
@@ -262,8 +256,9 @@ public class MainActivity extends SherlockActivity   {
 			         pic21=weatherJsonObject.optString("h24img1");
 			         pic22=weatherJsonObject.optString("h24img2");
 			         aqi=weatherJsonObject.optInt("pm25");
+			         
 			         air_aqi="实时空气质量："+weatherJsonObject.optString("aqi")+"   PM2.5指数："+Integer.toString(aqi);
-
+			         air_advise="";
 		    		if(aqi<80)
 	    	    	{air_advise=air_advise+"自由活动不受影响";
 	    	    	}else
@@ -345,21 +340,18 @@ public void onClick(View view) {
 		index=0;
 		viewPager.setCurrentItem(0); break;
 	case R.id.tvlay2: ;
-	case R.id.imageView_Search: 
+	case R.id.imageView_Home: 
 		index=1;
 	viewPager.setCurrentItem(1); break;
 	case R.id.tvlay3: ;
-	case R.id.imageView_Home: 
+	case R.id.imageView_Search: 
 		index=2;
 	viewPager.setCurrentItem(2); break;
 	case R.id.tvlay4: ;
-	case R.id.imageView_Chat: 
+	case R.id.imageView_Setting: 
 		index=3;
 	viewPager.setCurrentItem(3); break;
-	case R.id.tvlay5: ;
-	case R.id.imageView_Setting: 
-		index=4;
-	viewPager.setCurrentItem(4); break;
+
 	}
 	
 	
@@ -370,18 +362,16 @@ protected String nearbyid;
 
     private void init_LayInstru() {
     	iv_tolay1_main = (ImageView) findViewById(R.id.imageView_Nearby);
-    	iv_tolay2_main = (ImageView) findViewById(R.id.imageView_Search);
-    	iv_tolay3_main = (ImageView) findViewById(R.id.imageView_Home);
-    	iv_tolay4_main = (ImageView) findViewById(R.id.imageView_Chat);
-    	iv_tolay5_main = (ImageView) findViewById(R.id.imageView_Setting);
+    	iv_tolay2_main = (ImageView) findViewById(R.id.imageView_Home);
+    	iv_tolay3_main = (ImageView) findViewById(R.id.imageView_Search);
+    	iv_tolay4_main = (ImageView) findViewById(R.id.imageView_Setting);
     	
     	tv_tolay1 = (TextView) findViewById(R.id.tvlay1);
     	tv_tolay2 = (TextView) findViewById(R.id.tvlay2);
     	tv_tolay3 = (TextView) findViewById(R.id.tvlay3);
     	tv_tolay4 = (TextView) findViewById(R.id.tvlay4);
-    	tv_tolay5 = (TextView) findViewById(R.id.tvlay5);
     	
-    	tv_tolay3.setTextColor(Color.BLUE);
+    	tv_tolay2.setTextColor(Color.BLUE);
     //	tv_tolay3_main.setBackgroundColor(Color.WHITE);
     	
     	int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
@@ -398,36 +388,19 @@ protected String nearbyid;
 		iv_tolay3_main.setOnClickListener(laylistener);
 		tv_tolay4.setOnClickListener(laylistener);
 		iv_tolay4_main.setOnClickListener(laylistener);
-		tv_tolay5.setOnClickListener(laylistener);
-		iv_tolay5_main.setOnClickListener(laylistener);
+
     }
 	JSONArray nearbys ;
 	
 	
 	private void init_lay1()
 	{
-
-    	_menu.findItem(R.id.newpost_chat).setVisible(false);
-    	_menu.findItem(R.id.view_inmap).setVisible(true);
-  		init_spiner();
-
-		//LayoutInflater inflater=getLayoutInflater();
-	//	  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
-          NetworkInfo info = manger.getActiveNetworkInfo(); 
-          if (info!=null && info.isConnected())
-          {
-        	  getneighbourhooddata("吃");
-          }
-          else 
-          {
-        	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
-        	  Toast1.show();
-          }
-
-    	//init_list();
+		init_spiner();
+	//	Spinner spr_type_nearby=(Spinner)findViewById(R.id.spr_type_nearby);
+  	//	getNearbyDataFromNewThread(spr_type_nearby.getSelectedItem().toString());
 	}
 
-	private void getneighbourhooddata(final String _type) {
+	private void getNearbyDataFromNewThread(final String _type) {
 		// TODO Auto-generated method stub
 	   	new Thread(new Runnable(){
 		    @Override
@@ -435,8 +408,11 @@ protected String nearbyid;
 		    	try {
 		    		nearbys=Nearby.getNearbyTitles(_type,Integer.MAX_VALUE);
 			    	 if(nearbys!=null)nearby_handler.sendEmptyMessage(0);
+			    	 else 					return;
+
 				} catch (Exception e) {
 					e.printStackTrace();
+					return;
 				}
 		    }
 		}).start();
@@ -446,12 +422,12 @@ protected String nearbyid;
 		//当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
-		init_list();
+		init_NearbyList();
 
 		}
 		};
 		
-	private void init_list() {
+	private void init_NearbyList() {
 		listView_nearby = (ListView) findViewById(R.id.listView_nearby);
 		ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 		
@@ -502,6 +478,7 @@ protected String nearbyid;
 	private void init_spiner() {
 		 Spinner spr_type_nearby=(Spinner)findViewById(R.id.spr_type_nearby);
 		 ArrayList<String> type=new ArrayList<String>();
+		 type.add("请选择分类");
 		 type.add("吃");
 		 type.add("住");
 		 type.add("行");
@@ -518,11 +495,15 @@ protected String nearbyid;
 				// TODO Auto-generated method stub
 				
 				switch(arg2){
-				case 0:				 getneighbourhooddata("吃");break;
-				case 1:				 getneighbourhooddata("住");break;
-				case 2:				 getneighbourhooddata("行");break;
-				case 3:				 getneighbourhooddata("玩");break;
-				case 4:				 getneighbourhooddata("其他");break;
+				
+				case 0:				break;
+				case 1:				getNearbyDataFromNewThread("吃");break;
+				case 2:				getNearbyDataFromNewThread("住");break;
+				case 3:				 getNearbyDataFromNewThread("行");break;
+				case 4:				 getNearbyDataFromNewThread("玩");break;
+				case 5:				 getNearbyDataFromNewThread("其他");break;
+							 
+
 
 				
 				}
@@ -534,15 +515,11 @@ protected String nearbyid;
 			}
 		});
 	}
+
+
 	private void init_lay2()
 	{
-    	_menu.findItem(R.id.newpost_chat).setVisible(false);
-    	_menu.findItem(R.id.view_inmap).setVisible(false);
 
-	}
-
-	private void init_lay3()
-	{
 		ImageView ImageView_Job = (ImageView) findViewById(R.id.imageView_Job);
 		ImageView_Job.setOnClickListener(new OnClickListener() {
 			@Override
@@ -634,10 +611,11 @@ protected String nearbyid;
 			}
 		});
 	}
-	private void init_lay4()
+	private void init_lay3()
 	{
+
 	}
-	private void lay4joke()
+	private void joke()
 	{
 		userInfo = getSharedPreferences("setting", 0);  
 		String joke=userInfo.getString("joke", "null");
@@ -646,10 +624,8 @@ protected String nearbyid;
 	    		toastJoke.show();
 	    	}
 	}
-	private void init_lay5()
+	private void init_lay4()
 	{
-    	_menu.findItem(R.id.newpost_chat).setVisible(false);
-    	_menu.findItem(R.id.view_inmap).setVisible(false);
 		Button btn_toadvise_setting=(Button)findViewById(R.id.btn_toadvise_setting);
 		btn_toadvise_setting.setOnClickListener(new OnClickListener() {
 			@Override
@@ -781,16 +757,13 @@ protected String nearbyid;
 		views=new ArrayList<View>();
 		LayoutInflater inflater=getLayoutInflater();
 		view1=inflater.inflate(R.layout.lay1_nearby, null);
-		view2=inflater.inflate(R.layout.lay2_search, null);
-		view3=inflater.inflate(R.layout.lay3_main, null);
-		view4=inflater.inflate(R.layout.lay4_chat, null);
-		view5=inflater.inflate(R.layout.lay5_setting, null);
-	//	view4=inflater.inflate(R.layout.xml1,null);
+		view2=inflater.inflate(R.layout.lay2_main, null);
+		view3=inflater.inflate(R.layout.lay3_search, null);
+		view4=inflater.inflate(R.layout.lay4_setting, null);
 		views.add(view1);
 		views.add(view2);
 		views.add(view3);
 		views.add(view4);
-		views.add(view5);
 		viewPager.setAdapter(new MyViewPagerAdapter(views));
 		viewPager.setCurrentItem(index);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -801,7 +774,7 @@ protected String nearbyid;
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int screenW = dm.widthPixels;// 获取分辨率宽度
-		offset = (screenW / 5 - bmpW) / 2;// 计算偏移量
+		offset = (screenW / 4 - bmpW) / 2;// 计算偏移量
 		Matrix matrix = new Matrix();
 		matrix.postTranslate(offset, 0);
 		imageView.setImageMatrix(matrix);// 设置动画初始位置
@@ -828,9 +801,9 @@ protected String nearbyid;
 	    public void setPrimaryItem(View container, int position, Object object) {
 	    	switch (position){
 			case 0:	break;
-			case 1: init_lay2();break;
-			case 2: init_lay3();break;
-			case 3: init_lay4();break;
+			case 1: break;
+			case 2:break;
+			case 3: break;
 			case 4: break;
 
 
@@ -868,45 +841,37 @@ protected String nearbyid;
             	tv_tolay2.setTextColor(Color.BLACK);
             	tv_tolay3.setTextColor(Color.BLACK);
             	tv_tolay4.setTextColor(Color.BLACK);
-            	tv_tolay5.setTextColor(Color.BLACK);
-            	_menu.findItem(R.id.newpost_chat).setVisible(false);
             	_menu.findItem(R.id.view_inmap).setVisible(true);
+            	init_lay1();
+
         		}
         	if (arg0==1){ 
             	tv_tolay1.setTextColor(Color.BLACK);
             	tv_tolay2.setTextColor(Color.BLUE);
             	tv_tolay3.setTextColor(Color.BLACK);
             	tv_tolay4.setTextColor(Color.BLACK);
-            	tv_tolay5.setTextColor(Color.BLACK);
+            	_menu.findItem(R.id.view_inmap).setVisible(false);
+
+            	init_lay2();
             	}
         	if (arg0==2){ 
             	tv_tolay1.setTextColor(Color.BLACK);
             	tv_tolay2.setTextColor(Color.BLACK);
             	tv_tolay3.setTextColor(Color.BLUE);
             	tv_tolay4.setTextColor(Color.BLACK);
-            	tv_tolay5.setTextColor(Color.BLACK);
-            	_menu.findItem(R.id.newpost_chat).setVisible(false);
             	_menu.findItem(R.id.view_inmap).setVisible(false);
+            	init_lay3();
+
         		}
           	if (arg0==3){ 
             	tv_tolay1.setTextColor(Color.BLACK);
             	tv_tolay2.setTextColor(Color.BLACK);
             	tv_tolay3.setTextColor(Color.BLACK);
             	tv_tolay4.setTextColor(Color.BLUE);
-            	tv_tolay5.setTextColor(Color.BLACK);
-            	_menu.findItem(R.id.newpost_chat).setVisible(true);
             	_menu.findItem(R.id.view_inmap).setVisible(false);
+            	init_lay4();
+        		}
 
-            	lay4joke();
-        		}
-          	if (arg0==4){ 
-            	tv_tolay1.setTextColor(Color.BLACK);
-            	tv_tolay2.setTextColor(Color.BLACK);
-            	tv_tolay3.setTextColor(Color.BLACK);
-            	tv_tolay4.setTextColor(Color.BLACK);
-            	tv_tolay5.setTextColor(Color.BLUE);
-            	init_lay5();
-        		}
 		}
     }
 }

@@ -47,7 +47,7 @@ public class Advise extends SherlockActivity {
 	String densityDPI ; 
     String version ;        
     String model;
-    Toast toast1,toast2,toast3;
+    Toast toast1,toast2,toast3,toast0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +115,8 @@ private void sendadvise() {
     model=android.os.Build.MODEL;
 	
 	advise=etext_advise.getText().toString().trim();
+	toast0=Toast.makeText(Advise.this, "正在发送", Toast.LENGTH_SHORT);
+
 	toast1=Toast.makeText(Advise.this, "发送成功", Toast.LENGTH_SHORT);
 	toast2=Toast.makeText(Advise.this, "反馈失败，请检查联网", Toast.LENGTH_SHORT);
 	toast3=Toast.makeText(Advise.this, "请输入内容并选择性别", Toast.LENGTH_SHORT);
@@ -123,27 +125,48 @@ private void sendadvise() {
 		toast3.show();
 		return ;
 	}
+	sendAdviseFromNewThread();
+}
+private Handler adviseSuccess=new Handler(){
+	@Override
+	public void handleMessage(Message msg){
+	super.handleMessage(msg);
+	toast1.show();
+    setResult(RESULT_OK, intent);  
+    finish();  	       
+
+	}
+	};
+	private Handler adviseFailure=new Handler(){
+		@Override
+		//当有消息发送出来的时候就执行Handler的这个方法
+		public void handleMessage(Message msg){
+		super.handleMessage(msg);
+		toast2.show();
+
+		}
+		};
+private void sendAdviseFromNewThread() {
+	// TODO Auto-generated method stub
+
 	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-	    	try {
-				if(com.usta.network.Advise.sendAdvise(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI)==1){
-					toast1.show();
+	    	toast0.show();
 
+				if(com.usta.network.Advise.sendAdvise(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI)==1){
+					adviseSuccess.sendEmptyMessage(0);
 					}
-				else{				
-					toast2.show();
+				else{			
+					adviseFailure.sendEmptyMessage(0);
 				}
-				//toast1.show();
 				
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
+
 	    }
 	}).start();
 	
 }
+
 	    @Override  
 	    public boolean onOptionsItemSelected(MenuItem item) {  
 	        switch(item.getItemId()){  

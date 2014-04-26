@@ -1,10 +1,6 @@
 ﻿<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/newpost_chat"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom"
-        android:title="发帖"/>
+   
         <item
         android:id="@+id/view_inmap"
         android:orderInCategory="100"

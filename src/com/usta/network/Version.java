@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 
 public class Version {
@@ -15,6 +16,8 @@ public static int getLatestVersion(){
 		
 			String url="http://172.18.113.24:9092/version";
 		HttpClient client = new DefaultHttpClient();
+		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
 		HttpPost request;
 		try {
 			request = new HttpPost(new URI(url));
@@ -31,6 +34,6 @@ public static int getLatestVersion(){
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return -2;
 	}
 }

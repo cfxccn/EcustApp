@@ -7,6 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
@@ -17,6 +18,9 @@ public class Weather {
 		// String url="http://www.pm25.in/api/querys/only_aqi.json?city=shanghai&token=5j1znBVAsnSf5xQyNQyq&stations=no";
 		 String url="http://172.18.113.24:9092/weather";
 		HttpClient client = new DefaultHttpClient();
+		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+	    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
+		
 		HttpGet request;
 		try {
 			request = new HttpGet(new URI(url));

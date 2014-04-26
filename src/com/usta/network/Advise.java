@@ -11,6 +11,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -19,6 +20,8 @@ public class Advise {
 	public static int sendAdvise(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
 	String url="http://172.18.113.24:9092/AdviseInsert";
 	HttpClient client = new DefaultHttpClient();
+	client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+	client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000);
 	HttpPost request;
 	try {
 		request = new HttpPost(url);
@@ -50,7 +53,7 @@ public class Advise {
 		e.printStackTrace();
 	}
 	//return null;
-	return -1;
+	return -2;
 		
 	}
 
