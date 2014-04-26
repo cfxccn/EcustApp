@@ -1,11 +1,18 @@
 package com.usta.activity;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
+import com.usta.network.Bus;
 import com.usta.network.HttpUtils;
+import com.usta.network.Job;
+import com.usta.network.Lecture;
 
 
 
@@ -21,65 +28,178 @@ import android.text.Html.ImageGetter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
-public class SchoolBus extends SherlockActivity implements OnClickListener
+public class SchoolBus extends SherlockActivity 
 {
 	private int index;
 	final private static String path1="http://172.18.113.24:8080/jsonProjject/servlet/action2?action_flag=schoolbus";
 	Intent intent;
-	private static String bus,sp1,sp2,sp3,jsonString;
+	private static String day,type,route;
 	private static final String[] mDay={"周一","周二","周三","周四","周五","周六","周日"};
 	private static final String[] bustype={"教职班车","中旅班车","梦境班车"};
 	private static final String[] laifan={"奉贤-徐汇","奉贤-金山","徐汇-奉贤","徐汇-金山","金山-徐汇","金山-奉贤"};
-	 protected void onCreate(Bundle savedInstanceState) {
+    JSONArray busJsonArray;
+	Spinner spinnerDay;
+	Spinner spinnerType;
+	Spinner spinnerRoute;
+	ListView listViewBus;
+	Toast toast1;
+	Toast toast2;
+
+	protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.schoolbus);
 	        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
 	        intent = getIntent();
 	        index=intent.getIntExtra("index", 0);
-	        find_spainner_view();
-	        find_spainner_view2();
-	        find_spainner_view3();
-	        Button button=(Button)findViewById(R.id.button1);
-	        button.setOnClickListener(this);
-	       
-	 }
-	 public int getResourceId(String name)
-		{
-		  
-			Field field;
-			try {
-				field = R.drawable.class.getField(name);
-				return Integer.parseInt(field.get(null).toString());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-			return 0;
-		}
-	 public  void tubiao()
-	 {
-		 TextView textview =(TextView)this.findViewById(R.id.textView1);
-		 String html="<img src='test2'/>";
-		 CharSequence ch= Html.fromHtml(html, new ImageGetter()
-		 {
-			 public  Drawable getDrawable(String  source)
-			 {
-			 Drawable drawable=getResources().getDrawable(getResourceId(source));
-			// if(source.equals(object))
-			 drawable.setBounds(0, 0, drawable.getIntrinsicWidth()/2, drawable.getIntrinsicHeight()/2);
-			 
-			 return drawable;
-			 }
-		 }, null);
-		textview.setText(ch);
-	 }
+	        
+	        init_spinner();
+	        init_btn();
+	        
+	        listViewBus=(ListView)findViewById(R.id.listViewBus);
 
+	        toast1=Toast.makeText(this,"无合适班次", Toast.LENGTH_SHORT);
+	 }
+	 private void init_btn() {
+		// TODO Auto-generated method stub
+		Button btnSearchBus=(Button)findViewById(R.id.btnSearchBus);
+		btnSearchBus.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				day=spinnerDay.getSelectedItem().toString();
+				type=spinnerType.getSelectedItem().toString();
+				route=spinnerRoute.getSelectedItem().toString();
+				getBusDataFromNewThread();
+				
+			}
+		});
+	}	 
+	 private   Handler handler =new Handler(){
+		 @Override
+		 //当有消息发送出来的时候就执行Handler的这个方法
+		 public void handleMessage(Message msg){
+		 super.handleMessage(msg);
+		 initListView();
+		 }
+		 };	
+
+	private Handler resultEmptyhandler =new Handler(){
+		@Override
+		//当有消息发送出来的时候就执行Handler的这个方法
+		public void handleMessage(Message msg){
+		super.handleMessage(msg);
+  	  listViewBus.setAdapter(null);
+
+    	  toast1.show();
+
+		}
+		};
+
+
+			    
+			 private void initListView() {
+				 //jobsTitilesJsonArray
+				  ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
+			      for(int i=0;i<busJsonArray.length();i++)
+			      {
+			    	  JSONObject busJsonObject=busJsonArray.optJSONObject(i);
+			          HashMap<String, Object> map = new HashMap<String, Object>();
+			          map.put("textViewTime",busJsonObject.optString("time"));
+			          map.put("textView_PUPoint","上车点:"+busJsonObject.optString("PUPoint"));
+			          map.put("textView_Destination", "下车点:"+busJsonObject.optString("Destination"));
+			          map.put("textViewPrice", busJsonObject.optString("price"));
+			         
+			          listItem.add(map);
+			      }
+					// TODO Auto-generated method stub
+				 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//数据源 
+				            R.layout.bus_listview,//ListItem的XML实现
+				            //动态数组与ImageItem对应的子项        
+				            new String[] {"textViewTime","textView_PUPoint", "textViewPrice","textView_Destination"}, 
+				            //ImageItem的XML文件里面的一个ImageView,两个TextView ID
+				            new int[] {R.id.textViewTime,R.id.textView_PUPoint,R.id.textViewPrice,R.id.textView_Destination }
+				        );
+				 listViewBus.setAdapter(listItemAdapter);
+			 }
+
+			  private void getBusDataFromNewThread() {
+			   	new Thread(new Runnable(){
+				    @Override
+				    public void run() {
+				    	try {
+				    		
+				    		busJsonArray=Bus.getBusInfo(day, type,route );
+				    
+				    		if(busJsonArray!=null){
+				    			if(busJsonArray.length()==0){
+				    				resultEmptyhandler.sendEmptyMessage(0);
+				    				return ;
+				    			}
+						    	 handler.sendEmptyMessage(0);
+				    		}
+				    		else {
+					    		return;
+
+				    		}
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+			    			return;
+
+						}
+				    }
+				}).start();
+			   	
+				}
+
+	private void init_spinner() {
+		// TODO Auto-generated method stub
+		 spinnerDay=(Spinner)findViewById(R.id.spinnerDay);
+		 ArrayList<String> allday=new ArrayList<String>();
+		 for(int i=0;i<mDay.length;i++)
+		 {
+			 allday.add(mDay[i]);
+		 }
+		 ArrayAdapter<String> dayArrayAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,allday);
+		 dayArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		 spinnerDay.setAdapter(dayArrayAdapter);
+		 
+		  spinnerType=(Spinner)findViewById(R.id.spinnerType);
+			 ArrayList<String> alltype=new ArrayList<String>();
+			 for(int i=0;i<bustype.length;i++)
+			 {
+				 alltype.add(bustype[i]);
+			 }
+			 ArrayAdapter<String> typeArrayAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,alltype);
+			 typeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 spinnerType.setAdapter(typeArrayAdapter);
+			 
+			 
+			 
+			 spinnerRoute=(Spinner)findViewById(R.id.spinnerRoute);
+			 ArrayList<String> allroute=new ArrayList<String>();
+			 for(int i=0;i<laifan.length;i++)
+			 {
+				 allroute.add(laifan[i]);
+			 }
+			 ArrayAdapter<String> routeArrayAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,allroute);
+			 routeArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			 spinnerRoute.setAdapter(routeArrayAdapter);
+	}
+	 
+	 
+	 
+	 
 	  @Override  
 	  public boolean onOptionsItemSelected(MenuItem item) {  
 	      switch(item.getItemId()){  
@@ -93,44 +213,7 @@ public class SchoolBus extends SherlockActivity implements OnClickListener
 	      }  
 	      return super.onOptionsItemSelected(item);  
 	  }  
-	  private void find_spainner_view()
-	  {
-		  Spinner spinner1=(Spinner)findViewById(R.id.spinner1);
-			 ArrayList<String> allday=new ArrayList<String>();
-			 for(int i=0;i<mDay.length;i++)
-			 {
-				 allday.add(mDay[i]);
-			 }
-			 ArrayAdapter<String> aspnCountries =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,allday);
-			 aspnCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			 spinner1.setAdapter(aspnCountries);
-	  }
-	  private void  find_spainner_view2()
-	  {
-		  Spinner spinner2=(Spinner)findViewById(R.id.spinner2);
-			 ArrayList<String> allday=new ArrayList<String>();
-			 for(int i=0;i<bustype.length;i++)
-			 {
-				 allday.add(bustype[i]);
-			 }
-			 ArrayAdapter<String> aspnCountries =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,allday);
-			 aspnCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			 spinner2.setAdapter(aspnCountries);
-		  
-	  }
-	  private void  find_spainner_view3()
-	  {
-		  Spinner spinner3=(Spinner)findViewById(R.id.spinner3);
-			 ArrayList<String> allday=new ArrayList<String>();
-			 for(int i=0;i<laifan.length;i++)
-			 {
-				 allday.add(laifan[i]);
-			 }
-			 ArrayAdapter<String> aspnCountries =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,allday);
-			 aspnCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			 spinner3.setAdapter(aspnCountries);
-		  
-	  }
+
 	  public boolean onKeyDown(int keyCode, KeyEvent event) {  
 	        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
 		        setResult(RESULT_OK, intent);  
@@ -140,70 +223,6 @@ public class SchoolBus extends SherlockActivity implements OnClickListener
 	        return super.onKeyDown(keyCode, event);  
 	    }
 
-	  public static String[] spinnervalue()
-	  {
-		  String[] strs=new String[3];
-		  strs[0]=sp1;
-		  strs[1]=sp2;
-		  strs[2]=sp3;
-		  return strs;
-		  
-	  }
-	  private   Handler handler =new Handler(){
-			 @Override
-			 //当有消息发送出来的时候就执行Handler的这个方法
-			 public void handleMessage(Message msg){
-			 super.handleMessage(msg);
-			 //处理UI
-			 String string1 ="⊙";
-			 jsonString=jsonString.replace("[" ,"");
-			 jsonString=jsonString.replace("]","");
-			 jsonString=jsonString.replace("time","出发时间");
-			 jsonString=jsonString.replace("PUPoint","上车地点");
-			 jsonString=jsonString.replace("Destination","下车地点");
-			 jsonString=jsonString.replace("=","：");
-			 //tubiao();
-			 String[] strs ;
-				// TODO Auto-generated method stub
-				strs=jsonString.split("schoolbus");
-				
-				for(int i=0;i<strs.length;i++)
-				{
-					 if(i==0)
-					 {
-						 ((TextView) findViewById(R.id.textView1)).setText("");
-					 }
-					 else{
-					 ((TextView) findViewById(R.id.textView1)).setText(((TextView) findViewById(R.id.textView1)).getText()+"  "+string1+strs[i]+"\n");
-				  }
-				}
-				
-		//	 ((TextView) findViewById(R.id.textView1)).setText(((TextView) findViewById(R.id.textView1)).getText()+jsonString);
-			 }
-			 };
-		@Override
-		public void onClick(View v) {
-			
-			
-			
-				new  Thread()
-				{
-					
-					public void run(){
-						Spinner spinner1=(Spinner)findViewById(R.id.spinner1);
-						sp1=spinner1.getSelectedItem().toString();
-						Spinner spinner2=(Spinner)findViewById(R.id.spinner2);
-						sp2=spinner2.getSelectedItem().toString();
-						Spinner spinner3=(Spinner)findViewById(R.id.spinner3);
-						sp3=spinner3.getSelectedItem().toString();
-					    HttpUtils.postspdata();
-				        jsonString =HttpUtils.getJsoncontent(path1);
-						
-				    handler.sendEmptyMessage(0);
-				}
-				
-				}.start();
-			
-		
-}
+
+
 }

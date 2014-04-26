@@ -17,59 +17,40 @@
         android:layout_height="fill_parent"
      android:layout_weight="1">
     <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent" 
+        android:id="@+id/spinnerDay"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content" 
         android:layout_weight="1"
         android:drawSelectorOnTop="false"/>
 
     <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="0dp"
-        android:layout_height="match_parent" 
+        android:id="@+id/spinnerType"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content" 
         android:layout_weight="1"
          android:drawSelectorOnTop="false"/>
      <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="0dp"
-        android:layout_height="match_parent" 
+        android:id="@+id/spinnerRoute"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content" 
         android:layout_weight="1"
         android:drawSelectorOnTop="false"/>
 
-   
-   </TableRow>
-
-<TableRow
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-      <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+         <Button
+        android:id="@+id/btnSearchBus"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
         android:text="查询" 
         android:layout_margin="10dp"
         android:layout_weight="1"/>
-   
- </TableRow>
-<TableRow
-       android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       android:layout_weight="1000">
-
-       <TextView
-           android:id="@+id/textView1"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginRight="10dp"
-           android:layout_marginLeft="10dp"
-        android:text="教务处"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ff909090" />
-       
-     
-</TableRow>
+   </TableRow>
         </LinearLayout>
     </ScrollView>
+
+    <ListView
+        android:id="@+id/listViewBus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

@@ -164,7 +164,8 @@ public class HttpUtils {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	 		String [] strs=SchoolBus.spinnervalue();
+	 		String [] strs={"",""};
+	 		//String [] strs=SchoolBus.spinnervalue();
 	 		Map<String,String> params =new HashMap<String,String>();
 	 		params.put("sp1", strs[0]);
 	 		params.put("sp2", strs[1]);
