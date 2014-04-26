@@ -10,14 +10,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class Lecture {
 
-	public static JSONArray getLectureList(String start, String department) throws Exception
+	public static JSONArray getLectureList(  ) 
 	{
 		
 		//department= URLEncoder.encode(department, "UTF-8");
-		String url="http://172.18.113.24:9092/lecture?start="+start+"&department="+department+"";
+		String url="http://172.18.113.24:9092/lecture";
 		HttpClient client = new DefaultHttpClient();
 		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
@@ -37,6 +38,34 @@ public class Lecture {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return null;
+	}
+	public static JSONObject getLectureDetails(String id)
+	{
+		String url="http://172.18.113.24:9092/LectureDetails?id="+id+"";
+		HttpClient client = new DefaultHttpClient();
+		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
+		
+		HttpPost request;
+		try {
+			request = new HttpPost(new URI(url));
+			HttpResponse response = client.execute(request);
+			
+			if (response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+					String out = EntityUtils.toString(entity);
+					JSONArray jsonArray=new JSONArray(out);
+					
+					return jsonArray.optJSONObject(0);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+
 		}
 		return null;
 	}

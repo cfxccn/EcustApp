@@ -70,7 +70,7 @@ public class JobDetail extends SherlockActivity {
 //
 //		    	 handler.sendEmptyMessage(0);
 
-	    	jobdetailsJsonObject=Job.getJobDetails(Integer.parseInt(jobid));
+	    	jobdetailsJsonObject=Job.getJobDetails(jobid);
 	    	if(jobdetailsJsonObject!=null){
 	    		handler.sendEmptyMessage(0);
 	    		}

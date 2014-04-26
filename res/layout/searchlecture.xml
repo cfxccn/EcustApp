@@ -4,56 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/listViewLecture"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center" >
-
-                    <Spinner
-                        android:id="@+id/spinner_week"
-                        android:layout_width="85dp"
-                        android:layout_height="wrap_content"
-        
-                        android:layout_toLeftOf="@+id/spinner_department" />
-
-                    <Spinner
-                        android:id="@+id/spinner_department"
-                        android:layout_width="85dp"
-                        android:layout_height="wrap_content"                  />
-
-                    <Button
-                        android:id="@+id/btnsearch_lecture"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="搜索" />
-                </LinearLayout>
-
-<com.usta.control.GridViewOnScrollView
-            android:id="@+id/gvLecture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:numColumns="2" >
-
-</com.usta.control.GridViewOnScrollView>
-            </LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

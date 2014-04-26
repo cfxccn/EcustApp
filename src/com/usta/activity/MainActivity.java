@@ -9,6 +9,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
+import com.usta.control.ListViewOnScrollView;
 import com.usta.network.Nearby;
 import com.usta.network.News;
 import com.usta.network.Weather;
@@ -83,7 +84,7 @@ public class MainActivity extends SherlockActivity   {
 	JSONArray  newsJsonArray;
 	List<JSONObject>NewsInfos;
   //  List<String> newsinfo;
-    ListView listView_news ;
+	ListView listView_news ;
     ListView listView_nearby ;
     ConnectivityManager manger;
 
@@ -99,18 +100,8 @@ public class MainActivity extends SherlockActivity   {
        
 
 		  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
-          NetworkInfo info = manger.getActiveNetworkInfo(); 
-          if (info!=null && info.isConnected())
-          {
-        	  get_Weather();
-        	  get_News();
-          }
-//          else 
-//          {
-//        	  Toast Toast1=Toast.makeText(this,"请联网后重新打开", Toast.LENGTH_SHORT);
-//        	  Toast1.show();
-//          }
-
+    	  get_Weather();
+    	  get_News();
           }
     private void get_News() {
     	new Thread(new Runnable(){
@@ -118,10 +109,6 @@ public class MainActivity extends SherlockActivity   {
     	    public void run() {
     	    	try {
     		    	 newsJsonArray=News.getNewsTitles();
-//    		    	NewsInfos.add(newsJsonArray.getJSONObject(0));
-//    		    	NewsInfos.add(newsJsonArray.getJSONObject(1));
-//    		    	NewsInfos.add(newsJsonArray.getJSONObject(1));
-
     	    	if(newsJsonArray!=null){
     		    	newshandler.sendEmptyMessage(0);
     	    	}else{
@@ -156,7 +143,6 @@ public class MainActivity extends SherlockActivity   {
         return true;
     }
     protected void init_newslist() {
-		// TODO Auto-generated method stub
 		listView_news = (ListView) findViewById(R.id.listView_news);
   	  ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
       
@@ -178,13 +164,14 @@ public class MainActivity extends SherlockActivity   {
 	            //ImageItem的XML文件里面的一个ImageView,两个TextView ID
 	            new int[] {R.id.textView_newsid,R.id.textView_News_title,R.id.textView_News_releasetime,R.id.textView_News_source}
 	        );
+	 
 	 listView_news.setAdapter(listItemAdapter);
 	 listView_news.setOnItemClickListener(new OnItemClickListener() {  
 		  
          @Override  
          public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,  
                  long arg3) {  
-        	 	ListView listView = (ListView)arg0;  
+        	 ListView listView = (ListView)arg0;  
                  HashMap<String, Object> map = (HashMap<String, Object>) listView.getItemAtPosition(arg2);  
                  newsid= String.valueOf(map.get("textView_newsid"));  
  				Intent intent =new Intent();
@@ -194,8 +181,19 @@ public class MainActivity extends SherlockActivity   {
 				startActivityForResult(intent, 0);
          }  
      }); 
-    	
-    	
+	 
+//	 Button btnMoreNews = (Button) findViewById(R.id.btnMoreNews);
+//	 btnMoreNews.setVisibility(View.VISIBLE);
+//	 btnMoreNews.setOnClickListener(new OnClickListener() {
+//		
+//		@Override
+//		public void onClick(View v) {
+//			Intent intent =new Intent();
+//			intent.putExtra("index", index);
+//			intent.setClass(MainActivity.this, SearchClassroom.class);
+//			startActivityForResult(intent, 0);
+//		}
+//	});
     	
 	}
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -232,21 +230,7 @@ public class MainActivity extends SherlockActivity   {
    	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-	 
-//	    		SoapObject sObject= GetNetData.getweatherdata("奉贤");
-//	            tvdate1=   sObject.getProperty(7).toString();  
-//	            tvtemp1=   sObject.getProperty(8).toString();  	            
-//	            tvdate2=   sObject.getProperty(12).toString();  
-//	            tvtemp2=   sObject.getProperty(13).toString();  
-//	            pic11=sObject.getProperty(10).toString(); 
-//	            pic12=sObject.getProperty(11).toString(); 
-//	            pic21=sObject.getProperty(15).toString(); 
-//	            pic22=sObject.getProperty(16).toString(); 
-//	    	    JSONArray jsonArr= GetNetData.getairaqidata();
-//	    	    JSONObject jsonObject=jsonArr.getJSONObject(0);
-//	    	    aqi=(Integer)jsonObject.get("pm2_5");
-//    	    	air_aqi="今日空气质量："+(String)jsonObject.get("quality")+"   PM2.5指数："+Integer.toString(aqi);
-	    	JSONObject  weatherJsonObject=Weather.getWeatherDetails();
+	  	JSONObject  weatherJsonObject=Weather.getWeatherDetails();
 	    		if(weatherJsonObject!=null){
 
 					 tvdate1=  weatherJsonObject.optString("h12")+" "+weatherJsonObject.optString("h12temp");
@@ -258,7 +242,7 @@ public class MainActivity extends SherlockActivity   {
 			         aqi=weatherJsonObject.optInt("pm25");
 			         
 			         air_aqi="实时空气质量："+weatherJsonObject.optString("aqi")+"   PM2.5指数："+Integer.toString(aqi);
-			         air_advise="";
+			         air_advise="户外活动建议：";
 		    		if(aqi<80)
 	    	    	{air_advise=air_advise+"自由活动不受影响";
 	    	    	}else
@@ -519,7 +503,6 @@ protected String nearbyid;
 
 	private void init_lay2()
 	{
-
 		ImageView ImageView_Job = (ImageView) findViewById(R.id.imageView_Job);
 		ImageView_Job.setOnClickListener(new OnClickListener() {
 			@Override
@@ -610,6 +593,7 @@ protected String nearbyid;
 				startActivityForResult(intent, 0);
 			}
 		});
+
 	}
 	private void init_lay3()
 	{
@@ -801,7 +785,7 @@ protected String nearbyid;
 	    public void setPrimaryItem(View container, int position, Object object) {
 	    	switch (position){
 			case 0:	break;
-			case 1: break;
+			case 1: init_lay2();break;
 			case 2:break;
 			case 3: break;
 			case 4: break;

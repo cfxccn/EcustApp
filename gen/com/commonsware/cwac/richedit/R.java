@@ -298,21 +298,21 @@ public final class R {
 		public static final int abs__textButton = 0x7f04001b;
 		public static final int abs__title = 0x7f040023;
 		public static final int abs__up = 0x7f04000b;
-		public static final int cwac_richedittext_bold = 0x7f0400f2;
-		public static final int cwac_richedittext_center = 0x7f0400f0;
-		public static final int cwac_richedittext_effects = 0x7f0400f4;
-		public static final int cwac_richedittext_fonts = 0x7f0400f5;
-		public static final int cwac_richedittext_format = 0x7f0400eb;
-		public static final int cwac_richedittext_italic = 0x7f0400f3;
-		public static final int cwac_richedittext_mono = 0x7f0400ee;
-		public static final int cwac_richedittext_normal = 0x7f0400ef;
-		public static final int cwac_richedittext_opposite = 0x7f0400f1;
-		public static final int cwac_richedittext_sans = 0x7f0400ed;
-		public static final int cwac_richedittext_serif = 0x7f0400ec;
-		public static final int cwac_richedittext_strike = 0x7f0400e8;
-		public static final int cwac_richedittext_subscript = 0x7f0400ea;
-		public static final int cwac_richedittext_superscript = 0x7f0400e9;
-		public static final int cwac_richedittext_underline = 0x7f0400e7;
+		public static final int cwac_richedittext_bold = 0x7f0400fe;
+		public static final int cwac_richedittext_center = 0x7f0400fc;
+		public static final int cwac_richedittext_effects = 0x7f040100;
+		public static final int cwac_richedittext_fonts = 0x7f040101;
+		public static final int cwac_richedittext_format = 0x7f0400f7;
+		public static final int cwac_richedittext_italic = 0x7f0400ff;
+		public static final int cwac_richedittext_mono = 0x7f0400fa;
+		public static final int cwac_richedittext_normal = 0x7f0400fb;
+		public static final int cwac_richedittext_opposite = 0x7f0400fd;
+		public static final int cwac_richedittext_sans = 0x7f0400f9;
+		public static final int cwac_richedittext_serif = 0x7f0400f8;
+		public static final int cwac_richedittext_strike = 0x7f0400f4;
+		public static final int cwac_richedittext_subscript = 0x7f0400f6;
+		public static final int cwac_richedittext_superscript = 0x7f0400f5;
+		public static final int cwac_richedittext_underline = 0x7f0400f3;
 		public static final int disableHome = 0x7f040009;
 		public static final int edit_query = 0x7f04002e;
 		public static final int homeAsUp = 0x7f040006;
@@ -350,8 +350,8 @@ public final class R {
 		public static final int abs__search_dropdown_item_icons_2line = 0x7f030013;
 		public static final int abs__search_view = 0x7f030014;
 		public static final int abs__simple_dropdown_hint = 0x7f030015;
-		public static final int sherlock_spinner_dropdown_item = 0x7f03003a;
-		public static final int sherlock_spinner_item = 0x7f03003b;
+		public static final int sherlock_spinner_dropdown_item = 0x7f03003d;
+		public static final int sherlock_spinner_item = 0x7f03003e;
 	}
 	public static final class menu {
 		public static final int cwac_richedittext_effects = 0x7f0b0001;

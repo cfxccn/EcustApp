@@ -44,7 +44,7 @@ public class Job {
 	}
 	
 	
-	public static JSONObject getJobDetails(int id)
+	public static JSONObject getJobDetails(String id)
 	{
 		String url="http://172.18.113.24:9092/JobDetails?id="+id+"";
 		HttpClient client = new DefaultHttpClient();
