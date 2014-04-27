@@ -2,9 +2,18 @@ package com.usta.activity;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -20,6 +29,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.view.KeyEvent;
@@ -37,6 +47,10 @@ public class About extends SherlockActivity {
 	String buildStringFromServer;
 	String buildInLocal;
 	protected Button btn_update;
+    public ProgressDialog pBar;
+    private Handler handler = new Handler();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +73,7 @@ public class About extends SherlockActivity {
 		
       initbtn();
     }
+    
   private void initbtn() {
 		// TODO Auto-generated method stub
 		btn_update=(Button)findViewById(R.id.btn_update);
@@ -66,8 +81,19 @@ public class About extends SherlockActivity {
 
 			@Override
 			public void onClick(View arg0) {
-				startUpdateFromNewThread();
+				//	startUpdateFromNewThread();
 
+				pBar = new ProgressDialog(About.this);
+				pBar.setIndeterminate(false);
+
+				pBar.setTitle("ÕýÔÚÏÂÔØ");
+				pBar.setMessage("ÇëÉÔºò...");
+				pBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
+
+
+				downFileFromNewThread();
+				
 			}
 		});
 		Button btn_checkforupdate=(Button)findViewById(R.id.btn_checkforupdate);
@@ -81,6 +107,55 @@ public class About extends SherlockActivity {
 		});
 
 	}
+  void downFileFromNewThread() {
+      pBar.show();
+      new Thread() {
+              public void run() {
+            	  	String url="http://172.18.113.24:9092/update";
+            	  	HttpClient client = new DefaultHttpClient();
+            	  	client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
+            	  	client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000);
+                     HttpGet get = new HttpGet(url);
+                     HttpResponse response;
+                      try {
+                              response = client.execute(get);
+                              HttpEntity entity = response.getEntity();
+                              long length = entity.getContentLength();
+                              InputStream is = entity.getContent();
+                              FileOutputStream fileOutputStream = null;
+                              if (is != null) {
+                                      File file = new File(
+                                                      Environment.getExternalStorageDirectory(),
+                                                      "usta.apk");
+                                      fileOutputStream = new FileOutputStream(file);
+                      				pBar.setMax((int) length/1000);
+                    				pBar.setProgress(0);
+                                      byte[] buf = new byte[1024];
+                                      int ch = -1;
+                                      int count = 0;
+                                      while ((ch = is.read(buf)) != -1) {
+                                              fileOutputStream.write(buf, 0, ch);
+                              				pBar.setProgress(count/1000);
+                                              count += ch;
+                                              if (length > 0) {
+                                              }
+                                      }
+                              }
+                              fileOutputStream.flush();
+                              if (fileOutputStream != null) {
+                                      fileOutputStream.close();
+                              }
+                              finishdownload_handler.sendEmptyMessage(0);
+                      } catch (ClientProtocolException e) {
+                              e.printStackTrace();
+                      } catch (IOException e) {
+                              e.printStackTrace();
+                      }
+              }
+      }.start();
+}
+
+
 protected void startUpdateFromNewThread() {
 	new Thread(new Runnable() {
 		@Override
@@ -89,12 +164,10 @@ protected void startUpdateFromNewThread() {
 	        final Intent it = new Intent(Intent.ACTION_VIEW, uri);
 	        startActivity(it);
 		}
-	        
 		}).start();
 	}
 protected void getLatestVersionFromNewThread() {
 	new Thread(new Runnable(){
-
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
@@ -110,11 +183,9 @@ protected void getLatestVersionFromNewThread() {
 				{
 					noUpdate_handler.sendEmptyMessage(0);
 				}
-					
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
-
 		}
 	}).start();
 }
@@ -142,6 +213,18 @@ private Handler update_handler =new Handler(){
 			toast3.show();
 			}
 			};
+		private Handler finishdownload_handler =new Handler(){
+				@Override
+				public void handleMessage(Message msg){
+				super.handleMessage(msg);
+                pBar.cancel();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.fromFile(new File(Environment
+                                .getExternalStorageDirectory(), "usta.apk")),
+                                "application/vnd.android.package-archive");
+                startActivity(intent);
+				}
+				};
 public boolean onKeyDown(int keyCode, KeyEvent event) {  
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
 	        setResult(RESULT_OK, intent);  

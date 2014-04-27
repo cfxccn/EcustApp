@@ -38,10 +38,9 @@
 
          <Button
         android:id="@+id/btnSearchBus"
-        android:layout_width="60dp"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:text="查询" 
-        android:layout_margin="10dp"
         android:layout_weight="1"/>
    </TableRow>
         </LinearLayout>

@@ -214,7 +214,7 @@ public class MainActivity extends SherlockActivity   {
             }
             else 
             {
-          	  Toast Toast1=Toast.makeText(this,"请联网", Toast.LENGTH_SHORT);
+          	  Toast Toast1=Toast.makeText(this,"无信息", Toast.LENGTH_SHORT);
           	  Toast1.show();
             }
 			
