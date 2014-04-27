@@ -54,13 +54,13 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class MainActivity extends SherlockActivity   {
     private int index =1;
 	private ViewPager viewPager;//页卡内容
-	private ImageView imageView;// 动画图片
+//	private ImageView imageView;// 动画图片
 	private List<View> views;// Tab页面列表
 	private int offset = 0;// 动画图片偏移量
 	private int bmpW;// 动画图片宽度
 	private View view1,view2,view3,view4;//各个页卡
-	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main;
-	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4;
+	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main,imageView_Chat;
+	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4,tv_tolay5;
 
 	private SharedPreferences userInfo;
 	private String tvdate1="";
@@ -93,7 +93,7 @@ public class MainActivity extends SherlockActivity   {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init_ImageView();
+ //       init_ImageView();
 		init_ViewPager();
 		init_LayInstru();
 
@@ -335,6 +335,13 @@ public void onClick(View view) {
 	case R.id.imageView_Setting: 
 		index=3;
 	viewPager.setCurrentItem(3); break;
+	case R.id.tvlay5: ;
+	case R.id.imageView_Chat: 
+		Intent intent =new Intent();
+		intent.putExtra("index", index);
+		intent.setClass(MainActivity.this, Morningtrain.class);
+		startActivityForResult(intent, 0);
+		; break;
 
 	}
 	
@@ -349,11 +356,14 @@ protected String nearbyid;
     	iv_tolay2_main = (ImageView) findViewById(R.id.imageView_Home);
     	iv_tolay3_main = (ImageView) findViewById(R.id.imageView_Search);
     	iv_tolay4_main = (ImageView) findViewById(R.id.imageView_Setting);
-    	
+    	imageView_Chat = (ImageView) findViewById(R.id.imageView_Chat);
+
     	tv_tolay1 = (TextView) findViewById(R.id.tvlay1);
     	tv_tolay2 = (TextView) findViewById(R.id.tvlay2);
     	tv_tolay3 = (TextView) findViewById(R.id.tvlay3);
     	tv_tolay4 = (TextView) findViewById(R.id.tvlay4);
+    	tv_tolay5 = (TextView) findViewById(R.id.tvlay5);
+
     	
     	tv_tolay2.setTextColor(Color.BLUE);
     //	tv_tolay3_main.setBackgroundColor(Color.WHITE);
@@ -363,7 +373,7 @@ protected String nearbyid;
     	Animation animation = new TranslateAnimation(one*index, one*index, 0, 0);
 		animation.setFillAfter(true);// True:图片停在动画结束位置
 		animation.setDuration(300);
-		imageView.startAnimation(animation);
+	//	imageView.startAnimation(animation);
 		tv_tolay1.setOnClickListener(laylistener);
 		iv_tolay1_main.setOnClickListener(laylistener);
 		tv_tolay2.setOnClickListener(laylistener);
@@ -372,7 +382,8 @@ protected String nearbyid;
 		iv_tolay3_main.setOnClickListener(laylistener);
 		tv_tolay4.setOnClickListener(laylistener);
 		iv_tolay4_main.setOnClickListener(laylistener);
-
+		imageView_Chat.setOnClickListener(laylistener);
+		tv_tolay5.setOnClickListener(laylistener);
     }
 	JSONArray nearbys ;
 	
@@ -380,8 +391,6 @@ protected String nearbyid;
 	private void init_lay1()
 	{
 		init_spiner();
-	//	Spinner spr_type_nearby=(Spinner)findViewById(R.id.spr_type_nearby);
-  	//	getNearbyDataFromNewThread(spr_type_nearby.getSelectedItem().toString());
 	}
 
 	private void getNearbyDataFromNewThread(final String _type) {
@@ -752,17 +761,17 @@ protected String nearbyid;
 		viewPager.setCurrentItem(index);
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
-	private void init_ImageView() {
-		imageView= (ImageView) findViewById(R.id.cursor);
-		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// 获取图片宽度
-		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int screenW = dm.widthPixels;// 获取分辨率宽度
-		offset = (screenW / 4 - bmpW) / 2;// 计算偏移量
-		Matrix matrix = new Matrix();
-		matrix.postTranslate(offset, 0);
-		imageView.setImageMatrix(matrix);// 设置动画初始位置
-	}
+//	private void init_ImageView() {
+//		imageView= (ImageView) findViewById(R.id.cursor);
+//		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// 获取图片宽度
+//		DisplayMetrics dm = new DisplayMetrics();
+//		getWindowManager().getDefaultDisplay().getMetrics(dm);
+//		int screenW = dm.widthPixels;// 获取分辨率宽度
+//		offset = (screenW / 4 - bmpW) / 2;// 计算偏移量
+//		Matrix matrix = new Matrix();
+//		matrix.postTranslate(offset, 0);
+//		imageView.setImageMatrix(matrix);// 设置动画初始位置
+//	}
 
 	
 	public class MyViewPagerAdapter extends PagerAdapter{
@@ -817,7 +826,7 @@ protected String nearbyid;
 			index = arg0;
 			animation.setFillAfter(true);// True:图片停在动画结束位置
 			animation.setDuration(300);
-			imageView.startAnimation(animation);
+		//	imageView.startAnimation(animation);
 
         	if (arg0==0){ 
         		init_lay1();

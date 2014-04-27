@@ -99,7 +99,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dip"
+                android:layout_height="0.5dp"
                 android:background="#ff909090" />
 
             <View
@@ -316,7 +316,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dip"
+                android:layout_height="0.5dp"
                 android:background="#ff909090" />
 
             <LinearLayout

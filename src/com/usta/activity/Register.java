@@ -103,12 +103,23 @@ btn_RegSubmit.setOnClickListener(new OnClickListener() {
 		userNum=editTextUserNum.getText().toString();
 		userRealName=editTextUserRealName.getText().toString();
 		userDepart=spinnerUserDepart.getSelectedItem().toString();
+
 		if(!userPwd0.equals(userPwd1)){
 			toast1.show();
 			return;
 		}
+		if(!userEmail.matches("\\w{0,}\\@\\w{0,}\\.{1}\\w{0,}")||
+				!userMobile.matches("^[1][3-8]+\\d{9}")||
+				!userNum.matches("^[0,1][0,2][0,1]+\\d{5}")||
+				userNickName.trim().equalsIgnoreCase("")||
+				userRealName.trim().equalsIgnoreCase("")){
+			toast1.show();
+
+		}else{
+			}
 		registerFromNewThread();
 	}
+	
 });
 }
 
