@@ -126,11 +126,11 @@ public class SearchLecture extends SherlockActivity {
               listItem.add(map);
           }
     		// TODO Auto-generated method stub
-    	 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//Êı¾İÔ´ 
-    	            R.layout.leturetitle_listview,//ListItemµÄXMLÊµÏÖ
-    	            //¶¯Ì¬Êı×éÓëImageItem¶ÔÓ¦µÄ×ÓÏî        
+    	 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//æ•°æ®æº 
+    	            R.layout.leturetitle_listview,//ListItemçš„XMLå®ç°
+    	            //åŠ¨æ€æ•°ç»„ä¸ImageItemå¯¹åº”çš„å­é¡¹        
     	            new String[] {"textView_lectureid","textView_lecturetitle", "textView_report","textView_lecturetime"}, 
-    	            //ImageItemµÄXMLÎÄ¼şÀïÃæµÄÒ»¸öImageView,Á½¸öTextView ID
+    	            //ImageItemçš„XMLæ–‡ä»¶é‡Œé¢çš„ä¸€ä¸ªImageView,ä¸¤ä¸ªTextView ID
     	            new int[] {R.id.textView_lectureid,R.id.textView_lecturetitle,R.id.textView_report,R.id.textView_lecturetime}
     	        );
     	 listViewNewsMoreTitles.setAdapter(listItemAdapter);

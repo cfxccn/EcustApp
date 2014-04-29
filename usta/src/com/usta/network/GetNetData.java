@@ -38,7 +38,7 @@ public class GetNetData {
 		SoapObject request = new SoapObject(namespace, methodname);
         request.addProperty("theCityCode",theCityCode);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -46,12 +46,12 @@ public class GetNetData {
         try  
         {   
         	//System.out.println(soapaction);
-            // µ⁄5≤Ω£∫µ˜”√WebService  
+            // Á¨¨5Ê≠•ÔºöË∞ÉÁî®WebService  
             ht.call(soapaction, envelope);  
         //	System.out.println("ht.call" ); 
             if (envelope.getResponse() != null)  
             {  
-                // µ⁄6≤Ω£∫ π”√getResponse∑Ω∑®ªÒµ√WebService∑Ω∑®µƒ∑µªÿΩ·π˚  
+                // Á¨¨6Ê≠•Ôºö‰ΩøÁî®getResponseÊñπÊ≥ïËé∑ÂæóWebServiceÊñπÊ≥ïÁöÑËøîÂõûÁªìÊûú  
             	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
 //            	SoapObject result = (SoapObject) envelope.bodyIn;  
 //            	SoapObject detail = (SoapObject) result.getProperty(0);                  	
@@ -162,7 +162,7 @@ public class GetNetData {
 //        request.addProperty("density",density);
 //
 //        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-//        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+//        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
 //        envelope.bodyOut=request;
 //        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
 //        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -186,7 +186,7 @@ public class GetNetData {
 		SoapObject request = new SoapObject(namespace, methodname);
       //  request.addProperty("theCityCode",theCityCode);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
         ht.debug = true;
@@ -218,7 +218,7 @@ public class GetNetData {
         request.addProperty("postid",postid);
         request.addProperty("content",content);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -242,7 +242,7 @@ public class GetNetData {
         request.addProperty("title",title);
         request.addProperty("content",content);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -265,7 +265,7 @@ public class GetNetData {
 		SoapObject request = new SoapObject(namespace, methodname);
      //   request.addProperty("theCityCode",theCityCode);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -273,7 +273,7 @@ public class GetNetData {
         try  
         {   
         	//System.out.println(soapaction);
-            // µ⁄5≤Ω£∫µ˜”√WebService  
+            // Á¨¨5Ê≠•ÔºöË∞ÉÁî®WebService  
             ht.call(soapaction, envelope);  
         //	System.out.println("ht.call" ); 
             if (envelope.getResponse() != null)  
@@ -303,7 +303,7 @@ public class GetNetData {
 		SoapObject request = new SoapObject(namespace, methodname);
         request.addProperty("jobid",jobid);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -311,7 +311,7 @@ public class GetNetData {
         try  
         {   
         	//System.out.println(soapaction);
-            // µ⁄5≤Ω£∫µ˜”√WebService  
+            // Á¨¨5Ê≠•ÔºöË∞ÉÁî®WebService  
             ht.call(soapaction, envelope);  
         //	System.out.println("ht.call" ); 
             if (envelope.getResponse() != null)  
@@ -340,7 +340,7 @@ public class GetNetData {
 		SoapObject request = new SoapObject(namespace, methodname);
      //   request.addProperty("theCityCode",theCityCode);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -348,7 +348,7 @@ public class GetNetData {
         try  
         {   
         	//System.out.println(soapaction);
-            // µ⁄5≤Ω£∫µ˜”√WebService  
+            // Á¨¨5Ê≠•ÔºöË∞ÉÁî®WebService  
             ht.call(soapaction, envelope);  
         //	System.out.println("ht.call" ); 
             if (envelope.getResponse() != null)  
@@ -378,7 +378,7 @@ public class GetNetData {
 		SoapObject request = new SoapObject(namespace, methodname);
         request.addProperty("newsid",newsid);
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-        envelope.dotNet=true;// «∑Ò «dotNet WebService  
+        envelope.dotNet=true;//ÊòØÂê¶ÊòØdotNet WebService  
         envelope.bodyOut=request;
         // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
         HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -386,7 +386,7 @@ public class GetNetData {
         try  
         {   
         	//System.out.println(soapaction);
-            // µ⁄5≤Ω£∫µ˜”√WebService  
+            // Á¨¨5Ê≠•ÔºöË∞ÉÁî®WebService  
             ht.call(soapaction, envelope);  
         //	System.out.println("ht.call" ); 
             if (envelope.getResponse() != null)  

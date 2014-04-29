@@ -53,12 +53,12 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class MainActivity extends SherlockActivity   {
     private int index =1;
-	private ViewPager viewPager;//Ò³¿¨ÄÚÈİ
-//	private ImageView imageView;// ¶¯»­Í¼Æ¬
-	private List<View> views;// TabÒ³ÃæÁĞ±í
-	private int offset = 0;// ¶¯»­Í¼Æ¬Æ«ÒÆÁ¿
-	private int bmpW;// ¶¯»­Í¼Æ¬¿í¶È
-	private View view1,view2,view3,view4;//¸÷¸öÒ³¿¨
+	private ViewPager viewPager;//é¡µå¡å†…å®¹
+//	private ImageView imageView;// åŠ¨ç”»å›¾ç‰‡
+	private List<View> views;// Tabé¡µé¢åˆ—è¡¨
+	private int offset = 0;// åŠ¨ç”»å›¾ç‰‡åç§»é‡
+	private int bmpW;// åŠ¨ç”»å›¾ç‰‡å®½åº¦
+	private View view1,view2,view3,view4;//å„ä¸ªé¡µå¡
 	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main;
 	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4,tv_tolay5;
 
@@ -70,8 +70,8 @@ public class MainActivity extends SherlockActivity   {
 	private String pic12="";
 	private String pic21="";
 	private String pic22="";
-	private String air_aqi="ÊµÊ±¿ÕÆøÖÊÁ¿£º";
-	private String air_advise="»§Íâ»î¶¯½¨Òé£º";
+	private String air_aqi="å®æ—¶ç©ºæ°”è´¨é‡ï¼š";
+	private String air_advise="æˆ·å¤–æ´»åŠ¨å»ºè®®ï¼š";
 	Intent intent;
 	private int aqi;
 	Menu _menu;
@@ -127,7 +127,7 @@ public class MainActivity extends SherlockActivity   {
 
     private Handler newshandler =new Handler(){
     		@Override
-    		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+    		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
     		public void handleMessage(Message msg){
     		super.handleMessage(msg);
 
@@ -157,11 +157,11 @@ public class MainActivity extends SherlockActivity   {
           listItem.add(map);
       }
 		// TODO Auto-generated method stub
-	 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//Êı¾İÔ´ 
-	            R.layout.newstitle_listview,//ListItemµÄXMLÊµÏÖ
-	            //¶¯Ì¬Êı×éÓëImageItem¶ÔÓ¦µÄ×ÓÏî        
+	 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//æ•°æ®æº 
+	            R.layout.newstitle_listview,//ListItemçš„XMLå®ç°
+	            //åŠ¨æ€æ•°ç»„ä¸ImageItemå¯¹åº”çš„å­é¡¹        
 	            new String[] {"textView_newsid","textView_News_title", "textView_News_releasetime","textView_News_source"}, 
-	            //ImageItemµÄXMLÎÄ¼şÀïÃæµÄÒ»¸öImageView,Á½¸öTextView ID
+	            //ImageItemçš„XMLæ–‡ä»¶é‡Œé¢çš„ä¸€ä¸ªImageView,ä¸¤ä¸ªTextView ID
 	            new int[] {R.id.textView_newsid,R.id.textView_News_title,R.id.textView_News_releasetime,R.id.textView_News_source}
 	        );
 	 
@@ -214,7 +214,7 @@ public class MainActivity extends SherlockActivity   {
             }
             else 
             {
-          	  Toast Toast1=Toast.makeText(this,"ÎŞĞÅÏ¢", Toast.LENGTH_SHORT);
+          	  Toast Toast1=Toast.makeText(this,"æ— ä¿¡æ¯", Toast.LENGTH_SHORT);
           	  Toast1.show();
             }
 			
@@ -241,15 +241,15 @@ public class MainActivity extends SherlockActivity   {
 			         pic22=weatherJsonObject.optString("h24img2");
 			         aqi=weatherJsonObject.optInt("pm25");
 			         
-			         air_aqi="ÊµÊ±¿ÕÆøÖÊÁ¿£º"+weatherJsonObject.optString("aqi")+"   PM2.5Ö¸Êı£º"+Integer.toString(aqi);
-			         air_advise="»§Íâ»î¶¯½¨Òé£º";
+			         air_aqi="å®æ—¶ç©ºæ°”è´¨é‡ï¼š"+weatherJsonObject.optString("aqi")+"   PM2.5æŒ‡æ•°ï¼š"+Integer.toString(aqi);
+			         air_advise="æˆ·å¤–æ´»åŠ¨å»ºè®®ï¼š";
 		    		if(aqi<80)
-	    	    	{air_advise=air_advise+"×ÔÓÉ»î¶¯²»ÊÜÓ°Ïì";
+	    	    	{air_advise=air_advise+"è‡ªç”±æ´»åŠ¨ä¸å—å½±å“";
 	    	    	}else
 	    	    		if(aqi<120)
-	    	    		{air_advise=air_advise+"¾¡Á¿¼õÉÙ";
+	    	    		{air_advise=air_advise+"å°½é‡å‡å°‘";
 	    	    		}else
-	    	    			{air_advise=air_advise+"ÍêÈ«Í£Ö¹";
+	    	    			{air_advise=air_advise+"å®Œå…¨åœæ­¢";
 	    	    			}
 			    	 weatherhandler.sendEmptyMessage(0);
 	    			
@@ -266,7 +266,7 @@ public class MainActivity extends SherlockActivity   {
 
 public Handler weatherhandler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		init_weather();
@@ -293,8 +293,8 @@ public void init_weather() {
 	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
 	TextView tv12=(TextView)findViewById(R.id.tv12);
 	TextView tv24=(TextView)findViewById(R.id.tv24);
-	tv12.setText("12Ê±ÄÚ "+tvdate1);
-	tv24.setText("24Ê±ÄÚ "+tvdate2);
+	tv12.setText("12æ—¶å†… "+tvdate1);
+	tv24.setText("24æ—¶å†… "+tvdate2);
 
 
 	ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
@@ -366,10 +366,10 @@ protected String nearbyid;
     	tv_tolay2.setTextColor(Color.BLUE);
     //	tv_tolay3_main.setBackgroundColor(Color.WHITE);
     	
-    	int one = offset * 2 + bmpW;// Ò³¿¨1 -> Ò³¿¨2 Æ«ÒÆÁ¿
+    	int one = offset * 2 + bmpW;// é¡µå¡1 -> é¡µå¡2 åç§»é‡
 		
     	Animation animation = new TranslateAnimation(one*index, one*index, 0, 0);
-		animation.setFillAfter(true);// True:Í¼Æ¬Í£ÔÚ¶¯»­½áÊøÎ»ÖÃ
+		animation.setFillAfter(true);// True:å›¾ç‰‡åœåœ¨åŠ¨ç”»ç»“æŸä½ç½®
 		animation.setDuration(300);
 	//	imageView.startAnimation(animation);
 		tv_tolay1.setOnClickListener(laylistener);
@@ -409,7 +409,7 @@ protected String nearbyid;
 	}
 	private Handler nearby_handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		init_NearbyList();
@@ -441,9 +441,9 @@ protected String nearbyid;
 		e.printStackTrace();
 	}
 			// TODO Auto-generated method stub
-		 final SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//Êı¾İÔ´ 
-		            R.layout.nearby_listview,//ListItemµÄXMLÊµÏÖ
-		            //¶¯Ì¬Êı×éÓëImageItem¶ÔÓ¦µÄ×ÓÏî        
+		 final SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//æ•°æ®æº 
+		            R.layout.nearby_listview,//ListItemçš„XMLå®ç°
+		            //åŠ¨æ€æ•°ç»„ä¸ImageItemå¯¹åº”çš„å­é¡¹        
 		            new String[] {"no","title","location", "introduction"}, 
 		            new int[] {R.id.textView_NearbyNo_lv,R.id.textView_NearbyTitle_lv,R.id.textView_NearbyLocation_lv,R.id.textView_NearbyIntro_lv}
 		        );
@@ -468,12 +468,12 @@ protected String nearbyid;
 	private void init_spiner() {
 		 Spinner spr_type_nearby=(Spinner)findViewById(R.id.spr_type_nearby);
 		 ArrayList<String> type=new ArrayList<String>();
-		 type.add("ÇëÑ¡Ôñ·ÖÀà");
-		 type.add("³Ô");
-		 type.add("×¡");
-		 type.add("ĞĞ");
-		 type.add("Íæ");
-		 type.add("ÆäËû");			 
+		 type.add("è¯·é€‰æ‹©åˆ†ç±»");
+		 type.add("åƒ");
+		 type.add("ä½");
+		 type.add("è¡Œ");
+		 type.add("ç©");
+		 type.add("å…¶ä»–");			 
 		 ArrayAdapter<String> aspnCountries =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,type);
 		 aspnCountries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		 spr_type_nearby.setAdapter(aspnCountries);
@@ -487,11 +487,11 @@ protected String nearbyid;
 				switch(arg2){
 				
 				case 0:				break;
-				case 1:				getNearbyDataFromNewThread("³Ô");break;
-				case 2:				getNearbyDataFromNewThread("×¡");break;
-				case 3:				 getNearbyDataFromNewThread("ĞĞ");break;
-				case 4:				 getNearbyDataFromNewThread("Íæ");break;
-				case 5:				 getNearbyDataFromNewThread("ÆäËû");break;
+				case 1:				getNearbyDataFromNewThread("åƒ");break;
+				case 2:				getNearbyDataFromNewThread("ä½");break;
+				case 3:				 getNearbyDataFromNewThread("è¡Œ");break;
+				case 4:				 getNearbyDataFromNewThread("ç©");break;
+				case 5:				 getNearbyDataFromNewThread("å…¶ä»–");break;
 							 
 
 
@@ -645,17 +645,17 @@ protected String nearbyid;
 	    		RadioButton radiobtn_jinshan_setting= (RadioButton)findViewById(R.id.radiobtn_jinshan_setting);
 	    		radiobtn_jinshan_setting.setChecked(true);
 	    	}
-	    	final Toast toastxuhui=Toast.makeText(this, "Ğì»ãĞ£Çø-ÒÑ±£´æ", Toast.LENGTH_SHORT);
-	    	final Toast toastfengxian=Toast.makeText(this, "·îÏÍĞ£Çø-ÒÑ±£´æ", Toast.LENGTH_SHORT);
-	    	final Toast toastjinshan=Toast.makeText(this, "½ğÉ½Ğ£Çø-ÒÑ±£´æ", Toast.LENGTH_SHORT);
+	    	final Toast toastxuhui=Toast.makeText(this, "å¾æ±‡æ ¡åŒº-å·²ä¿å­˜", Toast.LENGTH_SHORT);
+	    	final Toast toastfengxian=Toast.makeText(this, "å¥‰è´¤æ ¡åŒº-å·²ä¿å­˜", Toast.LENGTH_SHORT);
+	    	final Toast toastjinshan=Toast.makeText(this, "é‡‘å±±æ ¡åŒº-å·²ä¿å­˜", Toast.LENGTH_SHORT);
 
 	    	RadioGroup group = (RadioGroup)this.findViewById(R.id.radioGroup_area_setting);
-	    	         //°ó¶¨Ò»¸öÄäÃû¼àÌıÆ÷
+	    	         //ç»‘å®šä¸€ä¸ªåŒ¿åç›‘å¬å™¨
 	    	         group.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 	    	             @Override
 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
 	    	                 // TODO Auto-generated method stub
-	    	                 //»ñÈ¡±ä¸üºóµÄÑ¡ÖĞÏîµÄID
+	    	                 //è·å–å˜æ›´åçš„é€‰ä¸­é¡¹çš„ID
 	    	            	 if(arg1==R.id.radiobtn_xuhui_setting){
 	    	     	    	    userInfo.edit().putString("area", "xuhui").commit();  
 	    	     	    	   toastxuhui.show();
@@ -686,15 +686,15 @@ protected String nearbyid;
 	    	 	    		radiobtn_jokeoff_setting.setChecked(true);
 	    	 	    	}
 
-	    	 	    	final Toast toastjokeon=Toast.makeText(this, "Ğ¦»°¿ªÆô-ÒÑ±£´æ", Toast.LENGTH_SHORT);
-	    	 	    	final Toast toastjokeoff=Toast.makeText(this, "Ğ¦»°ÆÁ±Î-ÒÑ±£´æ", Toast.LENGTH_SHORT);
+	    	 	    	final Toast toastjokeon=Toast.makeText(this, "ç¬‘è¯å¼€å¯-å·²ä¿å­˜", Toast.LENGTH_SHORT);
+	    	 	    	final Toast toastjokeoff=Toast.makeText(this, "ç¬‘è¯å±è”½-å·²ä¿å­˜", Toast.LENGTH_SHORT);
 
-	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);    //°ó¶¨Ò»¸öÄäÃû¼àÌıÆ÷
+	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);    //ç»‘å®šä¸€ä¸ªåŒ¿åç›‘å¬å™¨
 	    	 	    	rgrp_joke.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 	    	 	    	             @Override
 	    	 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
 	    	 	    	                 // TODO Auto-generated method stub
-	    	 	    	                 //»ñÈ¡±ä¸üºóµÄÑ¡ÖĞÏîµÄID
+	    	 	    	                 //è·å–å˜æ›´åçš„é€‰ä¸­é¡¹çš„ID
 	    	 	    	            	 if(arg1==R.id.radiobtn_jokeon_setting){
 	    	 	    	     	    	    userInfo.edit().putString("joke", "on").commit();  
 	    	 	    	            		 toastjokeon.show();
@@ -760,14 +760,14 @@ protected String nearbyid;
 	}
 //	private void init_ImageView() {
 //		imageView= (ImageView) findViewById(R.id.cursor);
-//		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// »ñÈ¡Í¼Æ¬¿í¶È
+//		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// è·å–å›¾ç‰‡å®½åº¦
 //		DisplayMetrics dm = new DisplayMetrics();
 //		getWindowManager().getDefaultDisplay().getMetrics(dm);
-//		int screenW = dm.widthPixels;// »ñÈ¡·Ö±æÂÊ¿í¶È
-//		offset = (screenW / 4 - bmpW) / 2;// ¼ÆËãÆ«ÒÆÁ¿
+//		int screenW = dm.widthPixels;// è·å–åˆ†è¾¨ç‡å®½åº¦
+//		offset = (screenW / 4 - bmpW) / 2;// è®¡ç®—åç§»é‡
 //		Matrix matrix = new Matrix();
 //		matrix.postTranslate(offset, 0);
-//		imageView.setImageMatrix(matrix);// ÉèÖÃ¶¯»­³õÊ¼Î»ÖÃ
+//		imageView.setImageMatrix(matrix);// è®¾ç½®åŠ¨ç”»åˆå§‹ä½ç½®
 //	}
 
 	
@@ -811,8 +811,8 @@ protected String nearbyid;
 
     public class MyOnPageChangeListener implements OnPageChangeListener{
 
-    	int one = offset * 2 + bmpW;// Ò³¿¨1 -> Ò³¿¨2 Æ«ÒÆÁ¿
-	//	int two = one * 2;// Ò³¿¨1 -> Ò³¿¨3 Æ«ÒÆÁ¿
+    	int one = offset * 2 + bmpW;// é¡µå¡1 -> é¡µå¡2 åç§»é‡
+	//	int two = one * 2;// é¡µå¡1 -> é¡µå¡3 åç§»é‡
 		public void onPageScrollStateChanged(int arg0) {
 		}
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
@@ -821,7 +821,7 @@ protected String nearbyid;
 		public void onPageSelected(int arg0) {
 			Animation animation = new TranslateAnimation(one*index, one*arg0, 0, 0);
 			index = arg0;
-			animation.setFillAfter(true);// True:Í¼Æ¬Í£ÔÚ¶¯»­½áÊøÎ»ÖÃ
+			animation.setFillAfter(true);// True:å›¾ç‰‡åœåœ¨åŠ¨ç”»ç»“æŸä½ç½®
 			animation.setDuration(300);
 		//	imageView.startAnimation(animation);
 

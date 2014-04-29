@@ -44,9 +44,9 @@ public class SchoolBus extends SherlockActivity
 	final private static String path1="http://172.18.113.24:8080/jsonProjject/servlet/action2?action_flag=schoolbus";
 	Intent intent;
 	private static String day,type,route;
-	private static final String[] mDay={"ÖÜÒ»","ÖÜ¶ş","ÖÜÈı","ÖÜËÄ","ÖÜÎå","ÖÜÁù","ÖÜÈÕ"};
-	private static final String[] bustype={"½ÌÖ°°à³µ","ÖĞÂÃ°à³µ","ÃÎ¾³°à³µ"};
-	private static final String[] laifan={"·îÏÍ-Ğì»ã","·îÏÍ-½ğÉ½","Ğì»ã-·îÏÍ","Ğì»ã-½ğÉ½","½ğÉ½-Ğì»ã","½ğÉ½-·îÏÍ"};
+	private static final String[] mDay={"å‘¨ä¸€","å‘¨äºŒ","å‘¨ä¸‰","å‘¨å››","å‘¨äº”","å‘¨å…­","å‘¨æ—¥"};
+	private static final String[] bustype={"æ•™èŒç­è½¦","ä¸­æ—…ç­è½¦","æ¢¦å¢ƒç­è½¦"};
+	private static final String[] laifan={"å¥‰è´¤-å¾æ±‡","å¥‰è´¤-é‡‘å±±","å¾æ±‡-å¥‰è´¤","å¾æ±‡-é‡‘å±±","é‡‘å±±-å¾æ±‡","é‡‘å±±-å¥‰è´¤"};
     JSONArray busJsonArray;
 	Spinner spinnerDay;
 	Spinner spinnerType;
@@ -67,7 +67,7 @@ public class SchoolBus extends SherlockActivity
 	        
 	        listViewBus=(ListView)findViewById(R.id.listViewBus);
 
-	        toast1=Toast.makeText(this,"ÎŞºÏÊÊ°à´Î", Toast.LENGTH_SHORT);
+	        toast1=Toast.makeText(this,"æ— åˆé€‚ç­æ¬¡", Toast.LENGTH_SHORT);
 	 }
 	 private void init_btn() {
 		// TODO Auto-generated method stub
@@ -86,7 +86,7 @@ public class SchoolBus extends SherlockActivity
 	}	 
 	 private   Handler handler =new Handler(){
 		 @Override
-		 //µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		 //å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		 public void handleMessage(Message msg){
 		 super.handleMessage(msg);
 		 initListView();
@@ -95,7 +95,7 @@ public class SchoolBus extends SherlockActivity
 
 	private Handler resultEmptyhandler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
   	  listViewBus.setAdapter(null);
@@ -115,18 +115,18 @@ public class SchoolBus extends SherlockActivity
 			    	  JSONObject busJsonObject=busJsonArray.optJSONObject(i);
 			          HashMap<String, Object> map = new HashMap<String, Object>();
 			          map.put("textViewTime",busJsonObject.optString("time"));
-			          map.put("textView_PUPoint","ÉÏ³µµã:"+busJsonObject.optString("PUPoint"));
-			          map.put("textView_Destination", "ÏÂ³µµã:"+busJsonObject.optString("Destination"));
+			          map.put("textView_PUPoint","ä¸Šè½¦ç‚¹:"+busJsonObject.optString("PUPoint"));
+			          map.put("textView_Destination", "ä¸‹è½¦ç‚¹:"+busJsonObject.optString("Destination"));
 			          map.put("textViewPrice", busJsonObject.optString("price"));
 			         
 			          listItem.add(map);
 			      }
 					// TODO Auto-generated method stub
-				 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//Êı¾İÔ´ 
-				            R.layout.bus_listview,//ListItemµÄXMLÊµÏÖ
-				            //¶¯Ì¬Êı×éÓëImageItem¶ÔÓ¦µÄ×ÓÏî        
+				 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//æ•°æ®æº 
+				            R.layout.bus_listview,//ListItemçš„XMLå®ç°
+				            //åŠ¨æ€æ•°ç»„ä¸ImageItemå¯¹åº”çš„å­é¡¹        
 				            new String[] {"textViewTime","textView_PUPoint", "textViewPrice","textView_Destination"}, 
-				            //ImageItemµÄXMLÎÄ¼şÀïÃæµÄÒ»¸öImageView,Á½¸öTextView ID
+				            //ImageItemçš„XMLæ–‡ä»¶é‡Œé¢çš„ä¸€ä¸ªImageView,ä¸¤ä¸ªTextView ID
 				            new int[] {R.id.textViewTime,R.id.textView_PUPoint,R.id.textViewPrice,R.id.textView_Destination }
 				        );
 				 listViewBus.setAdapter(listItemAdapter);

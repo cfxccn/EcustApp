@@ -72,7 +72,7 @@ public class Powerfare extends SherlockActivity {
 	}
 	private Handler power_handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		TextView 	textView_fare=(TextView)findViewById(R.id.textView_fare);

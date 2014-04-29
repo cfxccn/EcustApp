@@ -52,7 +52,7 @@ public class WelcomeActivity extends Activity {
 //    	userInfo.edit().putString("name", user.getText().toString()).commit();  
 //    	userInfo.edit().putString("area", user.getText().toString()).commit();  
     	if(isfirst=="yes"){
-    	Toast toats=Toast.makeText(this, "Ê×´ÎÊ¹ÓÃÇëÉèÖÃÐ£Çø",Toast.LENGTH_LONG );
+    	Toast toats=Toast.makeText(this, "é¦–æ¬¡ä½¿ç”¨è¯·è®¾ç½®æ ¡åŒº",Toast.LENGTH_LONG );
     	toats.show();
     	userInfo.edit().putString("isfirst","no").commit();  
     	}

@@ -53,7 +53,7 @@ public class Register extends SherlockActivity {
 	 SharedPreferences userInfo;
 
 	
-	private static final String[] department = {"ĞÅÏ¢Ñ§Ôº","»¯¹¤Ñ§Ôº","·¨Ñ§Ôº","»¯Ñ§Ñ§Ôº","ÀíÑ§Ôº","ÈËÎÄÑ§Ôº","Éú¹¤Ñ§Ôº","ÍâÓïÑ§Ôº","ĞÅÏ¢Ñ§Ôº","Ò©Ñ§Ôº","ÒÕÊõÑ§Ôº","×Ê»·Ñ§Ôº"};
+	private static final String[] department = {"ä¿¡æ¯å­¦é™¢","åŒ–å·¥å­¦é™¢","æ³•å­¦é™¢","åŒ–å­¦å­¦é™¢","ç†å­¦é™¢","äººæ–‡å­¦é™¢","ç”Ÿå·¥å­¦é™¢","å¤–è¯­å­¦é™¢","ä¿¡æ¯å­¦é™¢","è¯å­¦é™¢","è‰ºæœ¯å­¦é™¢","èµ„ç¯å­¦é™¢"};
 	Spinner spinnerUserDepart ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +63,12 @@ public class Register extends SherlockActivity {
 		userInfo = getSharedPreferences("setting", 0);  
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
-        toast0=Toast.makeText(this, "ÕıÔÚ×¢²á", Toast.LENGTH_SHORT);
+        toast0=Toast.makeText(this, "æ­£åœ¨æ³¨å†Œ", Toast.LENGTH_SHORT);
 
-        toast1=Toast.makeText(this, "Á½´ÎÃÜÂë²»Ò»ÖÂ", Toast.LENGTH_SHORT);
-        toast2=Toast.makeText(this, "×¢²á³É¹¦£¬ÕıÔÚÖØĞÂÆô¶¯", Toast.LENGTH_SHORT);
-        toast3=Toast.makeText(this, "×¢²áÊ§°Ü£¬êÇ³Æ»òÓÊÏäÒÑ±»Ê¹ÓÃ", Toast.LENGTH_SHORT);
-        toast4=Toast.makeText(this, "×¢²áÊ§°Ü£¬¼ì²éÍøÂç", Toast.LENGTH_SHORT);
+        toast1=Toast.makeText(this, "ä¸¤æ¬¡å¯†ç ä¸ä¸€è‡´", Toast.LENGTH_SHORT);
+        toast2=Toast.makeText(this, "æ³¨å†ŒæˆåŠŸï¼Œæ­£åœ¨é‡æ–°å¯åŠ¨", Toast.LENGTH_SHORT);
+        toast3=Toast.makeText(this, "æ³¨å†Œå¤±è´¥ï¼Œæ˜µç§°æˆ–é‚®ç®±å·²è¢«ä½¿ç”¨", Toast.LENGTH_SHORT);
+        toast4=Toast.makeText(this, "æ³¨å†Œå¤±è´¥ï¼Œæ£€æŸ¥ç½‘ç»œ", Toast.LENGTH_SHORT);
 
         initSpinner();
         initbtn();
@@ -163,7 +163,7 @@ protected void registerFromNewThread() {
 	    	toast0.show();
 	    	 userKey=Account.register(userNickName,userEmail,userPwd0,userMobile ,userDepart, userNum, userRealName);
 	    	if(!userKey.startsWith("-")){
-//×¢²á³É¹¦
+//æ³¨å†ŒæˆåŠŸ
 	    	
 	    		registerSuccess.sendEmptyMessage(0);
 	    	}

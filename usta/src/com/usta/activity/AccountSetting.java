@@ -66,12 +66,12 @@ public class AccountSetting extends SherlockActivity {
         initLocalUserInfo();
         isLocalLogin();
         initbtn();
-  	  	Toast1=Toast.makeText(this,"µÇÂ¼³É¹¦", Toast.LENGTH_SHORT);
-  	  	Toast2=Toast.makeText(this,"µÇÂ¼Ê§°Ü£¬Çë¼ì²éÍøÂç", Toast.LENGTH_SHORT);
-  	  	Toast3=Toast.makeText(this,"×¢Ïú³É¹¦", Toast.LENGTH_SHORT);
-  	  	Toast4=Toast.makeText(this,"ÇëÊäÈëĞÅÏ¢", Toast.LENGTH_SHORT);
-  	  	Toast5=Toast.makeText(this,"µÇÂ¼Ê§°Ü£¬ÕÊºÅÃÜÂë´íÎó", Toast.LENGTH_SHORT);
-  	  	Toast0=Toast.makeText(this,"ÕıÔÚµÇÂ¼", Toast.LENGTH_SHORT);
+  	  	Toast1=Toast.makeText(this,"ç™»å½•æˆåŠŸ", Toast.LENGTH_SHORT);
+  	  	Toast2=Toast.makeText(this,"ç™»å½•å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œ", Toast.LENGTH_SHORT);
+  	  	Toast3=Toast.makeText(this,"æ³¨é”€æˆåŠŸ", Toast.LENGTH_SHORT);
+  	  	Toast4=Toast.makeText(this,"è¯·è¾“å…¥ä¿¡æ¯", Toast.LENGTH_SHORT);
+  	  	Toast5=Toast.makeText(this,"ç™»å½•å¤±è´¥ï¼Œå¸å·å¯†ç é”™è¯¯", Toast.LENGTH_SHORT);
+  	  	Toast0=Toast.makeText(this,"æ­£åœ¨ç™»å½•", Toast.LENGTH_SHORT);
 
 
     }
@@ -136,7 +136,7 @@ private void initbtn() {
 
 private Handler loginSuccess =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
     	Toast1.show();
@@ -159,7 +159,7 @@ private Handler loginSuccess =new Handler(){
 		};
 		private Handler loginFailure =new Handler(){
 			@Override
-			//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+			//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 			public void handleMessage(Message msg){
 			super.handleMessage(msg);
 	    	  Toast5.show();
@@ -168,7 +168,7 @@ private Handler loginSuccess =new Handler(){
 			};
 			private Handler loginFailureNet =new Handler(){
 				@Override
-				//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+				//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 				public void handleMessage(Message msg){
 				super.handleMessage(msg);
 		    	  Toast2.show();
@@ -185,7 +185,7 @@ protected void loginFromNewThread() {
 	    	userKey= Account.login(userEmail, userPwd);
 
 	 	    	if(!userKey.startsWith("-")){
-	 				//µÇÂ¼³É¹¦
+	 				//ç™»å½•æˆåŠŸ
 	 	    		
 	 	    		userName=userKey.substring(0, userKey.indexOf(","));
 	 	    		userKey=userKey.substring(userKey.indexOf(",")+1,userKey.length());
@@ -231,12 +231,12 @@ if(!userLocalName.equalsIgnoreCase("null")&&!userLocalEmail.equalsIgnoreCase("nu
 	EditText textViewUserEmail=(EditText)findViewById(R.id.tvUserEmail);
 	textViewUserName.setText(userLocalName);
 	textViewUserEmail.setText(userLocalEmail);
-	textViewUserName.setCursorVisible(false);//Òş²Ø¹â±ê 
-	textViewUserName.setFocusable(false);//Ê§È¥½¹µã 
-	textViewUserName.setFocusableInTouchMode(false);//ĞéÄâ¼üÅÌÒş²Ø 
-	textViewUserEmail.setCursorVisible(false);//Òş²Ø¹â±ê 
-	textViewUserEmail.setFocusable(false);//Ê§È¥½¹µã 
-	textViewUserEmail.setFocusableInTouchMode(false);//ĞéÄâ¼üÅÌÒş²Ø 
+	textViewUserName.setCursorVisible(false);//éšè—å…‰æ ‡ 
+	textViewUserName.setFocusable(false);//å¤±å»ç„¦ç‚¹ 
+	textViewUserName.setFocusableInTouchMode(false);//è™šæ‹Ÿé”®ç›˜éšè— 
+	textViewUserEmail.setCursorVisible(false);//éšè—å…‰æ ‡ 
+	textViewUserEmail.setFocusable(false);//å¤±å»ç„¦ç‚¹ 
+	textViewUserEmail.setFocusableInTouchMode(false);//è™šæ‹Ÿé”®ç›˜éšè— 
 	
 	
 }else{

@@ -75,7 +75,7 @@ public class LectureDetail extends SherlockActivity {
 
 private Handler handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		TextView textView_LectureTitle=(TextView)findViewById(R.id.textView_LectureTitle);
@@ -111,11 +111,11 @@ private Handler handler =new Handler(){
 		TextView textView7=(TextView)findViewById(R.id.textView7);
 		TextView textView8=(TextView)findViewById(R.id.textView8);
 
-		textView1.setText("±¨¸æÈË£º");
-		textView5.setText("¡¡Ğ£Çø£º");
-		textView6.setText("¡¡µØµã£º");
-		textView7.setText("¡¡±¸×¢£º");
-		textView8.setText("¡¡Ñ§Ôº£º");
+		textView1.setText("æŠ¥å‘Šäººï¼š");
+		textView5.setText("ã€€æ ¡åŒºï¼š");
+		textView6.setText("ã€€åœ°ç‚¹ï¼š");
+		textView7.setText("ã€€å¤‡æ³¨ï¼š");
+		textView8.setText("ã€€å­¦é™¢ï¼š");
 
 
 		}

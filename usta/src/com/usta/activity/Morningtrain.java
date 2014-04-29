@@ -95,7 +95,7 @@ public class Morningtrain extends SherlockActivity {
 	        };
 	        private Handler handler =new Handler(){
         		@Override
-        		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+        		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
         		public void handleMessage(Message msg){
         		super.handleMessage(msg);
     			TextView tv=(TextView)findViewById(R.id.textView4);
@@ -109,7 +109,7 @@ public class Morningtrain extends SherlockActivity {
 			SoapObject request = new SoapObject(namespace, methodname);
 	     //   request.addProperty("_id","");
 	        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-	        envelope.dotNet=true;//ÊÇ·ñÊÇdotNet WebService  
+	        envelope.dotNet=true;//æ˜¯å¦æ˜¯dotNet WebService  
 	        envelope.bodyOut=request;
 	        // AndroidHttpTransport ht=new  AndroidHttpTransport(serviceUrl);
             HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
@@ -117,12 +117,12 @@ public class Morningtrain extends SherlockActivity {
             try  
             {   
             	//System.out.println(soapaction);
-                // µÚ5²½£ºµ÷ÓÃWebService  
+                // ç¬¬5æ­¥ï¼šè°ƒç”¨WebService  
                 ht.call(soapaction, envelope);  
             	System.out.println("ht.call" ); 
                 if (envelope.getResponse() != null)  
                 {  
-                    // µÚ6²½£ºÊ¹ÓÃgetResponse·½·¨»ñµÃWebService·½·¨µÄ·µ»Ø½á¹û  
+                    // ç¬¬6æ­¥ï¼šä½¿ç”¨getResponseæ–¹æ³•è·å¾—WebServiceæ–¹æ³•çš„è¿”å›ç»“æœ  
                 	SoapPrimitive  soapObject = (SoapPrimitive ) envelope.getResponse();
 
 //                	SoapObject result = (SoapObject) envelope.bodyIn;  
@@ -136,7 +136,7 @@ public class Morningtrain extends SherlockActivity {
             catch (Exception e)  
             {  
         		count=e.toString();
-            }  //¶¨ÒåHandler¶ÔÏó
+            }  //å®šä¹‰Handlerå¯¹è±¡
 			//TextView tv=(TextView)findViewById(R.id.textView4);
 		//	tv.setText(count);
         	System.out.println(count);

@@ -67,7 +67,7 @@ public class NearbyDetail extends SherlockActivity {
 
 private Handler handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		TextView textView_nearbyTitle=(TextView)findViewById(R.id.textView_nearbyTitle);
@@ -78,9 +78,9 @@ private Handler handler =new Handler(){
 		TextView textView3=(TextView)findViewById(R.id.textView3);
 		TextView textView4=(TextView)findViewById(R.id.textView4);
 		TextView textView5=(TextView)findViewById(R.id.textView5);
-		textView3.setText("ÏêÇé£º");
-		textView4.setText("µØµã£º");
-		textView5.setText("µç»°£º");
+		textView3.setText("è¯¦æƒ…ï¼š");
+		textView4.setText("åœ°ç‚¹ï¼š");
+		textView5.setText("ç”µè¯ï¼š");
 
 		
 		ImageView imageView_Nearbytype=(ImageView)findViewById(R.id.imageView_Nearbytype);
@@ -96,19 +96,19 @@ private Handler handler =new Handler(){
 		type=jsonObject.optString("type");
 
 
-		if(type.equalsIgnoreCase("³Ô")){
+		if(type.equalsIgnoreCase("åƒ")){
 			imageView_Nearbytype.setImageDrawable(getResources().getDrawable(R.drawable.n1));
 		}else
-		if(type.equalsIgnoreCase("×¡")){
+		if(type.equalsIgnoreCase("ä½")){
 			imageView_Nearbytype.setImageDrawable(getResources().getDrawable(R.drawable.n2));
 		}else
-		if(type.equalsIgnoreCase("ĞĞ")){
+		if(type.equalsIgnoreCase("è¡Œ")){
 			imageView_Nearbytype.setImageDrawable(getResources().getDrawable(R.drawable.n3));
 		}else
-		if(type.equalsIgnoreCase("Íæ")){
+		if(type.equalsIgnoreCase("ç©")){
 			imageView_Nearbytype.setImageDrawable(getResources().getDrawable(R.drawable.n4));
 		}else
-		if(type.equalsIgnoreCase("ÆäËû")){
+		if(type.equalsIgnoreCase("å…¶ä»–")){
 			imageView_Nearbytype.setImageDrawable(getResources().getDrawable(R.drawable.n5));
 		}
 		}

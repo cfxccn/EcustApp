@@ -42,7 +42,7 @@ public class SearchClassroom extends SherlockActivity {
 	private int index;
 	Intent intent;
 	
-	private static final String[] wday = {"ÖÜÈÕ","ÖÜÒ»","ÖÜ¶þ","ÖÜÈý","ÖÜËÄ","ÖÜÎå","ÖÜÁù"};
+	private static final String[] wday = {"å‘¨æ—¥","å‘¨ä¸€","å‘¨äºŒ","å‘¨ä¸‰","å‘¨å››","å‘¨äº”","å‘¨å…­"};
 	private static final String[] during = {"1-2","3-4","5-6","7-8","9-11"};
 	private String cwday;
 	private String cduring;
@@ -112,17 +112,17 @@ public class SearchClassroom extends SherlockActivity {
 				else if(roomsArray.optJSONArray(i).optString(2).equals("C"))
 					roomClist.add(roomsArray.optJSONArray(i).optString(1));	
 			}
-			((TextView)findViewById(R.id.tvRoomA)).setText("A½Ì");
+			((TextView)findViewById(R.id.tvRoomA)).setText("Aæ•™");
 			adapter = new ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,roomAlist);
 			gridView = (GridViewOnScrollView)findViewById(R.id.gvRoomA);
 			gridView.setAdapter(adapter);
 			
-			((TextView)findViewById(R.id.tvRoomB)).setText("B½Ì");
+			((TextView)findViewById(R.id.tvRoomB)).setText("Bæ•™");
 			adapter = new ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,roomBlist);
 			gridView = (GridViewOnScrollView)findViewById(R.id.gvRoomB);
 			gridView.setAdapter(adapter);
 			
-			((TextView)findViewById(R.id.tvRoomC)).setText("C½Ì");
+			((TextView)findViewById(R.id.tvRoomC)).setText("Cæ•™");
 			adapter = new ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line,roomClist);
 			gridView = (GridViewOnScrollView)findViewById(R.id.gvRoomC);
 			gridView.setAdapter(adapter);

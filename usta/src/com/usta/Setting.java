@@ -51,17 +51,17 @@ public class Setting extends SherlockActivity {
 	    		RadioButton radiobtn_jinshan_setting= (RadioButton)findViewById(R.id.radiobtn_jinshan_setting);
 	    		radiobtn_jinshan_setting.setChecked(true);
 	    	}
-	    	final Toast toas1=Toast.makeText(this, "Ğì»ãĞ£Çø-ÒÑ±£´æ", Toast.LENGTH_SHORT);
-	    	final Toast toas2=Toast.makeText(this, "·îÏÍĞ£Çø-ÒÑ±£´æ", Toast.LENGTH_SHORT);
-	    	final Toast toas3=Toast.makeText(this, "½ğÉ½Ğ£Çø-ÒÑ±£´æ", Toast.LENGTH_SHORT);
+	    	final Toast toas1=Toast.makeText(this, "å¾æ±‡æ ¡åŒº-å·²ä¿å­˜", Toast.LENGTH_SHORT);
+	    	final Toast toas2=Toast.makeText(this, "å¥‰è´¤æ ¡åŒº-å·²ä¿å­˜", Toast.LENGTH_SHORT);
+	    	final Toast toas3=Toast.makeText(this, "é‡‘å±±æ ¡åŒº-å·²ä¿å­˜", Toast.LENGTH_SHORT);
 
 	    	RadioGroup group = (RadioGroup)this.findViewById(R.id.radioGroup_area_setting);
-	    	         //°ó¶¨Ò»¸öÄäÃû¼àÌıÆ÷
+	    	         //ç»‘å®šä¸€ä¸ªåŒ¿åç›‘å¬å™¨
 	    	         group.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 	    	             @Override
 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
 	    	                 // TODO Auto-generated method stub
-	    	                 //»ñÈ¡±ä¸üºóµÄÑ¡ÖĞÏîµÄID
+	    	                 //è·å–å˜æ›´åçš„é€‰ä¸­é¡¹çš„ID
 	    	            	 if(arg1==R.id.radiobtn_xuhui_setting){
 	    	     	    	    userInfo.edit().putString("area", "xuhui").commit();  
 	    	            		 toas1.show();

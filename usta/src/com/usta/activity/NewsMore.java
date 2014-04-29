@@ -81,7 +81,7 @@ public class NewsMore extends SherlockActivity {
 
     private Handler newshandler =new Handler(){
     		@Override
-    		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+    		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
     		public void handleMessage(Message msg){
     		super.handleMessage(msg);
 
@@ -108,11 +108,11 @@ public class NewsMore extends SherlockActivity {
 	          listItem.add(map);
 	      }
 			// TODO Auto-generated method stub
-		 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//Êı¾İÔ´ 
-		            R.layout.newstitle_listview,//ListItemµÄXMLÊµÏÖ
-		            //¶¯Ì¬Êı×éÓëImageItem¶ÔÓ¦µÄ×ÓÏî        
+		 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//æ•°æ®æº 
+		            R.layout.newstitle_listview,//ListItemçš„XMLå®ç°
+		            //åŠ¨æ€æ•°ç»„ä¸ImageItemå¯¹åº”çš„å­é¡¹        
 		            new String[] {"textView_newsid","textView_News_title", "textView_News_releasetime","textView_News_source"}, 
-		            //ImageItemµÄXMLÎÄ¼şÀïÃæµÄÒ»¸öImageView,Á½¸öTextView ID
+		            //ImageItemçš„XMLæ–‡ä»¶é‡Œé¢çš„ä¸€ä¸ªImageView,ä¸¤ä¸ªTextView ID
 		            new int[] {R.id.textView_newsid,R.id.textView_News_title,R.id.textView_News_releasetime,R.id.textView_News_source}
 		        );
 		 

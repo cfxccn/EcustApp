@@ -85,7 +85,7 @@ public class JobTitleView extends SherlockActivity {
 
 private Handler handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		initlistview();
@@ -106,7 +106,7 @@ private Handler handler =new Handler(){
           map.put("textView_Job_title",jobJsonObject.optString("infotitile"));
           map.put("textView_Job_treatment", jobJsonObject.optString("jobtreatment"));
           map.put("textView_Job_releasetime", jobJsonObject.optString("releasetime"));
-          if(jobJsonObject.optString("qinban_cert").equalsIgnoreCase("ÊÇ")){
+          if(jobJsonObject.optString("qinban_cert").equalsIgnoreCase("æ˜¯")){
         	  map.put("qb_cert",R.drawable.qb_cert );
           }
           else{
@@ -115,11 +115,11 @@ private Handler handler =new Handler(){
           listItem.add(map);
       }
 		// TODO Auto-generated method stub
-	 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//Êı¾İÔ´ 
-	            R.layout.jobtitle_listview,//ListItemµÄXMLÊµÏÖ
-	            //¶¯Ì¬Êı×éÓëImageItem¶ÔÓ¦µÄ×ÓÏî        
+	 SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,//æ•°æ®æº 
+	            R.layout.jobtitle_listview,//ListItemçš„XMLå®ç°
+	            //åŠ¨æ€æ•°ç»„ä¸ImageItemå¯¹åº”çš„å­é¡¹        
 	            new String[] {"textView_Job_title","textView_Job_treatment", "textView_Job_releasetime","qb_cert","textView_jobid"}, 
-	            //ImageItemµÄXMLÎÄ¼şÀïÃæµÄÒ»¸öImageView,Á½¸öTextView ID
+	            //ImageItemçš„XMLæ–‡ä»¶é‡Œé¢çš„ä¸€ä¸ªImageView,ä¸¤ä¸ªTextView ID
 	            new int[] {R.id.textView_Job_title,R.id.textView_Job_treatment,R.id.textView_Job_releasetime,R.id.imageView_qb_cert,R.id.textView_jobid}
 	        );
 	 list.setAdapter(listItemAdapter);

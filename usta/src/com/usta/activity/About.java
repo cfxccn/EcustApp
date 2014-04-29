@@ -86,8 +86,8 @@ public class About extends SherlockActivity {
 				pBar = new ProgressDialog(About.this);
 				pBar.setIndeterminate(false);
 
-				pBar.setTitle("ÕıÔÚÏÂÔØ");
-				pBar.setMessage("ÇëÉÔºò...");
+				pBar.setTitle("æ­£åœ¨ä¸‹è½½");
+				pBar.setMessage("è¯·ç¨å€™...");
 				pBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
 
@@ -174,7 +174,7 @@ protected void getLatestVersionFromNewThread() {
 			try {
 				buildStringFromServer=String.valueOf(Version.getLatestVersion());
 		    	if(Integer.parseInt(buildStringFromServer)>Integer.parseInt(buildInLocal)) 
-				{//¸üĞÂ
+				{//æ›´æ–°
 		    		update_handler.sendEmptyMessage(0);
 				}else  if(Integer.parseInt(buildStringFromServer)==Integer.parseInt(buildInLocal)) 
 				{
@@ -191,7 +191,7 @@ protected void getLatestVersionFromNewThread() {
 }
 private Handler update_handler =new Handler(){
 	@Override
-	//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+	//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 	public void handleMessage(Message msg){
 	super.handleMessage(msg);
 	initUpdateBtn();
@@ -201,7 +201,7 @@ private Handler update_handler =new Handler(){
 		@Override
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
-		Toast toast2=Toast.makeText(About.this, "¼ì²é²»µ½ĞÂ°æ±¾", Toast.LENGTH_SHORT);
+		Toast toast2=Toast.makeText(About.this, "æ£€æŸ¥ä¸åˆ°æ–°ç‰ˆæœ¬", Toast.LENGTH_SHORT);
 		toast2.show();
 		}
 		};
@@ -209,7 +209,7 @@ private Handler update_handler =new Handler(){
 			@Override
 			public void handleMessage(Message msg){
 			super.handleMessage(msg);
-			Toast toast3=Toast.makeText(About.this, "ÒÑ¾­ÊÇ×îĞÂ°æ±¾", Toast.LENGTH_SHORT);
+			Toast toast3=Toast.makeText(About.this, "å·²ç»æ˜¯æœ€æ–°ç‰ˆæœ¬", Toast.LENGTH_SHORT);
 			toast3.show();
 			}
 			};
@@ -238,7 +238,7 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
 
   protected void initUpdateBtn() {
 	// TODO Auto-generated method stub
-		Toast toast1=Toast.makeText(About.this, "×îĞÂ°æ±¾"+buildStringFromServer, Toast.LENGTH_SHORT);
+		Toast toast1=Toast.makeText(About.this, "æœ€æ–°ç‰ˆæœ¬"+buildStringFromServer, Toast.LENGTH_SHORT);
 		toast1.show();
 		LinearLayout layoutUpdate=(LinearLayout)findViewById(R.id.layoutUpdate);   
 		layoutUpdate.setVisibility(View.VISIBLE);

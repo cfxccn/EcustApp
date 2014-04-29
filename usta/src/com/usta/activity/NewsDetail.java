@@ -79,7 +79,7 @@ public class NewsDetail extends SherlockActivity {
 
 private Handler handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		NewTitle=newsdetailsJsonObject.optString("newstitle").trim();
@@ -92,7 +92,7 @@ private Handler handler =new Handler(){
 		TextView textView_NewsDetail=(TextView)findViewById(R.id.textView_NewsDetail);
 		TextView textView_NewsSource=(TextView)findViewById(R.id.textView_NewsSource);
 		TextView textView4=(TextView)findViewById(R.id.textView4);
-		textView4.setText("À´Ô´£º");
+		textView4.setText("æ¥æºï¼š");
 		textView_NewsTitle.setText(NewTitle);
 		textView_NewsRelease.setText(NewsRelease);
 		textView_NewsDetail.setText(NewsDetail);

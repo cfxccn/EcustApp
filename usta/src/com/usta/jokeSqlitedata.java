@@ -22,7 +22,7 @@ public jokeSqlitedata(Context context) {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		db.execSQL("create table jokes (id integer primary key autoincrement,text varchar(300))");
-		//db.execSQL("insert into jokes(text) value('³óÅ®¸úºÍÉÐÍ¬´¬¶ÉºÓ£¬ºÍÉÐÎÞÒâ¼ä³òÁË³óÅ®Ò»ÑÛ£¬³óÅ®Á¢¿Ì´ó·¢Æ¢Æø£º´óµ¨ÍºÍ·£¬¹âÌì»¯ÈÕÖ®ÏÂ¾¹¸ÒÍµ¿´Á¼¼Ò¸¾Å®£¡ ¡¯ ºÍÉÐÒ»Ìý£¬ÏÅµÃÁ¬Ã¦°ÑÑÛ¾¦±ÕÉÏ¡£³óÅ®Ò»¼û£¬¸üÉúÆøÁË£ºÄãÍµ¿´ÎÒ»¹²»Ëã£¬»¹¸Ò±ÕÉÏÑÛ¾¦ÔÚÐÄÀïÏëÎÒ£¡  ºÍÉÐÎÞ·¨¸úËý½²µÀÀí£¬ÓÖ°ÑÁ³Å¤µ½Ò»±ß¡£³óÅ®µÃÀí²»ÈÄÈË£¬Ë«ÊÖ²æÑü£¬´óÉùÑµ³âµÀ£ºÄã¾õµÃÎÞÁ³¼ûÎÒ£¬ÕýºÃËµÃ÷ÄãÐÄÖÐÓÐ¹í£¡')");
+		//db.execSQL("insert into jokes(text) value('ä¸‘å¥³è·Ÿå’Œå°šåŒèˆ¹æ¸¡æ²³ï¼Œå’Œå°šæ— æ„é—´çž…äº†ä¸‘å¥³ä¸€çœ¼ï¼Œä¸‘å¥³ç«‹åˆ»å¤§å‘è„¾æ°”ï¼šå¤§èƒ†ç§ƒå¤´ï¼Œå…‰å¤©åŒ–æ—¥ä¹‹ä¸‹ç«Ÿæ•¢å·çœ‹è‰¯å®¶å¦‡å¥³ï¼ â€™ å’Œå°šä¸€å¬ï¼Œå“å¾—è¿žå¿™æŠŠçœ¼ç›é—­ä¸Šã€‚ä¸‘å¥³ä¸€è§ï¼Œæ›´ç”Ÿæ°”äº†ï¼šä½ å·çœ‹æˆ‘è¿˜ä¸ç®—ï¼Œè¿˜æ•¢é—­ä¸Šçœ¼ç›åœ¨å¿ƒé‡Œæƒ³æˆ‘ï¼  å’Œå°šæ— æ³•è·Ÿå¥¹è®²é“ç†ï¼ŒåˆæŠŠè„¸æ‰­åˆ°ä¸€è¾¹ã€‚ä¸‘å¥³å¾—ç†ä¸é¥¶äººï¼ŒåŒæ‰‹å‰è…°ï¼Œå¤§å£°è®­æ–¥é“ï¼šä½ è§‰å¾—æ— è„¸è§æˆ‘ï¼Œæ­£å¥½è¯´æ˜Žä½ å¿ƒä¸­æœ‰é¬¼ï¼')");
 	}
 
 	@Override

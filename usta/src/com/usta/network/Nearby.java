@@ -18,11 +18,11 @@ public class Nearby {
 	{
 		
 		int type = 1; 
-		if(_type.equalsIgnoreCase("≥‘")){type=1;}
-		if(_type.equalsIgnoreCase("◊°")){type=2;}
-		if(_type.equalsIgnoreCase("––")){type=3;}
-		if(_type.equalsIgnoreCase("ÕÊ")){type=4;}
-		if(_type.equalsIgnoreCase("∆‰À˚")){type=5;}
+		if(_type.equalsIgnoreCase("ÂêÉ")){type=1;}
+		if(_type.equalsIgnoreCase("‰Ωè")){type=2;}
+		if(_type.equalsIgnoreCase("Ë°å")){type=3;}
+		if(_type.equalsIgnoreCase("Áé©")){type=4;}
+		if(_type.equalsIgnoreCase("ÂÖ∂‰ªñ")){type=5;}
 
 
 		String url="http://172.18.113.24:9092/NeighbourhoodTitles?id="+id+"&type="+type+"";

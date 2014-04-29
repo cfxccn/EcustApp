@@ -88,7 +88,7 @@ public class JobDetail extends SherlockActivity {
 
 private Handler handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		TextView textView_JobTitle=(TextView)findViewById(R.id.textView_JobTitle);
@@ -102,7 +102,7 @@ private Handler handler =new Handler(){
 		TextView textView_JobVia=(TextView)findViewById(R.id.textView_JobVia);
 		ImageView imageView_qbcert=(ImageView)findViewById(R.id.imageView_qbcert);
 		 JobTitle=jobdetailsJsonObject.optString("infotitile"); 
-         JobTime=jobdetailsJsonObject.optString("infotitile"); 
+         JobTime=jobdetailsJsonObject.optString("jobtime"); 
          JobDetail=jobdetailsJsonObject.optString("jobdetail"); 
          JobReq=jobdetailsJsonObject.optString("jobrequire"); 
          JobSite=jobdetailsJsonObject.optString("jobsite"); 
@@ -120,7 +120,7 @@ private Handler handler =new Handler(){
 		textView_JobReq.setText(JobReq);
 		textView_JobTag.setText(JobTag);
 		textView_JobVia.setText(JobVia);
-		if(qbcert.equalsIgnoreCase("ÊÇ")){
+		if(qbcert.equalsIgnoreCase("æ˜¯")){
 			imageView_qbcert.setImageDrawable(getResources().getDrawable(R.drawable.qb_cert));
 		}
 		else{
@@ -133,13 +133,13 @@ private Handler handler =new Handler(){
 		TextView textView5=(TextView)findViewById(R.id.textView5);
 		TextView textView6=(TextView)findViewById(R.id.textView6);
 		TextView textView7=(TextView)findViewById(R.id.textView7);
-		textView1.setText("¹¤×÷ÄÚÈİ£º");
-		textView2.setText("¡¡¡¡Ğ½×Ê£º");
-		textView3.setText("¹¤×÷Ê±¼ä£º");
-		textView4.setText("¹¤×÷µØµã£º");
-		textView5.setText("¹¤×÷ÒªÇó£º");
-		textView6.setText("¡¡¡¡±¸×¢£º");
-		textView7.setText("±¨Ãû·½Ê½£º");
+		textView1.setText("å·¥ä½œå†…å®¹ï¼š");
+		textView2.setText("ã€€ã€€è–ªèµ„ï¼š");
+		textView3.setText("å·¥ä½œæ—¶é—´ï¼š");
+		textView4.setText("å·¥ä½œåœ°ç‚¹ï¼š");
+		textView5.setText("å·¥ä½œè¦æ±‚ï¼š");
+		textView6.setText("ã€€ã€€å¤‡æ³¨ï¼š");
+		textView7.setText("æŠ¥åæ–¹å¼ï¼š");
 
 
 		}

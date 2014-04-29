@@ -66,7 +66,7 @@ public class NearbyViewInMap extends SherlockActivity {
 		
 		setContentView(R.layout.nearby_viewinmap);
 		
-		// ³õÊ¼»¯mapview¶ÔÏó£¬²¢ÇÒÉèÖÃÏÔÊ¾Ëõ·Å¿Ø¼ş
+		// åˆå§‹åŒ–mapviewå¯¹è±¡ï¼Œå¹¶ä¸”è®¾ç½®æ˜¾ç¤ºç¼©æ”¾æ§ä»¶
 		mapView = (MapView) findViewById(R.id.bmapsView_nearby);
 		mapView.setBuiltInZoomControls(true);
 		
@@ -90,7 +90,7 @@ public class NearbyViewInMap extends SherlockActivity {
         getspotsdata() ;
     }
 
-	//×¢ÒâÔÚonResume¡¢onDestroyºÍonPauseÖĞ¿ØÖÆmapviewºÍµØÍ¼¹ÜÀí¶ÔÏóµÄ×´Ì¬
+	//æ³¨æ„åœ¨onResumeã€onDestroyå’ŒonPauseä¸­æ§åˆ¶mapviewå’Œåœ°å›¾ç®¡ç†å¯¹è±¡çš„çŠ¶æ€
 
 	@Override
 	protected void onResume() {
@@ -160,7 +160,7 @@ public class NearbyViewInMap extends SherlockActivity {
 	}
 private Handler map_handler =new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		initspot();

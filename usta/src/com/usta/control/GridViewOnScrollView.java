@@ -17,7 +17,7 @@ public class GridViewOnScrollView extends GridView {
     public GridViewOnScrollView(Context context, AttributeSet attrs, int defStyle) { 
         super(context, attrs, defStyle); 
     } 
-//¸Ã×Ô¶¨Òå¿Ø¼şÖ»ÊÇÖØĞ´ÁËGridViewµÄonMeasure·½·¨£¬Ê¹Æä²»»á³öÏÖ¹ö¶¯Ìõ£¬ScrollViewÇ¶Ì×ListViewÒ²ÊÇÍ¬ÑùµÄµÀÀí£¬²»ÔÙ×¸Êö¡£ 
+//è¯¥è‡ªå®šä¹‰æ§ä»¶åªæ˜¯é‡å†™äº†GridViewçš„onMeasureæ–¹æ³•ï¼Œä½¿å…¶ä¸ä¼šå‡ºç°æ»šåŠ¨æ¡ï¼ŒScrollViewåµŒå¥—ListViewä¹Ÿæ˜¯åŒæ ·çš„é“ç†ï¼Œä¸å†èµ˜è¿°ã€‚ 
     @Override 
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) { 
         int expandSpec = MeasureSpec.makeMeasureSpec( 

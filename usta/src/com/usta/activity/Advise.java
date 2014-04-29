@@ -35,7 +35,7 @@ public class Advise extends SherlockActivity {
 	Intent intent;
     private ArrayAdapter<String> adapter;  
    
-    private static final String[] grade={"´óÒ»","´ó¶ş","´óÈı","´óËÄ","½ÌÖ°¹¤","ÆäËû"};  
+    private static final String[] grade={"å¤§ä¸€","å¤§äºŒ","å¤§ä¸‰","å¤§å››","æ•™èŒå·¥","å…¶ä»–"};  
 
     String _sex="";
     String advise="";
@@ -86,17 +86,17 @@ public class Advise extends SherlockActivity {
 					// TODO Auto-generated method stub
 				}});  
 	    	RadioGroup group = (RadioGroup)this.findViewById(R.id.rgrp_sex);
-	         //°ó¶¨Ò»¸öÄäÃû¼àÌıÆ÷
+	         //ç»‘å®šä¸€ä¸ªåŒ¿åç›‘å¬å™¨
 	         group.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 	             @Override
 	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
 	                 // TODO Auto-generated method stub
-	                 //»ñÈ¡±ä¸üºóµÄÑ¡ÖĞÏîµÄID
+	                 //è·å–å˜æ›´åçš„é€‰ä¸­é¡¹çš„ID
 	            	 if(arg1==R.id.rbtn_sex_male){
-	     	    	    _sex="ÄĞ";
+	     	    	    _sex="ç”·";
 	            	 }	    	            	
 	            	if(arg1==R.id.rbtn_sex_female){
-	     	    	    _sex="Å®";
+	     	    	    _sex="å¥³";
    	            	 }
 	             }
 	         });
@@ -110,16 +110,16 @@ private void sendadvise() {
 //		dm = getResources().getDisplayMetrics();  
 	screenWidth  = Integer.toString(dm.widthPixels); 
 	screenHeight = Integer.toString(dm.heightPixels); 
-	densityDPI = Integer.toString(dm.densityDpi);     // ÆÁÄ»ÃÜ¶È£¨Ã¿´çÏñËØ£º120/160/240/320£©  
+	densityDPI = Integer.toString(dm.densityDpi);     // å±å¹•å¯†åº¦ï¼ˆæ¯å¯¸åƒç´ ï¼š120/160/240/320ï¼‰  
     version = android.os.Build.VERSION.RELEASE;  			        
     model=android.os.Build.MODEL;
 	
 	advise=etext_advise.getText().toString().trim();
-	toast0=Toast.makeText(Advise.this, "ÕıÔÚ·¢ËÍ", Toast.LENGTH_SHORT);
+	toast0=Toast.makeText(Advise.this, "æ­£åœ¨å‘é€", Toast.LENGTH_SHORT);
 
-	toast1=Toast.makeText(Advise.this, "·¢ËÍ³É¹¦", Toast.LENGTH_SHORT);
-	toast2=Toast.makeText(Advise.this, "·´À¡Ê§°Ü£¬Çë¼ì²éÁªÍø", Toast.LENGTH_SHORT);
-	toast3=Toast.makeText(Advise.this, "ÇëÊäÈëÄÚÈİ²¢Ñ¡ÔñĞÔ±ğ", Toast.LENGTH_SHORT);
+	toast1=Toast.makeText(Advise.this, "å‘é€æˆåŠŸ", Toast.LENGTH_SHORT);
+	toast2=Toast.makeText(Advise.this, "åé¦ˆå¤±è´¥ï¼Œè¯·æ£€æŸ¥è”ç½‘", Toast.LENGTH_SHORT);
+	toast3=Toast.makeText(Advise.this, "è¯·è¾“å…¥å†…å®¹å¹¶é€‰æ‹©æ€§åˆ«", Toast.LENGTH_SHORT);
 
 	if("".equals(advise)||_sex==""){
 		toast3.show();
@@ -139,7 +139,7 @@ private Handler adviseSuccess=new Handler(){
 	};
 	private Handler adviseFailure=new Handler(){
 		@Override
-		//µ±ÓĞÏûÏ¢·¢ËÍ³öÀ´µÄÊ±ºò¾ÍÖ´ĞĞHandlerµÄÕâ¸ö·½·¨
+		//å½“æœ‰æ¶ˆæ¯å‘é€å‡ºæ¥çš„æ—¶å€™å°±æ‰§è¡ŒHandlerçš„è¿™ä¸ªæ–¹æ³•
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		toast2.show();

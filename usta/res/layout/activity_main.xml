@@ -124,21 +124,22 @@
                                           android:text="设置"
                                           android:textSize="15.0dip"/>
                                   </LinearLayout>
+
                                   <LinearLayout
-                                 android:id="@+id/lay5"
+                                      android:id="@+id/lay5"
                                       android:layout_width="60dp"
-                                      android:layout_height="match_parent"
-                                      android:orientation="vertical" >
+                                      android:layout_height="match_parent" >
 
                                       <TextView
                                           android:id="@+id/tvlay5"
                                           android:layout_width="wrap_content"
                                           android:layout_height="wrap_content"
-                                          android:layout_gravity="center"
-                                          android:text="聊"
-                                          android:textSize="30dp" />
+                                          android:layout_gravity="center_vertical"
+                                          android:text="下课聊"
+                                          android:textSize="20sp" />
 
                                   </LinearLayout>
+
                               </LinearLayout>
 
                           </LinearLayout>

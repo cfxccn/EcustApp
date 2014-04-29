@@ -9,16 +9,16 @@ import com.baidu.mapapi.map.OverlayItem;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
 /*
- * Òª´¦Àíoverlayµã»÷ÊÂ¼şÊ±ĞèÒª¼Ì³ĞItemizedOverlay
- * ²»´¦Àíµã»÷ÊÂ¼şÊ±¿ÉÖ±½ÓÉú³ÉItemizedOverlay.
+ * è¦å¤„ç†overlayç‚¹å‡»äº‹ä»¶æ—¶éœ€è¦ç»§æ‰¿ItemizedOverlay
+ * ä¸å¤„ç†ç‚¹å‡»äº‹ä»¶æ—¶å¯ç›´æ¥ç”ŸæˆItemizedOverlay.
  */
 public class MapOverlay extends ItemizedOverlay<OverlayItem> {
-    //ÓÃMapView¹¹ÔìItemizedOverlay
+    //ç”¨MapViewæ„é€ ItemizedOverlay
     public MapOverlay(Drawable mark,MapView mapView){
             super(mark,mapView);
     }
     protected boolean onTap(int index) {
-        //ÔÚ´Ë´¦Àíitemµã»÷ÊÂ¼ş
+        //åœ¨æ­¤å¤„ç†itemç‚¹å‡»äº‹ä»¶
     	
     	
     	
@@ -28,12 +28,12 @@ public class MapOverlay extends ItemizedOverlay<OverlayItem> {
         return true;
     }
         public boolean onTap(GeoPoint pt, MapView mapView){
-                //ÔÚ´Ë´¦ÀíMapViewµÄµã»÷ÊÂ¼ş£¬µ±·µ»Ø trueÊ±
+                //åœ¨æ­¤å¤„ç†MapViewçš„ç‚¹å‡»äº‹ä»¶ï¼Œå½“è¿”å› trueæ—¶
 
                 super.onTap(pt,mapView);
                 return false;
         }
-        // ×Ô2.1.1 ¿ªÊ¼£¬Ê¹ÓÃ add/remove ¹ÜÀíoverlay , ÎŞĞèÖØĞ´ÒÔÏÂ½Ó¿Ú
+        // è‡ª2.1.1 å¼€å§‹ï¼Œä½¿ç”¨ add/remove ç®¡ç†overlay , æ— éœ€é‡å†™ä»¥ä¸‹æ¥å£
         /*
         @Override
         protected OverlayItem createItem(int i) {
