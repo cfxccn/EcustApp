@@ -59,7 +59,7 @@ public class MainActivity extends SherlockActivity   {
 	private int offset = 0;// ¶¯»­Í¼Æ¬Æ«ÒÆÁ¿
 	private int bmpW;// ¶¯»­Í¼Æ¬¿í¶È
 	private View view1,view2,view3,view4;//¸÷¸öÒ³¿¨
-	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main,imageView_Chat;
+	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main;
 	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4,tv_tolay5;
 
 	private SharedPreferences userInfo;
@@ -336,7 +336,6 @@ public void onClick(View view) {
 		index=3;
 	viewPager.setCurrentItem(3); break;
 	case R.id.tvlay5: ;
-	case R.id.imageView_Chat: 
 		Intent intent =new Intent();
 		intent.putExtra("index", index);
 		intent.setClass(MainActivity.this, Morningtrain.class);
@@ -356,7 +355,6 @@ protected String nearbyid;
     	iv_tolay2_main = (ImageView) findViewById(R.id.imageView_Home);
     	iv_tolay3_main = (ImageView) findViewById(R.id.imageView_Search);
     	iv_tolay4_main = (ImageView) findViewById(R.id.imageView_Setting);
-    	imageView_Chat = (ImageView) findViewById(R.id.imageView_Chat);
 
     	tv_tolay1 = (TextView) findViewById(R.id.tvlay1);
     	tv_tolay2 = (TextView) findViewById(R.id.tvlay2);
@@ -382,7 +380,6 @@ protected String nearbyid;
 		iv_tolay3_main.setOnClickListener(laylistener);
 		tv_tolay4.setOnClickListener(laylistener);
 		iv_tolay4_main.setOnClickListener(laylistener);
-		imageView_Chat.setOnClickListener(laylistener);
 		tv_tolay5.setOnClickListener(laylistener);
     }
 	JSONArray nearbys ;
