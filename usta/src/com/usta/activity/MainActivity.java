@@ -338,7 +338,7 @@ public void onClick(View view) {
 	case R.id.tvlay5: ;
 		Intent intent =new Intent();
 		intent.putExtra("index", index);
-		intent.setClass(MainActivity.this, Morningtrain.class);
+		intent.setClass(MainActivity.this, PostTitleView.class);
 		startActivityForResult(intent, 0);
 		; break;
 
@@ -390,7 +390,7 @@ protected String nearbyid;
 		init_spiner();
 	}
 
-	private void getNearbyDataFromNewThread(final String _type) {
+	private void getNearbyDataViaNewThread(final String _type) {
 		// TODO Auto-generated method stub
 	   	new Thread(new Runnable(){
 		    @Override
@@ -487,11 +487,11 @@ protected String nearbyid;
 				switch(arg2){
 				
 				case 0:				break;
-				case 1:				getNearbyDataFromNewThread("吃");break;
-				case 2:				getNearbyDataFromNewThread("住");break;
-				case 3:				 getNearbyDataFromNewThread("行");break;
-				case 4:				 getNearbyDataFromNewThread("玩");break;
-				case 5:				 getNearbyDataFromNewThread("其他");break;
+				case 1:				getNearbyDataViaNewThread("吃");break;
+				case 2:				getNearbyDataViaNewThread("住");break;
+				case 3:				 getNearbyDataViaNewThread("行");break;
+				case 4:				 getNearbyDataViaNewThread("玩");break;
+				case 5:				 getNearbyDataViaNewThread("其他");break;
 							 
 
 

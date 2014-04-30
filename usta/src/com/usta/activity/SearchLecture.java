@@ -67,10 +67,10 @@ public class SearchLecture extends SherlockActivity {
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
         listViewNewsMoreTitles = (ListView) findViewById(R.id.listViewLecture);
-        getLectureDataFromNewThread();
+        getLectureDataViaNewThread();
     }
 
-    private void getLectureDataFromNewThread()
+    private void getLectureDataViaNewThread()
     {
     	new Thread(new Runnable(){
     	    @Override
@@ -119,9 +119,9 @@ public class SearchLecture extends SherlockActivity {
         	  JSONObject lectureJsonObject=lectureArray.optJSONObject(i);
               HashMap<String, Object> map = new HashMap<String, Object>();
               map.put("textView_lectureid",lectureJsonObject.optInt("id"));
-              map.put("textView_lecturetitle",lectureJsonObject.optString("lecturetitle"));
-              map.put("textView_report", lectureJsonObject.optString("reporter"));
-              map.put("textView_lecturetime", lectureJsonObject.optString("lecturetime"));
+              map.put("textView_lecturetitle",lectureJsonObject.optString("lecturetitle").trim());
+              map.put("textView_report", lectureJsonObject.optString("reporter").trim());
+              map.put("textView_lecturetime", lectureJsonObject.optString("lecturetime").replace("T", " ").substring(0, 19));
             
               listItem.add(map);
           }

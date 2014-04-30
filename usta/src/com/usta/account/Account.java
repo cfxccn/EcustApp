@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class Account   {
-	private static SharedPreferences userInfo;
 
 
 public static String login(String userEmail,String userPwd){
@@ -138,6 +137,5 @@ public static String login(String userEmail,String userPwd){
 		
 	}
 	
-
 
 }

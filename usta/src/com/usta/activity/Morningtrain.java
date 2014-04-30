@@ -77,13 +77,13 @@ public class Morningtrain extends SherlockActivity {
 					pwd=((EditText)findViewById(R.id.pwd_mt)).getText().toString();
 
 					
-					getDataFromNewThread();
+					getDataViaNewThread();
 					}
 			});
 	    }
 		   private static	String namespace="http://tempuri.org/";
 	        final static  String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";  
-	        protected void  getDataFromNewThread(){
+	        protected void  getDataViaNewThread(){
 	        	new Thread(new Runnable(){
 	        	    @Override
 	        	    public void run() {

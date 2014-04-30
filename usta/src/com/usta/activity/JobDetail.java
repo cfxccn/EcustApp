@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class JobDetail extends SherlockActivity {
     String jobid;
     String JobTitle,JobRelease,qbcert,JobDetail,JobTreatment,JobTime,JobSite,JobReq,JobTag,JobVia;
     JSONObject jobdetailsJsonObject;
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +45,12 @@ public class JobDetail extends SherlockActivity {
         intent = getIntent();
         jobid=intent.getStringExtra("jobid");
         index=intent.getIntExtra("index", 0);
-        getJobDetailsFromNewThread();
+        getJobDetailsViaNewThread();
     }
 
 
     
-    private void getJobDetailsFromNewThread() {
+    private void getJobDetailsViaNewThread() {
 	   
 		// TODO Auto-generated method stub
    	new Thread(new Runnable(){
@@ -101,16 +103,16 @@ private Handler handler =new Handler(){
 		TextView textView_JobTag=(TextView)findViewById(R.id.textView_JobTag);
 		TextView textView_JobVia=(TextView)findViewById(R.id.textView_JobVia);
 		ImageView imageView_qbcert=(ImageView)findViewById(R.id.imageView_qbcert);
-		 JobTitle=jobdetailsJsonObject.optString("infotitile"); 
-         JobTime=jobdetailsJsonObject.optString("jobtime"); 
-         JobDetail=jobdetailsJsonObject.optString("jobdetail"); 
-         JobReq=jobdetailsJsonObject.optString("jobrequire"); 
-         JobSite=jobdetailsJsonObject.optString("jobsite"); 
-         JobTreatment=jobdetailsJsonObject.optString("jobtreatment"); 
-         JobTag=jobdetailsJsonObject.optString("jobtag"); 
-         JobRelease=jobdetailsJsonObject.optString("releasetime"); 
-         qbcert=jobdetailsJsonObject.optString("qinban_cert"); 
-         JobVia=jobdetailsJsonObject.optString("via"); 
+		 JobTitle=jobdetailsJsonObject.optString("infotitile").trim();  
+         JobTime=jobdetailsJsonObject.optString("jobtime").trim(); 
+         JobDetail=jobdetailsJsonObject.optString("jobdetail").trim(); 
+         JobReq=jobdetailsJsonObject.optString("jobrequire").trim(); 
+         JobSite=jobdetailsJsonObject.optString("jobsite").trim(); 
+         JobTreatment=jobdetailsJsonObject.optString("jobtreatment").trim();  
+         JobTag=jobdetailsJsonObject.optString("jobtag").trim(); 
+         JobRelease=jobdetailsJsonObject.optString("releasetime").trim();  
+         qbcert=jobdetailsJsonObject.optString("qinban_cert").trim(); 
+         JobVia=jobdetailsJsonObject.optString("via").trim(); 
 		textView_JobTitle.setText(JobTitle);
 		textView_JobRelease.setText(JobRelease);
 		textView_JobDetail.setText(JobDetail);

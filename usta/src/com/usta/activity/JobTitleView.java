@@ -49,11 +49,11 @@ public class JobTitleView extends SherlockActivity {
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
         list = (ListView) findViewById(R.id.listView_JobTitle);
-        getJobsTitleDataFromNewThread();
+        getJobsTitleDataViaNewThread();
     //    initlistview();
     }
 
-    private void getJobsTitleDataFromNewThread() {
+    private void getJobsTitleDataViaNewThread() {
    	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
@@ -103,10 +103,10 @@ private Handler handler =new Handler(){
     	  JSONObject jobJsonObject=jobsTitilesJsonArray.optJSONObject(i);
           HashMap<String, Object> map = new HashMap<String, Object>();
           map.put("textView_jobid",jobJsonObject.optInt("id"));
-          map.put("textView_Job_title",jobJsonObject.optString("infotitile"));
-          map.put("textView_Job_treatment", jobJsonObject.optString("jobtreatment"));
-          map.put("textView_Job_releasetime", jobJsonObject.optString("releasetime"));
-          if(jobJsonObject.optString("qinban_cert").equalsIgnoreCase("是")){
+          map.put("textView_Job_title",jobJsonObject.optString("infotitile").trim());
+          map.put("textView_Job_treatment", jobJsonObject.optString("jobtreatment").trim());
+          map.put("textView_Job_releasetime", jobJsonObject.optString("releasetime").trim());
+          if(jobJsonObject.optString("qinban_cert").trim().equalsIgnoreCase("是")){
         	  map.put("qb_cert",R.drawable.qb_cert );
           }
           else{

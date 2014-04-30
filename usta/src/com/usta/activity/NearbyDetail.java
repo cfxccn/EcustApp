@@ -40,12 +40,12 @@ public class NearbyDetail extends SherlockActivity {
         intent = getIntent(); 
         nearbyid=intent.getStringExtra("nearbyid");
         index=intent.getIntExtra("index", 0);
-        getNearbyDetailFromNewThread();
+        getNearbyDetailViaNewThread();
     }
 
 
     
-    private void getNearbyDetailFromNewThread() {
+    private void getNearbyDetailViaNewThread() {
 	   
 		// TODO Auto-generated method stub
    	new Thread(new Runnable(){
@@ -85,15 +85,15 @@ private Handler handler =new Handler(){
 		
 		ImageView imageView_Nearbytype=(ImageView)findViewById(R.id.imageView_Nearbytype);
 		
-		textView_nearbyTitle.setText(jsonObject.optString("name"));
-		textView_NearbyIntro.setText(jsonObject.optString("introduction"));
-		TextView_NearbyLocation.setText(jsonObject.optString("location"));
-		TextView_NearbyDetail.setText(jsonObject.optString("detail"));
+		textView_nearbyTitle.setText(jsonObject.optString("name").trim());
+		textView_NearbyIntro.setText(jsonObject.optString("introduction").trim());
+		TextView_NearbyLocation.setText(jsonObject.optString("location").trim());
+		TextView_NearbyDetail.setText(jsonObject.optString("detail").trim());
 		
-		TextView_NearbyPhone.setText(jsonObject.optString("phone"));
+		TextView_NearbyPhone.setText(jsonObject.optString("phone").trim());
 
 		
-		type=jsonObject.optString("type");
+		type=jsonObject.optString("type").trim();
 
 
 		if(type.equalsIgnoreCase("吃")){

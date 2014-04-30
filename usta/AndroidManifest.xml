@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.usta"
-    android:versionCode="18074"
-    android:versionName="18074" >
+    android:versionCode="18087"
+    android:versionName="18087" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -136,14 +136,22 @@
             android:name="com.usta.activity.Register"
             android:label="注册帐号" >
         </activity>
-                <activity
+        <activity
             android:name="com.usta.activity.NewsMore"
             android:label="更多新闻" >
         </activity>
-                        <activity
+        <activity
             android:name="com.usta.activity.LectureDetail"
             android:label="讲座详情" >
         </activity>
+           <activity
+            android:name="com.usta.activity.PostTitleView"
+            android:label="下课聊" >
+        </activity>
+                     <activity
+            android:name="com.usta.activity.PostDetails"
+            android:label="下课聊-回复" >
+        </activity>              
     </application>
 
 </manifest>

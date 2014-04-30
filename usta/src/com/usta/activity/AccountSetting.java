@@ -99,7 +99,7 @@ private void initbtn() {
 				}
 		    	Toast0.show();
 
-				loginFromNewThread();
+				loginViaNewThread();
 				
 			}
 		});
@@ -176,7 +176,7 @@ private Handler loginSuccess =new Handler(){
 				}
 				};
 
-protected void loginFromNewThread() {
+protected void loginViaNewThread() {
 	// TODO Auto-generated method stub
 	new Thread(new Runnable(){
 	    @Override

@@ -117,7 +117,7 @@ btn_RegSubmit.setOnClickListener(new OnClickListener() {
 
 		}else{
 			}
-		registerFromNewThread();
+		registerViaNewThread();
 	}
 	
 });
@@ -155,7 +155,7 @@ btn_RegSubmit.setOnClickListener(new OnClickListener() {
 				};
 
 
-protected void registerFromNewThread() {
+protected void registerViaNewThread() {
 	// TODO Auto-generated method stub
 	new Thread(new Runnable(){
 	    @Override

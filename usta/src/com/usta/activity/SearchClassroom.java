@@ -74,11 +74,11 @@ public class SearchClassroom extends SherlockActivity {
 			
 			@Override
 			public void onClick(View v) {
-				getEmptyRoomServerDataFromNewThread();
+				getEmptyRoomServerDataViaNewThread();
 			}
 		});
     }
-    private void getEmptyRoomServerDataFromNewThread()
+    private void getEmptyRoomServerDataViaNewThread()
     {
     	new Thread(new Runnable(){
     	    @Override

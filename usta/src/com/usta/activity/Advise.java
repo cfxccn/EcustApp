@@ -125,7 +125,7 @@ private void sendadvise() {
 		toast3.show();
 		return ;
 	}
-	sendAdviseFromNewThread();
+	sendAdviseViaNewThread();
 }
 private Handler adviseSuccess=new Handler(){
 	@Override
@@ -146,7 +146,7 @@ private Handler adviseSuccess=new Handler(){
 
 		}
 		};
-private void sendAdviseFromNewThread() {
+private void sendAdviseViaNewThread() {
 	// TODO Auto-generated method stub
 
 	new Thread(new Runnable(){

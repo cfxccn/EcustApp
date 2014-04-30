@@ -79,7 +79,7 @@ public class SchoolBus extends SherlockActivity
 				day=spinnerDay.getSelectedItem().toString();
 				type=spinnerType.getSelectedItem().toString();
 				route=spinnerRoute.getSelectedItem().toString();
-				getBusDataFromNewThread();
+				getBusDataViaNewThread();
 				
 			}
 		});
@@ -114,10 +114,10 @@ public class SchoolBus extends SherlockActivity
 			      {
 			    	  JSONObject busJsonObject=busJsonArray.optJSONObject(i);
 			          HashMap<String, Object> map = new HashMap<String, Object>();
-			          map.put("textViewTime",busJsonObject.optString("time"));
-			          map.put("textView_PUPoint","上车点:"+busJsonObject.optString("PUPoint"));
-			          map.put("textView_Destination", "下车点:"+busJsonObject.optString("Destination"));
-			          map.put("textViewPrice", busJsonObject.optString("price"));
+			          map.put("textViewTime",busJsonObject.optString("time").trim());
+			          map.put("textView_PUPoint","上车点:"+busJsonObject.optString("PUPoint").trim());
+			          map.put("textView_Destination", "下车点:"+busJsonObject.optString("Destination").trim());
+			          map.put("textViewPrice", busJsonObject.optString("price").trim());
 			         
 			          listItem.add(map);
 			      }
@@ -132,7 +132,7 @@ public class SchoolBus extends SherlockActivity
 				 listViewBus.setAdapter(listItemAdapter);
 			 }
 
-			  private void getBusDataFromNewThread() {
+			  private void getBusDataViaNewThread() {
 			   	new Thread(new Runnable(){
 				    @Override
 				    public void run() {

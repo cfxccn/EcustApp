@@ -43,12 +43,12 @@ public class LectureDetail extends SherlockActivity {
         intent = getIntent();
         lectureid=intent.getStringExtra("lectureid");
         index=intent.getIntExtra("index", 0);
-        getLectureDetailsFromNewThread();
+        getLectureDetailsViaNewThread();
     }
 
 
     
-    private void getLectureDetailsFromNewThread() {
+    private void getLectureDetailsViaNewThread() {
 	   
 		// TODO Auto-generated method stub
    	new Thread(new Runnable(){
@@ -86,13 +86,13 @@ private Handler handler =new Handler(){
 		TextView textView_Remark=(TextView)findViewById(R.id.textView_Remark);
 		TextView textView_Depart=(TextView)findViewById(R.id.textView_Depart);
 		
-		lecturetitle=lectureDetailsJsonObject.optString("lecturetitle"); 
-		lecturetime=lectureDetailsJsonObject.optString("lecturetime"); 
-		lecturesite=lectureDetailsJsonObject.optString("lecturesite"); 
-		reporter=lectureDetailsJsonObject.optString("reporter"); 
-		depart=lectureDetailsJsonObject.optString("depart"); 
-		remark=lectureDetailsJsonObject.optString("remark"); 
-		campus=lectureDetailsJsonObject.optString("campus"); 
+		lecturetitle=lectureDetailsJsonObject.optString("lecturetitle").trim(); 
+		lecturetime=lectureDetailsJsonObject.optString("lecturetime").replace("T", " "); 
+		lecturesite=lectureDetailsJsonObject.optString("lecturesite").trim(); 
+		reporter=lectureDetailsJsonObject.optString("reporter").trim(); 
+		depart=lectureDetailsJsonObject.optString("depart").trim(); 
+		remark=lectureDetailsJsonObject.optString("remark").trim(); 
+		campus=lectureDetailsJsonObject.optString("campus").trim(); 
 
 		textView_LectureTitle.setText(lecturetitle);
 		textView_LectureTime.setText(lecturetime);

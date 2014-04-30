@@ -44,12 +44,12 @@ public class NewsDetail extends SherlockActivity {
         intent = getIntent();
         newsid=intent.getStringExtra("newsid");
         index=intent.getIntExtra("index", 0);
-        getNewsDetailsFromNewThread();
+        getNewsDetailsViaNewThread();
     }
 
 
     
-    private void getNewsDetailsFromNewThread() {
+    private void getNewsDetailsViaNewThread() {
 	   
 		// TODO Auto-generated method stub
    	new Thread(new Runnable(){

@@ -17,6 +17,11 @@
             <include
             android:layout_height="wrap_content"
             layout="@layout/post_postback_listview" />
+            <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+         android:background="#000000"
+ />
         </LinearLayout>
 <ListView
             android:id="@+id/listViewPostBack"
@@ -24,13 +29,18 @@
             android:layout_height="wrap_content" >
         </ListView>
     </LinearLayout>
-
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
     <LinearLayout
         android:id="@+id/linearLayoutText"
         
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/view1"
         android:layout_alignParentLeft="true"
         android:orientation="vertical" >
 
@@ -55,9 +65,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                     android:singleLine="true"
+                
                 android:hint="你想回复的话~" >
 
-                <requestFocus />
             </EditText>
 
             <LinearLayout
