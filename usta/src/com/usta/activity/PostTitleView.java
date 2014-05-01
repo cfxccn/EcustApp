@@ -79,7 +79,8 @@ public class PostTitleView extends SherlockActivity {
         toast4=Toast.makeText(this, "发送失败 请检查网络", Toast.LENGTH_SHORT);
         toast4=Toast.makeText(this, "发送失败 请检查网络", Toast.LENGTH_SHORT);
         toast5=Toast.makeText(this, "全部加载完", Toast.LENGTH_SHORT);
-
+   	 View footerView = ((LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footview, null, false);
+   	 listViewPost.addFooterView(footerView);
     }
     private void initLocalUserInfo() {
 		// TODO Auto-generated method stub
@@ -113,15 +114,12 @@ public class PostTitleView extends SherlockActivity {
 	    	try {
 	    		postsTitilesJsonArray=Post.getPostsTitles(lastPostid);
 	    		if(postsTitilesJsonArray!=null){
-			    //	 handler.sendEmptyMessage(0);
 	    			 if(postsTitilesJsonArray.length()==0){
 	    				 noMore.sendEmptyMessage(0);
 	 	    		}
 			    	 loadMore.sendEmptyMessage(0);
-
 	    		}
 	    		else {
-	    			
 	    			return;
 	    		}
 			} catch (Exception e) {
@@ -146,7 +144,6 @@ public class PostTitleView extends SherlockActivity {
 			}
 		});
 	}
-
 private Handler loadMore=new Handler(){
 	@Override
 	public void handleMessage(Message msg){
@@ -164,20 +161,16 @@ private Handler loadMore=new Handler(){
           listItem.add(map);
       }
 	 listViewPost.setAdapter(listItemAdapter);
-
 	}
 	};
-
 private Handler newPostSuccess=new Handler(){
 	@Override
 	public void handleMessage(Message msg){
 	super.handleMessage(msg);
 	toast2.show();
 	editTextNewPost.setText("");
-	//lastindex=0;
+	lastPostid=Integer.MAX_VALUE;
     getPostTitlesDataViaNewThread();
-
-
 	}
 	};
 	private Handler noMore=new Handler(){
@@ -198,14 +191,11 @@ private Handler newPostSuccess=new Handler(){
 		};
 		private Handler newPostFailure=new Handler(){
 			@Override
-			//当有消息发送出来的时候就执行Handler的这个方法
 			public void handleMessage(Message msg){
 			super.handleMessage(msg);
 			toast3.show();
 			}
 			};
-			
-			
     private void newPostViaNewThread() {
     	// TODO Auto-generated method stub
     	new Thread(new Runnable(){
@@ -223,7 +213,6 @@ private Handler newPostSuccess=new Handler(){
     				}
     	    }
     	}).start();
-    	
     }
 
 private Handler handler =new Handler(){
@@ -256,11 +245,9 @@ private Handler handler =new Handler(){
 	            //ImageItem的XML文件里面的一个ImageView,两个TextView ID
 	            new int[] {R.id.textViewPBid,R.id.textViewPBText,R.id.textViewPBTime,R.id.textViewPBUser}
 	        );
-	 View footerView = ((LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footview, null, false);
-	 listViewPost.addFooterView(footerView);
+
 	 listViewPost.setAdapter(listItemAdapter);
 	 listViewPost.setOnItemClickListener(new OnItemClickListener() {  
-		  
          @Override  
          public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,  
                  long arg3) {  
@@ -275,7 +262,6 @@ private Handler handler =new Handler(){
          }  
      }); 
 	 initBtnLoadMore();
-	 
  }
 private void initBtnLoadMore() {
 	// TODO Auto-generated method stub
@@ -283,16 +269,9 @@ private void initBtnLoadMore() {
 	btnLoadMoreButton.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
-			//getPostTitlesDataViaNewThread();
 			loadMorePostTitlesDataViaNewThread();
-
-
-			
 		}
 	});
-	
-	
 }
 public boolean onKeyDown(int keyCode, KeyEvent event) {  
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  
@@ -302,13 +281,8 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
         }  
         return super.onKeyDown(keyCode, event);  
     } 
-    
-
-
-
 public boolean onOptionsItemSelected(MenuItem item) {  
     switch(item.getItemId()){  
-
   case android.R.id.home:  
 	        setResult(RESULT_OK, intent);  
 	        finish();  	        
