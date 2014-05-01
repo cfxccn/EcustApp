@@ -20,9 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Post {
-	public static JSONArray getPostsTitles( )
+	public static JSONArray getPostsTitles(int lastindex)
 	{
-		String url="http://172.18.113.24:9092/PostsTitles";
+		String url="http://172.18.113.24:9092/PostsTitles?postid="+lastindex+"";
 		HttpClient client = new DefaultHttpClient();
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
