@@ -30,6 +30,7 @@ public class NearbyDetail extends SherlockActivity {
 
 	String  type;
     String nearbyid;
+    String nearbytype;
     JSONObject jsonObject;
     
     @Override
@@ -39,6 +40,7 @@ public class NearbyDetail extends SherlockActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
         intent = getIntent(); 
         nearbyid=intent.getStringExtra("nearbyid");
+        nearbytype=intent.getStringExtra("nearbytype");       
         index=intent.getIntExtra("index", 0);
         getNearbyDetailViaNewThread();
     }
@@ -52,7 +54,7 @@ public class NearbyDetail extends SherlockActivity {
 	    @Override
 	    public void run() {
 	    	try {
-	    		jsonObject= Nearby.getNearbyDetails(Integer.parseInt(nearbyid));
+	    		jsonObject= Nearby.getNearbyDetails(nearbytype,Integer.parseInt(nearbyid));
 	    		if(jsonObject!=null){	
 	    			handler.sendEmptyMessage(0);
 	    			}

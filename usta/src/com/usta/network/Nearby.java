@@ -12,6 +12,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.usta.R.string;
+
 public class Nearby {
 
 	public static JSONArray getNearbyTitles(String _type, int id)
@@ -51,11 +53,18 @@ public class Nearby {
 		return null;
 	}
 	
-	public static JSONObject getNearbyDetails( int id)
+	public static JSONObject getNearbyDetails(String _type, int id)
 	{
+		int type=1;
+		if(_type.equalsIgnoreCase("吃")){type=1;}
+		if(_type.equalsIgnoreCase("住")){type=2;}
+		if(_type.equalsIgnoreCase("行")){type=3;}
+		if(_type.equalsIgnoreCase("玩")){type=4;}
+		if(_type.equalsIgnoreCase("其他")){type=5;}
 
 
-		String url="http://172.18.113.24:9092/neighbourhooddetail?id="+id+"";
+
+		String url="http://172.18.113.24:9092/neighbourhooddetail?type="+type+"&id="+id+"";
 //		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
 		HttpClient client = new DefaultHttpClient();
 		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);

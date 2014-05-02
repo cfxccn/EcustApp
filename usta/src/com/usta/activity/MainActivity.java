@@ -348,6 +348,7 @@ public void onClick(View view) {
 } 
 };
 protected String nearbyid; 
+protected String nearbytype; 
 
 
     private void init_LayInstru() {
@@ -389,8 +390,8 @@ protected String nearbyid;
 	{
 		init_spiner();
 	}
-
-	private void getNearbyDataViaNewThread(final String _type) {
+	String _type;
+	private void getNearbyDataViaNewThread() {
 		// TODO Auto-generated method stub
 	   	new Thread(new Runnable(){
 		    @Override
@@ -398,8 +399,8 @@ protected String nearbyid;
 		    	try {
 		    		nearbys=Nearby.getNearbyTitles(_type,Integer.MAX_VALUE);
 			    	 if(nearbys!=null)nearby_handler.sendEmptyMessage(0);
-			    	 else 					return;
-
+			    	 else 	
+			    		 return;
 				} catch (Exception e) {
 					e.printStackTrace();
 					return;
@@ -413,7 +414,6 @@ protected String nearbyid;
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		init_NearbyList();
-
 		}
 		};
 		
@@ -428,13 +428,13 @@ protected String nearbyid;
 		{
 			nearby=nearbys.getJSONObject(i);
 			HashMap<String, Object> map = new HashMap<String, Object>();
-				map.put("no",1+i);
-	          map.put("title",nearby.getString("name"));
-	          map.put("location",nearby.getString("location"));
-	          map.put("introduction",nearby.getString("introduction"));
-				map.put("id",nearby.getInt("id"));
-
-	          listItem.add(map);
+			map.put("no",1+i);
+			map.put("title",nearby.getString("name"));
+			map.put("location",nearby.getString("location"));
+			map.put("introduction",nearby.getString("introduction"));
+			map.put("id",nearby.getInt("id"));
+			map.put("type",nearby.getString("type"));
+			listItem.add(map);
 		}
 	} catch (JSONException e) {
 		// TODO Auto-generated catch block
@@ -454,10 +454,12 @@ protected String nearbyid;
 	         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,  
 	                 long arg3) {  
 	                HashMap<String, Object> map = (HashMap<String, Object>) listView_nearby.getItemAtPosition(arg2);  
-	                nearbyid= map.get("id").toString();  
+	                nearbyid= map.get("id").toString();
+	                nearbytype= map.get("type").toString();   
 	 				Intent intent =new Intent();
 	 				intent.putExtra("index", index);
 	 				intent.putExtra("nearbyid", nearbyid);
+	 				intent.putExtra("nearbytype", nearbytype);
 	 				intent.setClass(MainActivity.this, NearbyDetail.class);
 	 				startActivityForResult(intent, 0);
 
@@ -487,15 +489,25 @@ protected String nearbyid;
 				switch(arg2){
 				
 				case 0:				break;
-				case 1:				getNearbyDataViaNewThread("吃");break;
-				case 2:				getNearbyDataViaNewThread("住");break;
-				case 3:				 getNearbyDataViaNewThread("行");break;
-				case 4:				 getNearbyDataViaNewThread("玩");break;
-				case 5:				 getNearbyDataViaNewThread("其他");break;
-							 
-
-
-				
+				case 1:				
+					_type="吃";
+					getNearbyDataViaNewThread();
+					break;
+				case 2:
+					_type="住";
+					getNearbyDataViaNewThread();
+					break;
+				case 3:	
+					_type="行";
+					getNearbyDataViaNewThread();
+					break;
+				case 4:
+					_type="玩";
+					getNearbyDataViaNewThread();
+					break;
+				case 5:
+					_type="其他";
+					getNearbyDataViaNewThread();break;
 				}
 			}
 

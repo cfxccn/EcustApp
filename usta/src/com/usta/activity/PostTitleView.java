@@ -56,6 +56,8 @@ public class PostTitleView extends SherlockActivity {
 	 Toast toast3;
 	 Toast toast4;
 	 Toast toast5;
+	Button btnLoadMoreButton;
+	int lastindex;
 
 	 ArrayList<HashMap<String, Object>> listItem;
 	 SimpleAdapter listItemAdapter;
@@ -148,8 +150,10 @@ private Handler loadMore=new Handler(){
 	@Override
 	public void handleMessage(Message msg){
 	super.handleMessage(msg);
+	  int oldlastindex=lastindex;
 	  for(int i=0;i<postsTitilesJsonArray.length();i++)
       {
+		  lastindex++;
     	  JSONObject postJsonObject=postsTitilesJsonArray.optJSONObject(i);
     	  JSONObject userJsonObject=postJsonObject.optJSONObject("user");
           HashMap<String, Object> map = new HashMap<String, Object>();
@@ -161,6 +165,7 @@ private Handler loadMore=new Handler(){
           listItem.add(map);
       }
 	 listViewPost.setAdapter(listItemAdapter);
+	 listViewPost.setSelection(oldlastindex-1);
 	}
 	};
 private Handler newPostSuccess=new Handler(){
@@ -227,6 +232,7 @@ private Handler handler =new Handler(){
 	  listItem = new ArrayList<HashMap<String, Object>>();
       for(int i=0;i<postsTitilesJsonArray.length();i++)
       {
+		  lastindex++;
     	  JSONObject postJsonObject=postsTitilesJsonArray.optJSONObject(i);
     	  JSONObject userJsonObject=postJsonObject.optJSONObject("user");
           HashMap<String, Object> map = new HashMap<String, Object>();
@@ -265,11 +271,12 @@ private Handler handler =new Handler(){
  }
 private void initBtnLoadMore() {
 	// TODO Auto-generated method stub
-	Button btnLoadMoreButton=(Button)findViewById(R.id.btnLoadMore);
+	btnLoadMoreButton=(Button)findViewById(R.id.btnLoadMore);
 	btnLoadMoreButton.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View arg0) {
 			loadMorePostTitlesDataViaNewThread();
+
 		}
 	});
 }
