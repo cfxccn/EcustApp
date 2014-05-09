@@ -29,6 +29,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 
 import android.view.Menu;
@@ -53,8 +54,17 @@ public class Map extends SherlockActivity {
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
 		setContentView(R.layout.map);
+		
         map = (ImageMap) findViewById(R.id.imagemap);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_fengxian, new BitmapFactory.Options()); 
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int newwidth = 1187;
+        float scale = ((float)newwidth)/width;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scale,scale);
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+        
         map.setMapBitmap(bitmap);
         View bubble = getLayoutInflater().inflate(R.layout.popup,null);
 
@@ -64,8 +74,8 @@ public class Map extends SherlockActivity {
             public void onDisplay(Shape shape, View bubbleView) {
                 ImageView logo = (ImageView) bubbleView.findViewById(R.id.logo);         
                 TextView name = (TextView) bubbleView.findViewById(R.id.name); 
-                name.setText("abc"); 
-                logo.setImageResource(R.drawable.kfc_logo);
+                name.setText(shape.tag.toString()); 
+                logo.setImageResource(R.drawable.ecustlogo);
             }
         });
         showPostion(); 
@@ -73,19 +83,51 @@ public class Map extends SherlockActivity {
     }
 	public boolean showPostion(){ 
 		
-		CircleShape a = new CircleShape("a", Color.RED);
-		a.setValues(String.format("%.5f,%.5f,15", (double)150, (double)150));
-		map.addShape(a);
+		float Aclass[] = {769,463,830,514,801,559,744,518};
+		PolyShape b = new PolyShape("A教", Color.TRANSPARENT);
+		b.setValues(Aclass);
+		map.addShape(b);
+		b.setAlaph(0);
 		
-		float aa[] = {10, 10, 10, 20, 20, 30, 30, 20, 30, 10, 10, 10};
-		
-		PolyShape b = new PolyShape("b", Color.RED);
-		b.setValues(aa);
+		float Bclass[] = {846,530,877,576,897,594,864,596,820,567};
+		b = new PolyShape("B教", Color.TRANSPARENT);
+		b.setValues(Bclass);
+		b.setAlaph(0);
 		map.addShape(b);
 		
-		CircleShape black = new CircleShape("NO", Color.TRANSPARENT);
-		black.setValues(String.format("%.5f,%.5f,15",(double)1000,(double)700));
+		float Cclass[] = {732,545,780,581,778,592,725,552};
+		b = new PolyShape("C教", Color.TRANSPARENT);
+		b.setValues(Cclass);
+		b.setAlaph(0);
+		map.addShape(b);
+		
+		float Dclass[] = {808,596,858,625,856,636,808,603};
+		b = new PolyShape("D教", Color.TRANSPARENT);
+		b.setValues(Dclass);
+		b.setAlaph(0);
+		map.addShape(b);
+		
+		float playgroud[] = {913,654,980,551,1036,601,987,684};
+		b = new PolyShape("足球场(运动场)", Color.TRANSPARENT);
+		b.setValues(playgroud);
+		b.setAlaph(0);
+		map.addShape(b);
+		
+		CircleShape black = new CircleShape("高大上的图书馆", Color.TRANSPARENT);
+		black.setValues(String.format("%.5f,%.5f,45",(double)607,(double)523));
 		map.addShapeAndRefToBubble(black);
+		black.setAlaph(0);
+		
+		black = new CircleShape("E教英语楼", Color.TRANSPARENT);
+		black.setValues(String.format("%.5f,%.5f,40",(double)676,(double)436));
+		map.addShapeAndRefToBubble(black);
+		black.setAlaph(0);		
+
+		black = new CircleShape("体育馆", Color.TRANSPARENT);
+		black.setValues(String.format("%.5f,%.5f,35",(double)890,(double)760));
+		map.addShapeAndRefToBubble(black);
+		black.setAlaph(0);
+		
 		return true;
 	}
 
