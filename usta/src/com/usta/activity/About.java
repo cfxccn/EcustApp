@@ -111,7 +111,7 @@ public class About extends SherlockActivity {
       pBar.show();
       new Thread() {
               public void run() {
-            	  	String url="http://172.18.113.24:9092/update";
+            	  	String url="http://59.78.93.208:9092/update";
             	  	HttpClient client = new DefaultHttpClient();
             	  	client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
             	  	client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000);
@@ -160,7 +160,7 @@ protected void startUpdateFromNewThread() {
 	new Thread(new Runnable() {
 		@Override
 		public void run() {
-			final Uri uri =Uri.parse("http://172.18.113.24:9092/update");          
+			final Uri uri =Uri.parse("http://59.78.93.208:9092/update");          
 	        final Intent it = new Intent(Intent.ACTION_VIEW, uri);
 	        startActivity(it);
 		}

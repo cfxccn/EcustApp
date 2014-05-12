@@ -27,7 +27,7 @@ public class Nearby {
 		if(_type.equalsIgnoreCase("其他")){type=5;}
 
 
-		String url="http://172.18.113.24:9092/NeighbourhoodTitles?id="+id+"&type="+type+"";
+		String url="http://59.78.93.208:9092/NeighbourhoodTitles?id="+id+"&type="+type+"";
 		HttpClient client = new DefaultHttpClient();
 		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
@@ -64,8 +64,8 @@ public class Nearby {
 
 
 
-		String url="http://172.18.113.24:9092/neighbourhooddetail?type="+type+"&id="+id+"";
-//		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
+		String url="http://59.78.93.208:9092/neighbourhooddetail?type="+type+"&id="+id+"";
+//		String url="http://59.78.93.208:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
 		HttpClient client = new DefaultHttpClient();
 		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );

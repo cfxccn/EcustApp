@@ -16,8 +16,8 @@ public class Classroom {
 
 	public static JSONArray getRoomData(String wday, String during)
 	{
-		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday="+wday+"&during="+during;
-//		String url="http://172.18.113.24:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
+		String url="http://59.78.93.208:8080/testssh/getEmptyRoom.action?wday="+wday+"&during="+during;
+//		String url="http://59.78.93.208:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";
 		
 		HttpClient client = new DefaultHttpClient();
 		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);

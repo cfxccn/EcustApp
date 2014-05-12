@@ -28,7 +28,7 @@ public class Account   {
 
 
 public static String login(String userEmail,String userPwd){
-	String url="http://172.18.113.24:9092/UserLogin";
+	String url="http://59.78.93.208:9092/UserLogin";
 
 	HttpClient client = new DefaultHttpClient();
     client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
@@ -66,7 +66,7 @@ public static String login(String userEmail,String userPwd){
 	}
 
 	public static String register(String userName,String userEmail,String userPwd,String userMobile ,String userDepart,String userNum,String userRealName){
-	String url="http://172.18.113.24:9092/UserRegister";
+	String url="http://59.78.93.208:9092/UserRegister";
 	HttpClient client = new DefaultHttpClient();
 	 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 	    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
@@ -106,7 +106,7 @@ public static String login(String userEmail,String userPwd){
 	
 
 	public static String verify(String userEmail,String userKey){
-	String url="http://172.18.113.24:9092/UserVerify";
+	String url="http://59.78.93.208:9092/UserVerify";
 	HttpClient client = new DefaultHttpClient();
 	 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 	client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );

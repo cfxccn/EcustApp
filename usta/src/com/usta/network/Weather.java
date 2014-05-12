@@ -16,7 +16,7 @@ public class Weather {
 	public static JSONObject getWeatherDetails()
 	{
 		// String url="http://www.pm25.in/api/querys/only_aqi.json?city=shanghai&token=5j1znBVAsnSf5xQyNQyq&stations=no";
-		 String url="http://172.18.113.24:9092/weather";
+		 String url="http://59.78.93.208:9092/weather";
 		HttpClient client = new DefaultHttpClient();
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 	    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );

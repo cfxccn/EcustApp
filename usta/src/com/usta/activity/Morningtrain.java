@@ -82,7 +82,7 @@ public class Morningtrain extends SherlockActivity {
 			});
 	    }
 		   private static	String namespace="http://tempuri.org/";
-	        final static  String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";  
+	        final static  String serviceUrl = "http://59.78.93.208:9090/Service1.asmx";  
 	        protected void  getDataViaNewThread(){
 	        	new Thread(new Runnable(){
 	        	    @Override

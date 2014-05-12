@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public class Post {
 	public static JSONArray getPostsTitles(int lastindex)
 	{
-		String url="http://172.18.113.24:9092/PostsTitles?postid="+lastindex+"";
+		String url="http://59.78.93.208:9092/PostsTitles?postid="+lastindex+"";
 		HttpClient client = new DefaultHttpClient();
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
@@ -48,7 +48,7 @@ public class Post {
 	
 	public static JSONArray getPostDetails(String postid)
 	{
-		String url="http://172.18.113.24:9092/PostDetails?postid="+postid+"";
+		String url="http://59.78.93.208:9092/PostDetails?postid="+postid+"";
 		HttpClient client = new DefaultHttpClient();
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
@@ -72,7 +72,7 @@ public class Post {
 	}
 
 	public static int newPost(String posttitle, String text, String useremail, String userkey){
-	String url="http://172.18.113.24:9092/NewPost";
+	String url="http://59.78.93.208:9092/NewPost";
 	HttpClient client = new DefaultHttpClient();
 	client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 	client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000);
@@ -101,7 +101,7 @@ public class Post {
 	}
 
 	public static int newPostBack(String postid, String text, String useremail, String userkey){
-	String url="http://172.18.113.24:9092/NewPostBack";
+	String url="http://59.78.93.208:9092/NewPostBack";
 	HttpClient client = new DefaultHttpClient();
 	client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 	client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000);

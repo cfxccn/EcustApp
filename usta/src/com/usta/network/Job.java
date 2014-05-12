@@ -17,7 +17,7 @@ public class Job {
 
 	public static JSONArray getJobTitles( )
 	{
-		String url="http://172.18.113.24:9092/JobsTitles";
+		String url="http://59.78.93.208:9092/JobsTitles";
 		HttpClient client = new DefaultHttpClient();
 		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );
@@ -46,7 +46,7 @@ public class Job {
 	
 	public static JSONObject getJobDetails(String id)
 	{
-		String url="http://172.18.113.24:9092/JobDetails?id="+id+"";
+		String url="http://59.78.93.208:9092/JobDetails?id="+id+"";
 		HttpClient client = new DefaultHttpClient();
 		 client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		    client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );

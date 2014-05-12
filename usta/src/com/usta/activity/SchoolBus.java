@@ -41,7 +41,7 @@ import android.widget.Toast;
 public class SchoolBus extends SherlockActivity 
 {
 	private int index;
-	final private static String path1="http://172.18.113.24:8080/jsonProjject/servlet/action2?action_flag=schoolbus";
+	final private static String path1="http://59.78.93.208:8080/jsonProjject/servlet/action2?action_flag=schoolbus";
 	Intent intent;
 	private static String day,type,route;
 	private static final String[] mDay={"周一","周二","周三","周四","周五","周六","周日"};

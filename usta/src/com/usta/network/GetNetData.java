@@ -74,8 +74,8 @@ public class GetNetData {
 	{
 		department= URLEncoder.encode(department, "UTF-8");
 		department= URLEncoder.encode(department, "UTF-8");
-		String url="http://172.18.113.24:8080/testssh/getLecture.action?start="+start+"&department="+department;
-//		String url="http://172.18.113.24:8080/testssh/getLecture.action?start=5&department=xinxi";
+		String url="http://59.78.93.208:8080/testssh/getLecture.action?start="+start+"&department="+department;
+//		String url="http://59.78.93.208:8080/testssh/getLecture.action?start=5&department=xinxi";
 		HttpClient client = new DefaultHttpClient();
 		HttpPost request;
 		try {
@@ -99,7 +99,7 @@ public class GetNetData {
 	
 	public static JSONObject _getjokedata()
 	{
-		 String url="http://172.18.113.24:8080/testssh/testJson.action";
+		 String url="http://59.78.93.208:8080/testssh/testJson.action";
 
 		HttpClient client = new DefaultHttpClient();
 		HttpGet request;
@@ -148,7 +148,7 @@ public class GetNetData {
 
 //	public static void _sendadvise_xml(String sex,String grade,String advise,String w,String h,String android_version,String mobile_model,String density){
 //		String namespace="http://tempuri.org/";
-//	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
+//	    String serviceUrl = "http://59.78.93.208:9090/service1.asmx";
 //		String methodname ="insertAdvise"; 
 //		String soapaction=namespace+methodname;
 //		SoapObject request = new SoapObject(namespace, methodname);
@@ -180,7 +180,7 @@ public class GetNetData {
 	public static SoapObject getjoke_xml(String theCityCode) {
 		
 		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+	    String serviceUrl = "http://59.78.93.208:9090/Service1.asmx";   
 		String methodname ="selectJoke"; 
 		String soapaction=namespace+methodname;
 		SoapObject request = new SoapObject(namespace, methodname);
@@ -211,7 +211,7 @@ public class GetNetData {
 
 	public static void sendnewpost_xml(String postid,String content){
 		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
+	    String serviceUrl = "http://59.78.93.208:9090/service1.asmx";
 		String methodname ="newPost"; 
 		String soapaction=namespace+methodname;
 		SoapObject request = new SoapObject(namespace, methodname);
@@ -235,7 +235,7 @@ public class GetNetData {
 
 	public static void sendnewpostback_xml(String title,String content){
 		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/service1.asmx";
+	    String serviceUrl = "http://59.78.93.208:9090/service1.asmx";
 		String methodname ="newPostBack"; 
 		String soapaction=namespace+methodname;
 		SoapObject request = new SoapObject(namespace, methodname);
@@ -259,7 +259,7 @@ public class GetNetData {
 
 	public static SoapObject _getjobtitle() {
 		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+	    String serviceUrl = "http://59.78.93.208:9090/Service1.asmx";   
 		String methodname ="searchJob"; 
 		String soapaction=namespace+methodname;
 		SoapObject request = new SoapObject(namespace, methodname);
@@ -297,7 +297,7 @@ public class GetNetData {
 	
 	public static SoapObject getjobdetail(String jobid) {
 		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+	    String serviceUrl = "http://59.78.93.208:9090/Service1.asmx";   
 		String methodname ="searchJobDetail"; 
 		String soapaction=namespace+methodname;
 		SoapObject request = new SoapObject(namespace, methodname);
@@ -334,7 +334,7 @@ public class GetNetData {
 
 	public static SoapObject getnewstitle() {
 		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+	    String serviceUrl = "http://59.78.93.208:9090/Service1.asmx";   
 		String methodname ="getNews"; 
 		String soapaction=namespace+methodname;
 		SoapObject request = new SoapObject(namespace, methodname);
@@ -372,7 +372,7 @@ public class GetNetData {
 
 	public static SoapObject getnewsdetail(String newsid) {
 		String namespace="http://tempuri.org/";
-	    String serviceUrl = "http://172.18.113.24:9090/Service1.asmx";   
+	    String serviceUrl = "http://59.78.93.208:9090/Service1.asmx";   
 		String methodname ="getNewsDetail"; 
 		String soapaction=namespace+methodname;
 		SoapObject request = new SoapObject(namespace, methodname);

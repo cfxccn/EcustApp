@@ -14,7 +14,7 @@ import org.json.JSONArray;
 public class Bus {
 	public static JSONArray getBusInfo(String day,String type,String route)
 	{
-		String url="http://172.18.113.24:9092/searchbus?day="+day+"&type="+type+"&route="+route+"";
+		String url="http://59.78.93.208:9092/searchbus?day="+day+"&type="+type+"&route="+route+"";
 		HttpClient client = new DefaultHttpClient();
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
 		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );	

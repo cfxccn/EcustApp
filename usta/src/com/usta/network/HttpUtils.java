@@ -23,7 +23,7 @@ import android.os.Message;
 public class HttpUtils {
 
 	
-	 private static String path="http://172.18.113.24:8080/jsonProjject/servlet/paction";
+	 private static String path="http://59.78.93.208:8080/jsonProjject/servlet/paction";
 	 private static  URL url_;
 	/* static
 	 {
