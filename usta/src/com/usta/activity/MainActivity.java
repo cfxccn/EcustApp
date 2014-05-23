@@ -146,6 +146,8 @@ public class MainActivity extends SherlockActivity   {
         return true;
     }
     protected void init_newslist() {
+TextView tvTextView=(TextView)findViewById(R.id.textView1);
+tvTextView.setVisibility(View.GONE);
 		listView_news = (ListView) findViewById(R.id.listView_news);
   	  ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
       
@@ -684,85 +686,79 @@ protected String nearbytype;
 				startActivityForResult(intent, 0);
 			}
 		});
-		userInfo = getSharedPreferences("setting", 0);  
-	    //	userInfo.edit().putString("area", "null").commit();  
-	    	String area=userInfo.getString("area", "null");
-	    	if(area.equalsIgnoreCase("xuhui")){
-	    	//    userInfo.edit().putString("area", "xuhui").commit();  
-	    		RadioButton radiobtn_xuhui_setting= (RadioButton)findViewById(R.id.radiobtn_xuhui_setting);
-	    		radiobtn_xuhui_setting.setChecked(true);
-	    	}
-	    	if(area.equalsIgnoreCase("fengxian")){
-    	   // 	userInfo.edit().putString("area", "fengxian").commit();  
-	    		RadioButton radiobtn_fengxian_setting= (RadioButton)findViewById(R.id.radiobtn_fengxian_setting);
-	    		radiobtn_fengxian_setting.setChecked(true);
-	    	}
-	    	if(area.equalsIgnoreCase("jinshan")){
-    	   // 	userInfo.edit().putString("area", "jinshan").commit();  
-	    		RadioButton radiobtn_jinshan_setting= (RadioButton)findViewById(R.id.radiobtn_jinshan_setting);
-	    		radiobtn_jinshan_setting.setChecked(true);
-	    	}
-	    	final Toast toastxuhui=Toast.makeText(this, "徐汇校区-已保存", Toast.LENGTH_SHORT);
-	    	final Toast toastfengxian=Toast.makeText(this, "奉贤校区-已保存", Toast.LENGTH_SHORT);
-	    	final Toast toastjinshan=Toast.makeText(this, "金山校区-已保存", Toast.LENGTH_SHORT);
-
-	    	RadioGroup group = (RadioGroup)this.findViewById(R.id.radioGroup_area_setting);
-	    	         //绑定一个匿名监听器
-	    	         group.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-	    	             @Override
-	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
-	    	                 // TODO Auto-generated method stub
-	    	                 //获取变更后的选中项的ID
-	    	            	 if(arg1==R.id.radiobtn_xuhui_setting){
-	    	     	    	    userInfo.edit().putString("area", "xuhui").commit();  
-	    	     	    	   toastxuhui.show();
-	    	            	 }	    	            	
-	    	            	if(arg1==R.id.radiobtn_fengxian_setting){
-		    	     	    	    userInfo.edit().putString("area", "fengxian").commit();  
-		    	     	    	   toastfengxian.show(); 
-		    	            	 }
-	    	            	 if(arg1==R.id.radiobtn_jinshan_setting){
-	    	     	    	    userInfo.edit().putString("area", "jinshan").commit();  
-	    	     	    	   toastjinshan.show();
-	    	            	 }
-
-	    	             }
-	    	         });
-	    	 	    //	userInfo.edit().putString("area", "null").commit();  
-	    	         //SharedPreferences jokeInfo = getSharedPreferences("setting", 0);  
-
-	    	         String joke=userInfo.getString("joke", "null");
-	    	 	    	if(joke.equalsIgnoreCase("on")){
-	    	 	    	//    userInfo.edit().putString("area", "xuhui").commit();  
-	    	 	    		RadioButton radiobtn_jokeon_setting= (RadioButton)findViewById(R.id.radiobtn_jokeon_setting);
-	    	 	    		radiobtn_jokeon_setting.setChecked(true);
-	    	 	    	}
-	    	 	    	if(joke.equalsIgnoreCase("off")){
-	    	     	   // 	userInfo.edit().putString("area", "fengxian").commit();  
-	    	 	    		RadioButton radiobtn_jokeoff_setting= (RadioButton)findViewById(R.id.radiobtn_jokeoff_setting);
-	    	 	    		radiobtn_jokeoff_setting.setChecked(true);
-	    	 	    	}
-
-	    	 	    	final Toast toastjokeon=Toast.makeText(this, "笑话开启-已保存", Toast.LENGTH_SHORT);
-	    	 	    	final Toast toastjokeoff=Toast.makeText(this, "笑话屏蔽-已保存", Toast.LENGTH_SHORT);
-
-	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);    //绑定一个匿名监听器
-	    	 	    	rgrp_joke.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-	    	 	    	             @Override
-	    	 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
-	    	 	    	                 // TODO Auto-generated method stub
-	    	 	    	                 //获取变更后的选中项的ID
-	    	 	    	            	 if(arg1==R.id.radiobtn_jokeon_setting){
-	    	 	    	     	    	    userInfo.edit().putString("joke", "on").commit();  
-	    	 	    	            		 toastjokeon.show();
-	    	 	    	            	 }	    	            	
-	    	 	    	            	if(arg1==R.id.radiobtn_jokeoff_setting){
-	    	 		    	     	    	    userInfo.edit().putString("joke", "off").commit();  
-	    	 		    	     	    	  toastjokeoff.show(); 
-	    	 		    	            	 }
-
-	    	 	    	             }
-	    	 	    	         });
+//		userInfo = getSharedPreferences("setting", 0);  
+//	    	String area=userInfo.getString("area", "null");
+//	    	if(area.equalsIgnoreCase("xuhui")){
+//	    		RadioButton radiobtn_xuhui_setting= (RadioButton)findViewById(R.id.radiobtn_xuhui_setting);
+//	    		radiobtn_xuhui_setting.setChecked(true);
+//	    	}
+//	    	if(area.equalsIgnoreCase("fengxian")){
+//	    		RadioButton radiobtn_fengxian_setting= (RadioButton)findViewById(R.id.radiobtn_fengxian_setting);
+//	    		radiobtn_fengxian_setting.setChecked(true);
+//	    	}
+//	    	if(area.equalsIgnoreCase("jinshan")){
+//	    		RadioButton radiobtn_jinshan_setting= (RadioButton)findViewById(R.id.radiobtn_jinshan_setting);
+//	    		radiobtn_jinshan_setting.setChecked(true);
+//	    	}
+//	    	final Toast toastxuhui=Toast.makeText(this, "徐汇校区-已保存", Toast.LENGTH_SHORT);
+//	    	final Toast toastfengxian=Toast.makeText(this, "奉贤校区-已保存", Toast.LENGTH_SHORT);
+//	    	final Toast toastjinshan=Toast.makeText(this, "金山校区-已保存", Toast.LENGTH_SHORT);
+//
+//	    	RadioGroup group = (RadioGroup)this.findViewById(R.id.radioGroup_area_setting);
+//	    	         //绑定一个匿名监听器
+//	    	         group.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//	    	             @Override
+//	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
+//	    	                 // TODO Auto-generated method stub
+//	    	                 //获取变更后的选中项的ID
+//	    	            	 if(arg1==R.id.radiobtn_xuhui_setting){
+//	    	     	    	    userInfo.edit().putString("area", "xuhui").commit();  
+//	    	     	    	   toastxuhui.show();
+//	    	            	 }	    	            	
+//	    	            	if(arg1==R.id.radiobtn_fengxian_setting){
+//		    	     	    	    userInfo.edit().putString("area", "fengxian").commit();  
+//		    	     	    	   toastfengxian.show(); 
+//		    	            	 }
+//	    	            	 if(arg1==R.id.radiobtn_jinshan_setting){
+//	    	     	    	    userInfo.edit().putString("area", "jinshan").commit();  
+//	    	     	    	   toastjinshan.show();
+//	    	            	 }
+//
+//	    	             }
+//	    	         });
+//
+//	    	         String joke=userInfo.getString("joke", "null");
+//	    	 	    	if(joke.equalsIgnoreCase("on")){
+//	    	 	    	//    userInfo.edit().putString("area", "xuhui").commit();  
+//	    	 	    		RadioButton radiobtn_jokeon_setting= (RadioButton)findViewById(R.id.radiobtn_jokeon_setting);
+//	    	 	    		radiobtn_jokeon_setting.setChecked(true);
+//	    	 	    	}
+//	    	 	    	if(joke.equalsIgnoreCase("off")){
+//	    	     	   // 	userInfo.edit().putString("area", "fengxian").commit();  
+//	    	 	    		RadioButton radiobtn_jokeoff_setting= (RadioButton)findViewById(R.id.radiobtn_jokeoff_setting);
+//	    	 	    		radiobtn_jokeoff_setting.setChecked(true);
+//	    	 	    	}
+//
+//	    	 	    	final Toast toastjokeon=Toast.makeText(this, "笑话开启-已保存", Toast.LENGTH_SHORT);
+//	    	 	    	final Toast toastjokeoff=Toast.makeText(this, "笑话屏蔽-已保存", Toast.LENGTH_SHORT);
+//
+//	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);    //绑定一个匿名监听器
+//	    	 	    	rgrp_joke.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//	    	 	    	             @Override
+//	    	 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
+//	    	 	    	                 // TODO Auto-generated method stub
+//	    	 	    	                 //获取变更后的选中项的ID
+//	    	 	    	            	 if(arg1==R.id.radiobtn_jokeon_setting){
+//	    	 	    	     	    	    userInfo.edit().putString("joke", "on").commit();  
+//	    	 	    	            		 toastjokeon.show();
+//	    	 	    	            	 }	    	            	
+//	    	 	    	            	if(arg1==R.id.radiobtn_jokeoff_setting){
+//	    	 		    	     	    	    userInfo.edit().putString("joke", "off").commit();  
+//	    	 		    	     	    	  toastjokeoff.show(); 
+//	    	 		    	            	 }
+//
+//	    	 	    	             }
+//	    	 	    	         });
 	    	 			Button btn_toabout_setting=(Button)findViewById(R.id.btn_toabout_setting);
 	    	 			btn_toabout_setting.setOnClickListener(new OnClickListener() {
 	    	 				@Override
@@ -774,17 +770,17 @@ protected String nearbytype;
 	    	 					startActivityForResult(intent, 0);
 	    	 				}
 	    	 			});
-	    	 			Button btn_torec_setting=(Button)findViewById(R.id.btn_torec_setting);
-	    	 			btn_torec_setting.setOnClickListener(new OnClickListener() {
-	    	 				@Override
-	    	 				public void onClick(View v)
-	    	 				{
-	    	 					Intent intent =new Intent();
-	    	 					intent.putExtra("index", index);
-	    	 					intent.setClass(MainActivity.this, Recommend.class);
-	    	 					startActivityForResult(intent, 0);
-	    	 				}
-	    	 			});
+//	    	 			Button btn_torec_setting=(Button)findViewById(R.id.btn_torec_setting);
+//	    	 			btn_torec_setting.setOnClickListener(new OnClickListener() {
+//	    	 				@Override
+//	    	 				public void onClick(View v)
+//	    	 				{
+//	    	 					Intent intent =new Intent();
+//	    	 					intent.putExtra("index", index);
+//	    	 					intent.setClass(MainActivity.this, Recommend.class);
+//	    	 					startActivityForResult(intent, 0);
+//	    	 				}
+//	    	 			});
 	    	 			Button btn_toaccount=(Button)findViewById(R.id.btn_toaccount);
 	    	 			btn_toaccount.setOnClickListener(new OnClickListener() {
 	    	 				@Override

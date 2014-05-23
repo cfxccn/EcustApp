@@ -82,16 +82,13 @@ public class About extends SherlockActivity {
 			@Override
 			public void onClick(View arg0) {
 				//	startUpdateFromNewThread();
-
 				pBar = new ProgressDialog(About.this);
+		//		pBar.cancel();
 				pBar.setIndeterminate(false);
-
 				pBar.setTitle("正在下载");
 				pBar.setMessage("请稍候...");
 				pBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-
-
-
+				pBar.setCancelable(false);
 				downFileFromNewThread();
 				
 			}

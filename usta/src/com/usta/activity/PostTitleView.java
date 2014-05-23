@@ -56,6 +56,9 @@ public class PostTitleView extends SherlockActivity {
 	 Toast toast3;
 	 Toast toast4;
 	 Toast toast5;
+	 Toast toast6;
+	 Toast toast7;
+
 	Button btnLoadMoreButton;
 	int lastindex;
 
@@ -80,7 +83,10 @@ public class PostTitleView extends SherlockActivity {
         toast3=Toast.makeText(this, "请先至 设置-账号管理 重新登录", Toast.LENGTH_SHORT);
         toast4=Toast.makeText(this, "发送失败 请检查网络", Toast.LENGTH_SHORT);
         toast4=Toast.makeText(this, "发送失败 请检查网络", Toast.LENGTH_SHORT);
-        toast5=Toast.makeText(this, "全部加载完", Toast.LENGTH_SHORT);
+        toast5=Toast.makeText(this, "已全部加载完", Toast.LENGTH_SHORT);
+        toast6=Toast.makeText(this, "正在发送", Toast.LENGTH_SHORT);
+        toast7=Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT);
+
    	 View footerView = ((LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footview, null, false);
    	 listViewPost.addFooterView(footerView);
     }
@@ -140,9 +146,13 @@ public class PostTitleView extends SherlockActivity {
 				posttitle=editTextNewPost.getText().toString();
 				if(useremail.equals("null")){
 					toast1.show();
-				}else{
-					newPostViaNewThread();
+				}else if(posttitle.equals("")){
+					toast7.show();
 					}
+				else {
+					toast6.show();
+					newPostViaNewThread();
+				}
 			}
 		});
 	}
@@ -226,9 +236,12 @@ private Handler handler =new Handler(){
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
 		initlistview();
+		
 		}
 		};
  private void initlistview() {
+	 TextView tvTextView=(TextView) findViewById(R.id.textView1);
+	 tvTextView.setVisibility(View.GONE);
 	  listItem = new ArrayList<HashMap<String, Object>>();
       for(int i=0;i<postsTitilesJsonArray.length();i++)
       {

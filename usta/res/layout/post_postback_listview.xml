@@ -16,7 +16,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="31dp"
-            android:text="内容"
+            android:text="正在加载"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
