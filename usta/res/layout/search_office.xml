@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/se_off_tv1"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp"
+        android:layout_height="wrap_content"
+        android:text="办公室信息" />
+
+    <TextView
+        android:id="@+id/se_off_tv2"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="办公室地址：" />
+
+    <TextView
+        android:id="@+id/se_off_tv3"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="办公室电话：" />
+
+    <TextView
+        android:id="@+id/se_off_tv4"
+        android:layout_width="wrap_content"
+         android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="办公室老师：" />
+
+    <TextView
+        android:id="@+id/se_off_tv5"
+        android:layout_width="wrap_content"
+         android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="办公室职能：" />
+
+    <Button
+        android:id="@+id/se_off_bu1"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:text="下一条" />
+
+
+
+</LinearLayout>

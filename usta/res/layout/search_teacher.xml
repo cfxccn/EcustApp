@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/se_te_tv1"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="教师信息" />
+
+    <TextView
+        android:id="@+id/se_te_tv2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="教师姓名    ：" />
+
+    <TextView
+        android:id="@+id/se_te_tv3"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="邮箱信息    ：" />
+
+    <TextView
+        android:id="@+id/se_te_tv4"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="教师介绍    ：" />
+
+    <TextView
+        android:id="@+id/se_te_tv5"
+         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        android:text="所在办公室：" />
+
+    <Button
+        android:id="@+id/se_te_bu1"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_height="wrap_content"
+        android:text="下一条" />
+
+   
+
+</LinearLayout>
