@@ -39,6 +39,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -61,7 +62,9 @@ public class MainActivity extends SherlockActivity   {
 	private View view1,view2,view3,view4;//各个页卡
 	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main;
 	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4,tv_tolay5;
-
+	
+	private static String lay3data[]={"","教师"};
+	
 	private SharedPreferences userInfo;
 	private String tvdate1="";
 	private String tvdate2="";
@@ -613,9 +616,51 @@ protected String nearbytype;
 		});
 
 	}
+	
+	public static String[] putlay3sdata()
+	{
+		return lay3data;
+	}
 	private void init_lay3()
 	{
+		RadioGroup lay3_s_rg =(RadioGroup)findViewById(R.id.lay3_s_rg);  
+		lay3_s_rg.setOnCheckedChangeListener(new OnCheckedChangeListener(){  
+		  
+		    @Override  
+		    public void onCheckedChanged(RadioGroup group, int checkedId) {  
+		    // TODO Auto-generated method stub  
+		    RadioButton r = (RadioButton)findViewById(checkedId);  
+		    lay3data[1]= r.getText().toString();//获取被选中的单选按钮的值  
+		    }         
+		});
+		
 
+		final EditText lay3_s_ev1=(EditText)findViewById(R.id.lay3_s_et1);
+		
+		final RadioButton radioButton = (RadioButton)findViewById(lay3_s_rg.getCheckedRadioButtonId());
+		
+		ImageView imageView_Morningtrain = (ImageView) findViewById(R.id.lay3_s_ib1);
+		imageView_Morningtrain.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				
+				lay3data[0]=lay3_s_ev1.getText().toString();
+				if(lay3data[0].equals(""))
+				{
+			    Toast toast = Toast.makeText(MainActivity.this, "请输入信息", Toast.LENGTH_SHORT);                    
+		        toast.show(); 
+				}
+				else
+				{
+				//lay3data[1]=radioButton.getText().toString();
+				Intent intent =new Intent();
+				intent.putExtra("index", index);
+				intent.setClass(MainActivity.this, search.class);
+				startActivityForResult(intent, 0);
+				}
+			}
+		});
 	}
 	private void joke()
 	{

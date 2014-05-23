@@ -30,6 +30,99 @@ import android.R.string;
 
 public class GetNetData {    
 	
+	public static SoapObject sendofficekw(String searchkw){
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://59.78.93.208:9093/service1.asmx";
+		String methodname ="Returnoffice"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+        request.addProperty("searchkeywords",searchkw);
+        
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;
+        envelope.bodyOut=request;
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+            ht.call(soapaction, envelope); 
+            if (envelope.getResponse() != null)  
+            {  
+            	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
+            	return soapObject;
+            }  
+            else
+            	return null;
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        }
+		return null;  
+	}
+	
+	public static SoapObject sendteacherkw(String searchkw){
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://59.78.93.208:9093/service1.asmx";
+		String methodname ="Returnteacher"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+        request.addProperty("searchkeywords",searchkw);
+        
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;
+        envelope.bodyOut=request;
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+            ht.call(soapaction, envelope); 
+            if (envelope.getResponse() != null)  
+            {  
+            	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
+            	return soapObject;
+            }  
+            else
+            	return null;
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        }
+		return null;  
+	}
+	
+	public static SoapObject sendactivitykw(String searchkw){
+		String namespace="http://tempuri.org/";
+	    String serviceUrl = "http://59.78.93.208:9093/service1.asmx";
+		String methodname ="Returnactivity"; 
+		String soapaction=namespace+methodname;
+		SoapObject request = new SoapObject(namespace, methodname);
+        request.addProperty("searchkeywords",searchkw);
+        
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet=true;
+        envelope.bodyOut=request;
+        HttpTransportSE ht = new HttpTransportSE(serviceUrl);  
+        ht.debug = true;
+        try  
+        {   
+            ht.call(soapaction, envelope); 
+            if (envelope.getResponse() != null)  
+            {  
+            	SoapObject  soapObject = (SoapObject ) envelope.getResponse();
+            	return soapObject;
+            }  
+            else
+            	return null;
+        }  
+        catch (Exception e)  
+        {  
+			e.printStackTrace();
+        }
+		return null;  
+	}
+	
 	public static SoapObject _getweatherdata(String theCityCode) {
 		String namespace="http://WebXml.com.cn/";
 	    String serviceUrl = "http://webservice.webxml.com.cn/WebServices/WeatherWS.asmx";  

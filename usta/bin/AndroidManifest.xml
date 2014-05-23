@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.usta"
-    android:versionCode="18092"
-    android:versionName="18092" >
+    android:versionCode="18091"
+    android:versionName="18091" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -151,7 +151,11 @@
                      <activity
             android:name="com.usta.activity.PostDetails"
             android:label="下课聊-回复" >
-        </activity>              
+        </activity>
+                 <activity
+            android:name="com.usta.activity.search"
+            android:label="搜索" >
+        </activity>                
     </application>
 
 </manifest>

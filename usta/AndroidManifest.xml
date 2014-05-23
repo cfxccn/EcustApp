@@ -151,7 +151,11 @@
                      <activity
             android:name="com.usta.activity.PostDetails"
             android:label="下课聊-回复" >
-        </activity>              
+        </activity>
+                 <activity
+            android:name="com.usta.activity.search"
+            android:label="搜索" >
+        </activity>                
     </application>
 
 </manifest>
