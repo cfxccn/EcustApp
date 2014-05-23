@@ -22,8 +22,9 @@ public class search extends Activity{
 	//private String activityinfo[]={"",""};
 	private TextView tv1,tv2,tv3,tv4;
 	private Button bu1,bu2;
-	private String stractivity[]={"","","","","","","","","","","",""};
+	String stractivity[]={"","","","","","","","","","","",""};
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		searchdata = MainActivity.putlay3sdata();
 		if(searchdata[1].equals("活动"))
