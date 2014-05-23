@@ -653,6 +653,7 @@ protected String nearbytype;
 			    Toast toast = Toast.makeText(MainActivity.this, "请输入信息", Toast.LENGTH_SHORT);                    
 		        toast.show(); 
 				}
+				
 				else
 				{
 				//lay3data[1]=radioButton.getText().toString();

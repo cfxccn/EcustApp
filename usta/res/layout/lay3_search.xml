@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:layout_marginTop="10dp"
-        android:text="提示：" />
+        android:text="提示：可据教师名称或所授课程查询" />
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:layout_marginTop="10dp"
-        android:text="提示：" />
+        android:text="提示：可据所需活动名称或涉及内容查询" />
         <RadioButton
             android:id="@+id/radio2"
             android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:layout_marginTop="10dp"
-        android:text="提示：" />
+        android:text="提示：可据需求功能或学院分类查询" />
     </RadioGroup>
 </LinearLayout>
 </RelativeLayout>

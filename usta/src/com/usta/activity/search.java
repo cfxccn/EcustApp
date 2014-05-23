@@ -27,15 +27,17 @@ public class search extends Activity{
 		
 		super.onCreate(savedInstanceState);
 		searchdata = MainActivity.putlay3sdata();
+	
+		
 		if(searchdata[1].equals("活动"))
-			{
+		{
 			setContentView(R.layout.search_activity);
 			tv1=(TextView)findViewById(R.id.se_ac_tv2);
 			tv2=(TextView)findViewById(R.id.se_ac_tv3);
 			bu1=(Button)findViewById(R.id.se_ac_bu1);
 		    get_activityinfo();
 		    initbtn_activiyty();
-		     }
+	     }
 		if(searchdata[1].equals("教师"))
 		{
 			setContentView(R.layout.search_teacher);

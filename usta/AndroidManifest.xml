@@ -155,7 +155,8 @@
                  <activity
             android:name="com.usta.activity.search"
             android:label="搜索" >
-        </activity>                
+        </activity>       
+                
     </application>
 
 </manifest>
