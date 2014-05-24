@@ -628,7 +628,7 @@ protected String nearbytype;
 	protected void showLibDialog() {
 		final Context context = this;  
 	    //定义列表选项  
-	    String[] items = {"图书查询","座位信息"};  
+	    String[] items = {"校图书馆馆藏图书查询","校图书馆实时座位信息"};  
 	    //创建对话框  
 	    new AlertDialog.Builder(context)  
 	    .setTitle("请选择...")//设置对话框标题  
