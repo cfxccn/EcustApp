@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.usta"
-    android:versionCode="18092"
-    android:versionName="18092" >
+    android:versionCode="18093"
+    android:versionName="18093" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -64,7 +64,7 @@
         </activity>
         <activity
             android:name="com.usta.activity.SearchBooks"
-            android:label="图书查询" >
+            android:label="校图书馆" >
         </activity>
         <activity
             android:name="com.usta.activity.SearchClassroom"
@@ -146,11 +146,11 @@
         </activity>
            <activity
             android:name="com.usta.activity.PostTitleView"
-            android:label="下课聊" >
+            android:label="课间广场" >
         </activity>
                      <activity
             android:name="com.usta.activity.PostDetails"
-            android:label="下课聊-回复" >
+            android:label="课间广场-回复" >
         </activity>
                  <activity
             android:name="com.usta.activity.search"

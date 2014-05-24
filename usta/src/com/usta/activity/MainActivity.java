@@ -19,7 +19,11 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -523,6 +527,7 @@ protected String nearbytype;
 		});
 	}
 
+    private final static int DIALOG=1;
 
 	private void init_lay2()
 	{
@@ -571,15 +576,17 @@ protected String nearbytype;
 				startActivityForResult(intent, 0);
 			}
 		});
+
 		ImageView ImageView_Searchbook = (ImageView) findViewById(R.id.imageView_Searchbook);
 		ImageView_Searchbook.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
-				Intent intent =new Intent();
-				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, SearchBooks.class);
-				startActivityForResult(intent, 0);
+//				Intent intent =new Intent();
+//				intent.putExtra("index", index);
+//				intent.setClass(MainActivity.this, SearchBooks.class);
+//				startActivityForResult(intent, 0);
+				showLibDialog();
 			}
 		});
 		ImageView imageView_Morningtrain = (ImageView) findViewById(R.id.imageView_Morningtrain);
@@ -618,7 +625,37 @@ protected String nearbytype;
 		});
 
 	}
-	
+	protected void showLibDialog() {
+		final Context context = this;  
+	    //定义列表选项  
+	    String[] items = {"图书查询","座位信息"};  
+	    //创建对话框  
+	    new AlertDialog.Builder(context)  
+	    .setTitle("请选择...")//设置对话框标题  
+	    .setItems(items, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				if(which==0){
+					Intent intent =new Intent();
+					intent.putExtra("index", index);
+					intent.putExtra("todo", which);
+					intent.setClass(MainActivity.this, SearchBooks.class);
+					startActivityForResult(intent, 0);
+				}else if(which==1){
+					Intent intent =new Intent();
+					intent.putExtra("index", index);
+					intent.putExtra("todo", which);
+					intent.setClass(MainActivity.this, SearchBooks.class);
+					startActivityForResult(intent, 0);
+				}
+				
+			}
+		})
+		.setNegativeButton("取消", null)
+	    .show();  
+	}
 	public static String[] putlay3sdata()
 	{
 		return lay3data;

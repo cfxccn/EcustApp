@@ -17,6 +17,8 @@ import com.usta.R;
 
 public class SearchBooks extends SherlockActivity {
 	private int index;
+	private int todo;
+	String urlString;
 	Intent intent;
 	private WebView webView;
     @Override
@@ -27,12 +29,18 @@ public class SearchBooks extends SherlockActivity {
 
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
-      
-         initwebview();
+        todo=intent.getIntExtra("todo", 0);
+        urlString="http://202.120.96.75/sms/opac/search/showSearch.action?xc=6";
+        if(todo==1){
+        	urlString="http://lib.ecust.edu.cn:8081/GATESEAT/LRP.ASPX";
+        }
+        initwebview();
     }
     private void initwebview(){
     	  webView = (WebView)findViewById(R.id.webView_lib);
-          webView.loadUrl("http://202.120.96.75/sms/opac/search/showSearch.action?xc=6"); 
+          webView.loadUrl(urlString); 
+          webView.setInitialScale(100);
+      //    webView.getSettings().setBuiltInZoomControls(true);
           webView.setWebViewClient(new WebViewClient(){
               @Override
               public boolean shouldOverrideUrlLoading(WebView view, String url) {
