@@ -345,6 +345,7 @@ public void onClick(View view) {
 		index=3;
 	viewPager.setCurrentItem(3); break;
 	case R.id.tvlay5: ;
+	case R.id.imageView_Post: 
 		Intent intent =new Intent();
 		intent.putExtra("index", index);
 		intent.setClass(MainActivity.this, PostTitleView.class);
@@ -592,17 +593,17 @@ protected String nearbytype;
 				showLibDialog();
 			}
 		});
-		ImageView imageView_Morningtrain = (ImageView) findViewById(R.id.imageView_Morningtrain);
-		imageView_Morningtrain.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v)
-			{
-				Intent intent =new Intent();
-				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, Morningtrain.class);
-				startActivityForResult(intent, 0);
-			}
-		});
+//		ImageView imageView_Morningtrain = (ImageView) findViewById(R.id.imageView_Morningtrain);
+//		imageView_Morningtrain.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v)
+//			{
+//				Intent intent =new Intent();
+//				intent.putExtra("index", index);
+//				intent.setClass(MainActivity.this, Morningtrain.class);
+//				startActivityForResult(intent, 0);
+//			}
+//		});
 		ImageView imageView_Schoolbus=(ImageView)findViewById(R.id.imageView_Schoolbus);
 		imageView_Schoolbus.setOnClickListener(new OnClickListener() {
 		@Override

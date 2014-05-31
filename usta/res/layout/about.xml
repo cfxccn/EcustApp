@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="开发团队:J111"
+                android:text="开发团队:USTA"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         </LinearLayout>
 

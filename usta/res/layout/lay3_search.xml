@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText1"
         android:layout_toRightOf="@+id/editText1"
-        android:src="@drawable/nothing" />
+        android:src="@drawable/search" />
 </LinearLayout>
     <RadioGroup
         android:id="@+id/lay3_s_rg"
