@@ -185,7 +185,15 @@ private Handler handler =new Handler(){
 			TextView textViewPBUser=(TextView)findViewById(R.id.textViewPBUser);
 			textViewPBText.setText(firstJsonObject.optString("posttitle"));
 			textViewPBTime.setText(firstJsonObject.optString("date").replace("T", " ").substring(0, 19).trim());
-			textViewPBUser.setText(firstJsonObject.optJSONObject("user").optString("username"));
+		//	textViewPBUser.setText(firstJsonObject.optJSONObject("user").optString("username"));
+	          if(firstJsonObject.optString("anonymity").equals("1"))
+	          {
+		      		textViewPBUser.setText("匿名");
+
+	          }else{
+	      		textViewPBUser.setText(firstJsonObject.optJSONObject("user").optString("username"));
+
+	          }
 			  ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 		      for(int i=0;i<postbacksJsonArray.length();i++)
 		      {
@@ -194,8 +202,12 @@ private Handler handler =new Handler(){
 		   //       map.put("textView_jobid",postbackJsonObject.optInt("id"));
 		          map.put("textViewPBText",postbackJsonObject.optString("text").trim());
 		          map.put("textViewPBTime", postbackJsonObject.optString("date").replace("T", " ").substring(0, 19).trim());
-		          map.put("textViewPBUser", postbackJsonObject.optJSONObject("user").optString("username").trim());
-
+		          if(postbackJsonObject.optInt("anonymity")==1)
+		          {
+		        	  map.put("textViewPBUser", "匿名");
+		          }else{
+		        	  map.put("textViewPBUser", postbackJsonObject.optJSONObject("user").optString("username").trim());
+		          }
 		          listItem.add(map);
 		      }
 				// TODO Auto-generated method stub

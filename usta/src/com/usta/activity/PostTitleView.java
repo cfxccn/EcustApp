@@ -178,7 +178,12 @@ private Handler loadMore=new Handler(){
           lastPostid=postJsonObject.optInt("postid");
           map.put("textViewPBText",postJsonObject.optString("posttitle").trim());
           map.put("textViewPBTime", postJsonObject.optString("date").replace("T", " ").substring(0, 19));
-          map.put("textViewPBUser", userJsonObject.optString("username").trim());
+          if(postJsonObject.optInt("anonymity")==1)
+          {
+        	  map.put("textViewPBUser", "匿名");
+          }else{
+              map.put("textViewPBUser", userJsonObject.optString("username").trim());
+          }
           listItem.add(map);
       }
 	 listViewPost.setAdapter(listItemAdapter);
@@ -260,7 +265,13 @@ private Handler handler =new Handler(){
           lastPostid=postJsonObject.optInt("postid");
           map.put("textViewPBText",postJsonObject.optString("posttitle").trim());
           map.put("textViewPBTime", postJsonObject.optString("date").replace("T", " ").substring(0, 19));
-          map.put("textViewPBUser", userJsonObject.optString("username").trim());
+        //  map.put("textViewPBUser", userJsonObject.optString("username").trim());
+          if(postJsonObject.optInt("anonymity")==1)
+          {
+        	  map.put("textViewPBUser", "匿名");
+          }else{
+              map.put("textViewPBUser", userJsonObject.optString("username").trim());
+          }
           listItem.add(map);
       }
 		// TODO Auto-generated method stub

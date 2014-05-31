@@ -64,8 +64,8 @@ public class MainActivity extends SherlockActivity   {
 	private int offset = 0;// 动画图片偏移量
 	private int bmpW;// 动画图片宽度
 	private View view1,view2,view3,view4;//各个页卡
-	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main;
-	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4,tv_tolay5;
+	private ImageView iv_tolay1_main,iv_tolay2_main,iv_tolay3_main,iv_tolay4_main,iv_tolay5_main;
+	private TextView  tv_tolay1,tv_tolay2,tv_tolay3,tv_tolay4, tv_tolay5;
 	
 	private static String lay3data[]={"","教师"};
 	
@@ -365,6 +365,7 @@ protected String nearbytype;
     	iv_tolay2_main = (ImageView) findViewById(R.id.imageView_Home);
     	iv_tolay3_main = (ImageView) findViewById(R.id.imageView_Search);
     	iv_tolay4_main = (ImageView) findViewById(R.id.imageView_Setting);
+    	iv_tolay5_main = (ImageView) findViewById(R.id.imageView_Post);
 
     	tv_tolay1 = (TextView) findViewById(R.id.tvlay1);
     	tv_tolay2 = (TextView) findViewById(R.id.tvlay2);
@@ -391,6 +392,8 @@ protected String nearbytype;
 		tv_tolay4.setOnClickListener(laylistener);
 		iv_tolay4_main.setOnClickListener(laylistener);
 		tv_tolay5.setOnClickListener(laylistener);
+		iv_tolay5_main.setOnClickListener(laylistener);
+
     }
 	JSONArray nearbys ;
 	
