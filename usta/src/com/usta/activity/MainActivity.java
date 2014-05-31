@@ -724,7 +724,7 @@ protected String nearbytype;
 				startActivityForResult(intent, 0);
 			}
 		});
-//		userInfo = getSharedPreferences("setting", 0);  
+		userInfo = getSharedPreferences("setting", 0);  
 //	    	String area=userInfo.getString("area", "null");
 //	    	if(area.equalsIgnoreCase("xuhui")){
 //	    		RadioButton radiobtn_xuhui_setting= (RadioButton)findViewById(R.id.radiobtn_xuhui_setting);
@@ -765,38 +765,36 @@ protected String nearbytype;
 //	    	             }
 //	    	         });
 //
-//	    	         String joke=userInfo.getString("joke", "null");
-//	    	 	    	if(joke.equalsIgnoreCase("on")){
-//	    	 	    	//    userInfo.edit().putString("area", "xuhui").commit();  
-//	    	 	    		RadioButton radiobtn_jokeon_setting= (RadioButton)findViewById(R.id.radiobtn_jokeon_setting);
-//	    	 	    		radiobtn_jokeon_setting.setChecked(true);
-//	    	 	    	}
-//	    	 	    	if(joke.equalsIgnoreCase("off")){
-//	    	     	   // 	userInfo.edit().putString("area", "fengxian").commit();  
-//	    	 	    		RadioButton radiobtn_jokeoff_setting= (RadioButton)findViewById(R.id.radiobtn_jokeoff_setting);
-//	    	 	    		radiobtn_jokeoff_setting.setChecked(true);
-//	    	 	    	}
-//
-//	    	 	    	final Toast toastjokeon=Toast.makeText(this, "笑话开启-已保存", Toast.LENGTH_SHORT);
-//	    	 	    	final Toast toastjokeoff=Toast.makeText(this, "笑话屏蔽-已保存", Toast.LENGTH_SHORT);
-//
-//	    	 	    	RadioGroup rgrp_joke = (RadioGroup)this.findViewById(R.id.rgrp_joke);    //绑定一个匿名监听器
-//	    	 	    	rgrp_joke.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-//	    	 	    	             @Override
-//	    	 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
-//	    	 	    	                 // TODO Auto-generated method stub
-//	    	 	    	                 //获取变更后的选中项的ID
-//	    	 	    	            	 if(arg1==R.id.radiobtn_jokeon_setting){
-//	    	 	    	     	    	    userInfo.edit().putString("joke", "on").commit();  
-//	    	 	    	            		 toastjokeon.show();
-//	    	 	    	            	 }	    	            	
-//	    	 	    	            	if(arg1==R.id.radiobtn_jokeoff_setting){
-//	    	 		    	     	    	    userInfo.edit().putString("joke", "off").commit();  
-//	    	 		    	     	    	  toastjokeoff.show(); 
-//	    	 		    	            	 }
-//
-//	    	 	    	             }
-//	    	 	    	         });
+	    	         String anony=userInfo.getString("anony", "null");
+	    	 	    	if(anony.equalsIgnoreCase("on")){
+	    	 	    		RadioButton radiobtn_anonyon_setting= (RadioButton)findViewById(R.id.radiobtn_anonyon_setting);
+	    	 	    		radiobtn_anonyon_setting.setChecked(true);
+	    	 	    	}
+	    	 	    	if(anony.equalsIgnoreCase("off")){
+	    	 	    		RadioButton radiobtn_anonyoff_setting= (RadioButton)findViewById(R.id.radiobtn_anonyoff_setting);
+	    	 	    		radiobtn_anonyoff_setting.setChecked(true);
+	    	 	    	}
+
+	    	 	    	final Toast toastanonyon=Toast.makeText(this, "匿名-已保存", Toast.LENGTH_SHORT);
+	    	 	    	final Toast toastanonyoff=Toast.makeText(this, "不匿名-已保存", Toast.LENGTH_SHORT);
+
+	    	 	    	RadioGroup rgrp_anony = (RadioGroup)this.findViewById(R.id.rgrp_anony);    //绑定一个匿名监听器
+	    	 	    	rgrp_anony.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+	    	 	    	             @Override
+	    	 	    	             public void onCheckedChanged(RadioGroup arg0, int arg1) {
+	    	 	    	                 // TODO Auto-generated method stub
+	    	 	    	                 //获取变更后的选中项的ID
+	    	 	    	            	 if(arg1==R.id.radiobtn_anonyon_setting){
+	    	 	    	     	    	    userInfo.edit().putString("anony", "on").commit();  
+	    	 	    	     	    	  toastanonyon.show();
+	    	 	    	            	 }	    	            	
+	    	 	    	            	if(arg1==R.id.radiobtn_anonyoff_setting){
+	    	 		    	     	    	    userInfo.edit().putString("anony", "off").commit();  
+	    	 		    	     	    	  toastanonyoff.show(); 
+	    	 		    	            	 }
+
+	    	 	    	             }
+	    	 	    	         });
 	    	 			Button btn_toabout_setting=(Button)findViewById(R.id.btn_toabout_setting);
 	    	 			btn_toabout_setting.setOnClickListener(new OnClickListener() {
 	    	 				@Override

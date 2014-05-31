@@ -49,6 +49,7 @@ public class PostTitleView extends SherlockActivity {
     String text;
     String useremail;
     String userkey;
+    String anony;
     EditText editTextNewPost;
 	 SharedPreferences userInfo;
 	 Toast toast1;
@@ -95,6 +96,12 @@ public class PostTitleView extends SherlockActivity {
 		userInfo = getSharedPreferences("setting", 0);  
 		userkey=userInfo.getString("userkey", "null");
 		useremail=userInfo.getString("useremail", "null");
+   	 	anony=userInfo.getString("anony", "null");
+   	 	if(anony.equals("on")){
+   	 	anony="1";
+   	 	}else{  
+   	 		anony="0";
+   	 		} 
 	}
 
     private void getPostTitlesDataViaNewThread() {
@@ -216,7 +223,7 @@ private Handler newPostSuccess=new Handler(){
     	new Thread(new Runnable(){
     	    @Override
     	    public void run() {
-    	    		int i=com.usta.network.Post.newPost(posttitle,"",useremail,userkey);
+    	    		int i=com.usta.network.Post.newPost(posttitle,"",useremail,userkey,anony);
     				if(i==1){
     					newPostSuccess.sendEmptyMessage(0);
     					}

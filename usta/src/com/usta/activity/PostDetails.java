@@ -50,6 +50,7 @@ public class PostDetails extends SherlockActivity {
 	private String userkey;
 	private String useremail;
 	private String text;
+	String anony;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +122,7 @@ public class PostDetails extends SherlockActivity {
         	new Thread(new Runnable(){
         	    @Override
         	    public void run() {
-        	    		int i=com.usta.network.Post.newPostBack(postid, text,useremail,userkey);
+        	    		int i=com.usta.network.Post.newPostBack(postid, text,useremail,userkey,anony);
         				if(i==1){
         					newPostBackSuccess.sendEmptyMessage(0);
         					}
@@ -138,6 +139,13 @@ public class PostDetails extends SherlockActivity {
 		userInfo = getSharedPreferences("setting", 0);  
 		userkey=userInfo.getString("userkey", "null");
 		useremail=userInfo.getString("useremail", "null");
+   	 	anony=userInfo.getString("anony", "null");
+   	 	if(anony.equals("on")){
+   	 	anony="1";
+   	 	}else{
+   	   	 	anony="0";
+
+   	 	}
 	}
     private void getPostDetailsViaNewThread() {
 	   

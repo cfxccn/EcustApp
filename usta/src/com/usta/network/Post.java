@@ -71,7 +71,7 @@ public class Post {
 		return null;
 	}
 
-	public static int newPost(String posttitle, String text, String useremail, String userkey){
+	public static int newPost(String posttitle, String text, String useremail, String userkey,String anony){
 	String url="http://59.78.93.208:9092/NewPost";
 	HttpClient client = new DefaultHttpClient();
 	client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
@@ -84,6 +84,8 @@ public class Post {
 		params.add(new BasicNameValuePair ("text", text)); 
 		params.add(new BasicNameValuePair ("useremail", useremail)); 
 		params.add(new BasicNameValuePair ("userkey", userkey)); 
+		params.add(new BasicNameValuePair ("anony", anony)); 
+
 		request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));  
 		HttpResponse response = client.execute(request);
 		if (response.getStatusLine().getStatusCode() == 200) {
@@ -100,7 +102,7 @@ public class Post {
 	return -2;
 	}
 
-	public static int newPostBack(String postid, String text, String useremail, String userkey){
+	public static int newPostBack(String postid, String text, String useremail, String userkey,String anony){
 	String url="http://59.78.93.208:9092/NewPostBack";
 	HttpClient client = new DefaultHttpClient();
 	client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
@@ -113,6 +115,8 @@ public class Post {
 		params.add(new BasicNameValuePair ("text", text)); 
 		params.add(new BasicNameValuePair ("useremail", useremail)); 
 		params.add(new BasicNameValuePair ("userkey", userkey)); 
+		params.add(new BasicNameValuePair ("anony", anony)); 
+
 		request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));  
 		HttpResponse response = client.execute(request);
 		if (response.getStatusLine().getStatusCode() == 200) {

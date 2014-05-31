@@ -84,26 +84,6 @@
             android:layout_width="match_parent"  
             android:layout_height="7dp"  
             />
-            <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/linearlayout"
-        android:orientation="vertical" >
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#00000000"
-            android:text="修改信息" />
-
-    </LinearLayout>
-    <View  
-            android:layout_width="match_parent"  
-            android:layout_height="7dp"  
-            />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -210,6 +190,7 @@
             android:layout_width="match_parent"  
             android:layout_height="7dp"  
             />
+            
 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -230,6 +211,46 @@
             android:layout_width="match_parent"  
             android:layout_height="7dp"  
             />
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/linearlayout"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_RenRenLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:text="通过人人登录" />
+
+    </LinearLayout>
+    <View  
+            android:layout_width="match_parent"  
+            android:layout_height="7dp"  
+            />
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/linearlayout"
+        android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_QQLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:text="通过QQ登录" />
+
+    </LinearLayout>
+<View  
+            android:layout_width="match_parent"  
+            android:layout_height="7dp"  
+            />
+
 <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

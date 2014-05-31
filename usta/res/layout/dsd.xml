@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+<LinearLayout
+    android:layout_width="305dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical" >
+
+            <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+        android:id="@+id/tv_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="校区选择"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/linearlayout"
+                android:orientation="vertical" >
+
+<RadioGroup
+                android:id="@+id/radioGroup_area_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <RadioButton
+                    android:id="@+id/radiobtn_xuhui_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:button="@null"
+                    android:drawableRight="@android:drawable/btn_radio"
+                    android:text="  徐汇校区" />
+                <View  
+            android:layout_width="match_parent"  
+            android:layout_height="1px"  
+            android:background="?android:attr/listDivider" />  
+            <RadioButton
+                    android:id="@+id/radiobtn_fengxian_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:button="@null"
+                    android:drawableRight="@android:drawable/btn_radio"
+                    android:text="  奉贤校区" />
+                <View  
+            android:layout_width="match_parent"  
+            android:layout_height="1px"  
+            android:background="?android:attr/listDivider" />
+                 <RadioButton
+                    android:id="@+id/radiobtn_jinshan_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:button="@null"
+                    android:drawableRight="@android:drawable/btn_radio"
+                    android:text="  金山校区" />
+                <View  
+            android:layout_width="match_parent"  
+            android:layout_height="1px"  
+            android:background="?android:attr/listDivider" /> 
+
+        </RadioGroup>
+            </LinearLayout>
+    </LinearLayout>
+<View  
+            android:layout_width="match_parent"  
+            android:layout_height="7dp"  
+           />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+<TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="交流版是否弹出笑话"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/linearlayout"
+                android:orientation="vertical" >
+
+<RadioGroup
+    android:id="@+id/rgrp_joke"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" > 
+                         <RadioButton
+                    android:id="@+id/radiobtn_jokeon_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:button="@null"
+                                android:checked="true"
+                    
+                    android:drawableRight="@android:drawable/btn_radio"
+                    android:text="  是" /> 
+                    <View  
+            android:layout_width="match_parent"  
+            android:layout_height="1px"  
+            android:background="?android:attr/listDivider" />
+                             <RadioButton
+                    android:id="@+id/radiobtn_jokeoff_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:button="@null"
+                    android:drawableRight="@android:drawable/btn_radio"
+                    android:text="  否" />
+<View  
+            android:layout_width="match_parent"  
+            android:layout_height="1px"  
+            android:background="?android:attr/listDivider" />
+    </RadioGroup>
+      </LinearLayout>
+    </LinearLayout>
+<View  
+            android:layout_width="match_parent"  
+            android:layout_height="7dp"  
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/linearlayout"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_toaccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:text="帐号管理" />
+
+    </LinearLayout>
+    <View  
+            android:layout_width="match_parent"  
+            android:layout_height="7dp"  
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/linearlayout"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_torec_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:text="推荐" />
+
+    </LinearLayout>
+    <View  
+            android:layout_width="match_parent"  
+            android:layout_height="7dp"  
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/linearlayout"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_toadvise_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:text="意见反馈" />
+
+    </LinearLayout>
+        <View  
+            android:layout_width="match_parent"  
+            android:layout_height="7dp"  
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/linearlayout"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_toabout_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:text="关于" />
+
+    </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
