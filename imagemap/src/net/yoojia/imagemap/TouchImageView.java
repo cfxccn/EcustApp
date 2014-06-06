@@ -51,9 +51,9 @@ public class TouchImageView extends ImageView {
 	private float absoluteOffsetX;
 	private float absoluteOffsetY;
 
-	private float saveScale = 1f;
-	private float minScale = 1f;
-	private float maxScale = 5f;
+	private float saveScale = 1.0f;
+	private float minScale = 0.8f;
+	private float maxScale = 2.0f;
 	private float oldDist = 1f;
 
 	private PointF lastDelta = new PointF(0, 0);
@@ -155,7 +155,7 @@ public class TouchImageView extends ImageView {
         mScaleDetector = new ScaleGestureDetector(mContext, new ScaleListener());
         setOnTouchListener(touchListener);
 
-		float scale = saveScale = 1.0f;
+		float scale = saveScale;
 		imageUsingMatrix.setScale(scale, scale);
 		overLayerMatrix.setScale(scale, scale);
     }

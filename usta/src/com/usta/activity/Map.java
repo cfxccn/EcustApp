@@ -59,7 +59,7 @@ public class Map extends SherlockActivity {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.map_fengxian, new BitmapFactory.Options()); 
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        int newwidth = 1187;
+        int newwidth = 1178;
         float scale = ((float)newwidth)/width;
         Matrix matrix = new Matrix();
         matrix.postScale(scale,scale);
@@ -78,40 +78,40 @@ public class Map extends SherlockActivity {
                 logo.setImageResource(R.drawable.ecustlogo);
             }
         });
-        showPostion(); 
+        showPostion();
 
     }
 	public boolean showPostion(){ 
 		
-		float Aclass[] = {769,463,830,514,801,559,744,518};
+/*		float Aclass[] = {769,463,830,514,801,559,744,518};
 		PolyShape b = new PolyShape("A教", Color.TRANSPARENT);
 		b.setValues(Aclass);
 		map.addShape(b);
-		b.setAlaph(0);
+		b.setAlaph(0);*/
 		
-		float Bclass[] = {846,530,877,576,897,594,864,596,820,567};
+/*		float Bclass[] = {846,530,877,576,897,594,864,596,820,567};
 		b = new PolyShape("B教", Color.TRANSPARENT);
 		b.setValues(Bclass);
 		b.setAlaph(0);
-		map.addShape(b);
+		map.addShape(b);*/
 		
-		float Cclass[] = {732,545,780,581,778,592,725,552};
+/*		float Cclass[] = {732,545,780,581,778,592,725,552};
 		b = new PolyShape("C教", Color.TRANSPARENT);
 		b.setValues(Cclass);
 		b.setAlaph(0);
-		map.addShape(b);
+		map.addShape(b);*/
 		
-		float Dclass[] = {808,596,858,625,856,636,808,603};
+/*		float Dclass[] = {808,596,858,625,856,636,808,603};
 		b = new PolyShape("D教", Color.TRANSPARENT);
 		b.setValues(Dclass);
 		b.setAlaph(0);
-		map.addShape(b);
+		map.addShape(b);*/
 		
-		float playgroud[] = {913,654,980,551,1036,601,987,684};
+/*		float playgroud[] = {913,654,980,551,1036,601,987,684};
 		b = new PolyShape("足球场(运动场)", Color.TRANSPARENT);
 		b.setValues(playgroud);
 		b.setAlaph(0);
-		map.addShape(b);
+		map.addShape(b);*/
 		
 		CircleShape black = new CircleShape("高大上的图书馆", Color.TRANSPARENT);
 		black.setValues(String.format("%.5f,%.5f,45",(double)607,(double)523));
@@ -136,7 +136,7 @@ public class Map extends SherlockActivity {
 			setResult(RESULT_OK, intent);  
 			finish();  
 			return true;
-		}  	    
+		}
 		return super.onKeyDown(keyCode, event);  
 	} 
     

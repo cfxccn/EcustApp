@@ -12,11 +12,6 @@ import net.yoojia.imagemap.core.Shape;
 import net.yoojia.imagemap.core.ShapeExtension;
 import net.yoojia.imagemap.support.TranslateAnimation;
 
-/**
- * author :  chenyoca@gmail.com
- * date   :  2013-5-19
- * An HTML map like widget in an Android view controller
- */
 public class ImageMap extends FrameLayout implements ShapeExtension,ShapeExtension.OnShapeActionListener,
 															 TranslateAnimation.OnAnimationListener
 {
