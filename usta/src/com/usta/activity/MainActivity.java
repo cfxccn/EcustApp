@@ -700,7 +700,7 @@ protected String nearbytype;
 				//lay3data[1]=radioButton.getText().toString();
 				Intent intent =new Intent();
 				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, search.class);
+				intent.setClass(MainActivity.this, SearchThings.class);
 				startActivityForResult(intent, 0);
 				}
 			}

@@ -4,41 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+  
+ <ScrollView
+        android:id="@+id/ac_scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
     <TextView
         android:id="@+id/se_ac_tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="15dp"
         android:layout_marginTop="20dp"
-        android:text="活动流程" />
+        android:text="活动名称：" />
 
     <TextView
         android:id="@+id/se_ac_tv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginTop="30dp"
-        android:text="活动名称：" />
-
-    <TextView
-        android:id="@+id/se_ac_tv3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
         android:text="活动流程：" />
 
-  
-
-    <Button
-        android:id="@+id/se_ac_bu1"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:text="下一条" />
-
-    
+ </ScrollView>    
 
 </LinearLayout>

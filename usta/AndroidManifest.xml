@@ -144,6 +144,7 @@
             android:name="com.usta.activity.LectureDetail"
             android:label="讲座详情" >
         </activity>
+        
            <activity
             android:name="com.usta.activity.PostTitleView"
             android:label="课间广场" >
@@ -152,15 +153,13 @@
             android:name="com.usta.activity.PostDetails"
             android:label="课间广场-回复" >
         </activity>
-                 <activity
-            android:name="com.usta.activity.search"
-            android:label="搜索" >
-        </activity>       
+                  
                    <activity
             android:name="com.renn.rennsdk.oauth.OAuthActivity"
             android:configChanges="orientation|navigation|keyboardHidden"
             android:screenOrientation="portrait"  >
-                    </activity>       
+                    </activity>    
+                       
                      <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -177,6 +176,11 @@
                 <data android:scheme="tencent222222" />
             </intent-filter>
         </activity>
+         <activity
+            android:name="com.usta.activity.SearchThings"
+            android:label="查询结果" >
+        </activity>
+         
     </application>
 
 </manifest>

@@ -16,7 +16,6 @@ import com.usta.network.Lecture;
 
 
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -58,9 +57,9 @@ public class SchoolBus extends SherlockActivity
 	protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.schoolbus);
-	        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+	       getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
 	        intent = getIntent();
-	        index=intent.getIntExtra("index", 0);
+	       index=intent.getIntExtra("index", 0);
 	        
 	        init_spinner();
 	        init_btn();

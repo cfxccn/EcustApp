@@ -4,55 +4,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+ <ScrollView
+        android:id="@+id/tea_scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+<TableLayout
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableRow>
     <TextView
         android:id="@+id/se_off_tv1"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:textSize="30dp"
-        android:layout_height="wrap_content"
-        android:text="办公室信息" />
-
-    <TextView
-        android:id="@+id/se_off_tv2"
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="办公室地址：" />
 
     <TextView
-        android:id="@+id/se_off_tv3"
+        android:id="@+id/se_off_tv2"
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
+         android:layout_marginTop="20dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:text="办公室电话：" />
-
+</TableRow>
     <TextView
-        android:id="@+id/se_off_tv4"
+        android:id="@+id/se_off_tv3"
         android:layout_width="wrap_content"
-         android:layout_marginTop="20dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="办公室老师：" />
 
     <TextView
-        android:id="@+id/se_off_tv5"
+        android:id="@+id/se_off_tv4"
         android:layout_width="wrap_content"
-         android:layout_marginTop="20dp"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:layout_height="wrap_content"
         android:text="办公室职能：" />
-
-    <Button
-        android:id="@+id/se_off_bu1"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:text="下一条" />
-
-
-
+  </TableLayout>
+ </ScrollView>  
 </LinearLayout>
