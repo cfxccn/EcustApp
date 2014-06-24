@@ -56,32 +56,6 @@ public class GetNetData {
 		}
 		return null;
 	}
-	public static JSONArray getsearchInfo2(String keywords)
-	{
-		String url="http://59.78.93.208:9092/searchteacher?keywords="+keywords+"";
-		HttpClient client = new DefaultHttpClient();
-		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
-		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 3000 );	
-		HttpGet request;
-		try {
-			request = new HttpGet(new URI(url));
-			HttpResponse response = client.execute(request);
-			
-			if (response.getStatusLine().getStatusCode() == 200) {
-				HttpEntity entity = response.getEntity();
-				if (entity != null) {
-					String out = EntityUtils.toString(entity);
-					JSONArray jsonArray=new JSONArray(out);
-					return jsonArray;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-
-		}
-		return null;
-	}
 	
 	public static SoapObject sendofficekw(String searchkw){
 		String namespace="http://tempuri.org/";
