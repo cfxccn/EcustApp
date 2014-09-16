@@ -13,8 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
+
 import com.usta.service.ClassroomService;
 import com.usta.control.GridViewOnScrollView;
 
@@ -38,7 +39,7 @@ import android.widget.TextView;
 
 import com.usta.R;
 
-public class SearchClassroom extends SherlockActivity {
+public class SearchClassroom extends ActionBarActivity {
 	
 	private int index;
 	Intent intent;

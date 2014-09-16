@@ -7,8 +7,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
 import com.usta.service.JobService;
 
@@ -16,16 +14,17 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 
-public class JobTitleView extends SherlockActivity {
+public class JobTitleView extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	String title;

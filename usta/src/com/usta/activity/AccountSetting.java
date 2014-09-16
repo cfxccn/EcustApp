@@ -2,10 +2,6 @@ package com.usta.activity;
 
 
 
-import com.actionbarsherlock.app.SherlockActivity;
-
-import com.actionbarsherlock.view.MenuItem;
-
 import com.renn.rennsdk.RennClient;
 import com.renn.rennsdk.RennResponse;
 import com.renn.rennsdk.RennClient.LoginListener;
@@ -17,21 +13,23 @@ import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.usta.R;
 import com.usta.account.Account;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.renn.rennsdk.RennClient;
-import com.renn.rennsdk.RennClient.LoginListener;
+
 import com.renn.rennsdk.RennExecutor.CallBack;
 import com.renn.rennsdk.exception.RennException;
 import com.renn.rennsdk.param.GetUserParam;
@@ -39,18 +37,13 @@ import com.renn.rennsdk.RennParam;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class AccountSetting extends SherlockActivity  implements OnClickListener {
+public class AccountSetting extends ActionBarActivity  implements OnClickListener {
 	private int index;
 	Intent intent;
 	LayoutInflater inflater;

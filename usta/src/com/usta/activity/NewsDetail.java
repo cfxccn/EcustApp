@@ -8,15 +8,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,8 +23,10 @@ import android.widget.Toast;
 import com.usta.R;
 import com.usta.service.NewsService;
 
+import android.view.MenuItem;
 
-public class NewsDetail extends SherlockActivity {
+
+public class NewsDetail extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	String title;

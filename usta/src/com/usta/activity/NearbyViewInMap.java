@@ -3,16 +3,15 @@ package com.usta.activity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import com.usta.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+
+
 import com.usta.control.MapOverlay;
 
 import android.os.Bundle;
@@ -22,7 +21,9 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -34,6 +35,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.baidu.mapapi.BMapManager;
 import com.baidu.mapapi.map.ItemizedOverlay;
 import com.baidu.mapapi.map.MKMapViewListener;
@@ -46,7 +48,7 @@ import com.baidu.mapapi.map.TextItem;
 import com.baidu.mapapi.map.TextOverlay;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
-public class NearbyViewInMap extends SherlockActivity {
+public class NearbyViewInMap extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	String nearbys_string;

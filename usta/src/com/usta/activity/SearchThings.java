@@ -12,19 +12,19 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.usta.R;
 import com.usta.service.GetNetData;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SearchThings extends SherlockActivity {
+public class SearchThings extends ActionBarActivity {
 	private String  searchdata[] ={"",""};
 	private TextView tx1;
 	private ListView lv1;

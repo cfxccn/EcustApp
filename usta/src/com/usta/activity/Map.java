@@ -10,28 +10,22 @@ import net.yoojia.imagemap.core.CircleShape;
 import net.yoojia.imagemap.core.PolyShape;
 import net.yoojia.imagemap.core.Shape;
 
-
-
-import com.actionbarsherlock.app.SherlockActivity;
-
-import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
-
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
-
 import android.view.Menu;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -41,7 +35,7 @@ import android.widget.Toast;
  
 
 
-public class Map extends SherlockActivity {
+public class Map extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	String content;

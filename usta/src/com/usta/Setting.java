@@ -1,27 +1,29 @@
 package com.usta;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 
-public class Setting extends SherlockActivity {
+public class Setting extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	 SharedPreferences userInfo;
-    @Override
+	@SuppressLint("NewApi")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
+        
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         intent = getIntent();
         index=intent.getIntExtra("index", 0);
         initradiobtn();

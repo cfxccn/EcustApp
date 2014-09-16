@@ -1,50 +1,29 @@
 package com.usta.activity;
-
-import java.text.SimpleDateFormat;
+import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.TimeZone;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 import com.usta.service.LectureService;
 import com.usta.control.GridViewOnScrollView;
-
-import android.R.integer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.R.array;
-import android.R.string;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.usta.R;
 
-public class SearchLecture extends SherlockActivity {
+public class SearchLecture extends ActionBarActivity {
 	
 	LectureService lectureService;
 	private int index;

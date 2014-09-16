@@ -8,10 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.ksoap2.serialization.SoapObject;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
 import com.usta.service.JobService;
 
@@ -20,13 +16,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class JobDetail extends SherlockActivity {
+public class JobDetail extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	String title;

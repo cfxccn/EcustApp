@@ -1,9 +1,6 @@
 package com.usta.activity;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+
 import com.usta.R.string;
 
 import android.os.Bundle;
@@ -11,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,9 +17,12 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.usta.R;
 
-public class Powerfare extends SherlockActivity {
+import android.view.MenuItem;
+
+public class Powerfare extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	String fare;

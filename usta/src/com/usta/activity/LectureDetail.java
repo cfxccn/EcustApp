@@ -1,17 +1,21 @@
 package com.usta.activity;
 
 import org.json.JSONObject;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
+
+
+
 import com.usta.R;
 import com.usta.service.LectureService;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.widget.TextView;
-public class LectureDetail extends SherlockActivity {
+public class LectureDetail extends ActionBarActivity {
 	private int index;
 	Intent intent;
 	String title;

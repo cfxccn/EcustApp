@@ -1,21 +1,22 @@
 package com.usta.activity;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+
 import com.usta.R;
 
-public class SearchBooks extends SherlockActivity {
+import android.view.MenuItem;
+
+public class SearchBooks extends ActionBarActivity {
 	private int index;
 	private int todo;
 	String urlString;
@@ -68,7 +69,7 @@ public class SearchBooks extends SherlockActivity {
 //    }
   @Override      
   public boolean onCreateOptionsMenu(Menu menu) {      
-      getSupportMenuInflater().inflate(R.menu.searchbook_menu, menu);      
+      getMenuInflater().inflate(R.menu.searchbook_menu, menu);      
       return super.onCreateOptionsMenu(menu);      
   }   
 

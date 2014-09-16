@@ -7,9 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
 import com.usta.control.ListViewOnScrollView;
 import com.usta.service.NearbyService;
@@ -34,8 +31,11 @@ import android.graphics.Matrix;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -58,7 +58,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class MainActivity extends SherlockActivity   {
+public class MainActivity extends ActionBarActivity   {
 	NewsService newsService;
     private int index =1;
 	private ViewPager viewPager;//页卡内容
@@ -147,7 +147,7 @@ public class MainActivity extends SherlockActivity   {
     		};
     		
 	public boolean onCreateOptionsMenu(Menu menu) {
-    	getSupportMenuInflater().inflate(R.menu.main, menu);
+    	getMenuInflater().inflate(R.menu.main, menu);
     	menu.findItem(R.id.view_inmap).setVisible(false);
     	_menu=menu;
         return true;
@@ -727,7 +727,7 @@ protected String nearbytype;
 			{
 				Intent intent =new Intent();
 				intent.putExtra("index", index);
-				intent.setClass(MainActivity.this, Advise.class);
+				intent.setClass(MainActivity.this, Advice.class);
 				startActivityForResult(intent, 0);
 			}
 		});
