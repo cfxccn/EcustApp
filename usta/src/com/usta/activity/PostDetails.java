@@ -12,8 +12,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.network.Nearby;
-import com.usta.network.Post;
+
+import com.usta.service.PostService;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -116,13 +116,13 @@ public class PostDetails extends SherlockActivity {
     			toast3.show();
     			}
     			};
-
+PostService postService;
         private void newPostBackViaNewThread() {
         	// TODO Auto-generated method stub
         	new Thread(new Runnable(){
         	    @Override
         	    public void run() {
-        	    		int i=com.usta.network.Post.newPostBack(postid, text,useremail,userkey,anony);
+        	    		int i=postService.newPostBack(postid, text,useremail,userkey,anony);
         				if(i==1){
         					newPostBackSuccess.sendEmptyMessage(0);
         					}
@@ -154,7 +154,7 @@ public class PostDetails extends SherlockActivity {
 	    @Override
 	    public void run() {
 	    	try {
-	    		postdetailsJsonArray= Post.getPostDetails(postid);
+	    		postdetailsJsonArray= postService.getPostDetails(postid);
 	    		if(postdetailsJsonArray!=null){	
 	    			handler.sendEmptyMessage(0);
 	    			}

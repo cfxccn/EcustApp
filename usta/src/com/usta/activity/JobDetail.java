@@ -13,7 +13,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.network.Job;
+import com.usta.service.JobService;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,7 +35,7 @@ public class JobDetail extends SherlockActivity {
     String jobid;
     String JobTitle,JobRelease,qbcert,JobDetail,JobTreatment,JobTime,JobSite,JobReq,JobTag,JobVia;
     JSONObject jobdetailsJsonObject;
-
+JobService JobService;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class JobDetail extends SherlockActivity {
 //
 //		    	 handler.sendEmptyMessage(0);
 
-	    	jobdetailsJsonObject=Job.getJobDetails(jobid);
+	    	jobdetailsJsonObject=JobService.getJobDetails(jobid);
 	    	if(jobdetailsJsonObject!=null){
 	    		handler.sendEmptyMessage(0);
 	    		}

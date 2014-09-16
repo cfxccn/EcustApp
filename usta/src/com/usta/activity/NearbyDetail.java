@@ -1,18 +1,13 @@
 package com.usta.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
+
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.network.Nearby;
+import com.usta.service.NearbyService;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,13 +16,12 @@ import android.content.Intent;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class NearbyDetail extends SherlockActivity {
 	private int index;
 	Intent intent;
-
+NearbyService nearbyService;
 	String  type;
     String nearbyid;
     String nearbytype;
@@ -54,7 +48,7 @@ public class NearbyDetail extends SherlockActivity {
 	    @Override
 	    public void run() {
 	    	try {
-	    		jsonObject= Nearby.getNearbyDetails(nearbytype,Integer.parseInt(nearbyid));
+	    		jsonObject= nearbyService.getNearbyDetails(nearbytype,Integer.parseInt(nearbyid));
 	    		if(jsonObject!=null){	
 	    			handler.sendEmptyMessage(0);
 	    			}

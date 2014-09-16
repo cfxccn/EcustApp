@@ -1,31 +1,16 @@
 package com.usta.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.ksoap2.serialization.SoapObject;
-
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.network.Job;
-import com.usta.network.Lecture;
-
+import com.usta.service.LectureService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.content.Intent;
 import android.view.KeyEvent;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-
 public class LectureDetail extends SherlockActivity {
 	private int index;
 	Intent intent;
@@ -34,7 +19,7 @@ public class LectureDetail extends SherlockActivity {
     String lectureid;
     String lecturetitle,lecturetime,lecturesite,reporter,depart,remark,campus;
     JSONObject lectureDetailsJsonObject;
-    
+    LectureService lectureService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +41,7 @@ public class LectureDetail extends SherlockActivity {
 	    public void run() {
 	    	try {
 
-	    	lectureDetailsJsonObject=Lecture.getLectureDetails(lectureid);
+	    	lectureDetailsJsonObject=lectureService.getLectureDetails(lectureid);
 	    	if(lectureDetailsJsonObject!=null){
 	    		handler.sendEmptyMessage(0);
 	    		}

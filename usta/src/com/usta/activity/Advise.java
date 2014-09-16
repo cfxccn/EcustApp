@@ -23,17 +23,19 @@ import android.widget.Toast;
 
 
 
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.commonsware.cwac.richedit.RichEditText;
 import com.usta.R;
-import com.usta.network.*;
+import com.usta.service.*;
 
 public class Advise extends SherlockActivity {
 	private int index;
 	Intent intent;
     private ArrayAdapter<String> adapter;  
+    AdviceService adviceService;
    
     private static final String[] grade={"大一","大二","大三","大四","教职工","其他"};  
 
@@ -154,7 +156,7 @@ private void sendAdviseViaNewThread() {
 	    public void run() {
 	    	toast0.show();
 
-				if(com.usta.network.Advise.sendAdvise(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI)==1){
+				if(adviceService.sendAdvise(_sex, _grade, advise,screenWidth,screenHeight,version,model,densityDPI)==1){
 					adviseSuccess.sendEmptyMessage(0);
 					}
 				else{			

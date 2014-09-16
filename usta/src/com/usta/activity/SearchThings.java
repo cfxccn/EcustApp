@@ -14,8 +14,7 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.usta.R;
-import com.usta.activity.*;
-import com.usta.network.GetNetData;
+import com.usta.service.GetNetData;
 
 import android.app.Activity;
 import android.content.Intent;

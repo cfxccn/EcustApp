@@ -1,5 +1,4 @@
 package com.usta.activity;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,21 +8,13 @@ import org.json.JSONObject;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.network.Bus;
-import com.usta.network.HttpUtils;
-import com.usta.network.Job;
-import com.usta.network.Lecture;
+import com.usta.service.BusService;
 
-
-
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
-import android.text.Html.ImageGetter;
+
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +30,7 @@ import android.widget.Toast;
 
 public class SchoolBus extends SherlockActivity 
 {
+	BusService busService;
 	private int index;
 	final private static String path1="http://59.78.93.208:8080/jsonProjject/servlet/action2?action_flag=schoolbus";
 	Intent intent;
@@ -60,7 +52,6 @@ public class SchoolBus extends SherlockActivity
 	       getSupportActionBar().setDisplayHomeAsUpEnabled(true);  
 	        intent = getIntent();
 	       index=intent.getIntExtra("index", 0);
-	        
 	        init_spinner();
 	        init_btn();
 	        
@@ -137,7 +128,7 @@ public class SchoolBus extends SherlockActivity
 				    public void run() {
 				    	try {
 				    		
-				    		busJsonArray=Bus.getBusInfo(day, type,route );
+							busJsonArray=busService.getBusInfo(day, type,route );
 				    
 				    		if(busJsonArray!=null){
 				    			if(busJsonArray.length()==0){

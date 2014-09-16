@@ -6,6 +6,5 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="src" path="/actionbarsherlock"/>
-	<classpathentry exported="true" kind="lib" path="E:/study/androideclispse_workspace/AndroidApp/actionbarsherlock/bin/actionbarsherlock.jar" sourcepath="/actionbarsherlock/src"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

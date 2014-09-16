@@ -17,21 +17,15 @@ import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.usta.R;
 import com.usta.account.Account;
-
-
-
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;

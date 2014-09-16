@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.network.Lecture;
+import com.usta.service.LectureService;
 import com.usta.control.GridViewOnScrollView;
 
 import android.R.integer;
@@ -46,6 +46,7 @@ import com.usta.R;
 
 public class SearchLecture extends SherlockActivity {
 	
+	LectureService lectureService;
 	private int index;
 	Intent intent;
 	
@@ -78,7 +79,7 @@ public class SearchLecture extends SherlockActivity {
     				
 						try {
 							
-							lectureArray = Lecture.getLectureList();
+							lectureArray = lectureService.getLectureList();
 						
 							if(lectureArray!=null){
 						    	 handler.sendEmptyMessage(0);

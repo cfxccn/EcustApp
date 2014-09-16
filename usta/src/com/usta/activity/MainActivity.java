@@ -2,17 +2,19 @@ package com.usta.activity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
 import com.usta.control.ListViewOnScrollView;
-import com.usta.network.Nearby;
-import com.usta.network.News;
-import com.usta.network.Weather;
+import com.usta.service.NearbyService;
+import com.usta.service.NewsService;
+import com.usta.service.Weather;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -57,6 +59,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class MainActivity extends SherlockActivity   {
+	NewsService newsService;
     private int index =1;
 	private ViewPager viewPager;//页卡内容
 //	private ImageView imageView;// 动画图片
@@ -78,7 +81,7 @@ public class MainActivity extends SherlockActivity   {
 	private String pic21="";
 	private String pic22="";
 	private String air_aqi="实时空气质量：";
-	private String air_advise="户外活动建议：";
+	private String air_advise="户外活动的建议：";
 	Intent intent;
 	private int aqi;
 	Menu _menu;
@@ -107,7 +110,7 @@ public class MainActivity extends SherlockActivity   {
        
 
 		  manger = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE); 
-    	  get_Weather();
+    	 // get_Weather();
     	  get_News();
           }
     private void get_News() {
@@ -115,7 +118,7 @@ public class MainActivity extends SherlockActivity   {
     	    @Override
     	    public void run() {
     	    	try {
-    		    	 newsJsonArray=News.getNewsTitles();
+    		    	 newsJsonArray=newsService.getNewsTitles();
     	    	if(newsJsonArray!=null){
     		    	newshandler.sendEmptyMessage(0);
     	    	}else{
@@ -232,55 +235,55 @@ tvTextView.setVisibility(View.GONE);
         return true;
     }
     
-    
-    private void get_Weather() {
-	   
-		// TODO Auto-generated method stub
-   	new Thread(new Runnable(){
-	    @Override
-	    public void run() {
-	  	JSONObject  weatherJsonObject=Weather.getWeatherDetails();
-	    		if(weatherJsonObject!=null){
+//    
+//    private void get_Weather() {
+//	   
+//		// TODO Auto-generated method stub
+//   	new Thread(new Runnable(){
+//	    @Override
+//	    public void run() {
+//	  	JSONObject  weatherJsonObject=Weather.getWeatherDetails();
+//	    		if(weatherJsonObject!=null){
+//
+//					 tvdate1=  weatherJsonObject.optString("h12")+" "+weatherJsonObject.optString("h12temp");
+//			         tvdate2=   weatherJsonObject.optString("h24")+" "+weatherJsonObject.optString("h24temp");
+//			         pic11=weatherJsonObject.optString("h12img1");
+//			         pic12=weatherJsonObject.optString("h12img2");
+//			         pic21=weatherJsonObject.optString("h24img1");
+//			         pic22=weatherJsonObject.optString("h24img2");
+//			         aqi=weatherJsonObject.optInt("pm25");
+//			         
+//			         air_aqi="实时空气质量："+weatherJsonObject.optString("aqi")+"   PM2.5指数："+Integer.toString(aqi);
+//			         air_advise="户外活动建议：";
+//		    		if(aqi<80)
+//	    	    	{air_advise=air_advise+"自由活动不受影响";
+//	    	    	}else
+//	    	    		if(aqi<120)
+//	    	    		{air_advise=air_advise+"尽量减少";
+//	    	    		}else
+//	    	    			{air_advise=air_advise+"完全停止";
+//	    	    			}
+//			    	 weatherhandler.sendEmptyMessage(0);
+//	    			
+//	    		}else{
+//	    			
+//	    			return;
+//	    		}
+//
+//	    
+//	    }
+//	}).start();
+//   	
+//	}
 
-					 tvdate1=  weatherJsonObject.optString("h12")+" "+weatherJsonObject.optString("h12temp");
-			         tvdate2=   weatherJsonObject.optString("h24")+" "+weatherJsonObject.optString("h24temp");
-			         pic11=weatherJsonObject.optString("h12img1");
-			         pic12=weatherJsonObject.optString("h12img2");
-			         pic21=weatherJsonObject.optString("h24img1");
-			         pic22=weatherJsonObject.optString("h24img2");
-			         aqi=weatherJsonObject.optInt("pm25");
-			         
-			         air_aqi="实时空气质量："+weatherJsonObject.optString("aqi")+"   PM2.5指数："+Integer.toString(aqi);
-			         air_advise="户外活动建议：";
-		    		if(aqi<80)
-	    	    	{air_advise=air_advise+"自由活动不受影响";
-	    	    	}else
-	    	    		if(aqi<120)
-	    	    		{air_advise=air_advise+"尽量减少";
-	    	    		}else
-	    	    			{air_advise=air_advise+"完全停止";
-	    	    			}
-			    	 weatherhandler.sendEmptyMessage(0);
-	    			
-	    		}else{
-	    			
-	    			return;
-	    		}
-
-	    
-	    }
-	}).start();
-   	
-	}
-
-public Handler weatherhandler =new Handler(){
-		@Override
-		//当有消息发送出来的时候就执行Handler的这个方法
-		public void handleMessage(Message msg){
-		super.handleMessage(msg);
-		init_weather();
-		}
-		};
+//public Handler weatherhandler =new Handler(){
+//		@Override
+//		//当有消息发送出来的时候就执行Handler的这个方法
+//		public void handleMessage(Message msg){
+//		super.handleMessage(msg);
+//		init_weather();
+//		}
+//		};
 
 		
 		protected void onActivityResult(int requestCode, int resultCode,  
@@ -293,36 +296,36 @@ public Handler weatherhandler =new Handler(){
     		}
     	
 }  
-public void init_weather() {
-			// TODO Auto-generated method stub
-	LinearLayout layoutWeather=(LinearLayout)findViewById(R.id.layoutWeather);   
-
-	layoutWeather.setVisibility(View.VISIBLE);
-	TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
-	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
-	TextView tv12=(TextView)findViewById(R.id.tv12);
-	TextView tv24=(TextView)findViewById(R.id.tv24);
-	tv12.setText("12时内 "+tvdate1);
-	tv24.setText("24时内 "+tvdate2);
-
-
-	ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
-	ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
-	ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
-	ImageView imgv22=(ImageView)findViewById(R.id.imgv22);
-	
-	tvWeather.setText(air_aqi);
-	tvAdvise.setText(air_advise);
-	_pic11=Integer.parseInt(pic11);
-	_pic12=Integer.parseInt(pic12);
-	_pic21=Integer.parseInt(pic21);
-	_pic22=Integer.parseInt(pic22);
-
-	imgv11.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic11));
-	imgv12.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic12));
-	imgv21.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic21));
-	imgv22.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic22));
-		}
+//public void init_weather() {
+//			// TODO Auto-generated method stub
+//	LinearLayout layoutWeather=(LinearLayout)findViewById(R.id.layoutWeather);   
+//
+//	layoutWeather.setVisibility(View.VISIBLE);
+//	TextView tvWeather=(TextView)findViewById(R.id.tvWeath);
+//	TextView tvAdvise=(TextView)findViewById(R.id.tvAdvise);
+//	TextView tv12=(TextView)findViewById(R.id.tv12);
+//	TextView tv24=(TextView)findViewById(R.id.tv24);
+//	tv12.setText("12时内 "+tvdate1);
+//	tv24.setText("24时内 "+tvdate2);
+//
+//
+//	ImageView imgv11=(ImageView)findViewById(R.id.imgv11);
+//	ImageView imgv12=(ImageView)findViewById(R.id.imgv12);	
+//	ImageView imgv21=(ImageView)findViewById(R.id.imgv21);
+//	ImageView imgv22=(ImageView)findViewById(R.id.imgv22);
+//	
+//	tvWeather.setText(air_aqi);
+//	tvAdvise.setText(air_advise);
+//	_pic11=Integer.parseInt(pic11);
+//	_pic12=Integer.parseInt(pic12);
+//	_pic21=Integer.parseInt(pic21);
+//	_pic22=Integer.parseInt(pic22);
+//
+//	imgv11.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic11));
+//	imgv12.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic12));
+//	imgv21.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic21));
+//	imgv22.setImageDrawable(getResources().getDrawable(R.drawable.a00+_pic22));
+//		}
 
 private OnClickListener laylistener = new OnClickListener(){ 
 @Override 
@@ -398,7 +401,7 @@ protected String nearbytype;
     }
 	JSONArray nearbys ;
 	
-	
+	NearbyService nearbyService;  
 	private void init_lay1()
 	{
 		init_spiner();
@@ -410,7 +413,7 @@ protected String nearbytype;
 		    @Override
 		    public void run() {
 		    	try {
-		    		nearbys=Nearby.getNearbyTitles(_type,Integer.MAX_VALUE);
+		    		nearbys=nearbyService.getNearbyTitles(_type,Integer.MAX_VALUE);
 			    	 if(nearbys!=null)nearby_handler.sendEmptyMessage(0);
 			    	 else 	
 			    		 return;

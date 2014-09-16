@@ -12,7 +12,6 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.network.News;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,7 +21,9 @@ import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.usta.R;
+import com.usta.service.NewsService;
 
 
 public class NewsDetail extends SherlockActivity {
@@ -35,7 +36,7 @@ public class NewsDetail extends SherlockActivity {
     String newsid;
     String NewTitle,NewsRelease,NewsDetail,NewsSource;
     JSONObject newsdetailsJsonObject;
-    
+    NewsService newsService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,7 @@ public class NewsDetail extends SherlockActivity {
 //	    		NewsDetail=sObject.getProperty(1).toString().trim(); 
 //	    		NewsRelease=sObject.getProperty(2).toString().trim(); 
 //	    		NewsSource=sObject.getProperty(3).toString().trim(); 
-	    		 newsdetailsJsonObject=News.getNewsDetails(Integer.parseInt(newsid));
+	    		 newsdetailsJsonObject=newsService.getNewsDetails(Integer.parseInt(newsid));
 	    		if(newsdetailsJsonObject!=null){
 			    	 handler.sendEmptyMessage(0);
 	    		}

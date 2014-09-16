@@ -19,10 +19,10 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
 import com.usta.R;
-import com.usta.network.*;
 
+
+import com.usta.service.*;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,7 +35,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,7 +48,7 @@ public class About extends SherlockActivity {
 	protected Button btn_update;
     public ProgressDialog pBar;
     private Handler handler = new Handler();
-
+	VersionService versionService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +168,7 @@ protected void getLatestVersionFromNewThread() {
 		public void run() {
 			// TODO Auto-generated method stub
 			try {
-				buildStringFromServer=String.valueOf(Version.getLatestVersion());
+				buildStringFromServer=String.valueOf(versionService.getLatestVersion());
 		    	if(Integer.parseInt(buildStringFromServer)>Integer.parseInt(buildInLocal)) 
 				{//更新
 		    		update_handler.sendEmptyMessage(0);

@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.MenuItem;
-import com.usta.network.Classroom;
+import com.usta.service.ClassroomService;
 import com.usta.control.GridViewOnScrollView;
 
 import android.os.Bundle;
@@ -35,6 +35,7 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.usta.R;
 
 public class SearchClassroom extends SherlockActivity {
@@ -78,6 +79,7 @@ public class SearchClassroom extends SherlockActivity {
 			}
 		});
     }
+    ClassroomService classroomService;
     private void getEmptyRoomServerDataViaNewThread()
     {
     	new Thread(new Runnable(){
@@ -86,7 +88,7 @@ public class SearchClassroom extends SherlockActivity {
     					cduring = ((Spinner)findViewById(R.id.spinner_during)).getSelectedItem().toString();
 						cwday = String.valueOf(((Spinner)findViewById(R.id.spinner_wday)).getSelectedItemPosition());
 						if(cwday.equals("0")) cwday="7";
-						roomsArray=Classroom.getRoomData(cwday, cduring);
+						roomsArray=classroomService.getRoomData(cwday, cduring);
 						if(roomsArray!=null){
 			    	    	 handler.sendEmptyMessage(0);
 						}

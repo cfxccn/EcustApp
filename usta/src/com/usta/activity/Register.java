@@ -11,11 +11,11 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-
 import com.usta.R;
 import com.usta.account.Account;
-import com.usta.network.*;
 
+
+import com.usta.service.*;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,7 +28,6 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;

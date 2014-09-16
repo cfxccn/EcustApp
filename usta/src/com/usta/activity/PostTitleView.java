@@ -3,18 +3,12 @@ package com.usta.activity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.usta.R;
-import com.usta.network.Job;
-import com.usta.network.Post;
-
+import com.usta.service.PostService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -103,13 +97,13 @@ public class PostTitleView extends SherlockActivity {
    	 		anony="0";
    	 		} 
 	}
-
+PostService postService;
     private void getPostTitlesDataViaNewThread() {
    	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
 	    	try {
-	    		postsTitilesJsonArray=Post.getPostsTitles(lastPostid);
+	    		postsTitilesJsonArray=postService.getPostsTitles(lastPostid);
 	    		if(postsTitilesJsonArray!=null){
 			    	 handler.sendEmptyMessage(0);
 	    		}
@@ -127,7 +121,7 @@ public class PostTitleView extends SherlockActivity {
 	    @Override
 	    public void run() {
 	    	try {
-	    		postsTitilesJsonArray=Post.getPostsTitles(lastPostid);
+	    		postsTitilesJsonArray=postService.getPostsTitles(lastPostid);
 	    		if(postsTitilesJsonArray!=null){
 	    			 if(postsTitilesJsonArray.length()==0){
 	    				 noMore.sendEmptyMessage(0);
@@ -228,7 +222,7 @@ private Handler newPostSuccess=new Handler(){
     	new Thread(new Runnable(){
     	    @Override
     	    public void run() {
-    	    		int i=com.usta.network.Post.newPost(posttitle,"",useremail,userkey,anony);
+    	    		int i=postService.newPost(posttitle,"",useremail,userkey,anony);
     				if(i==1){
     					newPostSuccess.sendEmptyMessage(0);
     					}
