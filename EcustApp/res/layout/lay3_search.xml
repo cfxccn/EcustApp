@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Map" >
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lay_s_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:textSize="20dp"
+        android:text="搜一搜" />
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    <EditText
+        android:id="@+id/lay3_s_et1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+       
+        android:ems="10" />
+
+    <ImageButton
+        android:id="@+id/lay3_s_ib1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_toRightOf="@+id/editText1"
+        android:src="@drawable/search" />
+</LinearLayout>
+    <RadioGroup
+        android:id="@+id/lay3_s_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:textSize="20dp"
+            android:checked="true"
+            android:text="教师" />
+       <TextView
+        android:id="@+id/lay3_s_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:text="提示：可据教师名称或所授课程查询" />
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+             android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:text="活动" />
+         <TextView
+        android:id="@+id/lay3_s_tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:text="提示：可据所需活动名称或涉及内容查询" />
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+          
+            android:text="办公室" />
+         <TextView
+        android:id="@+id/lay3_s_tv4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:text="提示：可据需求功能或学院分类查询" />
+    </RadioGroup>
+</LinearLayout>
+</RelativeLayout>

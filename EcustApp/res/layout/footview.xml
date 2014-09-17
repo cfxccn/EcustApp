@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnLoadMore"
+       style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:text="点击加载更多" 
+         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/homepage_searchbook"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="返回查询首页"/>
+
+</menu>

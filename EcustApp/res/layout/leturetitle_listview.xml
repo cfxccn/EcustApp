@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+<TextView
+            android:id="@+id/textView_lectureid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/textView_Job_title"
+            android:text="TextView"
+            android:visibility="invisible" />
+<TextView
+            android:id="@+id/textView_lecturetitle"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:text="讲座标题"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+<TextView
+            android:id="@+id/textView_report"
+            android:layout_width="305dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_lecturetitle"
+            android:layout_below="@+id/textView_lecturetitle"
+            android:text="报告人"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#fff36904" />
+<TextView
+            android:id="@+id/textView_lecturetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView_report"
+            android:layout_marginRight="18dp"
+            android:text="发布时间"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#ff909090" />
+</RelativeLayout>
