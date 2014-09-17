@@ -32,7 +32,7 @@ public class NewsDetail extends ActionBarActivity {
 	String newsid;
 	String NewTitle, NewsRelease, NewsDetail, NewsSource;
 	JSONObject newsdetailsJsonObject;
-	NewsService newsService;
+	NewsService newsService=new NewsService();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class NewsDetail extends ActionBarActivity {
 		newsid = intent.getStringExtra("newsid");
 		//index = intent.getIntExtra("index", 0);
 		getNewsDetailsViaNewThread();
+
 	}
 
 	private void getNewsDetailsViaNewThread() {

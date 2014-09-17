@@ -11,21 +11,21 @@ public final class R {
 		public static final int ic_action_format_dark = 0x7f020081;
 	}
 	public static final class id {
-		public static final int cwac_richedittext_bold = 0x7f05012a;
-		public static final int cwac_richedittext_center = 0x7f050128;
-		public static final int cwac_richedittext_effects = 0x7f05012c;
-		public static final int cwac_richedittext_fonts = 0x7f05012d;
-		public static final int cwac_richedittext_format = 0x7f050123;
-		public static final int cwac_richedittext_italic = 0x7f05012b;
-		public static final int cwac_richedittext_mono = 0x7f050126;
-		public static final int cwac_richedittext_normal = 0x7f050127;
-		public static final int cwac_richedittext_opposite = 0x7f050129;
-		public static final int cwac_richedittext_sans = 0x7f050125;
-		public static final int cwac_richedittext_serif = 0x7f050124;
-		public static final int cwac_richedittext_strike = 0x7f050120;
-		public static final int cwac_richedittext_subscript = 0x7f050122;
-		public static final int cwac_richedittext_superscript = 0x7f050121;
-		public static final int cwac_richedittext_underline = 0x7f05011f;
+		public static final int cwac_richedittext_bold = 0x7f06012a;
+		public static final int cwac_richedittext_center = 0x7f060128;
+		public static final int cwac_richedittext_effects = 0x7f06012c;
+		public static final int cwac_richedittext_fonts = 0x7f06012d;
+		public static final int cwac_richedittext_format = 0x7f060123;
+		public static final int cwac_richedittext_italic = 0x7f06012b;
+		public static final int cwac_richedittext_mono = 0x7f060126;
+		public static final int cwac_richedittext_normal = 0x7f060127;
+		public static final int cwac_richedittext_opposite = 0x7f060129;
+		public static final int cwac_richedittext_sans = 0x7f060125;
+		public static final int cwac_richedittext_serif = 0x7f060124;
+		public static final int cwac_richedittext_strike = 0x7f060120;
+		public static final int cwac_richedittext_subscript = 0x7f060122;
+		public static final int cwac_richedittext_superscript = 0x7f060121;
+		public static final int cwac_richedittext_underline = 0x7f06011f;
 	}
 	public static final class menu {
 		public static final int cwac_richedittext_effects = 0x7f0c0001;
@@ -35,23 +35,23 @@ public final class R {
 		public static final int cwac_richedittext_main = 0x7f0c0005;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f0a000e;
-		public static final int bold = 0x7f0a000f;
-		public static final int center = 0x7f0a001d;
-		public static final int effects = 0x7f0a0018;
-		public static final int fonts = 0x7f0a0019;
-		public static final int format = 0x7f0a001a;
-		public static final int hello = 0x7f0a000d;
-		public static final int italic = 0x7f0a0010;
-		public static final int lines = 0x7f0a001b;
-		public static final int mono = 0x7f0a0017;
-		public static final int normal = 0x7f0a001c;
-		public static final int opposite = 0x7f0a001e;
-		public static final int sans = 0x7f0a0015;
-		public static final int serif = 0x7f0a0016;
-		public static final int strikethrough = 0x7f0a0012;
-		public static final int subscript = 0x7f0a0014;
-		public static final int superscript = 0x7f0a0013;
-		public static final int underline = 0x7f0a0011;
+		public static final int app_name = 0x7f050001;
+		public static final int bold = 0x7f050002;
+		public static final int center = 0x7f050010;
+		public static final int effects = 0x7f05000b;
+		public static final int fonts = 0x7f05000c;
+		public static final int format = 0x7f05000d;
+		public static final int hello = 0x7f050000;
+		public static final int italic = 0x7f050003;
+		public static final int lines = 0x7f05000e;
+		public static final int mono = 0x7f05000a;
+		public static final int normal = 0x7f05000f;
+		public static final int opposite = 0x7f050011;
+		public static final int sans = 0x7f050008;
+		public static final int serif = 0x7f050009;
+		public static final int strikethrough = 0x7f050005;
+		public static final int subscript = 0x7f050007;
+		public static final int superscript = 0x7f050006;
+		public static final int underline = 0x7f050004;
 	}
 }

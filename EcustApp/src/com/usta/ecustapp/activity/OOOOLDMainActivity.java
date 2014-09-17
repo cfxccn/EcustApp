@@ -121,7 +121,7 @@ public class OOOOLDMainActivity extends ActionBarActivity {
 	protected void init_newslist() {
 		TextView tvTextView = (TextView) findViewById(R.id.textView1);
 		tvTextView.setVisibility(View.GONE);
-		listView_news = (ListView) findViewById(R.id.listView_news);
+		listView_news = (ListView) findViewById(R.id.listMode);
 		ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
 		for (int i = 0; i < newsJsonArray.length(); i++) {
