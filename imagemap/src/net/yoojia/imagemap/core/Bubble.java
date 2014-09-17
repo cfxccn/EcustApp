@@ -1,7 +1,6 @@
 package net.yoojia.imagemap.core;
 
 import android.graphics.PointF;
-import android.os.Build;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;

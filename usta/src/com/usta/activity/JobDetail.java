@@ -33,7 +33,7 @@ public class JobDetail extends ActionBarActivity {
     String jobid;
     String JobTitle,JobRelease,qbcert,JobDetail,JobTreatment,JobTime,JobSite,JobReq,JobTag,JobVia;
     JSONObject jobdetailsJsonObject;
-JobService JobService;
+JobService JobService=new JobService();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

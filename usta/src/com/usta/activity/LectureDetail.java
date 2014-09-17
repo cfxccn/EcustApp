@@ -23,7 +23,7 @@ public class LectureDetail extends ActionBarActivity {
     String lectureid;
     String lecturetitle,lecturetime,lecturesite,reporter,depart,remark,campus;
     JSONObject lectureDetailsJsonObject;
-    LectureService lectureService;
+    LectureService lectureService=new LectureService();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

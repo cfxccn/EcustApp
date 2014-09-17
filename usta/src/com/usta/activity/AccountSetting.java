@@ -35,7 +35,6 @@ import com.renn.rennsdk.exception.RennException;
 import com.renn.rennsdk.param.GetUserParam;
 import com.renn.rennsdk.RennParam;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 

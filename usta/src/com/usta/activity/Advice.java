@@ -31,7 +31,7 @@ public class Advice extends ActionBarActivity {
 	private int index;
 	Intent intent;
     private ArrayAdapter<String> adapter;  
-    AdviceService adviceService;
+    AdviceService adviceService=new AdviceService();
    
     private static final String[] grade={"大一","大二","大三","大四","教职工","其他"};  
 

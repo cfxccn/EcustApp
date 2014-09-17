@@ -1,7 +1,6 @@
 package com.usta.activity;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;

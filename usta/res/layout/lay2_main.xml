@@ -218,13 +218,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-<TextView
-    android:id="@+id/textView1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:text="正在加载新闻" />
-
                 <ListView
                     android:id="@+id/listView_news"
                     android:layout_width="match_parent"

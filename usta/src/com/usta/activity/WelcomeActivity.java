@@ -1,12 +1,7 @@
 package com.usta.activity;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.ksoap2.serialization.SoapObject;
-
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;

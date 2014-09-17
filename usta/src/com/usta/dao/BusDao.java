@@ -2,11 +2,8 @@ package com.usta.dao;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import android.content.Context;
-
 import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.DbUtils.DaoConfig;
 import com.lidroid.xutils.exception.DbException;
 import com.usta.model.BusEntity;
 

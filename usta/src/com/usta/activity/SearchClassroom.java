@@ -24,7 +24,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.R.array;
 import android.R.string;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;

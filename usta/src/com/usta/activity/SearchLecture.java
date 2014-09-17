@@ -25,7 +25,7 @@ import com.usta.R;
 
 public class SearchLecture extends ActionBarActivity {
 	
-	LectureService lectureService;
+	LectureService lectureService=new LectureService();
 	private int index;
 	Intent intent;
 	

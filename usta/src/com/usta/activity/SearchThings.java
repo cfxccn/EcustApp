@@ -15,9 +15,7 @@ import org.json.JSONObject;
 import com.usta.R;
 import com.usta.service.GetNetData;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
