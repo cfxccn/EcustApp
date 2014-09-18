@@ -4,7 +4,7 @@
         <item
         android:id="@+id/view_inmap"
         android:orderInCategory="100"
-        android:showAsAction="ifRoom"
-        android:title="查看位置"/>
+        android:showAsAction="ifRoom|withText"
+        android:title="位置"/>
 
 </menu>

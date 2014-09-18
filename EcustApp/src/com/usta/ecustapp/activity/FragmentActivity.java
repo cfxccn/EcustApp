@@ -2,8 +2,6 @@ package com.usta.ecustapp.activity;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-
 import com.usta.ecustapp.R;
 import com.usta.ecustapp.activity.PostTitleView;
 import com.usta.ecustapp.adapter.MyFragmentPagerAdapter;
@@ -13,27 +11,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class FragmentActivity extends ActionBarActivity {
 	private ViewPager mPager;
-	Menu _menu;
 	private ArrayList<Fragment> fragmentsList;
-    private int currIndex = 0;  
+	private int index = 0;
 	TextView textViewNearby, textViewHome, textViewSearch, textViewSetting,
 			textViewPost;
 	ImageView imageViewNearby, imageViewHome, imageViewSearch,
@@ -42,6 +34,7 @@ public class FragmentActivity extends ActionBarActivity {
 	Intent intent;
 	ListView listView_news;
 	ListView listView_nearby;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,6 +42,7 @@ public class FragmentActivity extends ActionBarActivity {
 		InitViewPager();
 		InitBottomView();
 	}
+
 	private void InitBottomView() {
 		imageViewNearby = (ImageView) findViewById(R.id.imageView_Nearby);
 		imageViewHome = (ImageView) findViewById(R.id.imageView_Home);
@@ -60,7 +54,7 @@ public class FragmentActivity extends ActionBarActivity {
 		textViewSearch = (TextView) findViewById(R.id.tvlay3);
 		textViewSetting = (TextView) findViewById(R.id.tvlay4);
 		textViewPost = (TextView) findViewById(R.id.tvlay5);
-		
+
 		imageViewNearby.setOnClickListener(bottomOnClickListener);
 		imageViewHome.setOnClickListener(bottomOnClickListener);
 		imageViewSearch.setOnClickListener(bottomOnClickListener);
@@ -71,6 +65,11 @@ public class FragmentActivity extends ActionBarActivity {
 		textViewSearch.setOnClickListener(bottomOnClickListener);
 		textViewSetting.setOnClickListener(bottomOnClickListener);
 		textViewPost.setOnClickListener(bottomOnClickListener);
+		
+		textViewNearby.setTextColor(Color.BLACK);
+		textViewHome.setTextColor(Color.BLUE);
+		textViewSearch.setTextColor(Color.BLACK);
+		textViewSetting.setTextColor(Color.BLACK);
 	}
 
 	private void InitViewPager() {
@@ -78,10 +77,10 @@ public class FragmentActivity extends ActionBarActivity {
 		fragmentsList = new ArrayList<Fragment>();
 		LayoutInflater mInflater = getLayoutInflater();
 		mInflater.inflate(R.layout.lay2_main, mPager);
-		Fragment nearbyFragment = NearbyFragment.newInstance();
-		Fragment mainFragment = MainFragment.newInstance();
-		Fragment searchFragment = SearchFragment.newInstance();
-		Fragment settingFragment = SettingFragment.newInstance();
+		Fragment nearbyFragment =new NearbyFragment();
+		Fragment mainFragment =new MainFragment();
+		Fragment searchFragment =new SearchFragment();
+		Fragment settingFragment =new SettingFragment();
 		fragmentsList.add(nearbyFragment);
 		fragmentsList.add(mainFragment);
 		fragmentsList.add(searchFragment);
@@ -90,6 +89,7 @@ public class FragmentActivity extends ActionBarActivity {
 				getSupportFragmentManager(), fragmentsList));
 		mPager.setCurrentItem(1);
 		mPager.setOnPageChangeListener(new FragmentOnPageChangeListener());
+
 	}
 
 	private OnClickListener bottomOnClickListener = new OnClickListener() {
@@ -99,69 +99,76 @@ public class FragmentActivity extends ActionBarActivity {
 			case R.id.tvlay1:
 				;
 			case R.id.imageView_Nearby:
-				currIndex = 0;
+				index = 0;
 				mPager.setCurrentItem(0);
 				break;
 			case R.id.tvlay2:
 				;
 			case R.id.imageView_Home:
-				currIndex = 1;
+				index = 1;
 				mPager.setCurrentItem(1);
 				break;
 			case R.id.tvlay3:
 				;
 			case R.id.imageView_Search:
-				currIndex = 2;
+				index = 2;
 				mPager.setCurrentItem(2);
 				break;
 			case R.id.tvlay4:
 				;
 			case R.id.imageView_Setting:
-				currIndex = 3;
+				index = 3;
 				mPager.setCurrentItem(3);
 				break;
 			case R.id.tvlay5:
 				;
 			case R.id.imageView_Post:
 				Intent intent = new Intent();
-				intent.putExtra("index", currIndex);
+				intent.putExtra("index", index);
 				intent.setClass(FragmentActivity.this, PostTitleView.class);
 				startActivityForResult(intent, 0);
 				;
 				break;
-
 			}
-
 		}
 	};
 
-
 	public class FragmentOnPageChangeListener implements OnPageChangeListener {
-		@Override
-		public void onPageSelected(int arg0) {
-            currIndex = arg0;
-		}
-
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
 		}
-
+		public void onPageSelected(int arg0) {
+			index = arg0;
+			if (arg0 == 0) {
+				textViewNearby.setTextColor(Color.BLUE);
+				textViewHome.setTextColor(Color.BLACK);
+				textViewSearch.setTextColor(Color.BLACK);
+				textViewSetting.setTextColor(Color.BLACK);
+			}
+			if (arg0 == 1) {
+				textViewNearby.setTextColor(Color.BLACK);
+				textViewHome.setTextColor(Color.BLUE);
+				textViewSearch.setTextColor(Color.BLACK);
+				textViewSetting.setTextColor(Color.BLACK);
+			}
+			if (arg0 == 2) {
+				textViewNearby.setTextColor(Color.BLACK);
+				textViewHome.setTextColor(Color.BLACK);
+				textViewSearch.setTextColor(Color.BLUE);
+				textViewSetting.setTextColor(Color.BLACK);
+			}
+			if (arg0 == 3) {
+				textViewNearby.setTextColor(Color.BLACK);
+				textViewHome.setTextColor(Color.BLACK);
+				textViewSearch.setTextColor(Color.BLACK);
+				textViewSetting.setTextColor(Color.BLUE);
+			}
+		}
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
+			// TODO Auto-generated method stub
 		}
-	}
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (resultCode) {
-		case RESULT_OK:
-
-		}
-
-	}
-
-	public boolean onOptionsItemSelected(MenuItem item) {
 	
-		return super.onOptionsItemSelected(item);
 	}
-
 
 }

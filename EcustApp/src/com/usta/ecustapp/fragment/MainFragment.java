@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.widget.SimpleAdapter;
+
 import com.usta.ecustapp.R;
 import com.usta.ecustapp.activity.JobTitleView;
 import com.usta.ecustapp.activity.Map;
@@ -47,12 +48,7 @@ public class MainFragment extends ListFragment {
 	ImageView imageView_Lecture;
 	View view;
 	ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
-	SimpleAdapter listItemAdapter;
-
-	public static MainFragment newInstance() {
-		MainFragment newFragment = new MainFragment();
-		return newFragment;
-	}
+	SimpleAdapter listItemAdapter ;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -85,8 +81,6 @@ public class MainFragment extends ListFragment {
 		startActivity(intent);
 	}
 
-
-
 	private void initView(View view) {
 		listItemAdapter = new SimpleAdapter(getActivity(),
 				listItem,// 数据源
@@ -98,6 +92,7 @@ public class MainFragment extends ListFragment {
 				new int[] { R.id.textView_newsid, R.id.textView_News_title,
 						R.id.textView_News_releasetime,
 						R.id.textView_News_source });
+		listViewNews = (ListView) view.findViewById(android.R.id.list);
 		ImageView ImageView_Job = (ImageView) view
 				.findViewById(R.id.imageView_Job);
 		ImageView_Job.setOnClickListener(new OnClickListener() {
@@ -176,23 +171,6 @@ public class MainFragment extends ListFragment {
 				startActivityForResult(intent, 0);
 			}
 		});
-		listViewNews = (ListView) view.findViewById(android.R.id.list);
-		// listViewNews.setOnItemClickListener(new OnItemClickListener() {
-		// @Override
-		// public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-		// long arg3) {
-		// ListView listView = (ListView) arg0;
-		// HashMap<String, Object> map = (HashMap<String, Object>) listView
-		// .getItemAtPosition(arg2);
-		// newsid = String.valueOf(map.get("textView_newsid"));
-		// Intent intent = new Intent();
-		// // intent.putExtra("index", index);
-		// intent.putExtra("newsid", newsid);
-		// intent.setClass(getActivity(), NewsDetail.class);
-		// startActivity(intent);
-		//
-		// }
-		// });
 	}
 
 	protected void showLibDialog() {
@@ -268,9 +246,5 @@ public class MainFragment extends ListFragment {
 					eachnewstitleJsonObject.optString("newssource").trim());
 			listItem.add(map);
 		}
-		// TODO Auto-generated method stub
-
-//		listViewNews.setAdapter(listItemAdapter);
-
 	}
 }

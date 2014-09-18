@@ -408,7 +408,7 @@ public class OOOOLDMainActivity extends ActionBarActivity {
 	};
 
 	private void init_NearbyList() {
-		listView_nearby = (ListView) findViewById(R.id.listView_nearby);
+		listView_nearby = (ListView) findViewById(android.R.id.list);
 		ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
 
 		JSONObject nearby = new JSONObject();

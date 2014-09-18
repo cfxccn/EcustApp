@@ -11,21 +11,21 @@ public final class R {
 		public static final int ic_action_format_dark = 0x7f020081;
 	}
 	public static final class id {
-		public static final int cwac_richedittext_bold = 0x7f060129;
-		public static final int cwac_richedittext_center = 0x7f060127;
-		public static final int cwac_richedittext_effects = 0x7f06012b;
-		public static final int cwac_richedittext_fonts = 0x7f06012c;
-		public static final int cwac_richedittext_format = 0x7f060122;
-		public static final int cwac_richedittext_italic = 0x7f06012a;
-		public static final int cwac_richedittext_mono = 0x7f060125;
-		public static final int cwac_richedittext_normal = 0x7f060126;
-		public static final int cwac_richedittext_opposite = 0x7f060128;
-		public static final int cwac_richedittext_sans = 0x7f060124;
-		public static final int cwac_richedittext_serif = 0x7f060123;
-		public static final int cwac_richedittext_strike = 0x7f06011f;
-		public static final int cwac_richedittext_subscript = 0x7f060121;
-		public static final int cwac_richedittext_superscript = 0x7f060120;
-		public static final int cwac_richedittext_underline = 0x7f06011e;
+		public static final int cwac_richedittext_bold = 0x7f060128;
+		public static final int cwac_richedittext_center = 0x7f060126;
+		public static final int cwac_richedittext_effects = 0x7f06012a;
+		public static final int cwac_richedittext_fonts = 0x7f06012b;
+		public static final int cwac_richedittext_format = 0x7f060121;
+		public static final int cwac_richedittext_italic = 0x7f060129;
+		public static final int cwac_richedittext_mono = 0x7f060124;
+		public static final int cwac_richedittext_normal = 0x7f060125;
+		public static final int cwac_richedittext_opposite = 0x7f060127;
+		public static final int cwac_richedittext_sans = 0x7f060123;
+		public static final int cwac_richedittext_serif = 0x7f060122;
+		public static final int cwac_richedittext_strike = 0x7f06011e;
+		public static final int cwac_richedittext_subscript = 0x7f060120;
+		public static final int cwac_richedittext_superscript = 0x7f06011f;
+		public static final int cwac_richedittext_underline = 0x7f06011d;
 	}
 	public static final class menu {
 		public static final int cwac_richedittext_effects = 0x7f0c0001;

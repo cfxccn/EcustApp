@@ -4,6 +4,7 @@ import com.usta.ecustapp.R;
 import com.usta.ecustapp.activity.About;
 import com.usta.ecustapp.activity.AccountSetting;
 import com.usta.ecustapp.activity.Advice;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,17 +24,10 @@ public class SettingFragment extends Fragment {
 	Intent intent;
 	SharedPreferences userInfo;
 
-	public static SettingFragment newInstance() {
-		SettingFragment newFragment = new SettingFragment();
-		return newFragment;
-
-	}
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -70,23 +64,23 @@ public class SettingFragment extends Fragment {
 			public void onCheckedChanged(RadioGroup arg0, int arg1) {
 				// TODO Auto-generated method stub
 				// 获取变更后的选中项的ID
-				Toast toastanonyon = Toast.makeText(getActivity(), "匿名-已保存",
+				Toast toastAnonyOn = Toast.makeText(getActivity(), "匿名-已保存",
 						Toast.LENGTH_SHORT);
-				Toast toastanonyoff = Toast.makeText(getActivity(), "不匿名-已保存",
+				Toast toastAnonyOff = Toast.makeText(getActivity(), "不匿名-已保存",
 						Toast.LENGTH_SHORT);
 				if (arg1 == R.id.radiobtn_anonyon_setting) {
 					userInfo.edit().putString("anony", "on").commit();
-					toastanonyon.show();
+					toastAnonyOn.show();
 				}
 				if (arg1 == R.id.radiobtn_anonyoff_setting) {
 					userInfo.edit().putString("anony", "off").commit();
-					toastanonyoff.show();
+					toastAnonyOff.show();
 				}
 
 			}
 		});
-		Button btn_toabout_setting = (Button) view.findViewById(R.id.btn_toabout_setting);
-		btn_toabout_setting.setOnClickListener(new OnClickListener() {
+		Button btnAbout = (Button) view.findViewById(R.id.btn_toabout_setting);
+		btnAbout.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
@@ -95,8 +89,8 @@ public class SettingFragment extends Fragment {
 				startActivityForResult(intent, 0);
 			}
 		});
-		Button btn_toaccount = (Button) view.findViewById(R.id.btn_toaccount);
-		btn_toaccount.setOnClickListener(new OnClickListener() {
+		Button btnAccount = (Button) view.findViewById(R.id.btn_toaccount);
+		btnAccount.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
@@ -105,8 +99,5 @@ public class SettingFragment extends Fragment {
 				startActivityForResult(intent, 0);
 			}
 		});
-
 	}
-
-
 }
