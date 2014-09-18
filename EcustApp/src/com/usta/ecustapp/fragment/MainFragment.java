@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.widget.SimpleAdapter;
-
 import com.usta.ecustapp.R;
 import com.usta.ecustapp.activity.JobTitleView;
 import com.usta.ecustapp.activity.Map;
@@ -36,7 +35,6 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainFragment extends ListFragment {
 	Intent intent;
