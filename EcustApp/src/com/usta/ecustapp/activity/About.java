@@ -231,11 +231,9 @@ public class About extends ActionBarActivity {
 		layoutUpdate.setVisibility(View.VISIBLE);
 
 	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-
 		case android.R.id.home:
 			setResult(RESULT_OK, intent);
 			finish();

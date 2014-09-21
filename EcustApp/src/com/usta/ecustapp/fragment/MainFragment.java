@@ -28,16 +28,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-public class MainFragment extends ListFragment {
+public class MainFragment extends Fragment {
 	Intent intent;
 	Menu _menu;
 	private String newsid = "";
@@ -47,51 +49,32 @@ public class MainFragment extends ListFragment {
 	NewsService newsService = new NewsService();
 	ImageView imageView_Lecture;
 	View view;
-	ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
-	SimpleAdapter listItemAdapter ;
+	ArrayList<HashMap<String, Object>> listItemNews = new ArrayList<HashMap<String, Object>>();
+	SimpleAdapter listItemAdapterNews ;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.lay2_main, container, false);
+		view = inflater.inflate(R.layout.fragment_main, container, false);
 		initView(view);
+		get_News();
+
 		return view;
 	}
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		setListAdapter(listItemAdapter);
-		get_News();
 	}
 
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		@SuppressWarnings("unchecked")
-		HashMap<String, Object> map=(HashMap<String, Object>) listItemAdapter.getItem(position);
-		newsid = String.valueOf(map.get("textView_newsid"));
 
-		Intent intent = new Intent();
-		// intent.putExtra("index", index);
-		intent.putExtra("newsid", newsid);
-		intent.setClass(getActivity(), NewsDetail.class);
-		startActivity(intent);
-	}
 
 	private void initView(View view) {
-		listItemAdapter = new SimpleAdapter(getActivity(),
-				listItem,// 数据源
-				R.layout.newstitle_listview,// ListItem的XML实现
-				// 动态数组与ImageItem对应的子项
-				new String[] { "textView_newsid", "textView_News_title",
-						"textView_News_releasetime", "textView_News_source" },
-				// ImageItem的XML文件里面的一个ImageView,两个TextView ID
-				new int[] { R.id.textView_newsid, R.id.textView_News_title,
-						R.id.textView_News_releasetime,
-						R.id.textView_News_source });
+		
 		listViewNews = (ListView) view.findViewById(android.R.id.list);
 		ImageView ImageView_Job = (ImageView) view
 				.findViewById(R.id.imageView_Job);
@@ -228,23 +211,51 @@ public class MainFragment extends ListFragment {
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
-			init_newslist();
+			initNewsList();
 		}
 	};
 
-	protected void init_newslist() {
-
+	protected void initNewsList() {
+		listItemNews.clear();
 		for (int i = 0; i < newsJsonArray.length(); i++) {
-			JSONObject eachnewstitleJsonObject = newsJsonArray.optJSONObject(i);
+			JSONObject eachNewsTitleJsonObject = newsJsonArray.optJSONObject(i);
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("textView_newsid", eachnewstitleJsonObject.optInt("id"));
+			map.put("textView_newsid", eachNewsTitleJsonObject.optInt("id"));
 			map.put("textView_News_title",
-					eachnewstitleJsonObject.optString("newstitle").trim());
-			map.put("textView_News_releasetime", eachnewstitleJsonObject
+					eachNewsTitleJsonObject.optString("newstitle").trim());
+			map.put("textView_News_releasetime", eachNewsTitleJsonObject
 					.optString("newsrelease").trim());
 			map.put("textView_News_source",
-					eachnewstitleJsonObject.optString("newssource").trim());
-			listItem.add(map);
+					eachNewsTitleJsonObject.optString("newssource").trim());
+			listItemNews.add(map);
 		}
+		listItemAdapterNews = new SimpleAdapter(getActivity(),
+				listItemNews,// 数据源
+				R.layout.newstitle_listview,// ListItem的XML实现
+				// 动态数组与ImageItem对应的子项
+				new String[] { "textView_newsid", "textView_News_title",
+						"textView_News_releasetime", "textView_News_source" },
+				// ImageItem的XML文件里面的一个ImageView,两个TextView ID
+				new int[] { R.id.textView_newsid, R.id.textView_News_title,
+						R.id.textView_News_releasetime,
+						R.id.textView_News_source });
+		listViewNews.setAdapter(listItemAdapterNews);
+		listViewNews.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				@SuppressWarnings("unchecked")
+				HashMap<String, Object> map=(HashMap<String, Object>) listItemAdapterNews.getItem(arg2);
+				newsid = String.valueOf(map.get("textView_newsid"));
+
+				Intent intent = new Intent();
+				// intent.putExtra("index", index);
+				intent.putExtra("newsid", newsid);
+				intent.setClass(getActivity(), NewsDetail.class);
+				startActivity(intent);
+			}
+		});
 	}
 }

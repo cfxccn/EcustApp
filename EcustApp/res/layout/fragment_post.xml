@@ -5,29 +5,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayoutText"
+		android:layout_above="@+id/linearLayoutText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <include
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                layout="@layout/post_postback_listview" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#000000" />
-        </LinearLayout>
-
         <ListView
-            android:id="@+id/listViewPostBack"
+            android:id="@+id/listViewPost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
         </ListView>
@@ -58,22 +42,24 @@
             android:layout_height="4dp" />
 
         <LinearLayout
+            android:id="@+id/linearLayoutNewPost"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" 
+
+            >
 
             <View
                 android:layout_width="4dp"
                 android:layout_height="match_parent" />
 
             <EditText
-                android:id="@+id/editTextPostBack"
+                android:id="@+id/editTextNewPost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="你想回复的话~"
-                android:singleLine="true" >
-            </EditText>
+                android:hint="你想说的话~"
+                android:singleLine="true" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -82,12 +68,12 @@
                 android:orientation="vertical" >
 
                 <Button
-                    android:id="@+id/btnPostBack"
+                    android:id="@+id/btnNewPost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="#00000000"
-                    android:text="跟帖" />
+                    android:text="发表" />
             </LinearLayout>
 
             <View
@@ -95,5 +81,14 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="62dp"
+        android:text="正在加载" />
 
 </RelativeLayout>

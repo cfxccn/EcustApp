@@ -45,7 +45,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
                 android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
@@ -180,7 +180,10 @@
             android:name="com.usta.ecustapp.activity.SearchThings"
             android:label="查询结果" >
         </activity>
-         
+                  <activity
+            android:name="com.usta.ecustapp.activity.Search"
+            android:label="搜索" >
+        </activity>
     </application>
 
 </manifest>

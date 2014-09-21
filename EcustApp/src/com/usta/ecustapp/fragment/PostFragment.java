@@ -1,37 +1,37 @@
-package com.usta.ecustapp.activity;
+package com.usta.ecustapp.fragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.usta.ecustapp.*;
-import com.usta.ecustapp.service.*;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
-import android.view.KeyEvent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.view.MenuItem;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class PostTitleView extends ActionBarActivity {
+import com.usta.ecustapp.R;
+import com.usta.ecustapp.activity.PostDetails;
+import com.usta.ecustapp.service.PostService;
+import com.usta.ecustapp.util.ToastUtil;
+
+public class PostFragment extends Fragment {
 	private int index;
 	Intent intent;
 	private ListView listViewPost;
@@ -46,53 +46,80 @@ public class PostTitleView extends ActionBarActivity {
 	String anony;
 	EditText editTextNewPost;
 	SharedPreferences userInfo;
-	Toast toast1;
-	Toast toast2;
-	Toast toast3;
-	Toast toast4;
-	Toast toast5;
-	Toast toast6;
-	Toast toast7;
 
 	Button btnLoadMoreButton;
 	int lastindex;
 	PostService postService = new PostService();
-
-	ArrayList<HashMap<String, Object>> listItem;
-	SimpleAdapter listItemAdapter;
+	ArrayList<HashMap<String, Object>> listItemPost = new ArrayList<HashMap<String, Object>>();;
+	SimpleAdapter listItemAdapterPost;
 	int lastPostid;
+	TextView tvLoading;
+
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_post);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		intent = getIntent();
-		index = intent.getIntExtra("index", 0);
-		listViewPost = (ListView) findViewById(R.id.listViewPost);
-		editTextNewPost = (EditText) findViewById(R.id.editTextNewPost);
-		lastPostid = Integer.MAX_VALUE;
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_post, container, false);
+		initView(view);
 		initLocalUserInfo();
-		initbtn();
 		getPostTitlesDataViaNewThread();
-		toast1 = Toast.makeText(this, "请先至 设置-账号管理 登录", Toast.LENGTH_SHORT);
-		toast2 = Toast.makeText(this, "发送成功", Toast.LENGTH_SHORT);
-		toast3 = Toast.makeText(this, "请先至 设置-账号管理 重新登录", Toast.LENGTH_SHORT);
-		toast4 = Toast.makeText(this, "发送失败 请检查网络", Toast.LENGTH_SHORT);
-		toast4 = Toast.makeText(this, "发送失败 请检查网络", Toast.LENGTH_SHORT);
-		toast5 = Toast.makeText(this, "已全部加载完", Toast.LENGTH_SHORT);
-		toast6 = Toast.makeText(this, "正在发送", Toast.LENGTH_SHORT);
-		toast7 = Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT);
+		return view;
+	}
 
-		View footerView = ((LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(
-				R.layout.footview, null, false);
+	private void initView(View view) {
+		listViewPost = (ListView) view.findViewById(R.id.listViewPost);
+		editTextNewPost = (EditText) view.findViewById(R.id.editTextNewPost);
+		View footerView = ((LayoutInflater) getActivity().getSystemService(
+				Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footview,
+				null, false);
 		listViewPost.addFooterView(footerView);
+		tvLoading = (TextView) view.findViewById(R.id.textViewLoading);
+		btnLoadMoreButton = (Button) view.findViewById(R.id.btnLoadMore);
+		btnLoadMoreButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				loadMorePostTitlesDataViaNewThread();
+			}
+		});
+		Button btnNewPost = (Button) view.findViewById(R.id.btnNewPost);
+		btnNewPost.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				posttitle = editTextNewPost.getText().toString();
+				if (useremail.equals("null")) {
+					ToastUtil.showToastShort(getActivity(), "请先至 设置-账号管理 登录");
+					// toast1.show();
+				} else if (posttitle.equals("")) {
+					ToastUtil.showToastShort(getActivity(), "请输入内容");
+				} else {
+					ToastUtil.showToastShort(getActivity(), "正在发送");
+					newPostViaNewThread();
+				}
+			}
+		});
+	}
+
+	private void newPostViaNewThread() {
+		// TODO Auto-generated method stub
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				int i = postService.newPost(posttitle, "", useremail, userkey,
+						anony);
+				if (i == 1) {
+					newPostSuccess.sendEmptyMessage(0);
+				} else if (i == -2) {
+					newPostFailureNet.sendEmptyMessage(0);
+				} else if (i == -1) {
+					newPostFailure.sendEmptyMessage(0);
+				}
+			}
+		}).start();
 	}
 
 	private void initLocalUserInfo() {
 		// TODO Auto-generated method stub
-		userInfo = getSharedPreferences("setting", 0);
+		userInfo = getActivity().getSharedPreferences("setting", 0);
 		userkey = userInfo.getString("userkey", "null");
 		useremail = userInfo.getString("useremail", "null");
 		anony = userInfo.getString("anony", "null");
@@ -101,25 +128,6 @@ public class PostTitleView extends ActionBarActivity {
 		} else {
 			anony = "0";
 		}
-	}
-
-	private void getPostTitlesDataViaNewThread() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					postsTitilesJsonArray = postService
-							.getPostsTitles(lastPostid);
-					if (postsTitilesJsonArray != null) {
-						handler.sendEmptyMessage(0);
-					} else {
-						return;
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
 	}
 
 	private void loadMorePostTitlesDataViaNewThread() {
@@ -142,26 +150,6 @@ public class PostTitleView extends ActionBarActivity {
 				}
 			}
 		}).start();
-	}
-
-	private void initbtn() {
-		// TODO Auto-generated method stub
-		Button btnNewPost = (Button) findViewById(R.id.btnNewPost);
-		btnNewPost.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-
-				posttitle = editTextNewPost.getText().toString();
-				if (useremail.equals("null")) {
-					toast1.show();
-				} else if (posttitle.equals("")) {
-					toast7.show();
-				} else {
-					toast6.show();
-					newPostViaNewThread();
-				}
-			}
-		});
 	}
 
 	private Handler loadMore = new Handler() {
@@ -188,9 +176,9 @@ public class PostTitleView extends ActionBarActivity {
 					map.put("textViewPBUser",
 							userJsonObject.optString("username").trim());
 				}
-				listItem.add(map);
+				listItemPost.add(map);
 			}
-			listViewPost.setAdapter(listItemAdapter);
+			listViewPost.setAdapter(listItemAdapterPost);
 			listViewPost.setSelection(oldlastindex - 1);
 		}
 	};
@@ -198,9 +186,8 @@ public class PostTitleView extends ActionBarActivity {
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
-			toast2.show();
+			ToastUtil.showToastShort(getActivity(), "发送成功");
 			editTextNewPost.setText("");
-			lastPostid = Integer.MAX_VALUE;
 			getPostTitlesDataViaNewThread();
 		}
 	};
@@ -209,38 +196,39 @@ public class PostTitleView extends ActionBarActivity {
 		// 当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
-			toast5.show();
+			ToastUtil.showToastShort(getActivity(), "已全部加载完");
 		}
 	};
 	private Handler newPostFailureNet = new Handler() {
 		@Override
-		// 当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
-			toast4.show();
+			ToastUtil.showToastShort(getActivity(), "发送失败 请检查网络");
 		}
 	};
 	private Handler newPostFailure = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
-			toast3.show();
+			ToastUtil.showToastShort(getActivity(), "请先至 设置-账号管理 重新登录");
 		}
 	};
 
-	private void newPostViaNewThread() {
-		// TODO Auto-generated method stub
+	private void getPostTitlesDataViaNewThread() {
+		lastPostid = Integer.MAX_VALUE;
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				int i = postService.newPost(posttitle, "", useremail, userkey,
-						anony);
-				if (i == 1) {
-					newPostSuccess.sendEmptyMessage(0);
-				} else if (i == -2) {
-					newPostFailureNet.sendEmptyMessage(0);
-				} else if (i == -1) {
-					newPostFailure.sendEmptyMessage(0);
+				try {
+					postsTitilesJsonArray = postService
+							.getPostsTitles(lastPostid);
+					if (postsTitilesJsonArray != null) {
+						handler.sendEmptyMessage(0);
+					} else {
+						return;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}).start();
@@ -251,15 +239,14 @@ public class PostTitleView extends ActionBarActivity {
 		// 当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
-			initlistview();
+			initListViewPost();
 
 		}
 	};
 
-	private void initlistview() {
-		TextView tvTextView = (TextView) findViewById(R.id.textView1);
-		tvTextView.setVisibility(View.GONE);
-		listItem = new ArrayList<HashMap<String, Object>>();
+	private void initListViewPost() {
+		tvLoading.setVisibility(View.GONE);
+		listItemPost.clear();
 		for (int i = 0; i < postsTitilesJsonArray.length(); i++) {
 			lastindex++;
 			JSONObject postJsonObject = postsTitilesJsonArray.optJSONObject(i);
@@ -280,10 +267,10 @@ public class PostTitleView extends ActionBarActivity {
 				map.put("textViewPBUser", userJsonObject.optString("username")
 						.trim());
 			}
-			listItem.add(map);
+			listItemPost.add(map);
 		}
 		// TODO Auto-generated method stub
-		listItemAdapter = new SimpleAdapter(this, listItem,// 数据源
+		listItemAdapterPost = new SimpleAdapter(getActivity(), listItemPost,// 数据源
 				R.layout.post_postback_listview,// ListItem的XML实现
 				// 动态数组与ImageItem对应的子项
 				new String[] { "textViewPBid", "textViewPBText",
@@ -292,53 +279,24 @@ public class PostTitleView extends ActionBarActivity {
 				new int[] { R.id.textViewPBid, R.id.textViewPBText,
 						R.id.textViewPBTime, R.id.textViewPBUser });
 
-		listViewPost.setAdapter(listItemAdapter);
+		listViewPost.setAdapter(listItemAdapterPost);
 		listViewPost.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				ListView listView = (ListView) arg0;
+				@SuppressWarnings("unchecked")
 				HashMap<String, Object> map = (HashMap<String, Object>) listView
 						.getItemAtPosition(arg2);
 				postid = String.valueOf(map.get("textViewPBid"));
 				Intent intent = new Intent();
 				intent.putExtra("index", index);
 				intent.putExtra("postid", postid);
-				intent.setClass(PostTitleView.this, PostDetails.class);
+				intent.setClass(getActivity(), PostDetails.class);
 				startActivityForResult(intent, 0);
 			}
 		});
-		initBtnLoadMore();
 	}
 
-	private void initBtnLoadMore() {
-		// TODO Auto-generated method stub
-		btnLoadMoreButton = (Button) findViewById(R.id.btnLoadMore);
-		btnLoadMoreButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				loadMorePostTitlesDataViaNewThread();
 
-			}
-		});
-	}
-
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-			setResult(RESULT_OK, intent);
-			finish();
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
-
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			setResult(RESULT_OK, intent);
-			finish();
-			break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 }

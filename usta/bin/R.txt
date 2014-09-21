@@ -546,7 +546,7 @@ int id spinner_wday 0x7f06010f
 int id splash 0x7f060063
 int id split_action_bar 0x7f060022
 int id spn_grade 0x7f060066
-int id spr_type_nearby 0x7f06009e
+int id spr_type_nearby 0x7f06009d
 int id submit_area 0x7f06003d
 int id tabMode 0x7f060002
 int id textView1 0x7f06004c
@@ -625,7 +625,7 @@ int id up 0x7f060025
 int id useLogo 0x7f060003
 int id vPager 0x7f060053
 int id view1 0x7f060082
-int id view3 0x7f06009d
+int id view3 0x7f06009e
 int id view_inmap 0x7f060130
 int id webView_lib 0x7f06010e
 int id webView_linknet 0x7f0600c5

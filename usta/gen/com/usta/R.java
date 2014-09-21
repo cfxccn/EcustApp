@@ -1430,7 +1430,7 @@ containing a value of this type.
         public static final int splash=0x7f060063;
         public static final int split_action_bar=0x7f060022;
         public static final int spn_grade=0x7f060066;
-        public static final int spr_type_nearby=0x7f06009e;
+        public static final int spr_type_nearby=0x7f06009d;
         public static final int submit_area=0x7f06003d;
         public static final int tabMode=0x7f060002;
         public static final int textView1=0x7f06004c;
@@ -1509,7 +1509,7 @@ containing a value of this type.
         public static final int useLogo=0x7f060003;
         public static final int vPager=0x7f060053;
         public static final int view1=0x7f060082;
-        public static final int view3=0x7f06009d;
+        public static final int view3=0x7f06009e;
         public static final int view_inmap=0x7f060130;
         public static final int webView_lib=0x7f06010e;
         public static final int webView_linknet=0x7f0600c5;

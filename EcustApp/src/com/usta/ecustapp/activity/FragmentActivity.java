@@ -2,13 +2,15 @@ package com.usta.ecustapp.activity;
 
 import java.util.ArrayList;
 
+
+
 import com.usta.ecustapp.R;
-import com.usta.ecustapp.activity.PostTitleView;
 import com.usta.ecustapp.adapter.MyFragmentPagerAdapter;
 import com.usta.ecustapp.fragment.*;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.content.Intent;
@@ -16,6 +18,8 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -25,16 +29,14 @@ import android.widget.TextView;
 public class FragmentActivity extends ActionBarActivity {
 	private ViewPager mPager;
 	private ArrayList<Fragment> fragmentsList;
+	@SuppressWarnings("unused")
 	private int index = 0;
-	TextView textViewNearby, textViewHome, textViewSearch, textViewSetting,
-			textViewPost;
-	ImageView imageViewNearby, imageViewHome, imageViewSearch,
-			imageViewSetting, imageViewPost;
+	TextView textViewNearby, textViewHome, textViewSetting, textViewPost;
+	ImageView imageViewNearby, imageViewHome, imageViewSetting, imageViewPost;
 	ConnectivityManager manger;
 	Intent intent;
 	ListView listView_news;
 	ListView listView_nearby;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,46 +48,44 @@ public class FragmentActivity extends ActionBarActivity {
 	private void InitBottomView() {
 		imageViewNearby = (ImageView) findViewById(R.id.imageView_Nearby);
 		imageViewHome = (ImageView) findViewById(R.id.imageView_Home);
-		imageViewSearch = (ImageView) findViewById(R.id.imageView_Search);
-		imageViewSetting = (ImageView) findViewById(R.id.imageView_Setting);
 		imageViewPost = (ImageView) findViewById(R.id.imageView_Post);
+		imageViewSetting = (ImageView) findViewById(R.id.imageView_Setting);
 		textViewNearby = (TextView) findViewById(R.id.tvlay1);
 		textViewHome = (TextView) findViewById(R.id.tvlay2);
-		textViewSearch = (TextView) findViewById(R.id.tvlay3);
+		textViewPost = (TextView) findViewById(R.id.tvlay3);
 		textViewSetting = (TextView) findViewById(R.id.tvlay4);
-		textViewPost = (TextView) findViewById(R.id.tvlay5);
 
 		imageViewNearby.setOnClickListener(bottomOnClickListener);
 		imageViewHome.setOnClickListener(bottomOnClickListener);
-		imageViewSearch.setOnClickListener(bottomOnClickListener);
-		imageViewSetting.setOnClickListener(bottomOnClickListener);
 		imageViewPost.setOnClickListener(bottomOnClickListener);
+		imageViewSetting.setOnClickListener(bottomOnClickListener);
+
 		textViewNearby.setOnClickListener(bottomOnClickListener);
 		textViewHome.setOnClickListener(bottomOnClickListener);
-		textViewSearch.setOnClickListener(bottomOnClickListener);
-		textViewSetting.setOnClickListener(bottomOnClickListener);
 		textViewPost.setOnClickListener(bottomOnClickListener);
-		
+		textViewSetting.setOnClickListener(bottomOnClickListener);
+
 		textViewNearby.setTextColor(Color.BLACK);
 		textViewHome.setTextColor(Color.BLUE);
-		textViewSearch.setTextColor(Color.BLACK);
+		textViewPost.setTextColor(Color.BLACK);
 		textViewSetting.setTextColor(Color.BLACK);
+
 	}
 
 	private void InitViewPager() {
 		mPager = (ViewPager) findViewById(R.id.vPager);
 		fragmentsList = new ArrayList<Fragment>();
 		LayoutInflater mInflater = getLayoutInflater();
-		mInflater.inflate(R.layout.lay2_main, mPager);
-		Fragment nearbyFragment =new NearbyFragment();
-		Fragment mainFragment =new MainFragment();
-		Fragment searchFragment =new SearchFragment();
-		Fragment settingFragment =new SettingFragment();
+		mInflater.inflate(R.layout.fragment_main, mPager);
+		Fragment nearbyFragment = new NearbyFragment();
+		Fragment mainFragment = new MainFragment();
+		Fragment postFragment = new PostFragment();
+		Fragment settingFragment = new SettingFragment();
 		fragmentsList.add(nearbyFragment);
 		fragmentsList.add(mainFragment);
-		fragmentsList.add(searchFragment);
+		fragmentsList.add(postFragment);
 		fragmentsList.add(settingFragment);
-		mPager.setAdapter(new MyFragmentPagerAdapter(
+        mPager.setAdapter(new MyFragmentPagerAdapter(
 				getSupportFragmentManager(), fragmentsList));
 		mPager.setCurrentItem(1);
 		mPager.setOnPageChangeListener(new FragmentOnPageChangeListener());
@@ -110,7 +110,7 @@ public class FragmentActivity extends ActionBarActivity {
 				break;
 			case R.id.tvlay3:
 				;
-			case R.id.imageView_Search:
+			case R.id.imageView_Post:
 				index = 2;
 				mPager.setCurrentItem(2);
 				break;
@@ -119,14 +119,6 @@ public class FragmentActivity extends ActionBarActivity {
 			case R.id.imageView_Setting:
 				index = 3;
 				mPager.setCurrentItem(3);
-				break;
-			case R.id.tvlay5:
-				;
-			case R.id.imageView_Post:
-				Intent intent = new Intent();
-				intent.putExtra("index", index);
-				intent.setClass(FragmentActivity.this, PostTitleView.class);
-				startActivityForResult(intent, 0);
 				;
 				break;
 			}
@@ -137,38 +129,50 @@ public class FragmentActivity extends ActionBarActivity {
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
 		}
+
 		public void onPageSelected(int arg0) {
 			index = arg0;
 			if (arg0 == 0) {
 				textViewNearby.setTextColor(Color.BLUE);
 				textViewHome.setTextColor(Color.BLACK);
-				textViewSearch.setTextColor(Color.BLACK);
+				textViewPost.setTextColor(Color.BLACK);
 				textViewSetting.setTextColor(Color.BLACK);
+				getSupportActionBar().setTitle("附近");
 			}
 			if (arg0 == 1) {
 				textViewNearby.setTextColor(Color.BLACK);
 				textViewHome.setTextColor(Color.BLUE);
-				textViewSearch.setTextColor(Color.BLACK);
+				textViewPost.setTextColor(Color.BLACK);
 				textViewSetting.setTextColor(Color.BLACK);
+				getSupportActionBar().setTitle("EcustApp");
 			}
 			if (arg0 == 2) {
 				textViewNearby.setTextColor(Color.BLACK);
 				textViewHome.setTextColor(Color.BLACK);
-				textViewSearch.setTextColor(Color.BLUE);
+				textViewPost.setTextColor(Color.BLUE);
 				textViewSetting.setTextColor(Color.BLACK);
+				getSupportActionBar().setTitle("校园广场");
 			}
 			if (arg0 == 3) {
 				textViewNearby.setTextColor(Color.BLACK);
 				textViewHome.setTextColor(Color.BLACK);
-				textViewSearch.setTextColor(Color.BLACK);
+				textViewPost.setTextColor(Color.BLACK);
 				textViewSetting.setTextColor(Color.BLUE);
+				getSupportActionBar().setTitle("设置");
 			}
 		}
+
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
 			// TODO Auto-generated method stub
 		}
-	
 	}
 
+    public boolean onCreateOptionsMenu(Menu menu) {	
+    	 MenuItem searchIcon = menu.add("搜索"); 
+    	 searchIcon.setIcon(R.drawable.search);
+    	 searchIcon.setShowAsAction(2); 
+		 searchIcon.setIntent(new Intent().setClass(this, Search.class));
+		 return true;
+  	}
 }

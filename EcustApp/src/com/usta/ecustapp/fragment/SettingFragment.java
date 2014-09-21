@@ -4,6 +4,7 @@ import com.usta.ecustapp.R;
 import com.usta.ecustapp.activity.About;
 import com.usta.ecustapp.activity.AccountSetting;
 import com.usta.ecustapp.activity.Advice;
+import com.usta.ecustapp.util.ToastUtil;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +17,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class SettingFragment extends Fragment {
@@ -27,11 +27,12 @@ public class SettingFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.lay4_setting, container, false);
+		View view = inflater.inflate(R.layout.fragment_setting, container, false);
 		initView(view);
 		return view;
 	}
@@ -64,17 +65,15 @@ public class SettingFragment extends Fragment {
 			public void onCheckedChanged(RadioGroup arg0, int arg1) {
 				// TODO Auto-generated method stub
 				// 获取变更后的选中项的ID
-				Toast toastAnonyOn = Toast.makeText(getActivity(), "匿名-已保存",
-						Toast.LENGTH_SHORT);
-				Toast toastAnonyOff = Toast.makeText(getActivity(), "不匿名-已保存",
-						Toast.LENGTH_SHORT);
+
 				if (arg1 == R.id.radiobtn_anonyon_setting) {
 					userInfo.edit().putString("anony", "on").commit();
-					toastAnonyOn.show();
+					ToastUtil.showToastShort(getActivity(), "匿名-已保存");
 				}
 				if (arg1 == R.id.radiobtn_anonyoff_setting) {
 					userInfo.edit().putString("anony", "off").commit();
-					toastAnonyOff.show();
+					ToastUtil.showToastShort(getActivity(), "不匿名-已保存");
+
 				}
 
 			}
