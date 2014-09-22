@@ -63,7 +63,7 @@
             android:label="EcustApp" >
         </activity>
         <activity
-            android:name="com.usta.ecustapp.activity.SearchBooks"
+            android:name="com.usta.ecustapp.activity.Library"
             android:label="校图书馆" >
         </activity>
         <activity

@@ -3,10 +3,14 @@ package com.usta.ecustapp.activity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.usta.ecustapp.*;
 import com.usta.ecustapp.service.*;
+import com.usta.ecustapp.util.ToastUtil;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -54,7 +58,6 @@ public class PostDetails extends ActionBarActivity {
         intent = getIntent(); 
         postid=intent.getStringExtra("postid");
         index=intent.getIntExtra("index", 0);
-
         listViewPostBack = (ListView) findViewById(R.id.listViewPostBack);
         listViewPostBack.clearAnimation();
 
@@ -110,7 +113,7 @@ public class PostDetails extends ActionBarActivity {
     			toast3.show();
     			}
     			};
-PostService postService;
+PostService postService=new PostService();
         private void newPostBackViaNewThread() {
         	// TODO Auto-generated method stub
         	new Thread(new Runnable(){

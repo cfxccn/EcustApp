@@ -5,32 +5,35 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.JSONException;
 
-import android.widget.SimpleAdapter;
-
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.DbException;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.usta.ecustapp.R;
 import com.usta.ecustapp.activity.JobTitleView;
+import com.usta.ecustapp.activity.Library;
 import com.usta.ecustapp.activity.Map;
 import com.usta.ecustapp.activity.NewsDetail;
 import com.usta.ecustapp.activity.SchoolBus;
-import com.usta.ecustapp.activity.SearchBooks;
 import com.usta.ecustapp.activity.SearchClassroom;
 import com.usta.ecustapp.activity.SearchLecture;
 import com.usta.ecustapp.activity.Powerfare;
-import com.usta.ecustapp.service.NewsService;
+import com.usta.ecustapp.dao.NewsDao;
+import com.usta.ecustapp.model.NewsEntity;
+import com.usta.ecustapp.util.ModelUtil;
+import com.usta.ecustapp.util.ToastUtil;
 
-import android.annotation.SuppressLint;
+import android.widget.SimpleAdapter;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -40,45 +43,46 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 public class MainFragment extends Fragment {
-	Intent intent;
-	Menu _menu;
-	private String newsid = "";
-	JSONArray newsJsonArray;
-	List<JSONObject> NewsInfos;
 	ListView listViewNews;
-	NewsService newsService = new NewsService();
-	ImageView imageView_Lecture;
 	View view;
 	ArrayList<HashMap<String, Object>> listItemNews = new ArrayList<HashMap<String, Object>>();
-	SimpleAdapter listItemAdapterNews ;
+	SimpleAdapter listItemAdapterNews;
+	ImageView imageView_Job;
+	ImageView imageView_Classroom;
+	ImageView imageView_Lecture;
+	ImageView imageView_Map;
+	ImageView imageView_Searchbook;
+	ImageView imageView_Schoolbus;
+	ImageView imageView_Powerfare;
+	NewsDao newsDao;
+	List<NewsEntity> newsEntities;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		newsDao = new NewsDao(getActivity());
 
 	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_main, container, false);
 		initView(view);
-		get_News();
+		getNews();
 
 		return view;
 	}
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 	}
 
-
-
 	private void initView(View view) {
-		
 		listViewNews = (ListView) view.findViewById(android.R.id.list);
-		ImageView ImageView_Job = (ImageView) view
-				.findViewById(R.id.imageView_Job);
-		ImageView_Job.setOnClickListener(new OnClickListener() {
+		imageView_Job = (ImageView) view.findViewById(R.id.imageView_Job);
+		imageView_Job.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
@@ -87,9 +91,9 @@ public class MainFragment extends Fragment {
 				startActivityForResult(intent, 0);
 			}
 		});
-		ImageView ImageView_Classroom = (ImageView) view
+		imageView_Classroom = (ImageView) view
 				.findViewById(R.id.imageView_Classroom);
-		ImageView_Classroom.setOnClickListener(new OnClickListener() {
+		imageView_Classroom.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
@@ -98,40 +102,34 @@ public class MainFragment extends Fragment {
 				startActivityForResult(intent, 0);
 			}
 		});
-		ImageView imageView_Lecture = (ImageView) view
+		imageView_Lecture = (ImageView) view
 				.findViewById(R.id.imageView_Lecture);
 		imageView_Lecture.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
-				// intent.putExtra("index", index);
 				intent.setClass(getActivity(), SearchLecture.class);
 				startActivityForResult(intent, 0);
 			}
 		});
-
-		ImageView imageView_Map = (ImageView) view
-				.findViewById(R.id.imageView_Map);
+		imageView_Map = (ImageView) view.findViewById(R.id.imageView_Map);
 		imageView_Map.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
-				// intent.putExtra("index", index);
 				intent.setClass(getActivity(), Map.class);
 				startActivityForResult(intent, 0);
 			}
 		});
-
-		ImageView ImageView_Searchbook = (ImageView) view
+		imageView_Searchbook = (ImageView) view
 				.findViewById(R.id.imageView_Searchbook);
-		ImageView_Searchbook.setOnClickListener(new OnClickListener() {
+		imageView_Searchbook.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showLibDialog();
 			}
 		});
-
-		ImageView imageView_Schoolbus = (ImageView) view
+		imageView_Schoolbus = (ImageView) view
 				.findViewById(R.id.imageView_Schoolbus);
 		imageView_Schoolbus.setOnClickListener(new OnClickListener() {
 			@Override
@@ -142,8 +140,7 @@ public class MainFragment extends Fragment {
 				startActivityForResult(intent, 0);
 			}
 		});
-
-		ImageView imageView_Powerfare = (ImageView) view
+		imageView_Powerfare = (ImageView) view
 				.findViewById(R.id.imageView_Powerfare);
 		imageView_Powerfare.setOnClickListener(new OnClickListener() {
 			@Override
@@ -157,102 +154,88 @@ public class MainFragment extends Fragment {
 	}
 
 	protected void showLibDialog() {
-		final Context context = getActivity();
-		// 定义列表选项
 		String[] items = { "校图书馆馆藏图书查询", "校图书馆实时座位信息" };
-		// 创建对话框
-		new AlertDialog.Builder(context).setTitle("请选择...")// 设置对话框标题
+		new AlertDialog.Builder(getActivity()).setTitle("请选择...")// 设置对话框标题
 				.setItems(items, new DialogInterface.OnClickListener() {
-
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
 						if (which == 0) {
 							Intent intent = new Intent();
-							// intent.putExtra("index", index);
 							intent.putExtra("todo", which);
-							intent.setClass(getActivity(), SearchBooks.class);
+							intent.setClass(getActivity(), Library.class);
 							startActivityForResult(intent, 0);
 						} else if (which == 1) {
 							Intent intent = new Intent();
-							// intent.putExtra("index", index);
 							intent.putExtra("todo", which);
-							intent.setClass(getActivity(), SearchBooks.class);
+							intent.setClass(getActivity(), Library.class);
 							startActivityForResult(intent, 0);
 						}
-
 					}
 				}).setNegativeButton("取消", null).show();
 	}
 
-	private void get_News() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					newsJsonArray = newsService.getNewsTitles();
-					if (newsJsonArray != null) {
-						newshandler.sendEmptyMessage(0);
-					} else {
-						return;
-					}
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-					return;
-				}
+	private void getNews() {
+		HttpUtils http = new HttpUtils();
+		http.send(HttpMethod.GET, "http://59.78.93.208:9092/Newstitles",
+				new RequestCallBack<String>() {
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						try {
+							newsEntities = ModelUtil
+									.toNewsEntities(new JSONArray(
+											responseInfo.result));
 
-			}
-		}).start();
+						} catch (JSONException e1) {
+						}
+						try {
+							newsDao.save(newsEntities);
+							initNewsList();
+						} catch (DbException e) {
+						}
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						try {
+							ToastUtil.showToastShort(getActivity(),
+									"新闻更新失败,请检查网络.");
+							newsEntities = newsDao.findTop7();
+							initNewsList();
+						} catch (DbException e) {
+						}
+					}
+				});
+
 	}
 
-	@SuppressLint("HandlerLeak")
-	private Handler newshandler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			super.handleMessage(msg);
-			initNewsList();
-		}
-	};
-
 	protected void initNewsList() {
+		if (null == newsEntities) {
+			return;
+		}
 		listItemNews.clear();
-		for (int i = 0; i < newsJsonArray.length(); i++) {
-			JSONObject eachNewsTitleJsonObject = newsJsonArray.optJSONObject(i);
+		for (NewsEntity newsEntity : newsEntities) {
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("textView_newsid", eachNewsTitleJsonObject.optInt("id"));
-			map.put("textView_News_title",
-					eachNewsTitleJsonObject.optString("newstitle").trim());
-			map.put("textView_News_releasetime", eachNewsTitleJsonObject
-					.optString("newsrelease").trim());
-			map.put("textView_News_source",
-					eachNewsTitleJsonObject.optString("newssource").trim());
+			map = ModelUtil.toHashMap(newsEntity);
 			listItemNews.add(map);
 		}
-		listItemAdapterNews = new SimpleAdapter(getActivity(),
+		listItemAdapterNews = new SimpleAdapter(
+				getActivity(),
 				listItemNews,// 数据源
 				R.layout.newstitle_listview,// ListItem的XML实现
-				// 动态数组与ImageItem对应的子项
-				new String[] { "textView_newsid", "textView_News_title",
-						"textView_News_releasetime", "textView_News_source" },
-				// ImageItem的XML文件里面的一个ImageView,两个TextView ID
+				new String[] { "id", "newsTitle", "newsRelease", "newsSource" },
 				new int[] { R.id.textView_newsid, R.id.textView_News_title,
 						R.id.textView_News_releasetime,
 						R.id.textView_News_source });
 		listViewNews.setAdapter(listItemAdapterNews);
 		listViewNews.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
 				@SuppressWarnings("unchecked")
-				HashMap<String, Object> map=(HashMap<String, Object>) listItemAdapterNews.getItem(arg2);
-				newsid = String.valueOf(map.get("textView_newsid"));
-
+				HashMap<String, Object> map = (HashMap<String, Object>) listItemAdapterNews
+						.getItem(arg2);
 				Intent intent = new Intent();
-				// intent.putExtra("index", index);
-				intent.putExtra("newsid", newsid);
+				intent.putExtra("map", map);
 				intent.setClass(getActivity(), NewsDetail.class);
 				startActivity(intent);
 			}
