@@ -17,7 +17,7 @@
 
         <Button
             android:id="@+id/btn_viewinmap"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/angular_corner"
             android:text="在地图上查看" />

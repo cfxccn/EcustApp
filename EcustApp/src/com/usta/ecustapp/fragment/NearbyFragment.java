@@ -36,8 +36,8 @@ public class NearbyFragment extends Fragment {
 	ArrayList<String> type = new ArrayList<String>();
 	ArrayAdapter<String> typeAdapter;
 	NearbyService nearbyService = new NearbyService();
-	ArrayList<HashMap<String, Object>> listItem = new ArrayList<HashMap<String, Object>>();
-	SimpleAdapter listItemAdapter;
+	ArrayList<HashMap<String, Object>> listItemNearby = new ArrayList<HashMap<String, Object>>();
+	SimpleAdapter listItemAdapterNearby;
 	String nearbyid;
 	String nearbytype;
 	ListView listViewNearby;
@@ -135,6 +135,7 @@ public class NearbyFragment extends Fragment {
 	}
 
 	private void getNearbyDataViaNewThread() {
+		ToastUtil.showToastShort(getActivity(), "正在加载...");
 		// TODO Auto-generated method stub
 		new Thread(new Runnable() {
 			@Override
@@ -165,7 +166,7 @@ public class NearbyFragment extends Fragment {
 	};
 
 	private void initNearsbyList() {
-		listItem.clear();
+		listItemNearby.clear();
 		for (int i = 0; i < nearbys.length(); i++) {
 			JSONObject nearby = nearbys.optJSONObject(i);
 			HashMap<String, Object> map = new HashMap<String, Object>();
@@ -175,10 +176,10 @@ public class NearbyFragment extends Fragment {
 			map.put("introduction", nearby.optString("introduction"));
 			map.put("id", nearby.optInt("id"));
 			map.put("type", nearby.optString("type"));
-			listItem.add(map);
+			listItemNearby.add(map);
 		}
-		listItemAdapter = new SimpleAdapter(getActivity(),
-				listItem,// 数据源
+		listItemAdapterNearby = new SimpleAdapter(getActivity(),
+				listItemNearby,// 数据源
 				R.layout.nearby_listview,// ListItem的XML实现
 				// 动态数组与ImageItem对应的子项
 				new String[] { "no", "title", "location", "introduction" },
@@ -186,9 +187,8 @@ public class NearbyFragment extends Fragment {
 						R.id.textView_NearbyTitle_lv,
 						R.id.textView_NearbyLocation_lv,
 						R.id.textView_NearbyIntro_lv });
-		listViewNearby.setAdapter(listItemAdapter);
+		listViewNearby.setAdapter(listItemAdapterNearby);
 		listViewNearby.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -203,9 +203,7 @@ public class NearbyFragment extends Fragment {
 				intent.putExtra("nearbytype", nearbytype);
 				intent.setClass(getActivity(), NearbyDetail.class);
 				startActivityForResult(intent, 0);
-
 			}
 		});
-
 	}
 }

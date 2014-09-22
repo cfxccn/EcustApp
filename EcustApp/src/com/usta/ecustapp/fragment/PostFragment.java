@@ -55,7 +55,6 @@ public class PostFragment extends Fragment {
 	int lastPostid;
 	TextView tvLoading;
 
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -131,6 +130,7 @@ public class PostFragment extends Fragment {
 	}
 
 	private void loadMorePostTitlesDataViaNewThread() {
+		ToastUtil.showToastShort(getActivity(), "正在加载...");
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -225,10 +225,12 @@ public class PostFragment extends Fragment {
 					if (postsTitilesJsonArray != null) {
 						handler.sendEmptyMessage(0);
 					} else {
+						handler1.sendEmptyMessage(0);
 						return;
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+					handler.sendEmptyMessage(0);
 				}
 			}
 		}).start();
@@ -240,10 +242,16 @@ public class PostFragment extends Fragment {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			initListViewPost();
-
 		}
 	};
-
+	private Handler handler1 = new Handler() {
+		@Override
+		// 当有消息发送出来的时候就执行Handler的这个方法
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			ToastUtil.showToastShort(getActivity(), "请检查网络");
+		}
+	};
 	private void initListViewPost() {
 		tvLoading.setVisibility(View.GONE);
 		listItemPost.clear();
@@ -278,7 +286,6 @@ public class PostFragment extends Fragment {
 				// ImageItem的XML文件里面的一个ImageView,两个TextView ID
 				new int[] { R.id.textViewPBid, R.id.textViewPBText,
 						R.id.textViewPBTime, R.id.textViewPBUser });
-
 		listViewPost.setAdapter(listItemAdapterPost);
 		listViewPost.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -297,6 +304,5 @@ public class PostFragment extends Fragment {
 			}
 		});
 	}
-
 
 }
