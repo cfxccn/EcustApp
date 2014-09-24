@@ -32,6 +32,14 @@ import com.usta.ecustapp.service.PostService;
 import com.usta.ecustapp.util.ToastUtil;
 
 public class PostFragment extends Fragment {
+	public static PostFragment staticInstance=null;
+	public static PostFragment getInstance() {
+		if(staticInstance==null){
+			staticInstance=new PostFragment();
+		}
+		return staticInstance;
+	}
+
 	private int index;
 	Intent intent;
 	private ListView listViewPost;
@@ -252,6 +260,7 @@ public class PostFragment extends Fragment {
 			ToastUtil.showToastShort(getActivity(), "请检查网络");
 		}
 	};
+
 	private void initListViewPost() {
 		tvLoading.setVisibility(View.GONE);
 		listItemPost.clear();

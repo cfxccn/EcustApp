@@ -76,10 +76,14 @@ public class FragmentActivity extends ActionBarActivity {
 		fragmentsList = new ArrayList<Fragment>();
 		LayoutInflater mInflater = getLayoutInflater();
 		mInflater.inflate(R.layout.fragment_main, mPager);
-		Fragment nearbyFragment = new NearbyFragment();
-		Fragment mainFragment = new MainFragment();
-		Fragment postFragment = new PostFragment();
-		Fragment settingFragment = new SettingFragment();
+//		Fragment nearbyFragment = new NearbyFragment();
+//		Fragment mainFragment = new MainFragment();
+//		Fragment postFragment=new PostFragment();
+//		Fragment settingFragment =new  SettingFragment();
+		Fragment nearbyFragment = NearbyFragment.getInstance();
+		Fragment mainFragment = MainFragment.getInstance();
+		Fragment postFragment= PostFragment.getInstance();
+		Fragment settingFragment  = SettingFragment.getInstance();
 		fragmentsList.add(nearbyFragment);
 		fragmentsList.add(mainFragment);
 		fragmentsList.add(postFragment);

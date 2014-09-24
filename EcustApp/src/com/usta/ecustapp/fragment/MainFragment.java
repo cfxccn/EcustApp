@@ -43,6 +43,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 public class MainFragment extends Fragment {
+	public static MainFragment staticInstance=null;
+	public static MainFragment getInstance() {
+		if(staticInstance==null){
+			staticInstance=new MainFragment();
+		}
+		return staticInstance;
+	}
 	ListView listViewNews;
 	View view;
 	ArrayList<HashMap<String, Object>> listItemNews = new ArrayList<HashMap<String, Object>>();

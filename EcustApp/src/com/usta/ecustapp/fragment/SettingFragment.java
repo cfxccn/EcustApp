@@ -20,6 +20,13 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class SettingFragment extends Fragment {
+	public static SettingFragment staticInstance=null;
+	public static SettingFragment getInstance() {
+		if(staticInstance==null){
+			staticInstance=new SettingFragment();
+		}
+		return staticInstance;
+	}
 	private int index;
 	Intent intent;
 	SharedPreferences userInfo;

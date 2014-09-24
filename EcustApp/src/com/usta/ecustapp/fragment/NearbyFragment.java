@@ -23,15 +23,24 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 public class NearbyFragment extends Fragment {
+	public static NearbyFragment staticInstance = null;
+
+	public static NearbyFragment getInstance() {
+		if (staticInstance == null) {
+			staticInstance = new NearbyFragment();
+		}
+		return staticInstance;
+	}
+
 	String _type;
 	ArrayList<String> type = new ArrayList<String>();
 	ArrayAdapter<String> typeAdapter;
@@ -72,48 +81,53 @@ public class NearbyFragment extends Fragment {
 
 		spr_type_nearby.setAdapter(typeAdapter);
 		spr_type_nearby.setOnItemSelectedListener(new OnItemSelectedListener() {
+
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
+				getNearbyDataViaNewThread(arg2);
+
 				// TODO Auto-generated method stub
-				switch (arg2) {
-				case 0:
-					break;
-				case 1:
-					_type = "吃";
-					getNearbyDataViaNewThread();
-					break;
-				case 2:
-					_type = "住";
-					getNearbyDataViaNewThread();
-					break;
-				case 3:
-					_type = "行";
-					getNearbyDataViaNewThread();
-					break;
-				case 4:
-					_type = "玩";
-					getNearbyDataViaNewThread();
-					break;
-				case 5:
-					_type = "其他";
-					getNearbyDataViaNewThread();
-					break;
-				}
+//				switch (arg2) {
+//				case 0:
+//					break;
+//				case 1:
+//					_type = "吃";
+//					getNearbyDataViaNewThread();
+//					break;
+//				case 2:
+//					_type = "住";
+//					getNearbyDataViaNewThread();
+//					break;
+//				case 3:
+//					_type = "行";
+//					getNearbyDataViaNewThread();
+//					break;
+//				case 4:
+//					_type = "玩";
+//					getNearbyDataViaNewThread();
+//					break;
+//				case 5:
+//					_type = "其他";
+//					break;
+//				}
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
 			}
 		});
-		// listViewNearby.setAdapter(listItemAdapter);
-
 	}
 
 	private void initView(View view) {
+
 		buttonViewInMap = (Button) view.findViewById(R.id.btn_viewinmap);
 		listViewNearby = (ListView) view.findViewById(R.id.listViewNearby);
 		spr_type_nearby = (Spinner) view.findViewById(R.id.spr_type_nearby);
+
+		// listViewNearby.setAdapter(listItemAdapter);
 		typeAdapter = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_spinner_item, type);
 		typeAdapter
@@ -134,7 +148,26 @@ public class NearbyFragment extends Fragment {
 
 	}
 
-	private void getNearbyDataViaNewThread() {
+	private void getNearbyDataViaNewThread(int i) {
+		switch (i) {
+		case 0:
+			break;
+		case 1:
+			_type = "吃";
+			break;
+		case 2:
+			_type = "住";
+			break;
+		case 3:
+			_type = "行";
+			break;
+		case 4:
+			_type = "玩";
+			break;
+		case 5:
+			_type = "其他";
+			break;
+		}
 		ToastUtil.showToastShort(getActivity(), "正在加载...");
 		// TODO Auto-generated method stub
 		new Thread(new Runnable() {
@@ -153,6 +186,7 @@ public class NearbyFragment extends Fragment {
 				}
 			}
 		}).start();
+
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -178,7 +212,8 @@ public class NearbyFragment extends Fragment {
 			map.put("type", nearby.optString("type"));
 			listItemNearby.add(map);
 		}
-		listItemAdapterNearby = new SimpleAdapter(getActivity(),
+		listItemAdapterNearby = new SimpleAdapter(
+				getActivity(),
 				listItemNearby,// 数据源
 				R.layout.nearby_listview,// ListItem的XML实现
 				// 动态数组与ImageItem对应的子项
