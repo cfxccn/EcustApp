@@ -12,11 +12,12 @@ public class JobDao extends BaseDao{
 	public JobDao(Context context) {
 		super(context);
 	}
-	public void save(List<JobEntity> jobEntities) throws DbException {
-			db.saveAll(jobEntities);
+	public void cleanAndSaveAll(List<JobEntity> jobEntities) throws DbException {
+		db.deleteAll(JobEntity.class);	
+		db.saveAll(jobEntities);
 	}
 	public List<JobEntity> findTop8() throws DbException {
-		List<JobEntity> jobEntities=db.findAll(Selector.from(JobEntity.class).orderBy("id", true).limit(8));
+		List<JobEntity> jobEntities=db.findAll(Selector.from(JobEntity.class).orderBy("id",false).limit(8));
 		return jobEntities;
 	}	
 }

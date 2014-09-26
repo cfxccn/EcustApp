@@ -86,6 +86,7 @@ public class PostFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				loadMorePostTitlesDataViaNewThread();
+				btnLoadMoreButton.setEnabled(false);
 			}
 		});
 		Button btnNewPost = (Button) view.findViewById(R.id.btnNewPost);
@@ -186,6 +187,7 @@ public class PostFragment extends Fragment {
 				}
 				listItemPost.add(map);
 			}
+			btnLoadMoreButton.setEnabled(true);
 			listViewPost.setAdapter(listItemAdapterPost);
 			listViewPost.setSelection(oldlastindex - 1);
 		}

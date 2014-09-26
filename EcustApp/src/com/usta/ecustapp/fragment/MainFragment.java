@@ -195,7 +195,7 @@ public class MainFragment extends Fragment {
 						} catch (JSONException e1) {
 						}
 						try {
-							newsDao.save(newsEntities);
+							newsDao.cleanAndSaveAll(newsEntities);
 							initNewsList();
 						} catch (DbException e) {
 						}

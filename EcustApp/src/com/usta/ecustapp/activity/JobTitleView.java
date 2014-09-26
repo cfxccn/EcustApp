@@ -100,7 +100,7 @@ public class JobTitleView extends ActionBarActivity {
 						} catch (JSONException e1) {
 						}
 						try {
-							jobDao.save(jobEntities);
+							jobDao.cleanAndSaveAll(jobEntities);
 							initListView();
 						} catch (DbException e) {
 						}
