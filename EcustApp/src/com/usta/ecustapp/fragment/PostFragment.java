@@ -32,10 +32,11 @@ import com.usta.ecustapp.service.PostService;
 import com.usta.ecustapp.util.ToastUtil;
 
 public class PostFragment extends Fragment {
-	public static PostFragment staticInstance=null;
+	public static PostFragment staticInstance = null;
+
 	public static PostFragment getInstance() {
-		if(staticInstance==null){
-			staticInstance=new PostFragment();
+		if (staticInstance == null) {
+			staticInstance = new PostFragment();
 		}
 		return staticInstance;
 	}
@@ -69,8 +70,13 @@ public class PostFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_post, container, false);
 		initView(view);
 		initLocalUserInfo();
-		getPostTitlesDataViaNewThread();
 		return view;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		getPostTitlesDataViaNewThread();
 	}
 
 	private void initView(View view) {

@@ -77,7 +77,6 @@ public class MainFragment extends Fragment {
 		view = inflater.inflate(R.layout.fragment_main, container, false);
 		initView(view);
 		getNews();
-
 		return view;
 	}
 

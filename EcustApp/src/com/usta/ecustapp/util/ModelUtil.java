@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import com.usta.ecustapp.R;
 import com.usta.ecustapp.model.JobEntity;
+import com.usta.ecustapp.model.NearbyEntity;
 import com.usta.ecustapp.model.NewsEntity;
 
 public class ModelUtil {
@@ -47,6 +48,20 @@ public class ModelUtil {
 		jobEntity.setVia(jsonObject.optString("via"));
 		return jobEntity;
 	}
+	public static NearbyEntity toNearbyEntity(JSONObject jsonObject) {
+		NearbyEntity nearbyEntity = new NearbyEntity();
+		nearbyEntity.setId(jsonObject.optInt("id"));
+		nearbyEntity.setName(jsonObject.optString("name"));
+		nearbyEntity.setType(jsonObject.optString("type"));
+		nearbyEntity.setIntroduction(jsonObject.optString("introduction"));
+		nearbyEntity.setDetail(jsonObject.optString("detail"));
+		nearbyEntity.setLocation(jsonObject.optString("location"));
+		nearbyEntity.setLongtitude(jsonObject.optString("longtitude"));
+		nearbyEntity.setLatitude(jsonObject.optString("latitude"));
+		nearbyEntity.setPhone(jsonObject.optString("phone"));
+		nearbyEntity.setCampus(jsonObject.optString("campus"));
+		return nearbyEntity;
+	}
 
 	public static List<JobEntity> toJobEntities(JSONArray jsonArray) {
 		List<JobEntity> jobEntities = new LinkedList<JobEntity>();
@@ -57,7 +72,23 @@ public class ModelUtil {
 		}
 		return jobEntities;
 	}
-
+	public static List<NearbyEntity> toNearbyEntities(JSONArray jsonArray) {
+		List<NearbyEntity> nearbyEntities = new LinkedList<NearbyEntity>();
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.optJSONObject(i);
+			NearbyEntity nearbyEntity = ModelUtil.toNearbyEntity(jsonObject);
+			nearbyEntities.add(nearbyEntity);
+		}
+		return nearbyEntities;
+	}
+	public static List<JSONArray> toNearbyJSONArray(JSONArray jsonArray) {
+		List<JSONArray> nearbyJSONArray = new LinkedList<JSONArray>();
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONArray json = jsonArray.optJSONArray(i);
+			nearbyJSONArray.add(json);
+		}
+		return nearbyJSONArray;
+	}
 	public static HashMap<String, Object> toHashMap(NewsEntity newsEntity) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("id", newsEntity.getId());
