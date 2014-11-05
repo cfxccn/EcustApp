@@ -1,11 +1,16 @@
 package com.usta.ecustapp.model;
 
+import java.io.Serializable;
+
 import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Id;
 import com.lidroid.xutils.db.annotation.Table;
 
 @Table(name = "nearby")
-public class NearbyEntity {
+public class NearbyEntity implements Serializable{
+
+
+	private static final long serialVersionUID = 1L;
 
 	@Id(column = "id")
 	int id;

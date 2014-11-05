@@ -1,6 +1,7 @@
 package com.usta.ecustapp.fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -13,11 +14,13 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.usta.ecustapp.R;
+import com.usta.ecustapp.activity.NearbyDetail;
 import com.usta.ecustapp.dao.NearbyDao;
 import com.usta.ecustapp.model.NearbyEntity;
 import com.usta.ecustapp.util.ModelUtil;
 import com.usta.ecustapp.util.ToastUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -147,6 +151,8 @@ public class NearbyFragment extends Fragment {
 			@Override
 			public boolean onChildClick(ExpandableListView arg0, View arg1,
 					int arg2, int arg3, long arg4) {
+			//	ToastUtil.showToastLong(getActivity(),arg2+"--"+arg3);
+
 				return false;
 			}
 		});
@@ -157,7 +163,14 @@ public class NearbyFragment extends Fragment {
 			@Override
 			public boolean isChildSelectable(int arg0, int arg1) {
 				// TODO Auto-generated method stub
-				return false;
+				
+				NearbyEntity nearbyEntity=childrenData.get(arg0).get(arg1);
+				Intent intent = new Intent();
+				intent.putExtra("map", nearbyEntity);
+				intent.setClass(getActivity(), NearbyDetail.class);
+				startActivityForResult(intent, 0);
+				
+				return true;
 			}
 
 			@Override
