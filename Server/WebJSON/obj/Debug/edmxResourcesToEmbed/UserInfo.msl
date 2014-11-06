@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserModelStoreContainer" CdmEntityContainer="UserInfo">
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="UserModel.accountuser">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="isverify" ColumnName="isverify" />
+          <ScalarProperty Name="captcha" ColumnName="captcha" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="useremail" ColumnName="useremail" />
+          <ScalarProperty Name="userpwd" ColumnName="userpwd" />
+          <ScalarProperty Name="usermobile" ColumnName="usermobile" />
+          <ScalarProperty Name="userdepart" ColumnName="userdepart" />
+          <ScalarProperty Name="userrealname" ColumnName="userrealname" />
+          <ScalarProperty Name="usernum" ColumnName="usernum" />
+          <ScalarProperty Name="userkey" ColumnName="userkey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

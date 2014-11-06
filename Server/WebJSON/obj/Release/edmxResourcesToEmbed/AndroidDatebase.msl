@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ecustj111ModelStoreContainer" CdmEntityContainer="ecustj111Entities">
+    <EntitySetMapping Name="advise">
+      <EntityTypeMapping TypeName="ecustj111Model.advise">
+        <MappingFragment StoreEntitySet="advise">
+          <ScalarProperty Name="density" ColumnName="density" />
+          <ScalarProperty Name="mobile_model" ColumnName="mobile_model" />
+          <ScalarProperty Name="android_version" ColumnName="android_version" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="busInfo">
+      <EntityTypeMapping TypeName="ecustj111Model.busInfo">
+        <MappingFragment StoreEntitySet="busInfo">
+          <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="PUPoint" ColumnName="PUPoint" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="route" ColumnName="route" />
+          <ScalarProperty Name="day" ColumnName="day" />
+          <ScalarProperty Name="busType" ColumnName="busType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="job">
+      <EntityTypeMapping TypeName="ecustj111Model.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="via" ColumnName="via" />
+          <ScalarProperty Name="qinban_cert" ColumnName="qinban_cert" />
+          <ScalarProperty Name="releasetime" ColumnName="releasetime" />
+          <ScalarProperty Name="jobtag" ColumnName="jobtag" />
+          <ScalarProperty Name="jobtreatment" ColumnName="jobtreatment" />
+          <ScalarProperty Name="jobsite" ColumnName="jobsite" />
+          <ScalarProperty Name="jobrequire" ColumnName="jobrequire" />
+          <ScalarProperty Name="jobdetail" ColumnName="jobdetail" />
+          <ScalarProperty Name="jobtime" ColumnName="jobtime" />
+          <ScalarProperty Name="infotitile" ColumnName="infotitile" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="joke">
+      <EntityTypeMapping TypeName="ecustj111Model.joke">
+        <MappingFragment StoreEntitySet="joke">
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lecture">
+      <EntityTypeMapping TypeName="ecustj111Model.lecture">
+        <MappingFragment StoreEntitySet="lecture">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="depart" ColumnName="depart" />
+          <ScalarProperty Name="reporter" ColumnName="reporter" />
+          <ScalarProperty Name="lecturesite" ColumnName="lecturesite" />
+          <ScalarProperty Name="campus" ColumnName="campus" />
+          <ScalarProperty Name="lecturetime" ColumnName="lecturetime" />
+          <ScalarProperty Name="lecturetitle" ColumnName="lecturetitle" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lecture_____">
+      <EntityTypeMapping TypeName="ecustj111Model.lecture_____">
+        <MappingFragment StoreEntitySet="lecture_____">
+          <ScalarProperty Name="campus" ColumnName="campus" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="teacher" ColumnName="teacher" />
+          <ScalarProperty Name="classroom" ColumnName="classroom" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="endd" ColumnName="endd" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="period" ColumnName="period" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="no" ColumnName="no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="neighbourhood">
+      <EntityTypeMapping TypeName="ecustj111Model.neighbourhood">
+        <MappingFragment StoreEntitySet="neighbourhood">
+          <ScalarProperty Name="ll" ColumnName="ll" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longtitude" ColumnName="longtitude" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="detail" ColumnName="detail" />
+          <ScalarProperty Name="introduction" ColumnName="introduction" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="news">
+      <EntityTypeMapping TypeName="ecustj111Model.news">
+        <MappingFragment StoreEntitySet="news">
+          <ScalarProperty Name="newssource" ColumnName="newssource" />
+          <ScalarProperty Name="newsrelease" ColumnName="newsrelease" />
+          <ScalarProperty Name="newsdetail" ColumnName="newsdetail" />
+          <ScalarProperty Name="newstitle" ColumnName="newstitle" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roomEmpty">
+      <EntityTypeMapping TypeName="ecustj111Model.roomEmpty">
+        <MappingFragment StoreEntitySet="roomEmpty">
+          <ScalarProperty Name="detail" ColumnName="detail" />
+          <ScalarProperty Name="isempty" ColumnName="isempty" />
+          <ScalarProperty Name="during" ColumnName="during" />
+          <ScalarProperty Name="wday" ColumnName="wday" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roomInfo">
+      <EntityTypeMapping TypeName="ecustj111Model.roomInfo">
+        <MappingFragment StoreEntitySet="roomInfo">
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="search_ac">
+      <EntityTypeMapping TypeName="ecustj111Model.search_ac">
+        <MappingFragment StoreEntitySet="search_ac">
+          <ScalarProperty Name="searchkeywords" ColumnName="searchkeywords" />
+          <ScalarProperty Name="activitynr" ColumnName="activitynr" />
+          <ScalarProperty Name="avtivityname" ColumnName="avtivityname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teacherInfo">
+      <EntityTypeMapping TypeName="ecustj111Model.teacherInfo">
+        <MappingFragment StoreEntitySet="teacherInfo">
+          <ScalarProperty Name="officeID" ColumnName="officeID" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="introduction" ColumnName="introduction" />
+          <ScalarProperty Name="post" ColumnName="post" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="teacherId" ColumnName="teacherId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="version">
+      <EntityTypeMapping TypeName="ecustj111Model.version">
+        <MappingFragment StoreEntitySet="version">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="build" ColumnName="build" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="weather">
+      <EntityTypeMapping TypeName="ecustj111Model.weather">
+        <MappingFragment StoreEntitySet="weather">
+          <ScalarProperty Name="pm25" ColumnName="pm25" />
+          <ScalarProperty Name="aqi" ColumnName="aqi" />
+          <ScalarProperty Name="h24img2" ColumnName="h24img2" />
+          <ScalarProperty Name="h24img1" ColumnName="h24img1" />
+          <ScalarProperty Name="h24temp" ColumnName="h24temp" />
+          <ScalarProperty Name="h24" ColumnName="h24" />
+          <ScalarProperty Name="h12img2" ColumnName="h12img2" />
+          <ScalarProperty Name="h12img1" ColumnName="h12img1" />
+          <ScalarProperty Name="h12temp" ColumnName="h12temp" />
+          <ScalarProperty Name="h12" ColumnName="h12" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="post">
+      <EntityTypeMapping TypeName="ecustj111Model.post">
+        <MappingFragment StoreEntitySet="post">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="posttitle" ColumnName="posttitle" />
+          <ScalarProperty Name="postid" ColumnName="postid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="postback">
+      <EntityTypeMapping TypeName="ecustj111Model.postback">
+        <MappingFragment StoreEntitySet="postback">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="floor" ColumnName="floor" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="postid" ColumnName="postid" />
+          <ScalarProperty Name="postbackid" ColumnName="postbackid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="ecustj111Model.postuser">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

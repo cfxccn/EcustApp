@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UserModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="useremail" Type="nvarchar" MaxLength="50" />
+          <Property Name="userpwd" Type="nvarchar" MaxLength="50" />
+          <Property Name="usermobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="userdepart" Type="nvarchar" MaxLength="50" />
+          <Property Name="userrealname" Type="nvarchar" MaxLength="50" />
+          <Property Name="usernum" Type="nvarchar" MaxLength="50" />
+          <Property Name="userkey" Type="nvarchar" MaxLength="50" />
+          <Property Name="captcha" Type="nvarchar" MaxLength="50" />
+          <Property Name="isverify" Type="int" />
+        </EntityType>
+        <EntityContainer Name="UserModelStoreContainer">
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UserModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="accountuser">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="useremail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userpwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usermobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userdepart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userrealname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usernum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userkey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="captcha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isverify" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="UserInfo" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="user" EntityType="UserModel.accountuser" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UserModelStoreContainer" CdmEntityContainer="UserInfo">
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="UserModel.accountuser">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="isverify" ColumnName="isverify" />
+                <ScalarProperty Name="captcha" ColumnName="captcha" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="userpwd" ColumnName="userpwd" />
+                <ScalarProperty Name="usermobile" ColumnName="usermobile" />
+                <ScalarProperty Name="userdepart" ColumnName="userdepart" />
+                <ScalarProperty Name="userrealname" ColumnName="userrealname" />
+                <ScalarProperty Name="usernum" ColumnName="usernum" />
+                <ScalarProperty Name="userkey" ColumnName="userkey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="accountuser">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="useremail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userpwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="usermobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userdepart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userrealname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="usernum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userkey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="captcha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isverify" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="UserInfo" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="user" EntityType="UserModel.accountuser" />
+  </EntityContainer>
+</Schema>

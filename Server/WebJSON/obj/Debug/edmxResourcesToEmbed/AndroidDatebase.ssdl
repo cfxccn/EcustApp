@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ecustj111Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="advise">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sex" Type="nvarchar" MaxLength="10" />
+    <Property Name="grade" Type="nvarchar" MaxLength="10" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" />
+    <Property Name="width" Type="nvarchar" MaxLength="50" />
+    <Property Name="height" Type="nvarchar" MaxLength="50" />
+    <Property Name="android_version" Type="nvarchar" MaxLength="50" />
+    <Property Name="mobile_model" Type="nvarchar" MaxLength="50" />
+    <Property Name="density" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="busInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="busType" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="day" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="route" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="time" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PUPoint" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="beizhu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="infotitile" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobtime" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobdetail" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobrequire" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobsite" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobtreatment" Type="nvarchar" MaxLength="50" />
+    <Property Name="jobtag" Type="nvarchar" MaxLength="50" />
+    <Property Name="releasetime" Type="nvarchar" MaxLength="50" />
+    <Property Name="qinban_cert" Type="nvarchar" MaxLength="50" />
+    <Property Name="via" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="joke">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="text" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="lecture">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lecturetitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="lecturetime" Type="datetime" />
+    <Property Name="campus" Type="nvarchar" MaxLength="50" />
+    <Property Name="lecturesite" Type="nvarchar" MaxLength="50" />
+    <Property Name="reporter" Type="nvarchar" MaxLength="150" />
+    <Property Name="depart" Type="nvarchar" MaxLength="50" />
+    <Property Name="remark" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="lecture_____">
+    <Key>
+      <PropertyRef Name="no" />
+    </Key>
+    <Property Name="no" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="credit" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="period" Type="int" />
+    <Property Name="start" Type="int" />
+    <Property Name="endd" Type="int" />
+    <Property Name="time" Type="varchar" MaxLength="50" />
+    <Property Name="classroom" Type="varchar" MaxLength="50" />
+    <Property Name="teacher" Type="varchar" MaxLength="50" />
+    <Property Name="department" Type="varchar" MaxLength="50" />
+    <Property Name="campus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="neighbourhood">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="introduction" Type="nvarchar" MaxLength="50" />
+    <Property Name="detail" Type="nvarchar" MaxLength="50" />
+    <Property Name="location" Type="nvarchar" MaxLength="50" />
+    <Property Name="longtitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="latitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="ll" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="newstitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="newsdetail" Type="nvarchar" MaxLength="300" />
+    <Property Name="newsrelease" Type="nvarchar" MaxLength="50" />
+    <Property Name="newssource" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="postid" />
+    </Key>
+    <Property Name="postid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="posttitle" Type="nvarchar" MaxLength="300" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="text" Type="nvarchar" MaxLength="300" />
+    <Property Name="userid" Type="int" />
+  </EntityType>
+  <EntityType Name="postback">
+    <Key>
+      <PropertyRef Name="postbackid" />
+    </Key>
+    <Property Name="postbackid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="postid" Type="int" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="text" Type="nvarchar" MaxLength="300" />
+    <Property Name="floor" Type="int" />
+    <Property Name="userid" Type="int" />
+  </EntityType>
+  <EntityType Name="roomEmpty">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="wday" />
+      <PropertyRef Name="during" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="wday" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="during" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="isempty" Type="bit" Nullable="false" />
+    <Property Name="detail" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="roomInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="search_ac">
+    <Key>
+      <PropertyRef Name="avtivityname" />
+    </Key>
+    <Property Name="avtivityname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="activitynr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="searchkeywords" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="teacherInfo">
+    <Key>
+      <PropertyRef Name="teacherId" />
+    </Key>
+    <Property Name="teacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="post" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="introduction" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="20" />
+    <Property Name="officeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="useremail" Type="nvarchar" MaxLength="50" />
+    <Property Name="userpwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="usermobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="userdepart" Type="nvarchar" MaxLength="50" />
+    <Property Name="userrealname" Type="nvarchar" MaxLength="50" />
+    <Property Name="usernum" Type="nvarchar" MaxLength="50" />
+    <Property Name="userkey" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="version">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="build" Type="int" />
+    <Property Name="date" Type="date" />
+  </EntityType>
+  <EntityType Name="weather">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="datetime" Type="datetime" />
+    <Property Name="h12" Type="nvarchar" MaxLength="50" />
+    <Property Name="h12temp" Type="nvarchar" MaxLength="50" />
+    <Property Name="h12img1" Type="nvarchar" MaxLength="50" />
+    <Property Name="h12img2" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24temp" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24img1" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24img2" Type="nvarchar" MaxLength="50" />
+    <Property Name="aqi" Type="nvarchar" MaxLength="10" />
+    <Property Name="pm25" Type="int" />
+  </EntityType>
+  <Association Name="FK__roomEmpty__id__17F790F9">
+    <End Role="roomInfo" Type="Self.roomInfo" Multiplicity="1" />
+    <End Role="roomEmpty" Type="Self.roomEmpty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roomInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="roomEmpty">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_post_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="post" Type="Self.post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="post">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_postback_post">
+    <End Role="post" Type="Self.post" Multiplicity="0..1" />
+    <End Role="postback" Type="Self.postback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="post">
+        <PropertyRef Name="postid" />
+      </Principal>
+      <Dependent Role="postback">
+        <PropertyRef Name="postid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_postback_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="postback" Type="Self.postback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="postback">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ecustj111ModelStoreContainer">
+    <EntitySet Name="advise" EntityType="Self.advise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="busInfo" EntityType="Self.busInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="job" EntityType="Self.job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="joke" EntityType="Self.joke" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lecture" EntityType="Self.lecture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="lecture_____" EntityType="Self.lecture_____" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="neighbourhood" EntityType="Self.neighbourhood" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="news" EntityType="Self.news" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="post" EntityType="Self.post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="postback" EntityType="Self.postback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roomEmpty" EntityType="Self.roomEmpty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roomInfo" EntityType="Self.roomInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="search_ac" EntityType="Self.search_ac" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="teacherInfo" EntityType="Self.teacherInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="version" EntityType="Self.version" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="weather" EntityType="Self.weather" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__roomEmpty__id__17F790F9" Association="Self.FK__roomEmpty__id__17F790F9">
+      <End Role="roomInfo" EntitySet="roomInfo" />
+      <End Role="roomEmpty" EntitySet="roomEmpty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_post_user" Association="Self.FK_post_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="post" EntitySet="post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_postback_post" Association="Self.FK_postback_post">
+      <End Role="post" EntitySet="post" />
+      <End Role="postback" EntitySet="postback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_postback_user" Association="Self.FK_postback_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="postback" EntitySet="postback" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

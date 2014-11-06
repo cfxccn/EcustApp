@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="account.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="useremail" Type="nvarchar" MaxLength="50" />
+    <Property Name="userpwd" Type="nvarchar" MaxLength="50" />
+    <Property Name="usermobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="userdepart" Type="nvarchar" MaxLength="50" />
+    <Property Name="userrealname" Type="nvarchar" MaxLength="50" />
+    <Property Name="usernum" Type="nvarchar" MaxLength="50" />
+    <Property Name="userkey" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="accountStoreContainer">
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

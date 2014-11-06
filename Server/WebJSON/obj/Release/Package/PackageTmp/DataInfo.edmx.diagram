@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0255f013ea3e460690a27e74ece04bc1" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="DataModel.advise" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.busInfo" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.job" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.joke" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.lecture" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.lecture_____" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.news" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.post" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.postback" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.roomEmpty" Width="1.5" PointX="7.875" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.roomInfo" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.search_ac" Width="1.5" PointX="11.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.teacherInfo" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.user" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.version" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.weather" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DataModel.FK_post_user" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_postback_post" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_postback_user" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK__roomEmpty__id__17F790F9" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DataModel.nearbyeating" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DataModel.nearbygoing" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DataModel.nearbyliving" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DataModel.nearbyother" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DataModel.nearbyplaying" Width="1.5" PointX="8.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DataModel.ACTIVITY" Width="1.5" PointX="12.75" PointY="10.625" />
+        <EntityTypeShape EntityType="DataModel.OFFICE" Width="1.5" PointX="13.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DataModel.OFFICEUSE_ACTIVITY" Width="1.5" PointX="16.375" PointY="6.875" />
+        <EntityTypeShape EntityType="DataModel.OFFICEUSE_TEACHER" Width="1.5" PointX="16" PointY="9.375" />
+        <EntityTypeShape EntityType="DataModel.ROOM" Width="1.5" PointX="5.875" PointY="6.125" />
+        <EntityTypeShape EntityType="DataModel.ROOMUSE_TEACHER" Width="1.5" PointX="3.75" PointY="4.125" />
+        <EntityTypeShape EntityType="DataModel.TEACHER" Width="1.5" PointX="0.75" PointY="3.625" />
+        <AssociationConnector Association="DataModel.FK_OFFICEUSE_ACTIVITY_ACTIVITY" />
+        <AssociationConnector Association="DataModel.FK_OFFICEUSE_ACTIVITY_OFFICE" />
+        <AssociationConnector Association="DataModel.FK_OFFICEUSE_TEACHER_OFFICE" />
+        <AssociationConnector Association="DataModel.FK_ROOMUSE_TEACHER_ROOM" />
+        <AssociationConnector Association="DataModel.FK_OFFICEUSE_TEACHER_TEACHER" />
+        <AssociationConnector Association="DataModel.FK_ROOMUSE_TEACHER_TEACHER" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -67,7 +67,7 @@
             android:label="校图书馆" >
         </activity>
         <activity
-            android:name="com.usta.ecustapp.activity.SearchClassroom"
+            android:name="com.usta.ecustapp.activity.Classroom"
             android:label="教室查询" >
         </activity>
         <activity

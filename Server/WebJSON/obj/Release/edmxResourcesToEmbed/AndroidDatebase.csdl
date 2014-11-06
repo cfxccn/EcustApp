@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ecustj111Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="ecustj111Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="advise" EntityType="ecustj111Model.advise" />
+    <EntitySet Name="busInfo" EntityType="ecustj111Model.busInfo" />
+    <EntitySet Name="job" EntityType="ecustj111Model.job" />
+    <EntitySet Name="joke" EntityType="ecustj111Model.joke" />
+    <EntitySet Name="lecture" EntityType="ecustj111Model.lecture" />
+    <EntitySet Name="lecture_____" EntityType="ecustj111Model.lecture_____" />
+    <EntitySet Name="neighbourhood" EntityType="ecustj111Model.neighbourhood" />
+    <EntitySet Name="news" EntityType="ecustj111Model.news" />
+    <EntitySet Name="roomEmpty" EntityType="ecustj111Model.roomEmpty" />
+    <EntitySet Name="roomInfo" EntityType="ecustj111Model.roomInfo" />
+    <EntitySet Name="search_ac" EntityType="ecustj111Model.search_ac" />
+    <EntitySet Name="teacherInfo" EntityType="ecustj111Model.teacherInfo" />
+    <EntitySet Name="version" EntityType="ecustj111Model.version" />
+    <EntitySet Name="weather" EntityType="ecustj111Model.weather" />
+    <AssociationSet Name="FK__roomEmpty__id__17F790F9" Association="ecustj111Model.FK__roomEmpty__id__17F790F9">
+      <End Role="roomInfo" EntitySet="roomInfo" />
+      <End Role="roomEmpty" EntitySet="roomEmpty" />
+    </AssociationSet>
+    <EntitySet Name="post" EntityType="ecustj111Model.post" />
+    <EntitySet Name="postback" EntityType="ecustj111Model.postback" />
+    <EntitySet Name="user" EntityType="ecustj111Model.postuser" />
+    <AssociationSet Name="FK_post_user" Association="ecustj111Model.FK_post_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="post" EntitySet="post" />
+    </AssociationSet>
+    <AssociationSet Name="FK_postback_post" Association="ecustj111Model.FK_postback_post">
+      <End Role="post" EntitySet="post" />
+      <End Role="postback" EntitySet="postback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_postback_user" Association="ecustj111Model.FK_postback_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="postback" EntitySet="postback" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="advise">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="grade" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="width" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="height" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="android_version" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="density" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="busInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="busType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="day" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="route" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="time" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PUPoint" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Destination" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="beizhu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="infotitile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobdetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobrequire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobsite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobtreatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobtag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="releasetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="qinban_cert" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="via" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="joke">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="lecture">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lecturetitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="lecturetime" Type="DateTime" Precision="3" />
+    <Property Name="campus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lecturesite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="reporter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="depart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="lecture_____">
+    <Key>
+      <PropertyRef Name="no" />
+    </Key>
+    <Property Name="no" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="credit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="period" Type="Int32" />
+    <Property Name="start" Type="Int32" />
+    <Property Name="endd" Type="Int32" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="classroom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="campus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="neighbourhood">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="introduction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="detail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ll" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="newstitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="newsdetail" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="newsrelease" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="newssource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="roomEmpty">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="wday" />
+      <PropertyRef Name="during" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="wday" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="during" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="isempty" Type="Boolean" Nullable="false" />
+    <Property Name="detail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="roomInfo" Relationship="ecustj111Model.FK__roomEmpty__id__17F790F9" FromRole="roomEmpty" ToRole="roomInfo" />
+  </EntityType>
+  <EntityType Name="roomInfo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="roomEmpty" Relationship="ecustj111Model.FK__roomEmpty__id__17F790F9" FromRole="roomInfo" ToRole="roomEmpty" />
+  </EntityType>
+  <EntityType Name="search_ac">
+    <Key>
+      <PropertyRef Name="avtivityname" />
+    </Key>
+    <Property Name="avtivityname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="activitynr" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="searchkeywords" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="teacherInfo">
+    <Key>
+      <PropertyRef Name="teacherId" />
+    </Key>
+    <Property Name="teacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="post" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="introduction" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="officeID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="version">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="build" Type="Int32" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="weather">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="datetime" Type="DateTime" Precision="3" />
+    <Property Name="h12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="h12temp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="h12img1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="h12img2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="h24" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="h24temp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="h24img1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="h24img2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="aqi" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="pm25" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__roomEmpty__id__17F790F9">
+    <End Type="ecustj111Model.roomInfo" Role="roomInfo" Multiplicity="1" />
+    <End Type="ecustj111Model.roomEmpty" Role="roomEmpty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roomInfo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="roomEmpty">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="post">
+    <Key>
+      <PropertyRef Name="postid" />
+    </Key>
+    <Property Name="postid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="posttitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="userid" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="ecustj111Model.FK_post_user" FromRole="post" ToRole="user" />
+  </EntityType>
+  <EntityType Name="postback">
+    <Key>
+      <PropertyRef Name="postbackid" />
+    </Key>
+    <Property Name="postbackid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="postid" Type="Int32" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="floor" Type="Int32" />
+    <Property Name="userid" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="ecustj111Model.FK_postback_user" FromRole="postback" ToRole="user" />
+  </EntityType>
+  <EntityType Name="postuser">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_post_user">
+    <End Type="ecustj111Model.postuser" Role="user" Multiplicity="0..1" />
+    <End Type="ecustj111Model.post" Role="post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="post">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_postback_post">
+    <End Type="ecustj111Model.post" Role="post" Multiplicity="0..1" />
+    <End Type="ecustj111Model.postback" Role="postback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="post">
+        <PropertyRef Name="postid" />
+      </Principal>
+      <Dependent Role="postback">
+        <PropertyRef Name="postid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_postback_user">
+    <End Type="ecustj111Model.postuser" Role="user" Multiplicity="0..1" />
+    <End Type="ecustj111Model.postback" Role="postback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="postback">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

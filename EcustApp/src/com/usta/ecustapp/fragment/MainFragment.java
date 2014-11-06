@@ -14,12 +14,12 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.usta.ecustapp.R;
+import com.usta.ecustapp.activity.Classroom;
 import com.usta.ecustapp.activity.JobTitleView;
 import com.usta.ecustapp.activity.Library;
 import com.usta.ecustapp.activity.Map;
 import com.usta.ecustapp.activity.NewsDetail;
 import com.usta.ecustapp.activity.SchoolBus;
-import com.usta.ecustapp.activity.SearchClassroom;
 import com.usta.ecustapp.activity.SearchLecture;
 import com.usta.ecustapp.activity.Powerfare;
 import com.usta.ecustapp.dao.NewsDao;
@@ -104,7 +104,7 @@ public class MainFragment extends Fragment {
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				// intent.putExtra("index", index);
-				intent.setClass(getActivity(), SearchClassroom.class);
+				intent.setClass(getActivity(), Classroom.class);
 				startActivityForResult(intent, 0);
 			}
 		});
