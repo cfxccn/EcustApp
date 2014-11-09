@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 public class Classroom {
 
-	public static JSONArray getRoomData(String wday, String during)
+	public static JSONArray getoomData(String wday, String during)
 	{
 		String url="http://59.78.93.208:8080/testssh/getEmptyRoom.action?wday="+wday+"&during="+during;
 //		String url="http://59.78.93.208:8080/testssh/getEmptyRoom.action?wday=1&during=3-4";

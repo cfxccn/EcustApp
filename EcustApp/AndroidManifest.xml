@@ -176,10 +176,7 @@
                 <data android:scheme="tencent222222" />
             </intent-filter>
         </activity>
-         <activity
-            android:name="com.usta.ecustapp.activity.SearchThings"
-            android:label="查询结果" >
-        </activity>
+
                   <activity
             android:name="com.usta.ecustapp.activity.Search"
             android:label="搜索" >

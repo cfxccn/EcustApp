@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONObject;
-import org.ksoap2.serialization.SoapObject;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +22,6 @@ public class NewsDetail extends ActionBarActivity {
 	String title;
 	String content;
 	List<String> jobtitleinfo;
-	SoapObject sObject;
 	HashMap<String, Object> map;
 	String newsTitle, newsRelease, newsDetail, newsSource;
 	JSONObject newsdetailsJsonObject;
