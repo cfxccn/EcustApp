@@ -16,8 +16,10 @@ namespace WebJSON
     {
         public int OFFICEID { get; set; }
         public string OFFICENAME { get; set; }
-        public string OFFICELOCATION { get; set; }
-        public string CAMPUS { get; set; }
         public string PHONE { get; set; }
+        public Nullable<int> LOCATIONID { get; set; }
+        public string NOTE { get; set; }
+    
+        public virtual LOCATION LOCATION { get; set; }
     }
 }

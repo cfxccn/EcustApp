@@ -12,9 +12,14 @@ namespace WebJSON
     using System;
     using System.Collections.Generic;
     
-    public partial class joke
+    public partial class LOCATION
     {
-        public int id { get; set; }
-        public string text { get; set; }
+        public int LOCATIONID { get; set; }
+        public string LOCATIONNAME { get; set; }
+        public string NOTE { get; set; }
+        public string LONGTITUDE { get; set; }
+        public string LATITUDE { get; set; }
+        public string LL { get; set; }
+        public string CAMPUS { get; set; }
     }
 }

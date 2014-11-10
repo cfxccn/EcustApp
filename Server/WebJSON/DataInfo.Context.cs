@@ -27,17 +27,10 @@ namespace WebJSON
     
         public DbSet<advise> advise { get; set; }
         public DbSet<busInfo> busInfo { get; set; }
-        public DbSet<job> job { get; set; }
-        public DbSet<joke> joke { get; set; }
         public DbSet<lecture> lecture { get; set; }
-        public DbSet<lecture_____> lecture_____ { get; set; }
         public DbSet<news> news { get; set; }
         public DbSet<post> post { get; set; }
         public DbSet<postback> postback { get; set; }
-        public DbSet<roomEmpty> roomEmpty { get; set; }
-        public DbSet<roomInfo> roomInfo { get; set; }
-        public DbSet<search_ac> search_ac { get; set; }
-        public DbSet<teacherInfo> teacherInfo { get; set; }
         public DbSet<user> user { get; set; }
         public DbSet<version> version { get; set; }
         public DbSet<weather> weather { get; set; }
@@ -46,12 +39,12 @@ namespace WebJSON
         public DbSet<nearbyliving> nearbyliving { get; set; }
         public DbSet<nearbyother> nearbyother { get; set; }
         public DbSet<nearbyplaying> nearbyplaying { get; set; }
-        public DbSet<ACTIVITY> ACTIVITY { get; set; }
         public DbSet<OFFICE> OFFICE { get; set; }
         public DbSet<ROOM> ROOM { get; set; }
         public DbSet<TEACHER> TEACHER { get; set; }
-        public DbSet<OFFICEUSE_ACTIVITY> OFFICEUSE_ACTIVITY { get; set; }
         public DbSet<OFFICEUSE_TEACHER> OFFICEUSE_TEACHER { get; set; }
         public DbSet<ROOMUSE_TEACHER> ROOMUSE_TEACHER { get; set; }
+        public DbSet<LOCATION> LOCATION { get; set; }
+        public DbSet<job> job { get; set; }
     }
 }

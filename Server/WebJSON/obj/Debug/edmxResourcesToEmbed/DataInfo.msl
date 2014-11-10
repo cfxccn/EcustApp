@@ -31,31 +31,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="job">
-      <EntityTypeMapping TypeName="DataModel.job">
-        <MappingFragment StoreEntitySet="job">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="infotitile" ColumnName="infotitile" />
-          <ScalarProperty Name="jobtime" ColumnName="jobtime" />
-          <ScalarProperty Name="jobdetail" ColumnName="jobdetail" />
-          <ScalarProperty Name="jobrequire" ColumnName="jobrequire" />
-          <ScalarProperty Name="jobsite" ColumnName="jobsite" />
-          <ScalarProperty Name="jobtreatment" ColumnName="jobtreatment" />
-          <ScalarProperty Name="jobtag" ColumnName="jobtag" />
-          <ScalarProperty Name="releasetime" ColumnName="releasetime" />
-          <ScalarProperty Name="qinban_cert" ColumnName="qinban_cert" />
-          <ScalarProperty Name="via" ColumnName="via" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="joke">
-      <EntityTypeMapping TypeName="DataModel.joke">
-        <MappingFragment StoreEntitySet="joke">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="text" ColumnName="text" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="lecture">
       <EntityTypeMapping TypeName="DataModel.lecture">
         <MappingFragment StoreEntitySet="lecture">
@@ -67,23 +42,6 @@
           <ScalarProperty Name="reporter" ColumnName="reporter" />
           <ScalarProperty Name="depart" ColumnName="depart" />
           <ScalarProperty Name="remark" ColumnName="remark" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="lecture_____">
-      <EntityTypeMapping TypeName="DataModel.lecture_____">
-        <MappingFragment StoreEntitySet="lecture_____">
-          <ScalarProperty Name="no" ColumnName="no" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="credit" ColumnName="credit" />
-          <ScalarProperty Name="period" ColumnName="period" />
-          <ScalarProperty Name="start" ColumnName="start" />
-          <ScalarProperty Name="endd" ColumnName="endd" />
-          <ScalarProperty Name="time" ColumnName="time" />
-          <ScalarProperty Name="classroom" ColumnName="classroom" />
-          <ScalarProperty Name="teacher" ColumnName="teacher" />
-          <ScalarProperty Name="department" ColumnName="department" />
-          <ScalarProperty Name="campus" ColumnName="campus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -120,47 +78,6 @@
           <ScalarProperty Name="text" ColumnName="text" />
           <ScalarProperty Name="floor" ColumnName="floor" />
           <ScalarProperty Name="userid" ColumnName="userid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="roomEmpty">
-      <EntityTypeMapping TypeName="DataModel.roomEmpty">
-        <MappingFragment StoreEntitySet="roomEmpty">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="wday" ColumnName="wday" />
-          <ScalarProperty Name="during" ColumnName="during" />
-          <ScalarProperty Name="isempty" ColumnName="isempty" />
-          <ScalarProperty Name="detail" ColumnName="detail" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="roomInfo">
-      <EntityTypeMapping TypeName="DataModel.roomInfo">
-        <MappingFragment StoreEntitySet="roomInfo">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="location" ColumnName="location" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="search_ac">
-      <EntityTypeMapping TypeName="DataModel.search_ac">
-        <MappingFragment StoreEntitySet="search_ac">
-          <ScalarProperty Name="avtivityname" ColumnName="avtivityname" />
-          <ScalarProperty Name="activitynr" ColumnName="activitynr" />
-          <ScalarProperty Name="searchkeywords" ColumnName="searchkeywords" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="teacherInfo">
-      <EntityTypeMapping TypeName="DataModel.teacherInfo">
-        <MappingFragment StoreEntitySet="teacherInfo">
-          <ScalarProperty Name="teacherId" ColumnName="teacherId" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="post" ColumnName="post" />
-          <ScalarProperty Name="introduction" ColumnName="introduction" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="officeID" ColumnName="officeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -285,21 +202,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ACTIVITY">
-      <EntityTypeMapping TypeName="DataModel.ACTIVITY">
-        <MappingFragment StoreEntitySet="ACTIVITY">
-          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
-          <ScalarProperty Name="KEYWORDS" ColumnName="KEYWORDS" />
-          <ScalarProperty Name="ACTIVITYID" ColumnName="ACTIVITYID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="OFFICE">
       <EntityTypeMapping TypeName="DataModel.OFFICE">
         <MappingFragment StoreEntitySet="OFFICE">
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="LOCATIONID" ColumnName="LOCATIONID" />
           <ScalarProperty Name="PHONE" ColumnName="PHONE" />
-          <ScalarProperty Name="CAMPUS" ColumnName="CAMPUS" />
-          <ScalarProperty Name="OFFICELOCATION" ColumnName="OFFICELOCATION" />
           <ScalarProperty Name="OFFICENAME" ColumnName="OFFICENAME" />
           <ScalarProperty Name="OFFICEID" ColumnName="OFFICEID" />
         </MappingFragment>
@@ -308,6 +216,7 @@
     <EntitySetMapping Name="ROOM">
       <EntityTypeMapping TypeName="DataModel.ROOM">
         <MappingFragment StoreEntitySet="ROOM">
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
           <ScalarProperty Name="CAMPUS" ColumnName="CAMPUS" />
           <ScalarProperty Name="ROOMTYPE" ColumnName="ROOMTYPE" />
           <ScalarProperty Name="ROOMLOCATION" ColumnName="ROOMLOCATION" />
@@ -328,15 +237,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OFFICEUSE_ACTIVITY">
-      <EntityTypeMapping TypeName="DataModel.OFFICEUSE_ACTIVITY">
-        <MappingFragment StoreEntitySet="OFFICEUSE_ACTIVITY">
-          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
-          <ScalarProperty Name="ACTIVITYID" ColumnName="ACTIVITYID" />
-          <ScalarProperty Name="OFFICEID" ColumnName="OFFICEID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="OFFICEUSE_TEACHER">
       <EntityTypeMapping TypeName="DataModel.OFFICEUSE_TEACHER">
         <MappingFragment StoreEntitySet="OFFICEUSE_TEACHER">
@@ -354,6 +254,36 @@
           <ScalarProperty Name="TEACHERID" ColumnName="TEACHERID" />
           <ScalarProperty Name="CLASSNAME" ColumnName="CLASSNAME" />
           <ScalarProperty Name="ROOMID" ColumnName="ROOMID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOCATION">
+      <EntityTypeMapping TypeName="DataModel.LOCATION">
+        <MappingFragment StoreEntitySet="LOCATION">
+          <ScalarProperty Name="CAMPUS" ColumnName="CAMPUS" />
+          <ScalarProperty Name="LL" ColumnName="LL" />
+          <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+          <ScalarProperty Name="LONGTITUDE" ColumnName="LONGTITUDE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="LOCATIONNAME" ColumnName="LOCATIONNAME" />
+          <ScalarProperty Name="LOCATIONID" ColumnName="LOCATIONID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="job">
+      <EntityTypeMapping TypeName="DataModel.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="via" ColumnName="via" />
+          <ScalarProperty Name="qinban_cert" ColumnName="qinban_cert" />
+          <ScalarProperty Name="releasetime" ColumnName="releasetime" />
+          <ScalarProperty Name="jobtag" ColumnName="jobtag" />
+          <ScalarProperty Name="jobtreatment" ColumnName="jobtreatment" />
+          <ScalarProperty Name="jobsite" ColumnName="jobsite" />
+          <ScalarProperty Name="jobrequire" ColumnName="jobrequire" />
+          <ScalarProperty Name="jobdetail" ColumnName="jobdetail" />
+          <ScalarProperty Name="jobtime" ColumnName="jobtime" />
+          <ScalarProperty Name="infotitile" ColumnName="infotitile" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

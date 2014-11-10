@@ -19,5 +19,6 @@ namespace WebJSON
         public string ROOMLOCATION { get; set; }
         public string ROOMTYPE { get; set; }
         public string CAMPUS { get; set; }
+        public string PHONE { get; set; }
     }
 }

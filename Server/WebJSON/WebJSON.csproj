@@ -131,9 +131,6 @@
     <Compile Include="accountuser.cs">
       <DependentUpon>UserInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="ACTIVITY.cs">
-      <DependentUpon>DataInfo.tt</DependentUpon>
-    </Compile>
     <Compile Include="advise.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
@@ -189,13 +186,10 @@
     <Compile Include="job.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="joke.cs">
-      <DependentUpon>DataInfo.tt</DependentUpon>
-    </Compile>
     <Compile Include="lecture.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="lecture_____.cs">
+    <Compile Include="LOCATION.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
     <Compile Include="nearbyeating.cs">
@@ -219,9 +213,6 @@
     <Compile Include="OFFICE.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="OFFICEUSE_ACTIVITY.cs">
-      <DependentUpon>DataInfo.tt</DependentUpon>
-    </Compile>
     <Compile Include="OFFICEUSE_TEACHER.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
@@ -235,22 +226,10 @@
     <Compile Include="ROOM.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="roomEmpty.cs">
-      <DependentUpon>DataInfo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="roomInfo.cs">
-      <DependentUpon>DataInfo.tt</DependentUpon>
-    </Compile>
     <Compile Include="ROOMUSE_TEACHER.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
-    <Compile Include="search_ac.cs">
-      <DependentUpon>DataInfo.tt</DependentUpon>
-    </Compile>
     <Compile Include="TEACHER.cs">
-      <DependentUpon>DataInfo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="teacherInfo.cs">
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
     <Compile Include="user.cs">

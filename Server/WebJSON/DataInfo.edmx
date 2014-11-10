@@ -5,14 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityType Name="ACTIVITY">
-          <Key>
-            <PropertyRef Name="ACTIVITYID" />
-          </Key>
-          <Property Name="ACTIVITYID" Type="int" Nullable="false" />
-          <Property Name="KEYWORDS" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="NOTE" Type="varchar" MaxLength="200" />
-        </EntityType>
         <EntityType Name="advise">
           <Key>
             <PropertyRef Name="id" />
@@ -57,13 +49,6 @@
           <Property Name="qinban_cert" Type="nvarchar" MaxLength="50" />
           <Property Name="via" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="joke">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="text" Type="nvarchar" MaxLength="100" />
-        </EntityType>
         <EntityType Name="lecture">
           <Key>
             <PropertyRef Name="id" />
@@ -77,21 +62,17 @@
           <Property Name="depart" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="150" />
         </EntityType>
-        <EntityType Name="lecture_____">
+        <EntityType Name="LOCATION">
           <Key>
-            <PropertyRef Name="no" />
+            <PropertyRef Name="LOCATIONID" />
           </Key>
-          <Property Name="no" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="credit" Type="numeric" Precision="18" Scale="2" />
-          <Property Name="period" Type="int" />
-          <Property Name="start" Type="int" />
-          <Property Name="endd" Type="int" />
-          <Property Name="time" Type="varchar" MaxLength="50" />
-          <Property Name="classroom" Type="varchar" MaxLength="50" />
-          <Property Name="teacher" Type="varchar" MaxLength="50" />
-          <Property Name="department" Type="varchar" MaxLength="50" />
-          <Property Name="campus" Type="varchar" MaxLength="50" />
+          <Property Name="LOCATIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOCATIONNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
+          <Property Name="LONGTITUDE" Type="nvarchar" MaxLength="50" />
+          <Property Name="LATITUDE" Type="nvarchar" MaxLength="50" />
+          <Property Name="LL" Type="nvarchar" MaxLength="100" />
+          <Property Name="CAMPUS" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="nearbyeating">
           <Key>
@@ -186,22 +167,11 @@
           <Key>
             <PropertyRef Name="OFFICEID" />
           </Key>
-          <Property Name="OFFICEID" Type="int" Nullable="false" />
-          <Property Name="OFFICENAME" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="OFFICELOCATION" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="CAMPUS" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="PHONE" Type="varchar" MaxLength="15" />
-        </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“ecustj111.dbo.OFFICEUSE_ACTIVITY”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="OFFICEUSE_ACTIVITY">
-          <Key>
-            <PropertyRef Name="OFFICEID" />
-            <PropertyRef Name="ACTIVITYID" />
-          </Key>
-          <Property Name="OFFICEID" Type="int" Nullable="false" />
-          <Property Name="ACTIVITYID" Type="int" Nullable="false" />
-          <Property Name="NOTE" Type="varchar" MaxLength="20" />
+          <Property Name="OFFICEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OFFICENAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LOCATIONID" Type="int" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="NOTE" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“ecustj111.dbo.OFFICEUSE_TEACHER”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -240,31 +210,12 @@
           <Key>
             <PropertyRef Name="ROOMID" />
           </Key>
-          <Property Name="ROOMID" Type="int" Nullable="false" />
+          <Property Name="ROOMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ROOMNAME" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ROOMLOCATION" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ROOMTYPE" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ROOMLOCATION" Type="nvarchar" MaxLength="20" />
+          <Property Name="ROOMTYPE" Type="nvarchar" MaxLength="20" />
           <Property Name="CAMPUS" Type="nvarchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="roomEmpty">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="wday" />
-            <PropertyRef Name="during" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="wday" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="during" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="isempty" Type="bit" Nullable="false" />
-          <Property Name="detail" Type="varchar" MaxLength="20" />
-        </EntityType>
-        <EntityType Name="roomInfo">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="location" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“ecustj111.dbo.ROOMUSE_TEACHER”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -282,36 +233,16 @@
           <Property Name="WEEKDAYTIME" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="NOTE" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="search_ac">
-          <Key>
-            <PropertyRef Name="avtivityname" />
-          </Key>
-          <Property Name="avtivityname" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="activitynr" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="searchkeywords" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="TEACHER">
           <Key>
             <PropertyRef Name="TEACHERID" />
           </Key>
           <Property Name="TEACHERID" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="TEACHERNAME" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="WEEKDAYTIME" Type="nvarchar" MaxLength="10" />
           <Property Name="MOBILE" Type="nvarchar" MaxLength="15" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="20" />
           <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="15" />
           <Property Name="NOTE" Type="nvarchar" MaxLength="8" />
-        </EntityType>
-        <EntityType Name="teacherInfo">
-          <Key>
-            <PropertyRef Name="teacherId" />
-          </Key>
-          <Property Name="teacherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="post" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="introduction" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="20" />
-          <Property Name="officeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -354,39 +285,15 @@
           <Property Name="aqi" Type="nvarchar" MaxLength="10" />
           <Property Name="pm25" Type="int" />
         </EntityType>
-        <Association Name="FK__roomEmpty__id__17F790F9">
-          <End Role="roomInfo" Type="Self.roomInfo" Multiplicity="1" />
-          <End Role="roomEmpty" Type="Self.roomEmpty" Multiplicity="*" />
+        <Association Name="FK_OFFICE_LOCATION">
+          <End Role="LOCATION" Type="Self.LOCATION" Multiplicity="0..1" />
+          <End Role="OFFICE" Type="Self.OFFICE" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="roomInfo">
-              <PropertyRef Name="id" />
+            <Principal Role="LOCATION">
+              <PropertyRef Name="LOCATIONID" />
             </Principal>
-            <Dependent Role="roomEmpty">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OFFICEUSE_ACTIVITY_ACTIVITY">
-          <End Role="ACTIVITY" Type="Self.ACTIVITY" Multiplicity="1" />
-          <End Role="OFFICEUSE_ACTIVITY" Type="Self.OFFICEUSE_ACTIVITY" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ACTIVITY">
-              <PropertyRef Name="ACTIVITYID" />
-            </Principal>
-            <Dependent Role="OFFICEUSE_ACTIVITY">
-              <PropertyRef Name="ACTIVITYID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OFFICEUSE_ACTIVITY_OFFICE">
-          <End Role="OFFICE" Type="Self.OFFICE" Multiplicity="1" />
-          <End Role="OFFICEUSE_ACTIVITY" Type="Self.OFFICEUSE_ACTIVITY" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OFFICE">
-              <PropertyRef Name="OFFICEID" />
-            </Principal>
-            <Dependent Role="OFFICEUSE_ACTIVITY">
-              <PropertyRef Name="OFFICEID" />
+            <Dependent Role="OFFICE">
+              <PropertyRef Name="LOCATIONID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -475,13 +382,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DataModelStoreContainer">
-          <EntitySet Name="ACTIVITY" EntityType="Self.ACTIVITY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="advise" EntityType="Self.advise" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="busInfo" EntityType="Self.busInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="job" EntityType="Self.job" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="joke" EntityType="Self.joke" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lecture" EntityType="Self.lecture" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="lecture_____" EntityType="Self.lecture_____" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOCATION" EntityType="Self.LOCATION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nearbyeating" EntityType="Self.nearbyeating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nearbygoing" EntityType="Self.nearbygoing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nearbyliving" EntityType="Self.nearbyliving" Schema="dbo" store:Type="Tables" />
@@ -492,21 +397,10 @@
           <EntitySet Name="post" EntityType="Self.post" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="postback" EntityType="Self.postback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROOM" EntityType="Self.ROOM" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="roomEmpty" EntityType="Self.roomEmpty" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="roomInfo" EntityType="Self.roomInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="search_ac" EntityType="Self.search_ac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEACHER" EntityType="Self.TEACHER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="teacherInfo" EntityType="Self.teacherInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="version" EntityType="Self.version" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weather" EntityType="Self.weather" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OFFICEUSE_ACTIVITY" EntityType="Self.OFFICEUSE_ACTIVITY" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[OFFICEUSE_ACTIVITY].[OFFICEID] AS [OFFICEID], 
-[OFFICEUSE_ACTIVITY].[ACTIVITYID] AS [ACTIVITYID], 
-[OFFICEUSE_ACTIVITY].[NOTE] AS [NOTE]
-FROM [dbo].[OFFICEUSE_ACTIVITY] AS [OFFICEUSE_ACTIVITY]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="OFFICEUSE_TEACHER" EntityType="Self.OFFICEUSE_TEACHER" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [OFFICEUSE_TEACHER].[OFFICEID] AS [OFFICEID], 
@@ -523,17 +417,9 @@ FROM [dbo].[OFFICEUSE_TEACHER] AS [OFFICEUSE_TEACHER]</DefiningQuery>
 [ROOMUSE_TEACHER].[NOTE] AS [NOTE]
 FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__roomEmpty__id__17F790F9" Association="Self.FK__roomEmpty__id__17F790F9">
-            <End Role="roomInfo" EntitySet="roomInfo" />
-            <End Role="roomEmpty" EntitySet="roomEmpty" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OFFICEUSE_ACTIVITY_ACTIVITY" Association="Self.FK_OFFICEUSE_ACTIVITY_ACTIVITY">
-            <End Role="ACTIVITY" EntitySet="ACTIVITY" />
-            <End Role="OFFICEUSE_ACTIVITY" EntitySet="OFFICEUSE_ACTIVITY" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OFFICEUSE_ACTIVITY_OFFICE" Association="Self.FK_OFFICEUSE_ACTIVITY_OFFICE">
+          <AssociationSet Name="FK_OFFICE_LOCATION" Association="Self.FK_OFFICE_LOCATION">
+            <End Role="LOCATION" EntitySet="LOCATION" />
             <End Role="OFFICE" EntitySet="OFFICE" />
-            <End Role="OFFICEUSE_ACTIVITY" EntitySet="OFFICEUSE_ACTIVITY" />
           </AssociationSet>
           <AssociationSet Name="FK_OFFICEUSE_TEACHER_OFFICE" Association="Self.FK_OFFICEUSE_TEACHER_OFFICE">
             <End Role="OFFICE" EntitySet="OFFICE" />
@@ -596,29 +482,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           <Property Name="price" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="beizhu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="job">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="infotitile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="jobtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="jobdetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="jobrequire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="jobsite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="jobtreatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="jobtag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="releasetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="qinban_cert" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="via" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="joke">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="lecture">
           <Key>
             <PropertyRef Name="id" />
@@ -631,22 +494,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           <Property Name="reporter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="depart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="lecture_____">
-          <Key>
-            <PropertyRef Name="no" />
-          </Key>
-          <Property Name="no" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="credit" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="period" Type="Int32" />
-          <Property Name="start" Type="Int32" />
-          <Property Name="endd" Type="Int32" />
-          <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="classroom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="campus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="news">
           <Key>
@@ -682,47 +529,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           <Property Name="userid" Type="Int32" />
           <NavigationProperty Name="user" Relationship="Self.FK_postback_user" FromRole="postback" ToRole="user" />
           <Property Name="anonymity" Type="Int32" />
-        </EntityType>
-        <EntityType Name="roomEmpty">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="wday" />
-            <PropertyRef Name="during" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="wday" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="during" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="isempty" Type="Boolean" Nullable="false" />
-          <Property Name="detail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="roomInfo" Relationship="Self.FK__roomEmpty__id__17F790F9" FromRole="roomEmpty" ToRole="roomInfo" />
-        </EntityType>
-        <EntityType Name="roomInfo">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="location" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="roomEmpty" Relationship="Self.FK__roomEmpty__id__17F790F9" FromRole="roomInfo" ToRole="roomEmpty" />
-        </EntityType>
-        <EntityType Name="search_ac">
-          <Key>
-            <PropertyRef Name="avtivityname" />
-          </Key>
-          <Property Name="avtivityname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="activitynr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="searchkeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="teacherInfo">
-          <Key>
-            <PropertyRef Name="teacherId" />
-          </Key>
-          <Property Name="teacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="post" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="introduction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="officeID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -794,32 +600,13 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__roomEmpty__id__17F790F9">
-          <End Role="roomInfo" Type="Self.roomInfo" Multiplicity="1" />
-          <End Role="roomEmpty" Type="Self.roomEmpty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="roomInfo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="roomEmpty">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DataInfo" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="advise" EntityType="Self.advise" />
           <EntitySet Name="busInfo" EntityType="Self.busInfo" />
-          <EntitySet Name="job" EntityType="Self.job" />
-          <EntitySet Name="joke" EntityType="Self.joke" />
           <EntitySet Name="lecture" EntityType="Self.lecture" />
-          <EntitySet Name="lecture_____" EntityType="Self.lecture_____" />
           <EntitySet Name="news" EntityType="Self.news" />
           <EntitySet Name="post" EntityType="Self.post" />
           <EntitySet Name="postback" EntityType="Self.postback" />
-          <EntitySet Name="roomEmpty" EntityType="Self.roomEmpty" />
-          <EntitySet Name="roomInfo" EntityType="Self.roomInfo" />
-          <EntitySet Name="search_ac" EntityType="Self.search_ac" />
-          <EntitySet Name="teacherInfo" EntityType="Self.teacherInfo" />
           <EntitySet Name="user" EntityType="Self.user" />
           <EntitySet Name="version" EntityType="Self.version" />
           <EntitySet Name="weather" EntityType="Self.weather" />
@@ -835,30 +622,16 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
             <End Role="user" EntitySet="user" />
             <End Role="postback" EntitySet="postback" />
           </AssociationSet>
-          <AssociationSet Name="FK__roomEmpty__id__17F790F9" Association="Self.FK__roomEmpty__id__17F790F9">
-            <End Role="roomInfo" EntitySet="roomInfo" />
-            <End Role="roomEmpty" EntitySet="roomEmpty" />
-          </AssociationSet>
           <EntitySet Name="nearbyeating" EntityType="DataModel.nearbyeating" />
           <EntitySet Name="nearbygoing" EntityType="DataModel.nearbygoing" />
           <EntitySet Name="nearbyliving" EntityType="DataModel.nearbyliving" />
           <EntitySet Name="nearbyother" EntityType="DataModel.nearbyother" />
           <EntitySet Name="nearbyplaying" EntityType="DataModel.nearbyplaying" />
-          <EntitySet Name="ACTIVITY" EntityType="DataModel.ACTIVITY" />
           <EntitySet Name="OFFICE" EntityType="DataModel.OFFICE" />
           <EntitySet Name="ROOM" EntityType="DataModel.ROOM" />
           <EntitySet Name="TEACHER" EntityType="DataModel.TEACHER" />
-          <EntitySet Name="OFFICEUSE_ACTIVITY" EntityType="DataModel.OFFICEUSE_ACTIVITY" />
           <EntitySet Name="OFFICEUSE_TEACHER" EntityType="DataModel.OFFICEUSE_TEACHER" />
           <EntitySet Name="ROOMUSE_TEACHER" EntityType="DataModel.ROOMUSE_TEACHER" />
-          <AssociationSet Name="FK_OFFICEUSE_ACTIVITY_ACTIVITY" Association="DataModel.FK_OFFICEUSE_ACTIVITY_ACTIVITY">
-            <End Role="ACTIVITY" EntitySet="ACTIVITY" />
-            <End Role="OFFICEUSE_ACTIVITY" EntitySet="OFFICEUSE_ACTIVITY" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OFFICEUSE_ACTIVITY_OFFICE" Association="DataModel.FK_OFFICEUSE_ACTIVITY_OFFICE">
-            <End Role="OFFICE" EntitySet="OFFICE" />
-            <End Role="OFFICEUSE_ACTIVITY" EntitySet="OFFICEUSE_ACTIVITY" />
-          </AssociationSet>
           <AssociationSet Name="FK_OFFICEUSE_TEACHER_OFFICE" Association="DataModel.FK_OFFICEUSE_TEACHER_OFFICE">
             <End Role="OFFICE" EntitySet="OFFICE" />
             <End Role="OFFICEUSE_TEACHER" EntitySet="OFFICEUSE_TEACHER" />
@@ -875,6 +648,12 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
             <End Role="TEACHER" EntitySet="TEACHER" />
             <End Role="ROOMUSE_TEACHER" EntitySet="ROOMUSE_TEACHER" />
           </AssociationSet>
+          <EntitySet Name="LOCATION" EntityType="DataModel.LOCATION" />
+          <AssociationSet Name="FK_OFFICE_LOCATION" Association="DataModel.FK_OFFICE_LOCATION">
+            <End Role="LOCATION" EntitySet="LOCATION" />
+            <End Role="OFFICE" EntitySet="OFFICE" />
+          </AssociationSet>
+          <EntitySet Name="job" EntityType="DataModel.job" />
         </EntityContainer>
         <EntityType Name="nearbyeating">
           <Key>
@@ -955,23 +734,16 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ll" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="ACTIVITY">
-          <Key>
-            <PropertyRef Name="ACTIVITYID" />
-          </Key>
-          <Property Name="ACTIVITYID" Type="Int32" Nullable="false" />
-          <Property Name="KEYWORDS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NOTE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="OFFICE">
           <Key>
             <PropertyRef Name="OFFICEID" />
           </Key>
           <Property Name="OFFICEID" Type="Int32" Nullable="false" />
-          <Property Name="OFFICENAME" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="OFFICELOCATION" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="CAMPUS" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="PHONE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="OFFICENAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LOCATIONID" Type="Int32" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOCATION" Relationship="DataModel.FK_OFFICE_LOCATION" FromRole="OFFICE" ToRole="LOCATION" />
         </EntityType>
         <EntityType Name="ROOM">
           <Key>
@@ -979,9 +751,10 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           </Key>
           <Property Name="ROOMID" Type="Int32" Nullable="false" />
           <Property Name="ROOMNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ROOMLOCATION" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ROOMTYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ROOMLOCATION" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ROOMTYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CAMPUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TEACHER">
           <Key>
@@ -993,17 +766,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           <Property Name="EMAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DEPARTMENT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="NOTE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="OFFICEUSE_ACTIVITY">
-          <Key>
-            <PropertyRef Name="OFFICEID" />
-            <PropertyRef Name="ACTIVITYID" />
-          </Key>
-          <Property Name="OFFICEID" Type="Int32" Nullable="false" />
-          <Property Name="ACTIVITYID" Type="Int32" Nullable="false" />
-          <Property Name="NOTE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ACTIVITY" Relationship="DataModel.FK_OFFICEUSE_ACTIVITY_ACTIVITY" FromRole="OFFICEUSE_ACTIVITY" ToRole="ACTIVITY" />
-          <NavigationProperty Name="OFFICE" Relationship="DataModel.FK_OFFICEUSE_ACTIVITY_OFFICE" FromRole="OFFICEUSE_ACTIVITY" ToRole="OFFICE" />
         </EntityType>
         <EntityType Name="OFFICEUSE_TEACHER">
           <Key>
@@ -1031,30 +793,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           <NavigationProperty Name="ROOM" Relationship="DataModel.FK_ROOMUSE_TEACHER_ROOM" FromRole="ROOMUSE_TEACHER" ToRole="ROOM" />
           <NavigationProperty Name="TEACHER" Relationship="DataModel.FK_ROOMUSE_TEACHER_TEACHER" FromRole="ROOMUSE_TEACHER" ToRole="TEACHER" />
         </EntityType>
-        <Association Name="FK_OFFICEUSE_ACTIVITY_ACTIVITY">
-          <End Type="DataModel.ACTIVITY" Role="ACTIVITY" Multiplicity="1" />
-          <End Type="DataModel.OFFICEUSE_ACTIVITY" Role="OFFICEUSE_ACTIVITY" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ACTIVITY">
-              <PropertyRef Name="ACTIVITYID" />
-            </Principal>
-            <Dependent Role="OFFICEUSE_ACTIVITY">
-              <PropertyRef Name="ACTIVITYID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OFFICEUSE_ACTIVITY_OFFICE">
-          <End Type="DataModel.OFFICE" Role="OFFICE" Multiplicity="1" />
-          <End Type="DataModel.OFFICEUSE_ACTIVITY" Role="OFFICEUSE_ACTIVITY" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OFFICE">
-              <PropertyRef Name="OFFICEID" />
-            </Principal>
-            <Dependent Role="OFFICEUSE_ACTIVITY">
-              <PropertyRef Name="OFFICEID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OFFICEUSE_TEACHER_OFFICE">
           <End Type="DataModel.OFFICE" Role="OFFICE" Multiplicity="1" />
           <End Type="DataModel.OFFICEUSE_TEACHER" Role="OFFICEUSE_TEACHER" Multiplicity="0..1" />
@@ -1103,6 +841,46 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LOCATION">
+          <Key>
+            <PropertyRef Name="LOCATIONID" />
+          </Key>
+          <Property Name="LOCATIONID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOCATIONNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LONGTITUDE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LATITUDE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CAMPUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_OFFICE_LOCATION">
+          <End Type="DataModel.LOCATION" Role="LOCATION" Multiplicity="0..1" />
+          <End Type="DataModel.OFFICE" Role="OFFICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOCATION">
+              <PropertyRef Name="LOCATIONID" />
+            </Principal>
+            <Dependent Role="OFFICE">
+              <PropertyRef Name="LOCATIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="job">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="infotitile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="jobtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="jobdetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="jobrequire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="jobsite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="jobtreatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="jobtag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="releasetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="qinban_cert" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="via" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1139,31 +917,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="job">
-            <EntityTypeMapping TypeName="DataModel.job">
-              <MappingFragment StoreEntitySet="job">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="infotitile" ColumnName="infotitile" />
-                <ScalarProperty Name="jobtime" ColumnName="jobtime" />
-                <ScalarProperty Name="jobdetail" ColumnName="jobdetail" />
-                <ScalarProperty Name="jobrequire" ColumnName="jobrequire" />
-                <ScalarProperty Name="jobsite" ColumnName="jobsite" />
-                <ScalarProperty Name="jobtreatment" ColumnName="jobtreatment" />
-                <ScalarProperty Name="jobtag" ColumnName="jobtag" />
-                <ScalarProperty Name="releasetime" ColumnName="releasetime" />
-                <ScalarProperty Name="qinban_cert" ColumnName="qinban_cert" />
-                <ScalarProperty Name="via" ColumnName="via" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="joke">
-            <EntityTypeMapping TypeName="DataModel.joke">
-              <MappingFragment StoreEntitySet="joke">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="text" ColumnName="text" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="lecture">
             <EntityTypeMapping TypeName="DataModel.lecture">
               <MappingFragment StoreEntitySet="lecture">
@@ -1175,23 +928,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
                 <ScalarProperty Name="reporter" ColumnName="reporter" />
                 <ScalarProperty Name="depart" ColumnName="depart" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="lecture_____">
-            <EntityTypeMapping TypeName="DataModel.lecture_____">
-              <MappingFragment StoreEntitySet="lecture_____">
-                <ScalarProperty Name="no" ColumnName="no" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="credit" ColumnName="credit" />
-                <ScalarProperty Name="period" ColumnName="period" />
-                <ScalarProperty Name="start" ColumnName="start" />
-                <ScalarProperty Name="endd" ColumnName="endd" />
-                <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="classroom" ColumnName="classroom" />
-                <ScalarProperty Name="teacher" ColumnName="teacher" />
-                <ScalarProperty Name="department" ColumnName="department" />
-                <ScalarProperty Name="campus" ColumnName="campus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1228,47 +964,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="floor" ColumnName="floor" />
                 <ScalarProperty Name="userid" ColumnName="userid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="roomEmpty">
-            <EntityTypeMapping TypeName="DataModel.roomEmpty">
-              <MappingFragment StoreEntitySet="roomEmpty">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="wday" ColumnName="wday" />
-                <ScalarProperty Name="during" ColumnName="during" />
-                <ScalarProperty Name="isempty" ColumnName="isempty" />
-                <ScalarProperty Name="detail" ColumnName="detail" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="roomInfo">
-            <EntityTypeMapping TypeName="DataModel.roomInfo">
-              <MappingFragment StoreEntitySet="roomInfo">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="location" ColumnName="location" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="search_ac">
-            <EntityTypeMapping TypeName="DataModel.search_ac">
-              <MappingFragment StoreEntitySet="search_ac">
-                <ScalarProperty Name="avtivityname" ColumnName="avtivityname" />
-                <ScalarProperty Name="activitynr" ColumnName="activitynr" />
-                <ScalarProperty Name="searchkeywords" ColumnName="searchkeywords" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="teacherInfo">
-            <EntityTypeMapping TypeName="DataModel.teacherInfo">
-              <MappingFragment StoreEntitySet="teacherInfo">
-                <ScalarProperty Name="teacherId" ColumnName="teacherId" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="post" ColumnName="post" />
-                <ScalarProperty Name="introduction" ColumnName="introduction" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="officeID" ColumnName="officeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1393,21 +1088,12 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ACTIVITY">
-            <EntityTypeMapping TypeName="DataModel.ACTIVITY">
-              <MappingFragment StoreEntitySet="ACTIVITY">
-                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
-                <ScalarProperty Name="KEYWORDS" ColumnName="KEYWORDS" />
-                <ScalarProperty Name="ACTIVITYID" ColumnName="ACTIVITYID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OFFICE">
             <EntityTypeMapping TypeName="DataModel.OFFICE">
               <MappingFragment StoreEntitySet="OFFICE">
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="LOCATIONID" ColumnName="LOCATIONID" />
                 <ScalarProperty Name="PHONE" ColumnName="PHONE" />
-                <ScalarProperty Name="CAMPUS" ColumnName="CAMPUS" />
-                <ScalarProperty Name="OFFICELOCATION" ColumnName="OFFICELOCATION" />
                 <ScalarProperty Name="OFFICENAME" ColumnName="OFFICENAME" />
                 <ScalarProperty Name="OFFICEID" ColumnName="OFFICEID" />
               </MappingFragment>
@@ -1416,6 +1102,7 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
           <EntitySetMapping Name="ROOM">
             <EntityTypeMapping TypeName="DataModel.ROOM">
               <MappingFragment StoreEntitySet="ROOM">
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
                 <ScalarProperty Name="CAMPUS" ColumnName="CAMPUS" />
                 <ScalarProperty Name="ROOMTYPE" ColumnName="ROOMTYPE" />
                 <ScalarProperty Name="ROOMLOCATION" ColumnName="ROOMLOCATION" />
@@ -1436,15 +1123,6 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OFFICEUSE_ACTIVITY">
-            <EntityTypeMapping TypeName="DataModel.OFFICEUSE_ACTIVITY">
-              <MappingFragment StoreEntitySet="OFFICEUSE_ACTIVITY">
-                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
-                <ScalarProperty Name="ACTIVITYID" ColumnName="ACTIVITYID" />
-                <ScalarProperty Name="OFFICEID" ColumnName="OFFICEID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OFFICEUSE_TEACHER">
             <EntityTypeMapping TypeName="DataModel.OFFICEUSE_TEACHER">
               <MappingFragment StoreEntitySet="OFFICEUSE_TEACHER">
@@ -1462,6 +1140,36 @@ FROM [dbo].[ROOMUSE_TEACHER] AS [ROOMUSE_TEACHER]</DefiningQuery>
                 <ScalarProperty Name="TEACHERID" ColumnName="TEACHERID" />
                 <ScalarProperty Name="CLASSNAME" ColumnName="CLASSNAME" />
                 <ScalarProperty Name="ROOMID" ColumnName="ROOMID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOCATION">
+            <EntityTypeMapping TypeName="DataModel.LOCATION">
+              <MappingFragment StoreEntitySet="LOCATION">
+                <ScalarProperty Name="CAMPUS" ColumnName="CAMPUS" />
+                <ScalarProperty Name="LL" ColumnName="LL" />
+                <ScalarProperty Name="LATITUDE" ColumnName="LATITUDE" />
+                <ScalarProperty Name="LONGTITUDE" ColumnName="LONGTITUDE" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="LOCATIONNAME" ColumnName="LOCATIONNAME" />
+                <ScalarProperty Name="LOCATIONID" ColumnName="LOCATIONID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="job">
+            <EntityTypeMapping TypeName="DataModel.job">
+              <MappingFragment StoreEntitySet="job">
+                <ScalarProperty Name="via" ColumnName="via" />
+                <ScalarProperty Name="qinban_cert" ColumnName="qinban_cert" />
+                <ScalarProperty Name="releasetime" ColumnName="releasetime" />
+                <ScalarProperty Name="jobtag" ColumnName="jobtag" />
+                <ScalarProperty Name="jobtreatment" ColumnName="jobtreatment" />
+                <ScalarProperty Name="jobsite" ColumnName="jobsite" />
+                <ScalarProperty Name="jobrequire" ColumnName="jobrequire" />
+                <ScalarProperty Name="jobdetail" ColumnName="jobdetail" />
+                <ScalarProperty Name="jobtime" ColumnName="jobtime" />
+                <ScalarProperty Name="infotitile" ColumnName="infotitile" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

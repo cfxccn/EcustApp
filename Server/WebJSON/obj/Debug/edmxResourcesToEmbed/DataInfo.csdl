@@ -28,29 +28,6 @@
     <Property Name="price" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="beizhu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="job">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="infotitile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="jobtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="jobdetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="jobrequire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="jobsite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="jobtreatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="jobtag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="releasetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="qinban_cert" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="via" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="joke">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="lecture">
     <Key>
       <PropertyRef Name="id" />
@@ -63,22 +40,6 @@
     <Property Name="reporter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="depart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="lecture_____">
-    <Key>
-      <PropertyRef Name="no" />
-    </Key>
-    <Property Name="no" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="credit" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="period" Type="Int32" />
-    <Property Name="start" Type="Int32" />
-    <Property Name="endd" Type="Int32" />
-    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="classroom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="teacher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="campus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="news">
     <Key>
@@ -114,47 +75,6 @@
     <Property Name="userid" Type="Int32" />
     <NavigationProperty Name="user" Relationship="Self.FK_postback_user" FromRole="postback" ToRole="user" />
     <Property Name="anonymity" Type="Int32" />
-  </EntityType>
-  <EntityType Name="roomEmpty">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="wday" />
-      <PropertyRef Name="during" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="wday" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="during" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="isempty" Type="Boolean" Nullable="false" />
-    <Property Name="detail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="roomInfo" Relationship="Self.FK__roomEmpty__id__17F790F9" FromRole="roomEmpty" ToRole="roomInfo" />
-  </EntityType>
-  <EntityType Name="roomInfo">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="location" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="roomEmpty" Relationship="Self.FK__roomEmpty__id__17F790F9" FromRole="roomInfo" ToRole="roomEmpty" />
-  </EntityType>
-  <EntityType Name="search_ac">
-    <Key>
-      <PropertyRef Name="avtivityname" />
-    </Key>
-    <Property Name="avtivityname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="activitynr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="searchkeywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="teacherInfo">
-    <Key>
-      <PropertyRef Name="teacherId" />
-    </Key>
-    <Property Name="teacherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="post" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="introduction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="officeID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -226,32 +146,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__roomEmpty__id__17F790F9">
-    <End Role="roomInfo" Type="Self.roomInfo" Multiplicity="1" />
-    <End Role="roomEmpty" Type="Self.roomEmpty" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="roomInfo">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="roomEmpty">
-        <PropertyRef Name="id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="DataInfo" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="advise" EntityType="Self.advise" />
     <EntitySet Name="busInfo" EntityType="Self.busInfo" />
-    <EntitySet Name="job" EntityType="Self.job" />
-    <EntitySet Name="joke" EntityType="Self.joke" />
     <EntitySet Name="lecture" EntityType="Self.lecture" />
-    <EntitySet Name="lecture_____" EntityType="Self.lecture_____" />
     <EntitySet Name="news" EntityType="Self.news" />
     <EntitySet Name="post" EntityType="Self.post" />
     <EntitySet Name="postback" EntityType="Self.postback" />
-    <EntitySet Name="roomEmpty" EntityType="Self.roomEmpty" />
-    <EntitySet Name="roomInfo" EntityType="Self.roomInfo" />
-    <EntitySet Name="search_ac" EntityType="Self.search_ac" />
-    <EntitySet Name="teacherInfo" EntityType="Self.teacherInfo" />
     <EntitySet Name="user" EntityType="Self.user" />
     <EntitySet Name="version" EntityType="Self.version" />
     <EntitySet Name="weather" EntityType="Self.weather" />
@@ -267,30 +168,16 @@
       <End Role="user" EntitySet="user" />
       <End Role="postback" EntitySet="postback" />
     </AssociationSet>
-    <AssociationSet Name="FK__roomEmpty__id__17F790F9" Association="Self.FK__roomEmpty__id__17F790F9">
-      <End Role="roomInfo" EntitySet="roomInfo" />
-      <End Role="roomEmpty" EntitySet="roomEmpty" />
-    </AssociationSet>
     <EntitySet Name="nearbyeating" EntityType="DataModel.nearbyeating" />
     <EntitySet Name="nearbygoing" EntityType="DataModel.nearbygoing" />
     <EntitySet Name="nearbyliving" EntityType="DataModel.nearbyliving" />
     <EntitySet Name="nearbyother" EntityType="DataModel.nearbyother" />
     <EntitySet Name="nearbyplaying" EntityType="DataModel.nearbyplaying" />
-    <EntitySet Name="ACTIVITY" EntityType="DataModel.ACTIVITY" />
     <EntitySet Name="OFFICE" EntityType="DataModel.OFFICE" />
     <EntitySet Name="ROOM" EntityType="DataModel.ROOM" />
     <EntitySet Name="TEACHER" EntityType="DataModel.TEACHER" />
-    <EntitySet Name="OFFICEUSE_ACTIVITY" EntityType="DataModel.OFFICEUSE_ACTIVITY" />
     <EntitySet Name="OFFICEUSE_TEACHER" EntityType="DataModel.OFFICEUSE_TEACHER" />
     <EntitySet Name="ROOMUSE_TEACHER" EntityType="DataModel.ROOMUSE_TEACHER" />
-    <AssociationSet Name="FK_OFFICEUSE_ACTIVITY_ACTIVITY" Association="DataModel.FK_OFFICEUSE_ACTIVITY_ACTIVITY">
-      <End Role="ACTIVITY" EntitySet="ACTIVITY" />
-      <End Role="OFFICEUSE_ACTIVITY" EntitySet="OFFICEUSE_ACTIVITY" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OFFICEUSE_ACTIVITY_OFFICE" Association="DataModel.FK_OFFICEUSE_ACTIVITY_OFFICE">
-      <End Role="OFFICE" EntitySet="OFFICE" />
-      <End Role="OFFICEUSE_ACTIVITY" EntitySet="OFFICEUSE_ACTIVITY" />
-    </AssociationSet>
     <AssociationSet Name="FK_OFFICEUSE_TEACHER_OFFICE" Association="DataModel.FK_OFFICEUSE_TEACHER_OFFICE">
       <End Role="OFFICE" EntitySet="OFFICE" />
       <End Role="OFFICEUSE_TEACHER" EntitySet="OFFICEUSE_TEACHER" />
@@ -307,6 +194,12 @@
       <End Role="TEACHER" EntitySet="TEACHER" />
       <End Role="ROOMUSE_TEACHER" EntitySet="ROOMUSE_TEACHER" />
     </AssociationSet>
+    <EntitySet Name="LOCATION" EntityType="DataModel.LOCATION" />
+    <AssociationSet Name="FK_OFFICE_LOCATION" Association="DataModel.FK_OFFICE_LOCATION">
+      <End Role="LOCATION" EntitySet="LOCATION" />
+      <End Role="OFFICE" EntitySet="OFFICE" />
+    </AssociationSet>
+    <EntitySet Name="job" EntityType="DataModel.job" />
   </EntityContainer>
   <EntityType Name="nearbyeating">
     <Key>
@@ -387,23 +280,16 @@
     <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ll" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="ACTIVITY">
-    <Key>
-      <PropertyRef Name="ACTIVITYID" />
-    </Key>
-    <Property Name="ACTIVITYID" Type="Int32" Nullable="false" />
-    <Property Name="KEYWORDS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="NOTE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="OFFICE">
     <Key>
       <PropertyRef Name="OFFICEID" />
     </Key>
     <Property Name="OFFICEID" Type="Int32" Nullable="false" />
-    <Property Name="OFFICENAME" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="OFFICELOCATION" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="CAMPUS" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="PHONE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="OFFICENAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LOCATIONID" Type="Int32" />
+    <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LOCATION" Relationship="DataModel.FK_OFFICE_LOCATION" FromRole="OFFICE" ToRole="LOCATION" />
   </EntityType>
   <EntityType Name="ROOM">
     <Key>
@@ -411,9 +297,10 @@
     </Key>
     <Property Name="ROOMID" Type="Int32" Nullable="false" />
     <Property Name="ROOMNAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="ROOMLOCATION" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="ROOMTYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ROOMLOCATION" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ROOMTYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="CAMPUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="TEACHER">
     <Key>
@@ -425,17 +312,6 @@
     <Property Name="EMAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="DEPARTMENT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="NOTE" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="OFFICEUSE_ACTIVITY">
-    <Key>
-      <PropertyRef Name="OFFICEID" />
-      <PropertyRef Name="ACTIVITYID" />
-    </Key>
-    <Property Name="OFFICEID" Type="Int32" Nullable="false" />
-    <Property Name="ACTIVITYID" Type="Int32" Nullable="false" />
-    <Property Name="NOTE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="ACTIVITY" Relationship="DataModel.FK_OFFICEUSE_ACTIVITY_ACTIVITY" FromRole="OFFICEUSE_ACTIVITY" ToRole="ACTIVITY" />
-    <NavigationProperty Name="OFFICE" Relationship="DataModel.FK_OFFICEUSE_ACTIVITY_OFFICE" FromRole="OFFICEUSE_ACTIVITY" ToRole="OFFICE" />
   </EntityType>
   <EntityType Name="OFFICEUSE_TEACHER">
     <Key>
@@ -463,30 +339,6 @@
     <NavigationProperty Name="ROOM" Relationship="DataModel.FK_ROOMUSE_TEACHER_ROOM" FromRole="ROOMUSE_TEACHER" ToRole="ROOM" />
     <NavigationProperty Name="TEACHER" Relationship="DataModel.FK_ROOMUSE_TEACHER_TEACHER" FromRole="ROOMUSE_TEACHER" ToRole="TEACHER" />
   </EntityType>
-  <Association Name="FK_OFFICEUSE_ACTIVITY_ACTIVITY">
-    <End Type="DataModel.ACTIVITY" Role="ACTIVITY" Multiplicity="1" />
-    <End Type="DataModel.OFFICEUSE_ACTIVITY" Role="OFFICEUSE_ACTIVITY" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ACTIVITY">
-        <PropertyRef Name="ACTIVITYID" />
-      </Principal>
-      <Dependent Role="OFFICEUSE_ACTIVITY">
-        <PropertyRef Name="ACTIVITYID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OFFICEUSE_ACTIVITY_OFFICE">
-    <End Type="DataModel.OFFICE" Role="OFFICE" Multiplicity="1" />
-    <End Type="DataModel.OFFICEUSE_ACTIVITY" Role="OFFICEUSE_ACTIVITY" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OFFICE">
-        <PropertyRef Name="OFFICEID" />
-      </Principal>
-      <Dependent Role="OFFICEUSE_ACTIVITY">
-        <PropertyRef Name="OFFICEID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_OFFICEUSE_TEACHER_OFFICE">
     <End Type="DataModel.OFFICE" Role="OFFICE" Multiplicity="1" />
     <End Type="DataModel.OFFICEUSE_TEACHER" Role="OFFICEUSE_TEACHER" Multiplicity="0..1" />
@@ -535,4 +387,44 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="LOCATION">
+    <Key>
+      <PropertyRef Name="LOCATIONID" />
+    </Key>
+    <Property Name="LOCATIONID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LOCATIONNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NOTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LONGTITUDE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LATITUDE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CAMPUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_OFFICE_LOCATION">
+    <End Type="DataModel.LOCATION" Role="LOCATION" Multiplicity="0..1" />
+    <End Type="DataModel.OFFICE" Role="OFFICE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOCATION">
+        <PropertyRef Name="LOCATIONID" />
+      </Principal>
+      <Dependent Role="OFFICE">
+        <PropertyRef Name="LOCATIONID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="infotitile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobtime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobdetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobrequire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobsite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobtreatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jobtag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="releasetime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="qinban_cert" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="via" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>
