@@ -152,7 +152,11 @@ public class NearbyFragment extends Fragment {
 			public boolean onChildClick(ExpandableListView arg0, View arg1,
 					int arg2, int arg3, long arg4) {
 			//	ToastUtil.showToastLong(getActivity(),arg2+"--"+arg3);
-
+				NearbyEntity nearbyEntity=childrenData.get(arg2).get(arg3);
+				Intent intent = new Intent();
+				intent.putExtra("map", nearbyEntity);
+				intent.setClass(getActivity(), NearbyDetail.class);
+				startActivityForResult(intent, 0);
 				return false;
 			}
 		});
@@ -164,11 +168,11 @@ public class NearbyFragment extends Fragment {
 			public boolean isChildSelectable(int arg0, int arg1) {
 				// TODO Auto-generated method stub
 				
-				NearbyEntity nearbyEntity=childrenData.get(arg0).get(arg1);
-				Intent intent = new Intent();
-				intent.putExtra("map", nearbyEntity);
-				intent.setClass(getActivity(), NearbyDetail.class);
-				startActivityForResult(intent, 0);
+//				NearbyEntity nearbyEntity=childrenData.get(arg0).get(arg1);
+//				Intent intent = new Intent();
+//				intent.putExtra("map", nearbyEntity);
+//				intent.setClass(getActivity(), NearbyDetail.class);
+//				startActivityForResult(intent, 0);
 				
 				return true;
 			}
