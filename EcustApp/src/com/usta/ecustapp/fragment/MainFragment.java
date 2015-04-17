@@ -102,10 +102,8 @@ public class MainFragment extends Fragment {
 		imageView_Classroom.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				// intent.putExtra("index", index);
-				intent.setClass(getActivity(), Classroom.class);
-				startActivityForResult(intent, 0);
+
+				showClassroomDialog();
 			}
 		});
 		imageView_Lecture = (ImageView) view
@@ -158,7 +156,26 @@ public class MainFragment extends Fragment {
 			}
 		});
 	}
-
+	protected void showClassroomDialog() {
+		String[] items = { "奉贤校区空教室查询", "徐汇校区空教室查询" };
+		new AlertDialog.Builder(getActivity()).setTitle("请选择...")// 设置对话框标题
+				.setItems(items, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if (which == 0) {
+							Intent intent = new Intent();
+							intent.putExtra("todo", which);
+							intent.setClass(getActivity(), Classroom.class);
+							startActivityForResult(intent, 0);
+						} else if (which == 1) {
+							Intent intent = new Intent();
+							intent.putExtra("todo", which);
+							intent.setClass(getActivity(), Classroom.class);
+							startActivityForResult(intent, 0);
+						}
+					}
+				}).setNegativeButton("取消", null).show();
+	}
 	protected void showLibDialog() {
 		String[] items = { "校图书馆馆藏图书查询", "校图书馆实时座位信息" };
 		new AlertDialog.Builder(getActivity()).setTitle("请选择...")// 设置对话框标题

@@ -142,6 +142,7 @@
       <DependentUpon>DataInfo.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdviseInsertController.cs" />
+    <Compile Include="Controllers\ClassroomController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobDetailsController.cs" />
     <Compile Include="Controllers\JobsTitlesController.cs" />
