@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ecustj111Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="version">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="build" Type="int" />
+    <Property Name="date" Type="date" />
+  </EntityType>
+  <EntityType Name="weather">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="datetime" Type="datetime" />
+    <Property Name="h12" Type="nvarchar" MaxLength="50" />
+    <Property Name="h12temp" Type="nvarchar" MaxLength="50" />
+    <Property Name="h12img1" Type="nvarchar" MaxLength="50" />
+    <Property Name="h12img2" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24temp" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24img1" Type="nvarchar" MaxLength="50" />
+    <Property Name="h24img2" Type="nvarchar" MaxLength="50" />
+    <Property Name="aqi" Type="nvarchar" MaxLength="10" />
+    <Property Name="pm25" Type="int" />
+  </EntityType>
+  <EntityContainer Name="ecustj111ModelStoreContainer">
+    <EntitySet Name="version" EntityType="Self.version" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="weather" EntityType="Self.weather" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

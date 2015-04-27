@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ecustj111ModelStoreContainer" CdmEntityContainer="ecustj111Entities">
+    <EntitySetMapping Name="weather">
+      <EntityTypeMapping TypeName="ecustj111Model.weather">
+        <MappingFragment StoreEntitySet="weather">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="datetime" ColumnName="datetime" />
+          <ScalarProperty Name="h12" ColumnName="h12" />
+          <ScalarProperty Name="h12temp" ColumnName="h12temp" />
+          <ScalarProperty Name="h12img1" ColumnName="h12img1" />
+          <ScalarProperty Name="h12img2" ColumnName="h12img2" />
+          <ScalarProperty Name="h24" ColumnName="h24" />
+          <ScalarProperty Name="h24temp" ColumnName="h24temp" />
+          <ScalarProperty Name="h24img1" ColumnName="h24img1" />
+          <ScalarProperty Name="h24img2" ColumnName="h24img2" />
+          <ScalarProperty Name="aqi" ColumnName="aqi" />
+          <ScalarProperty Name="pm25" ColumnName="pm25" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="version">
+      <EntityTypeMapping TypeName="ecustj111Model.version">
+        <MappingFragment StoreEntitySet="version">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="build" ColumnName="build" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
