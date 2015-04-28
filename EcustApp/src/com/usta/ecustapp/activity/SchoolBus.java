@@ -8,8 +8,9 @@ import org.json.JSONObject;
 
 import com.usta.ecustapp.*;
 import com.usta.ecustapp.service.*;
-import android.view.MenuItem;
+import com.usta.ecustapp.util.ToastUtil;
 
+import android.view.MenuItem;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,8 +46,6 @@ public class SchoolBus extends ActionBarActivity {
 	Spinner spinnerType;
 	Spinner spinnerRoute;
 	ListView listViewBus;
-	Toast toast1;
-	Toast toast2;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +58,7 @@ public class SchoolBus extends ActionBarActivity {
 
 		listViewBus = (ListView) findViewById(R.id.listViewBus);
 
-		toast1 = Toast.makeText(this, "无合适班次", Toast.LENGTH_SHORT);
+		ToastUtil.showToastShort(getApplicationContext(), "无合适班次");
 	}
 
 	private void init_btn() {
@@ -93,8 +92,7 @@ public class SchoolBus extends ActionBarActivity {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			listViewBus.setAdapter(null);
-
-			toast1.show();
+			ToastUtil.showToastShort(getApplicationContext(), "无合适班次");
 
 		}
 	};

@@ -4,9 +4,7 @@ package com.usta.ecustapp.activity;
 import android.view.MenuItem;
 
 import com.usta.ecustapp.*;
-import com.usta.ecustapp.account.*;
-
-
+import com.usta.ecustapp.service.AccountService;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -147,7 +145,7 @@ protected void registerViaNewThread() {
 	    @Override
 	    public void run() {
 	    	toast0.show();
-	    	 userKey=Account.register(userNickName,userEmail,userPwd0,userMobile ,userDepart, userNum, userRealName);
+	    	 userKey=AccountService.register(userNickName,userEmail,userPwd0,userMobile ,userDepart, userNum, userRealName);
 	    	if(!userKey.startsWith("-")){
 //注册成功
 	    	

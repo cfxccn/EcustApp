@@ -8,11 +8,12 @@ import com.renn.rennsdk.RennClient.LoginListener;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQAuth;
 import com.usta.ecustapp.tencent.*;
+import com.usta.ecustapp.util.ToastUtil;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.usta.ecustapp.R;
-import com.usta.ecustapp.account.Account;
+import com.usta.ecustapp.service.AccountService;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,17 +29,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.renn.rennsdk.RennExecutor.CallBack;
 import com.renn.rennsdk.exception.RennException;
 import com.renn.rennsdk.param.GetUserParam;
-import com.renn.rennsdk.RennParam;
 
-import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,12 +47,7 @@ public class AccountSetting extends ActionBarActivity  implements OnClickListene
 	String userPwd;
 	String userKey="x";
 	String userName;
-	Toast Toast1;
-	Toast Toast2;
-	Toast Toast3;
-	Toast Toast4;
-	Toast Toast5;
-	Toast Toast0;
+
 	 SharedPreferences userInfo;
 	 String userLocalName;
 	 String userLocalEmail;
@@ -63,12 +55,10 @@ public class AccountSetting extends ActionBarActivity  implements OnClickListene
 	 private static final String RRAPP_ID = "268681";
 	 private static final String RRAPI_KEY = "ba8f6a1e7c1542698737fcb00c56b6c6";
 	 private static final String RRSECRET_KEY = "ca7c9f3744d64c3a85068ad9df1895ef";
-	private ProgressDialog mProgressDialog;
     JSONObject userRenrenJsonObject;
     String userRenrenString;
     public static QQAuth mQQAuth;
     private UserInfo mInfo;
-	private EditText mEtAppid = null;
 	private Tencent mTencent;
     public static String mAppid;
 
@@ -103,12 +93,7 @@ public class AccountSetting extends ActionBarActivity  implements OnClickListene
         initLocalUserInfo();
         isLocalLogin();
         initbtn();
-  	  	Toast1=Toast.makeText(this,"登录成功", Toast.LENGTH_SHORT);
-  	  	Toast2=Toast.makeText(this,"登录失败，请检查网络", Toast.LENGTH_SHORT);
-  	  	Toast3=Toast.makeText(this,"注销成功", Toast.LENGTH_SHORT);
-  	  	Toast4=Toast.makeText(this,"请输入信息", Toast.LENGTH_SHORT);
-  	  	Toast5=Toast.makeText(this,"登录失败，帐号密码错误", Toast.LENGTH_SHORT);
-  	  	Toast0=Toast.makeText(this,"正在登录", Toast.LENGTH_SHORT);
+
 
 
     }
@@ -131,10 +116,12 @@ private void initbtn() {
 				userEmail=editTextUserEmail.getText().toString();
 				userPwd=editTextUserPwd.getText().toString();
 				if(userEmail.equalsIgnoreCase("")||userPwd.equalsIgnoreCase("")){
-					Toast4.show();
+					
+
+			  	  	ToastUtil.showToastShort(getApplicationContext(), "请输入信息");
 					return;
 				}
-		    	Toast0.show();
+				ToastUtil.showToastShort(getApplicationContext(), "正在登录");
 
 				loginViaNewThread();
 				
@@ -165,7 +152,11 @@ private void initbtn() {
 		 	    userInfo.edit().putString("useremail", "null").commit();  
 		 	    userInfo.edit().putString("userkey", "null").commit();  
 		 	    userInfo.edit().putString("username", "null").commit();  
-		 	    Toast3.show();
+		 	    
+
+		 	    
+		 	    ToastUtil.showToastShort(getApplicationContext(), "注销成功");
+		 	    
 				Intent intent =new Intent();
 				intent.putExtra("index", index);
 				intent.setClass(AccountSetting.this, AccountSetting.class);
@@ -181,7 +172,9 @@ private Handler loginSuccess =new Handler(){
 		//当有消息发送出来的时候就执行Handler的这个方法
 		public void handleMessage(Message msg){
 		super.handleMessage(msg);
-    	Toast1.show();
+		
+
+  	  	ToastUtil.showToastShort(getApplicationContext(), "登录成功");
   		userInfo = getSharedPreferences("setting", 0);  
  	    userInfo.edit().putString("useremail", userEmail).commit();  
  	    userInfo.edit().putString("userkey", userKey).commit();  
@@ -202,7 +195,10 @@ private Handler loginSuccess =new Handler(){
 			//当有消息发送出来的时候就执行Handler的这个方法
 			public void handleMessage(Message msg){
 			super.handleMessage(msg);
-	    	  Toast5.show();
+			
+
+	  	  	
+	  	  	ToastUtil.showToastShort(getApplicationContext(), "登录失败，帐号密码错误");
 
 			}
 			};
@@ -211,7 +207,10 @@ private Handler loginSuccess =new Handler(){
 				//当有消息发送出来的时候就执行Handler的这个方法
 				public void handleMessage(Message msg){
 				super.handleMessage(msg);
-		    	  Toast2.show();
+				
+
+				
+		  	  	ToastUtil.showToastShort(getApplicationContext(), "登录失败，请检查网络");
 
 				}
 				};
@@ -221,8 +220,9 @@ protected void loginViaNewThread() {
 	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-	    	Toast0.show();
-	    	userKey= Account.login(userEmail, userPwd);
+
+	    	ToastUtil.showToastShort(getApplicationContext(), "正在登录");
+	    	userKey= AccountService.login(userEmail, userPwd);
 	 	    	if(!userKey.startsWith("-")){
 	 				//登录成功
 	 	    		userName=userKey.substring(0, userKey.indexOf(","));
@@ -317,7 +317,7 @@ public void onClick(View v) {
 			                userName=userRenrenJsonObject.optString("name");
 							userEmail=userRenrenJsonObject.optInt("id")+"@RenRen";
 							userKey=userRenrenJsonObject.optInt("id")+"@RenRen";
-			                 Toast.makeText(AccountSetting.this, "欢迎登陆"+userName , Toast.LENGTH_SHORT).show();  
+			                 ToastUtil.showToastShort(AccountSetting.this, "欢迎登陆"+userName);
 			                 sendRRQQInfoViaNewThread();
                            } catch (JSONException e) {
 							// TODO Auto-generated catch block
@@ -483,7 +483,7 @@ protected void sendRRQQInfoViaNewThread() {
 	new Thread(new Runnable(){
 	    @Override
 	    public void run() {
-	    	Account.rrqqLogin(userName, userEmail);
+	    	AccountService.rrqqLogin(userName, userEmail);
 	    }
 	}).start();
    	
